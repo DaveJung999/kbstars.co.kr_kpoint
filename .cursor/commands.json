@@ -1,0 +1,18 @@
+{
+	"s": {
+		"description": "0단계 스캔(PHP 업그레이드, 최소 토큰)",
+		"prompt": "`.cursor/commands/s.md` 파일의 지시사항을 따라 PHP 업그레이드 이슈 영향 파일/로직을 식별하되, 실제 수정은 금지하고 가이드만 제공하세요. `.ai/cursor_agent.rules.md`의 규칙을 우선 적용하세요."
+	},
+	"p": {
+		"description": "1단계 전략 수립 (PHP 업그레이드 전체 영향 범위 산정, Batch 분할 수행)",
+		"prompt": "`.cursor/commands/p.md` 파일의 지시사항을 따라 PHP 업그레이드 전략을 설계하세요. 전체 영향 PHP 파일을 표로 정리하고, Batch(10~20개 단위)로 분할하여 토큰 소모를 최소화하세요. `.ai/cursor_agent.rules.md`의 규칙을 우선 적용하세요."
+	},
+	"m": {
+		"description": "2단계 실제 소스 수정 (PHP 업그레이드 Batch 단일 처리, 토큰 절감 최우선)",
+		"prompt": "`.cursor/commands/m.md` 파일의 지시사항을 따라 PHP 업그레이드 작업의 실제 소스 수정을 수행하세요. `/p`(전략수립) 단계에서 승인된 Batch 파일 목록 기준으로 Batch 단일 처리하세요. `.ai/cursor_agent.rules.md`의 규칙을 우선 적용하세요."
+	},
+	"v": {
+		"description": "3단계 PHP 업그레이드 최종 검증(신규 코드 변경 불가, 토큰 최소 진단)",
+		"prompt": "`.cursor/commands/v.md` 파일의 지시사항을 따라 PHP 업그레이드 최종 검증을 수행하세요. 코드 수정/구현 제안은 금지하고, 위험·위반·누락·불일치만 진단하세요. `.ai/cursor_agent.rules.md`의 규칙을 우선 적용하세요."
+	}
+}

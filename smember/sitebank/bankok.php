@@ -51,7 +51,8 @@ function transferok() {
 				passwd		=> "post,trim,notnull=" . urlencode("웹로그인 패스워드를 입력하시기바랍니다."),
 		);
 	$qs=check_value($qs);
-	$qs['to_accountno']=eregi_replace("[^0-9]","",$qs['to_accountno']);
+	// PHP 7 업그레이드: eregi_replace() → preg_replace() (i 플래그 사용)
+	$qs['to_accountno']=preg_replace("/[^0-9]/i","",$qs['to_accountno']);
 
 	// 해당 계좌정보와 계좌 내역 마지막건의 정보를 읽음
 	$rs_accountinfo=db_query("SELECT * FROM {$table_accountinfo} WHERE bid={$_SESSION['seUid']} and accountno='{$qs['accountno']}'");

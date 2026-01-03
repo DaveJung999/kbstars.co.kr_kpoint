@@ -7,6 +7,7 @@
 //	DATE	수정인				수정 내용
 // -------- ------ --------------------------------------
 // 04/08/21 박선민 마지막 수정
+// 25/01/XX  PHP 7 업그레이드: eregi_replace() → preg_replace()
 //=======================================================
 $HEADER=array(
 		'priv' => '', // 인증유무 (0:모두에게 허용, 숫자가 높을 수록 레벨업)
@@ -124,7 +125,8 @@ else{
 
 		//	Search 단어 색깔 표시
 		if($_GET['sc_string'] and $_GET['sc_column']){
-			$list[$_GET['sc_column']]	= eregi_replace($_GET['sc_string'], "<font color='darkred'>\\0</font>", $list[$_GET['sc_column']]);
+			// PHP 7 업그레이드: eregi_replace() → preg_replace() (i 플래그 사용)
+			$list[$_GET['sc_column']]	= preg_replace("/".preg_quote($_GET['sc_string'], '/')."/i", "<font color='darkred'>\\0</font>", $list[$_GET['sc_column']]);
 		}
 
 		// 업로드파일 처리

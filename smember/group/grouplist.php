@@ -7,6 +7,7 @@
 //	DATE	수정인			수정 내용
 // -------- ------ --------------------------------------
 // 02/10/01 박선민 마지막 수정
+// 25/01/XX  PHP 7 업그레이드: eregi_replace() → preg_replace()
 //=======================================================
 $HEADER=array(		'priv' => '회원', // 인증유무 (비회원,회원,운영자,서버관리자)
 		'usedb2' => 1, // DB 커넥션 사용 (0:미사용, 1:사용)
@@ -61,7 +62,8 @@ if(db_count()){
 				$subNode{$varRe}=new HTML_TreeNode($rows['title'],$rows['url'],$icon);
 				$varRePrev="";
 			} else {
-				$varReTemp=eregi_replace("_[^_]*$","",$varRe);
+				// PHP 7 업그레이드: eregi_replace() → preg_replace() (i 플래그 사용)
+				$varReTemp=preg_replace("/_[^_]*$/i","",$varRe);
 				if(isset($subNode{$varReTemp}))
 					$subNode{$varReTemp}->addItem($subNode{$varRe});
 			}

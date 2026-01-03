@@ -7,6 +7,7 @@
 //	DATE	수정인				수정 내용
 // -------- ------ --------------------------------------
 // 05/11/20 박선민 마지막 수정
+// 25/01/XX  PHP 7 업그레이드: mysql_* → db_* 함수 교체
 //=======================================================
 $HEADER = array(
 	'priv'		=>'운영자,포인트관리자', // 인증유무 (비회원,회원,운영자,서버관리자)
@@ -185,7 +186,8 @@ for($i=0;$i<count($csvArray);$i++){
 		//exit;
 	}
 		
-	$Result		= @mysql_query($SQL) or die(mysql_error());
+	// PHP 7 업그레이드: mysql_query() → db_query(), mysql_error() → db_error()
+	$Result		= @db_query($SQL) or db_error("DB 입력 오류", $SQL);
 
 }
 //입력이 된후 업로드된 파일을 삭제한다
@@ -206,6 +208,7 @@ echo "<br><br>".$result_msg;
 }
 */
 
-@mysql_close();
+// PHP 7 업그레이드: mysql_close() → db_close()
+@db_close();
 
 ?>
