@@ -1,0 +1,142 @@
+<!--<? exit; ?>-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+	<link href="images/basic.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+.menu_title {	font-family: Verdana , Tahoma;
+	font-size: 12px;
+	color: #333333;
+}
+.bold_title {	color: #000000;
+	font-family: Tahoma, Verdana;
+	font-size: 12px;
+	font-weight: bold;
+}
+.status_ok {	color: #006600;
+	font-family: Tahoma, Verdana;
+	font-size: 12px;
+	font-weight: bold;
+}
+.status_notok {	color: #CC0000;
+	font-family: Tahoma, Verdana;
+	font-size: 12px;
+	font-weight: bold;
+}
+-->
+</style>
+
+	<body>
+		<table width="750" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td height="30" colspan="2" class="nevy_violet"><p class="bbl">제목 : {dbinfo.title}</td>
+		</tr>
+		</table>
+		<br>
+		<table width="700" border="0" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC" style="border-collapse:collapse;" >
+		<tr>
+			<td height="25" align="center" bgcolor="#F8F8F8" class="bold_title">조회기간선택</td>
+		</tr>
+		<tr>
+			<td align="center" bgcolor="#FFFFFF" class="bold_title">
+				<form name="listsearch" style='margin : 0px' {form_search}>
+				기간 선택 :
+				<INPUT TYPE=text name="startdate" id="startdate" ONCLICK="Calendar(this);" VALUE="{get.startdate}" size='10' readonly>
+				~
+				<INPUT TYPE=text name="enddate" id="enddate" ONCLICK="Calendar(this);" VALUE="{get.enddate}" size='10' readonly>
+				<br>
+				<br>
+				<span class="nevy_violet">
+				<select name="sc_column">
+				<option value="taxcash_name">이름</option>
+				<option value="taxcash_hp">전화번호</option>
+				<option value="taxcash_num">주민번호</option>
+				</select>
+
+				<script language="JavaScript" type="text/JavaScript">
+				var form_select = document.listsearch.sc_column;
+				var form_value 				= '{get.sc_column}';
+				for(var i=0;i<form_select.length;i++) {
+					if(form_select.options[i].value==form_value) {
+						form_select.options[i].selected = true;
+					}
+				}
+				</script>
+
+				</span><span class="nevy_violet">
+				<input type="text" name="sc_string" size="16" style='height:21;' value="{get.sc_string}">
+				상태별 보기 :
+				<select name="taxcash_status" onchange="javascript: window.location='/sadmin/money/cashtax/list.php?db={dbinfo.table}&taxcash_status='+this.value;" >
+				<option value=""> -- 전 체 -- </option>
+				{get.taxcash_status_option}
+				</select>
+				<input type="submit" name="Submit" value=" 검색하기 "></span>
+				</form>
+			</td>
+		</tr>
+		</table>
+		<br>
+		<table width="100%"	border="0" cellspacing="1" cellpadding="5">
+		<tr>
+			<td>
+				<table	border="0" cellpadding="5" cellspacing="1" bgcolor="#CCCCCC">
+				<tr align="center" bgcolor="#F6F6F6" class="menu_title">
+					<td height="25" class="bbl">결제 번호 </td>
+					<td class="bbl">결제 날짜 </td>
+					<td class="bbl">결제 금액 </td>
+					<td class="bbl">이름 </td>
+					<td class="bbl">전화번호</td>
+					<td class="bbl">주민번호</td>
+					<td class="bbl">e-mail</td>
+					<td bgcolor="#F6F6F6" class="bbl">발급 상태 </td>
+					<td bgcolor="#F6F6F6" class="bbl">수정하기</td>
+				</tr>
+				{INFO} <block name="info">
+				<tr height="1">
+					<td colspan="13" background="images/line_jumjumjum.gif"></td>
+				</tr>
+				</block name="info"> {LIST} <block name="list">
+				<tr bgcolor="#FFFFFF" class="menu_title">
+					<td height="25" align="center" bgcolor="#FFFFFF">{list.uid}</td>
+					<td>{list.rdate_date}</td>
+					<td align="right" bgcolor="#FFFFFF">{list.totalprice}원</td>
+					<td>{list.taxcash_name}</td>
+					<td align="right">{list.taxcash_hp}</td>
+					<td align="right">{list.taxcash_num}</td>
+					<td align="right">{list.taxcash_email}</td>
+					<opt name="list.taxcash_status_ok">
+					<td align="center" class="status_ok" >{list.taxcash_status}</td>
+					</opt name="list.taxcash_status_ok">
+					<opt name="!list.taxcash_status_ok">
+					<td align="center" class="status_notok">{list.taxcash_status}</td>
+					</opt name="!list.taxcash_status_ok">
+					<td align="center"><a href="{href.modify}" >상태 변경</a></td>
+				</tr>
+				</block name="list"> <block name="nolist">
+				<tr align="center" bgcolor="#FFFFFF">
+					<td height="30" colspan="10" bgcolor="#FFFFFF" class="menu_title">게시물이 하나도 없습니다</td>
+				</tr>
+				</block name="nolist"> <block name="nosearch">
+				<tr align="center" bgcolor="#FFFFFF">
+					<td height="30" colspan="10" bgcolor="#FFFFFF" class="menu_title">'&nbsp;{sc_string}'가 포함된 게시물을 찾을 수가 없습니다.</td>
+				</tr>
+				</block name="nosearch">
+				</table>
+			</td>
+		</tr>
+		</table>
+		<table width="700" border="0" cellpadding="5" cellspacing="0" class="base">
+		<tr>
+			<td height="35" align="left">{FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</td>
+		</tr>
+		</table>
+		<br>
+		<block name="firstpage"><a href="{href.firstpage}"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></a></block name="firstpage"> <block name="nofirstpage"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></block name="nofirstpage"> <block name="prevblock"><a href='{href.prevblock}'>◀</a>&nbsp;</block name="prevblock"> <block name="noprevblock">◀&nbsp;</block name="noprevblock"> <block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block"> <block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock"> <block name="nextblock"><a href='{href.nextblock}'>▶</a>&nbsp;</block name="nextblock"> <block name="nonextblock">▶&nbsp;</block name="nonextblock"> <block name="lastpage"><a href="{href.lastpage}"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></a></block name="lastpage"> <block name="nolastpage"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></block name="nolastpage"> <block name="write"><a href="{href.write}">상품입력하기</a></block name="write"> <block name="modify"></block name="modify"><block name="delete"></block name="delete">
+	</body>
+	</html>

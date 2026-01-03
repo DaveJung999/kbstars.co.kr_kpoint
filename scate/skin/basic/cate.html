@@ -1,0 +1,137 @@
+<!--<? exit; ?>-->
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none; }
+A:hover {font-size:10pt ; text-decoration:none; }
+body, table, tr, td, select
+{
+	color:#666666;
+	font-family: '나눔고딕', '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	border-color:#999999;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<table width="95%" border=0 align="center" cellpadding='3' cellspacing='1' bgcolor='#999999'>
+<form name="form1" {form_catewrite}>
+<tr>
+	<td height="30" colspan=2 bgcolor="#FFFFFF">
+		<strong>메뉴
+		<opt name="is_modify">수정</opt name="is_modify">
+		<opt name="!is_modify">추가</opt name="!is_modify">
+		</strong>
+		<opt name="!is_modify"></opt name="!is_modify">
+	</td>
+</tr>
+<tr>
+	<td width="16%" height="25" bgcolor="#eeeeee"><strong>메뉴 이름</strong></td>
+	<td width="84%" bgcolor="#FFFFFF">
+		{cate_nevi}
+		<input name="title" type="text" value="{list.title}" size="30">
+	</td>
+</tr>
+<tr>
+	<td height="25" bgcolor="#eeeeee"><strong>icon</strong></td>
+	<td bgcolor="#FFFFFF">
+		icon
+		<input name="icon" type="text" id="icon" value="{list.icon}">
+		folder.gif
+	</td>
+</tr>
+<tr>
+	<td height="25" bgcolor="#eeeeee">
+		<strong>서브메뉴
+		있을때</strong>
+	</td>
+	<td bgcolor="#FFFFFF">
+		expandedicon
+		<input name="expandedicon" type="text" id="icon" value="{list.expandedicon}">
+		folder-expanded.gif<br>
+		서브메뉴 보이기
+		<input name="expanded" type="text" value="{list.expanded}" size="2">
+		(0 or 1)	
+	</td>
+</tr>
+<tr>
+	<td height="25" bgcolor="#eeeeee"><strong>URL</strong></td>
+	<td bgcolor="#FFFFFF"><input name="url" type="text" id="url" value="{list.url}" size="60"></td>
+</tr>
+<tr>
+	<td height="25" bgcolor="#eeeeee"><strong>target</strong></td>
+	<td bgcolor="#FFFFFF">
+		<input name="target" type="text" id="target" value="{list.target}" size="15">
+		(새창 _blank) 
+	</td>
+</tr>
+<tr>
+	<td height="25" bgcolor="#eeeeee"><strong>hide</strong></td>
+	<td bgcolor="#FFFFFF">
+		<input name="hide" type="text" value="{list.hide}" size="2">
+		(0 or 1)	
+	</td>
+</tr>
+<tr>
+	<td height="25" bgcolor="#eeeeee"><strong>priv</strong></td>
+	<td bgcolor="#FFFFFF"><input name="priv" type="text" id="priv" value="{list.priv}" size="30" /></td>
+</tr>
+<tr>
+	<td height="25" bgcolor="#eeeeee"><strong>num</strong></td>
+	<td bgcolor="#FFFFFF"><input name="num" type="text" id="num" value="{list.num}" size="30" /></td>
+</tr>
+<tr>
+	<td height="25" bgcolor="#eeeeee"><strong>re</strong></td>
+	<td bgcolor="#FFFFFF"><input name="re" type="text" id="re" value="{list.re}" size="30"></td>
+</tr>
+<tr>
+	<td height="40" colspan="2" align="center" bgcolor="#FFFFFF">
+		<input type="submit" name="Submit" value=' 메뉴 <opt name="mode_catemodify">수정</opt name="mode_catemodify"><opt name="mode_catewrite">추가</opt name="mode_catewrite"> '>
+		<input type="button" name="Submit2" value=" 취소 " onclick="location.href='/sadmin/cate/list.php'" />
+	</td>
+</tr>
+</form>
+</table>
+<br>
+<table width="95%" border=0 align="center" cellpadding='3' cellspacing='1' bgcolor='#999999'>
+<tr>
+	<td height="30" colspan=12 bgcolor="#FFFFFF">
+		<b> {dbinfo.title}</b>
+		메뉴 현황
+	</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+	<td width="5%" height="30" align="center" bgcolor="#eeeeee" >cateuid</td>
+	<td width="4%" align="center" bgcolor="#eeeeee" >num</td>
+	<td width="4%" align="center" bgcolor="#eeeeee" >re</td>
+	<td width="15%" align="center" bgcolor="#eeeeee" >카테고리 제목</td>
+	<td width="7%" align="center" bgcolor="#eeeeee" >icon</td>
+	<td width="22%" align="center" bgcolor="#eeeeee" >url</td>
+	<td width="8%" align="center" bgcolor="#eeeeee" >target</td>
+	<td width="7%" align="center" bgcolor="#eeeeee" ><div align="center">hide/priv</td>
+	<td	width="*" colspan=4 align="center" nowrap bgcolor="#eeeeee">메뉴</td>
+</tr>
+{LIST}
+<block name="list">
+<tr bgcolor="{list.tr_color}" onmouseover="this.style.backgroundColor='{list.bgcolor}'" onmouseout="this.style.backgroundColor='{list.tr_color}'">
+	<td height="25" align="center" nowrap >{list.uid} </td>
+	<td align="center" nowrap="nowrap" > {list.num} </td>
+	<td align="center" nowrap="nowrap" > {list.re} </td>
+	<td nowrap> <a href="{list.url}" target=_blank>{list.title}</a> </td>
+	<td align="center" nowrap>{list.icon}</td>
+	<td nowrap><span title="{list.url}">{list.cut_url}</span></td>
+	<td align="center" nowrap>{list.target}</td>
+	<td align="center" nowrap>{list.hide}/{list.priv}</td>
+	<td width="5%" align="center" nowrap> <a href="{href.catemodify}"><strong>수정</strong></a> </td>
+	<td width="5%" align=center nowrap> <a href="{href.catedelete}" onclick="return confirm('서브카테고리있다면 서비카테고리까지 삭제됩니다.\n정말 삭제 하시겠습니까?')">삭제</a></td>
+	<td width="6%" align="center" nowrap><a href="javascript: window.open('{href.catesort}','_blank','toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,resizable=no,width=350,height=100,top=30 left=30'); void(0);">순서변경</a></td>
+	<td width="6%" align="center" nowrap><a href="{href.catereply}">서브추가</a></td>
+</tr>
+</block name="list">
+</table>

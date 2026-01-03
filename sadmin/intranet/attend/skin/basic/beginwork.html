@@ -1,0 +1,128 @@
+
+<html>
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body bgcolor="white" background="">
+	<form name="write" {form_default}>
+	<table width="500" border=0 cellpadding='3' cellspacing='1' bgcolor='#666666'>
+	<tr>
+		<td bgcolor='#CFD8E9'><b>{site.company} 출근하기</b></td>
+	</tr>
+	<tr>
+		<td bgcolor='#F0F0F0'>
+			<table width="400" border=0 align="center" cellpadding='3' cellspacing='1' bgcolor='#666666'>
+			<tr>
+				<td bgcolor='#B2CCE5'>
+					<b>
+					<input name="type" type="radio" onClick="javascript: this.form.submit.value='출근하기'" value="출근" checked>
+					<a href="javascript: document.forms[0].mode[0].checked=true; void(0)">출근하기 </a>
+					<input name="type" type="radio" onClick="javascript: this.form.submit.value='휴가중'" value="휴가">
+					<a href="javascript: document.forms[0].mode[1].checked=true; void(0)">휴가확인(유급의경우필히)</a>
+					<input name="type" type="radio" onClick="javascript: this.form.submit.value='출장중';" value="출장">
+					<a href="javascript: document.forms[0].mode[2].checked=true; void(0)">출장확인</a></b>
+
+					<script language="JavaScript" type="text/JavaScript">
+					var form_radio = document.write.type;
+					var form_value 				= '{list.type}';
+					for(var i=0;i<form_radio.length;i++) {
+						if(form_radio[i].value==form_value) {
+							form_radio[i].checked = true;
+						}
+					}
+					</script>
+
+				</td>
+			</tr>
+			<tr>
+				<td align="center" bgcolor='#F0F0F0'>
+					<table width="287" border="1">
+					<tr>
+						<td width="67">출근시간</td>
+						<td width="204">
+							<select name="beginhour">
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">오후1</option>
+							<option value="14">오후2</option>
+							<option value="15">오후3</option>
+							<option value="16">오후4</option>
+							<option value="17">오후5</option>
+							<option value="18">오후6</option>
+							<option value="19">오후7</option>
+							<option value="20">오후8</option>
+							<option value="21">오후9</option>
+							<option value="22">오후10</option>
+							<option value="23">오후11</option>
+							</select>
+							시
+							<select name="beginmin">
+							<option value="0">0</option>
+							<option value="15">15</option>
+							<option value="30">30</option>
+							<option value="45">45</option>
+							</select>
+							분
+
+							<script language="JavaScript" type="text/JavaScript">
+							var form_select = document.write.beginhour;
+							var form_value 				= '{list.beginhour}';
+							for(var i=0;i<form_select.length;i++) {
+								if(form_select.options[i].value==form_value) {
+									form_select.options[i].selected = true;
+								}
+							}
+							var form_select = document.write.beginmin;
+							var form_value 				= '{list.beginmin}';
+							for(var i=0;i<form_select.length;i++) {
+								if(form_select.options[i].value==form_value) {
+									form_select.options[i].selected = true;
+								}
+							}
+							</script>
+
+						</td>
+					</tr>
+					</table>
+					<p><b>{nowdate}</b> </p>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" bgcolor='#B2CCE5'><b>모두를 즐겁게 하는	출근 인사 ~ 오늘의 다짐</b></td>
+			</tr>
+			<tr>
+				<td align="center" bgcolor='#F0F0F0'><textarea name="memo" cols="50" rows="6" id="memo"></textarea></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#F0F0F0' align="center"><input name="submit" type="submit" id="submit" value=" 출근합니다. "></td>
+	</tr>
+	</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!--<? exit; ?>-->
+<html>
+<head>
+	<title>우편번호 검색</title>
+
+	<script language="JavaScript">
+	<!--
+	function setid(uid,c_num,c_name,c_owner,c_address,c_kind,c_detail)
+	{
+		opener.document.{
+			get.formname}
+			.{
+			get.inputprefix}
+		cpid.value = uid;
+		opener.document.{
+			get.formname}
+			.{
+			get.inputprefix}
+		c_num.value = c_num;
+		opener.document.{
+			get.formname}
+			.{
+			get.inputprefix}
+		c_name.value = c_name;
+		opener.document.{
+			get.formname}
+			.{
+			get.inputprefix}
+		c_owner.value = c_owner;
+		opener.document.{
+			get.formname}
+			.{
+			get.inputprefix}
+		c_address.value = c_address;
+		opener.document.{
+			get.formname}
+			.{
+			get.inputprefix}
+		c_kind.value = c_kind;
+		opener.document.{
+			get.formname}
+			.{
+			get.inputprefix}
+		c_detail.value = c_detail;
+		self.close();
+	}
+	//-->
+	</script>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style type="text/css">
+<!--
+.font12px {font-size: 12px}
+-->
+</style>
+
+</head>
+
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0">
+	<table cellpadding="0" cellspacing="0" width="100%" border="0">
+	<tr>
+		<td style="padding-top:10px; padding-left:10px ">회사(거래처) 선택</td>
+	</tr>
+	<tr height="10"><td></td></tr>
+	<tr height="5"><td></td></tr>
+	<tr>
+		<td>
+			<!-- 박스 시작 -->
+			<table cellpadding="0" cellspacing="0" width="337" border="0" align="center">
+			<tr>
+				<td bgcolor="#FAFAFA" align="center" class="linestyle" style="padding-top:10px; padding-bottom:10px ">
+					<form class="font12px" {form_default}>사업자등록번호 혹은 주민등록번호를 입력하여 주십시요.<br>
+					<input type="text" name="sc_c_num" class="input01">
+					<input type="submit" name="Submit" value=" 검색 " ><br>
+					</form>
+				</td>
+			</tr>
+			</table>
+			<!-- 박스 끝 -->
+		</td>
+	</tr>
+	<tr height="5"><td></td></tr>
+	</table>
+	<br>
+	<table cellSpacing=0 borderColorDark=#ffffff cellPadding=5 width=90% borderColorLight=#999999 border=1 align="center">
+	<tr class="font12px">
+		<td bgcolor="#f5f5f5" align="center" width="18%"><strong>등록번호</strong></td>
+		<td bgcolor="#f5f5f5" align="center" width="22%"><strong>회사명</strong></td>
+		<td bgcolor="#f5f5f5" align="center" width="60%"><b>주소</b></td>
+	</tr>
+	{LIST}
+	<block name="list">
+	<tr onmouseover="this.style.backgroundColor='#F6F6F6'" onmouseout="this.style.backgroundColor=''">
+		<td align="center" class="font12px">{list.c_num}</td>
+		<td class="font12px">{list.c_name}</td>
+		<td align="center">
+			{list.c_address}
+			<input type='button' name='Submit23' value='입력' OnClick="setid('{list.uid}', '{list.c_num}', '{list.c_name}','{list.c_owner}','{list.c_address}','{list.c_kind}','{list.c_detail}')">
+		</td>
+	</tr>
+	</block name="list">
+	<block name="nolist">
+	<tr onmouseover="this.style.backgroundColor='#F6F6F6'" onmouseout="this.style.backgroundColor=''">
+		<td colspan="3" align="center" class="font12px">
+			데이터가 없습니다. <br>
+			다시 검색하시기 바랍니다.
+		</td>
+	</tr>
+	</block name="nolist">
+	</table>
+</body>
+</html>

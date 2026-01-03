@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "sitePHPbasic 종합관리페이지 1단계 인증"
+AuthUserFile ./.htpasswd
+AuthGroupFile /dev/null
+<Limit GET POST>
+require valid-user
+</Limit>

@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+</head>
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1px;
+}
+-->
+</style>
+
+<body>
+	<table width="570" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td align="center"></td>
+		<tr>
+			<td>
+				<form enctype="multipart/form-data" name="write" style='margin:0px' {form_default}>
+				<b><font color="#003399">사업자등록증 정보</font></b><br>
+				(* 일반인은 사업자등록번호를 입력하지 마시고, 주민등록번호를 꼭 입력하시기 바랍니다.) <br>
+				<table width="100%" border="0" cellspacing="1" cellpadding="3" bordercolor="#CFCFCF" bgcolor="#CCCCCC">
+				<tr>
+					<td height="30" bgcolor="#F5F5F5">
+						<b><font color="#000033">사업자<br>
+						등록번호</font></b>
+					</td>
+					<td bgcolor="#FFFFFF">
+						<input type="text" name="c_num1" size="3"	maxlength="3" value = "{list.c_num1}">
+						-
+						<input type="text" name="c_num2" size="2"	maxlength="2" value = "{list.c_num2}">
+						-
+						<input type="text" name="c_num3" size="5"	maxlength="5" value = "{list.c_num3}">
+						<br>
+					</td>
+					<td bgcolor="#F5F5F5">
+						<b><font color="#000033">주민(법인)<br>
+						등록번호</font></b>
+					</td>
+					<td bgcolor="#FFFFFF">
+						<input name="c_idnum1" type="text" id="c_idnum1" value = "{list.c_idnum1}" size="6"	maxlength="6">
+						-
+						<input name="c_idnum2" type="text" id="c_idnum2" value = "{list.c_idnum2}" size="7"	maxlength="7">
+					</td>
+				</tr>
+				<tr>
+					<td width="17%" height="30" bgcolor="#F5F5F5"><b><font color="#000033"> 상호(법인명)</font></b></td>
+					<td width="35%" bgcolor="#FFFFFF">
+						<input type="text" name="c_name" size="25"	maxlength="35" value = "{list.c_name}" >
+					</td>
+					<td width="17%" bgcolor="#F5F5F5"><font color="#000033"><b>성명(대표자)</b></font></td>
+					<td width="31%" bgcolor="#FFFFFF">
+						<input type="text" name="c_owner" size="10" maxlength="8" value = "{list.c_owner}"	>
+					</td>
+				</tr>
+				<tr>
+					<td width="17%" height="30" bgcolor="#F5F5F5"><b><font color="#000033"> 사업장주소</font></b></td>
+					<td colspan="3" bgcolor="#FFFFFF">
+						<input type="text" name="c_address" size="40"	maxlength="60"	value = "{list.c_address}" >
+					</td>
+				</tr>
+				<tr>
+					<td width="17%" height="30" bgcolor="#F5F5F5"><b><font color="#000033"> 업태</font></b></td>
+					<td width="35%" bgcolor="#FFFFFF">
+						<input type="text" name="c_kind" size="20"	maxlength="30"	value = "{list.c_kind}"	>
+					</td>
+					<td width="17%" bgcolor="#F5F5F5"><font color="#000033"><b>종목</b></font></td>
+					<td width="31%" bgcolor="#FFFFFF">
+						<input type="text" name="c_detail" size="15"	maxlength="30"	value = "{list.c_detail}"	>
+					</td>
+				</tr>
+				<tr>
+					<td height="30" bgcolor="#F5F5F5"><b><font color="#000033">회사전화</font></b></td>
+					<td bgcolor="#FFFFFF"><input name="c_tel" type="text" id="c_tel" value = "{list.c_tel}" size="20"	maxlength="30" ></td>
+					<td bgcolor="#F5F5F5"><b><font color="#000033">회사팩스</font></b></td>
+					<td bgcolor="#FFFFFF"><input name="c_fax" type="text" id="c_fax" value = "{list.c_fax}" size="15"	maxlength="30" ></td>
+				</tr>
+				<tr>
+					<td height="30" bgcolor="#F5F5F5"><strong><font color="#000033">인감도장</font></strong></td>
+					<td colspan="3" bgcolor="#FFFFFF">
+						<table width="100%"	border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="14%"><img src="{list.upfiles.upfile.href}" width="58" height="59"></td>
+							<td width="86%"><input name="upfile" type="file" id="upfile"></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<FONT color=#107f1a>① 인감을 흰종이에 선명하게 날인합니다.<BR>
+								② 크기 = 가로 * 세로 : 58 * 58 pixel, 해상도 = 72dpi로 스캔합니다.<BR>
+								③ 그래픽 프로그램 (포토샵, 페인트샵프로 등)에서 스캔 받은 파일을 불러옵니다.<BR>
+								④ 바탕화면을 투명으로 작업하신 후 gif file로 저장합니다.<br>
+								&nbsp; &nbsp; 바탕화면을 투명으로 해야 세금계산서에 도장이 제대로 찍힙니다.</FONT>
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+				<br>
+				<b><font color="#003399">세금계산서 담당자 정보</font></b><br>
+				<table width="100%" border="0" cellspacing="1" cellpadding="3" bordercolor="#CFCFCF" bgcolor="#CCCCCC">
+				<tr>
+					<td width="17%" height="30" bgcolor="#F5F5F5"><b><font color="#000033"> 우편번호 </font></b></td>
+					<td colspan="3" bgcolor="#FFFFFF">
+						<input name=tax_zip1 id="tax_zip1" value = "{list.tax_zip1}" size=4 maxlength=3>
+						-
+						<input name=tax_zip2 id="tax_zip2" value = "{list.tax_zip2}" size=4 maxlength=3>
+						<font color="#666666">&nbsp; <input type="button" onClick="javascript: window.open('/sjoin/searchzip.php?formname=write&inputzip=tax_zip&inputaddress=tax_address', 'idcheck', 'width=470,height=400,resizable=1,scrollbars=1');" value="우편번호검색"></font>
+					</td>
+				</tr>
+				<tr>
+					<td width="17%" height="30" bgcolor="#F5F5F5"><b><font color="#000033"> 수령지주소</font></b></td>
+					<td colspan="3" bgcolor="#FFFFFF"><input name="tax_address" type="text" id="tax_address"	value = "{list.tax_address}" size="40" maxlength="60" ></td>
+				</tr>
+				<tr>
+					<td height="30" bgcolor="#F5F5F5"><b><font color="#000033"> 담당자</font></b></td>
+					<td colspan="3" bgcolor="#FFFFFF">
+						<input name="tax_name" type="text" id="tax_name"	value = "{list.tax_name}" size="20"	maxlength="30">
+					</td>
+				</tr>
+				<tr>
+					<td width="17%" height="30" bgcolor="#F5F5F5"><b><font color="#000033"> 전화번호</font></b></td>
+					<td width="35%" bgcolor="#FFFFFF">
+						<input name="tax_tel" type="text" id="tax_tel" value = "{list.tax_tel}" size="20"	maxlength="30" >
+					</td>
+					<td width="17%" bgcolor="#F5F5F5"><b><font color="#000033">팩스번호</font></b></td>
+					<td width="31%" bgcolor="#FFFFFF">
+						<input name="tax_fax" type="text" id="tax_fax" value = "{list.tax_fax}" size="15"	maxlength="30" >
+					</td>
+				</tr>
+				<tr>
+					<td height="30" bgcolor="#F5F5F5"><font color="#000033"><strong>휴대폰 번호</strong></font></td>
+					<td colspan="3" bgcolor="#FFFFFF">
+						<input name="tax_hp" type="text" id="handphone"	value = "{list.tax_hp}" size="20"	maxlength="30">
+					</td>
+				</tr>
+				<tr>
+					<td height="30" bgcolor="#F5F5F5"><font color="#000033"><strong>이메일</strong></font></td>
+					<td colspan="3" bgcolor="#FFFFFF"><input name="tax_email" type="text" id="tax_email"	value = "{list.tax_email}" size="35"	maxlength="35"></td>
+				</tr>
+				<tr>
+					<td height="30" bgcolor="#F5F5F5"><font color="#000033"><strong>메모</strong></font></td>
+					<td colspan="3" bgcolor="#FFFFFF"><textarea name="comment" cols="45" rows="5">{list.comment}</textarea></td>
+				</tr>
+				<tr>
+					<td height="30" bgcolor="#F5F5F5"><font color="#000033"><strong>상태</strong></font></td>
+					<td colspan="3" bgcolor="#FFFFFF">
+						<select name="status">
+						{list.status_option}
+
+						</select>
+					</td>
+				</tr>
+				</table>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+				<tr>
+					<td	height="55" align="center"><input type="submit" name="Submit" value=" 수정 "></td>
+				</tr>
+				</table>
+				</form>
+			</td>
+		</tr>
+		</table>
+	</body>
+	</html>

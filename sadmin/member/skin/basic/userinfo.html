@@ -1,0 +1,307 @@
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body bgcolor="white" background=""	onload="document.msearch.msc_string.focus();">
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black' width=500>
+	<tr>
+		<td bgcolor='#CCFFCC'>빠른검색</td>
+		<td bgcolor='#EDFEE9'>
+			<table>
+			<tr>
+				<td>
+					<form style='border:0px;margin:0px;padding:0px' method=get action=''>
+					<input type=hidden name='mode' value='{get.mode}'>
+					<input type=hidden name='msc_column' value='logon.userid'>
+					아이디
+					<input type="text" name="msc_string" size=10 value="{logon.userid}">
+					<input type="submit" value=" 검색 ">
+					</form>
+				</td>
+				<td>
+					<form style='border:0px;margin:0px;padding:0px' method=get action=''>
+					<input type=hidden name='mode' value='{get.mode}'>
+					<input type=hidden name='msc_column' value='logon.name'>
+					이름
+					<input type="text" name="msc_string" size=10 value="{logon.name}">
+					<input type="submit" value=" 검색 ">
+					</form>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'> 검색조건 </td>
+		<td bgcolor='#EDFEE9' nowrap>
+			<form style='border:0px;margin:0px;padding:0px' name="msearch" {form_msearch}>
+			<select name="msc_column" size="1">
+			<option value="payment.num"	 >주문번호</option>
+			<option value="logon.userid"	 >아이디</option>
+			<option value="logon.uid"		 >고유번호</option>
+			<option value="logon.level"		 >레벨</option>
+			<option value="logon.name"		 >이름</option>
+			<option value="logon.nickname"	 >별칭</option>
+			<option value="logon.email"		 >메일</option>
+			<option value="logon.idnum"	 >주민번호</option>
+			<option value="logon.hp"		 >휴대폰</option>
+			<option value="logon.tel"	 >전화</option>
+			<option value="logon.address" >주소</option>
+			<option value="logon.c_name"	 >회사이름</option>
+			</select>
+			<input type="text" name="msc_string" size=10 value={get.msc_string}>
+			<input type="submit" value=" 검색 ">
+			(와일드카드(%) 사용가능)
+
+			<script language="JavaScript" type="text/JavaScript">
+			var form_select = document.msearch.msc_column;
+			var form_value 				= '{get.msc_column}';
+			for(var i=0;i<form_select.length;i++) {
+				if(form_select.options[i].value==form_value) {
+					form_select.options[i].selected = true;
+				}
+			}
+			</script>
+
+			</form>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'> 검색결과 </td>
+		<td bgcolor='#EDFEE9'> 총 {count_msearch}명 회원이 검색되었습니다. - <a href="userinfoadd.php">신규회원추가</a> </td>
+	</tr>
+	</table>
+	<br>
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'	width=500>
+	<tr>
+		<td bgcolor='#CCFFCC' nowrap>
+			{logon.uid}&nbsp;&nbsp;{logon.userid}(<a href='mailto:{logon.email}'>{logon.name}</a>)&nbsp;&nbsp;&nbsp;&nbsp;권한:{logon.priv}({logon.level})&nbsp;&nbsp;&nbsp;&nbsp;전화: {logon.tel}(HP:<a href="javascript: window.open('/ssms/sms.php?mode=uids&uids={logon.uid}' , 'new21sms' , 'toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=1,scrollbars=1,width=300,height=400');void(0);">{logon.hp}</a>)&nbsp;&nbsp;<br>
+			<a href='userinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}'>회원정보</a> / <a href="joininfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">그룹정보</a> / <a href="serviceinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">서비스정보</a> / <a href="paymentinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">지불정보</a> / <a href="accountlist.php?msc_column={get.msc_column}&msc_string={get.msc_string}">포인트정보</a> / <a href="joinout.php?bid={logon.uid}">회원탈퇴</a> 
+		</td>
+	</tr>
+	</table>
+	<br>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+	<form	name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
+	<table border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+	<tr>
+		<td bgcolor='#CCFFCC'><strong>회원 정보 수정 </strong></td>
+	</tr>
+	<tr>
+		<td	bgcolor='#EDFEE9' nowrap>
+			<table width="500" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+			<opt name="logon.uid">
+			<tr>
+				<td width="109" bgcolor='#CCFFCC' lang="af">회원아이디</td>
+				<td width="376" bgcolor='#EDFEE9' >{logon.userid} (고유번호: {logon.uid})</td>
+			</tr>
+			</opt name="logon.uid">
+			<opt name="!logon.uid">
+			<tr>
+				<td bgcolor='#CCFFCC'>회원아이디</td>
+				<td bgcolor='#EDFEE9' ><input name="userid" type="text" id="userid" value="{logon.userid}" size="15"></td>
+			</tr>
+			</opt name="!logon.uid">
+			<tr>
+				<td bgcolor='#CCFFCC'>비밀번호번경</td>
+				<td bgcolor='#EDFEE9' >
+					<input name="passwd" type="text" id="passwd" size="20">
+					*비밀번호는 변경만 가능합니다 
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>이름</td>
+				<td bgcolor='#EDFEE9' >
+					<input name="name" type="text" id="name" value="{logon.name}" size="15">
+					닉네임
+					<input name="nickname" type="text" id="nickname" value="{logon.nickname}" size="15">
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>메일</td>
+				<td bgcolor='#EDFEE9' >
+					<input name="email" type="text" id="email" value="{logon.email}" size="40">
+					yesmail
+					<input name="yesmail" type="text" id="yesmail" value="{logon.yesmail}" size="3">
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>레벨/권한</td>
+				<td bgcolor='#EDFEE9' >
+					권한
+					<SELECT name="priv[]" size="6" multiple id="priv">
+					{logon.priv_option}
+					</SELECT>
+					레벨
+					<input name="level" type="text" id="level" value="{logon.level}" size="4">
+
+					<script language="JavaScript" type="text/JavaScript">
+					var form_select = document.write.class2;
+					var form_value 				= '{logon.class}';
+					for(var i=0;i<form_select.length;i++) {
+						if(form_select.options[i].value==form_value) {
+							form_select.options[i].selected = true;
+						}
+					}
+					</script>
+
+				</td>
+			</tr>
+			</table>
+			<br>
+			<table width="500" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+			<tr>
+				<td bgcolor='#CCFFCC'>tel</td>
+				<td bgcolor='#EDFEE9' >
+					<input name="tel" type="text" id="tel" value="{logon.tel}" size="15">
+					HP
+					<input name="hp" type="text" id="hp" value="{logon.hp}" size="15">
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>주민번호</td>
+				<td bgcolor='#EDFEE9' ><input name="idnum" type="text" id="idnum" value="{logon.idnum}" size="15"></td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>생일</td>
+				<td bgcolor='#EDFEE9' ><input name="birthday" type="text" id="birthday" value="{logon.birthday}" size="15"></td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>결혼기념일</td>
+				<td bgcolor='#EDFEE9' ><input name="wedding" type="text" id="wedding" value="{logon.wedding}" size="15"></td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>주소</td>
+				<td bgcolor='#EDFEE9' >
+					<p>
+					<input name="zip1" type="text" id="zip1" value="{logon.zip1}" size="6">
+					-
+					<input name="zip2" type="text" id="zip2" value="{logon.zip2}" size="6">
+					<br>
+					<input name="address" type="text" id="address" value="{logon.address}" size="40">
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>사는지역</td>
+				<td bgcolor='#EDFEE9' ><input name="region" type="text" id="region" value="{logon.region}" size="15"></td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>홈페이지</td>
+				<td bgcolor='#EDFEE9' ><input name="homepage" type="text" id="homepage" value="{logon.homepage}" size="40"></td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>관심분야</td>
+				<td bgcolor='#EDFEE9' ><input name="business" type="text" id="business" value="{logon.business}" size="15"></td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>직장</td>
+				<td bgcolor='#EDFEE9' >
+					<input name="company" type="text" id="company" value="{logon.company}" size="15">
+					직위
+					<input name="position" type="text" id="position" value="{logon.postion}" size="15">
+					직업
+					<input name="job" type="text" id="job" value="{logon.job}" size="15"> 
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>추천인</td>
+				<td bgcolor='#EDFEE9' ><input name="recommender" type="text" id="recommender" value="{logon.recommender}" size="15"></td>
+			</tr>
+			</table>
+			<br>
+			<table width="500" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+			<tr>
+				<td bgcolor='#CCFFCC'>부모이름</td>
+				<td bgcolor='#EDFEE9' >
+					<input name="p_name" type="text" id="p_name" value="{logon.p_name}" size="15">
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>부모주민번호</td>
+				<td bgcolor='#EDFEE9' >
+					<input name="p_idnum" type="text" id="p_idnum" value="{logon.p_idnum}" size="15">
+					부모전화
+					<input name="p_tel" type="text" id="p_tel" value="{logon.p_tel}" size="15">
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>회사사업자번호</td>
+				<td bgcolor='#EDFEE9' ><input name="c_num" type="text" id="c_num" value="{logon.c_num}" size="15"></td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>회사명</td>
+				<td bgcolor='#EDFEE9' ><input name="c_name" type="text" id="c_name" value="{logon.c_name}" size="15"></td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>회사주소</td>
+				<td bgcolor='#EDFEE9' >
+					<p>
+					<input name="c_zip1" type="text" id="c_zip1" value="{logon.c_zip1}" size="6">
+					-
+					<input name="c_zip2" type="text" id="c_zip2" value="{logon.c_zip2}" size="6">
+					<br>
+					<input name="c_address" type="text" id="c_address" value="{logon.c_address}" size="40">
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>업태</td>
+				<td bgcolor='#EDFEE9' >
+					<input name="c_kind" type="text" id="c_kind" value="{logon.c_kind}" size="15">
+					종목
+					<input name="c_detail" type="text" id="c_detail" value="{logon.c_detail}" size="15">
+				</td>
+			</tr>
+			</table>
+			<br>
+			<table width="500" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+			<tr>
+				<td bgcolor='#CCFFCC'>공개여부</td>
+				<td bgcolor='#EDFEE9' >
+					<SELECT name="open[]" size="7" multiple id="open">
+					{logon.open_option}
+
+					</SELECT>
+					공개정보:{logon.open}
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>메모</td>
+				<td bgcolor='#EDFEE9' >
+					자기 소개 <br>
+					<textarea name="intro" cols="50" id="intro">{logon.intro}</textarea>
+					<br>
+					관리자메모		<br>
+					<textarea name="comment" cols="50" id="comment">{logon.comment}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#CCFFCC'>&nbsp;</td>
+				<td bgcolor='#EDFEE9' ><input type="submit" name="Submit" value=" 전송 "></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	</form>

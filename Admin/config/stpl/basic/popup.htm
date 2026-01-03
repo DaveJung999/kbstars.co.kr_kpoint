@@ -1,0 +1,376 @@
+
+<script type="text/javascript" src="/editor/ckeditor/ckeditor.js"></script>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<script src="/scommon/js/inputcalendar.js"></script>
+
+<script language="JavaScript">
+<!--
+/*	var popupSkin_path = new Array;
+	popupSkin_path[0] = "/Admin/_config/popupskin/default";
+	popupSkin_path[1] = "/Admin/_config/popupskin/sample1";
+	popupSkin_path[2] = "/Admin/_config/popupskin/sample2";
+	popupSkin_path[3] = "/Admin/_config/popupskin/sample3";
+*/
+//각 테마가 선택되었을때 미리보기 화면을 변화 시켜주는 부분
+function change_popupSkin_preview(skin) {
+	if(skin!="")
+	{
+		var img="";
+		//var img = popupSkin_path[index-1]+"/images/preview.jpg";
+
+		if (skin != 'default'){
+			img = "/Admin/_config/popupskin/" + skin +"/images/preview.jpg";
+		}
+		else{
+			if ( '{list.uid}' == '' ){
+				img = "/Admin/_config/popupskin/" + skin +"/images/preview.jpg";
+			}
+			else{
+				img = "/Admin/_config/download_pop.php?db=popup&uid={list_modify.uid}&mode=upfile";
+			}
+		}
+
+		document.sform.popupSkin_preview.src = img;
+		document.sform.popupSkin_preview.style.visibility = "visible";
+	}
+	return;
+}
+function onModify()
+{
+	if(document.sform.title.value == ""){
+		alert('타이틀을 입력해 주세요.');
+		document.sform.title.value = "";
+		document.sform.title.focus();
+		return false;
+	}
+
+	if(document.sform.data1.value == ""){
+		alert('height(높이)를 입력해 주세요.');
+		document.sform.data1.value = "";
+		document.sform.data1.focus();
+		return false;
+	}
+	if(document.sform.data1.value != ""){
+		if(isNaN(document.sform.data1.value))
+		{
+			alert('숫자로 입력해 주세요.');
+			document.sform.data1.value = "";
+			document.sform.data1.focus();
+			return false;
+		}
+		if(document.sform.data1.value != "")
+		{
+			for(i=0;i<document.sform.data1.value.length;i++){
+				if(document.sform.data1.value.charCodeAt(i) < 48	 || document.sform.data1.value.charCodeAt(i) >57){
+					alert('다시 입력해 주세요.');
+					document.sform.data1.value = "";
+					document.sform.data1.focus();
+					return false;
+				}
+			}
+		}
+	}
+	if(document.sform.data4.value == ""){
+		alert('사용기간을 입력해 주세요.');
+		document.sform.data4.value = "";
+		document.sform.data4.focus();
+		return false;
+	}
+	if(document.sform.data5.value == ""){
+		alert('사용기간을 입력해 주세요.');
+		document.sform.data5.value = "";
+		document.sform.data5.focus();
+		return false;
+	}
+		/*if(document.sform.content.value == ""){
+			alert('내용을 입력해 주세요.');
+			document.sform.content.value = "";
+			document.sform.content.focus();
+			return false;
+	}*/
+	document.sform.mode.value = 'popModify'
+		document.sform.submit();
+	return true;
+}
+
+function onModify_preview(uid,page){
+	location.href='popup.php?modify_uid='+uid+'&page='+page;
+}
+
+function onDelete(uid){
+	var rtn;
+	rtn = confirm("정말로 삭제하시겠습니까?");
+	if (rtn == true){
+		document.popList.mode.value = "popDelete";
+		document.popList.uid.value = uid;
+		document.popList.submit();
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function onWrite(){
+	var rtn;
+	if(document.popList.title.value == ""){
+		alert("팝업 제목을 입력해 주세요.");
+		document.popList.title.focus();
+		return false;
+	}
+	rtn = confirm("새로운 팝업을 등록합니다.");
+	if (rtn == true){
+		document.popList.mode.value = "popWrite";
+		document.popList.submit();
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+function onPreview(uid, title_pop, width, height, scrollbars, skin, left, top){
+	//ck=no	쿠키 값 없게 하려고....
+	width = parseInt(width);
+	if (!skin) skin = 1;
+	if (scrollbars == 'yes') width = width + 16;
+	window.open("/Admin/_config/popupskin/" + skin + "/index.php?uid=" + uid + "&ck=no", "popup", "scrollbars=" + scrollbars + ",status=no,toolbar=no,location=no,menubar=no,resizable=no,width=" + width + ",height=" + height + ",left=" + left + ",top=" + top);
+}
+
+-->
+</script>
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+.style1 {color: #FF0000}
+.style2 {font-weight: bold}
+.style3 {font-weight: bold}
+.style4 {
+	color: #000000;
+	font-weight: bold;
+}
+-->
+</style>
+
+<body>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+				<td background="/images/admin/tbox_bg.gif"><strong>팝업관리</strong></td>
+				<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+			</table>
+			<br>
+			<table width="97%" border="0" align="center" cellpadding="2" cellspacing="1" bgcolor="#aaaaaa">
+			<form method="post" name="popList" action="ok.php">
+			<input type="hidden" name="mode" value="">
+			<input type="hidden" name="uid" value="">
+			<tr bgcolor="#D2BF7E">
+				<td height="20" colspan=6><font color="#B9F0EF">&nbsp; </font><strong>등록된 팝업</strong> </td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td width="4%" height="20" align="center">No</td>
+				<td width="30%">&nbsp; 제목 </td>
+				<td width="10%" align=center> 사용여부</td>
+				<td width="23%" align=center>사용기간</td>
+				<td width="33%" align="center"> 수정/삭제/ 미리보기 </td>
+			</tr>
+			{LIST}
+			<block name="list">
+			<tr bgcolor="#F8F8EA" onMouseOver="this.style.backgroundColor='#EFF9FE'" onMouseOut="this.style.backgroundColor=''">
+				<td height="20" align="center">{list.no}</td>
+				<td><font color="#F0EBD6">&nbsp; <a href="#" onClick="onModify_preview('{list.uid}', '{get.page}');" class="blue"> {list.title} </a></font></td>
+				<td align=center> {list.data3} </td>
+				<td align=center>
+					{list.data4} -
+					{list.data5}
+				</td>
+				<td align="center">
+					<input type="button" class="input02" name="modify" value=" 수정 " onClick="onModify_preview('{list.uid}', '{get.page}');">
+					<input type="button" class="input02" name="delete" value=" 삭제 " onClick="return onDelete('{list.uid}');">
+					<input type="button" class="input02" name="preview" value=" 미리보기 " onClick="return onPreview('{list.uid}', '{list.scr_title}', '{list.data0}', '{list.data1}', '{list.data2}', '{list.skin}', '{list.data6}', '{list.data7}');">
+				</td>
+			</tr>
+			</block name="list">
+			<block name="nolist">
+			<tr bgcolor="#F8F8EA" onMouseOver="this.style.backgroundColor='#EFF9FE'" onMouseOut="this.style.backgroundColor=''">
+				<td height="30" colspan="5" align="center">게시물이 없습니다. &nbsp;&nbsp;</td>
+			</tr>
+			</block name="nolist">
+			<tr bgcolor="#F0EBD6">
+				<td height="30" colspan="5" align="center">{FIRSTPAGE} {PREVBLOCK} {BLOCK} {NEXTBLOCK} {LASTPAGE}</td>
+			</tr>
+			<tr align="center" bgcolor="#F0EBD6">
+				<td height="35" colspan=6>
+					<span class="style4">팝업제목</span>			<input name="title" type="text" class="ccbox" size="40">
+					<input type="button" class="input02" name="Write" value="	 등	록	" onClick="return onWrite();">
+					&nbsp; <span class="style1">(제목을 먼저 등록 해 주세요)</span>
+				</td>
+			</tr>
+			</form>
+			</table>
+			<br>
+			<table width="97%" border="0" align="center" cellpadding="2" cellspacing="1" bgcolor="#aaaaaa">
+			<form name="sform" method="post" enctype="multipart/form-data" action="./ok.php"	onSubmit="javascript:return onModify();">
+			<input type="hidden" name="mode" value="">
+			<input type="hidden" name="docu_type" value="{list_modify.docu_type}">
+			<input type="hidden" name="uid" value="{list_modify.uid}">
+			<tr bgcolor="#C7F3F2">
+				<td height="20" bgcolor="#D2BF7E"><strong> &nbsp;팝업관리(오픈창)</strong></td>
+			</tr>
+			<tr>
+				<td height="25" align="center" bgcolor="#F0EBD6"><b> <span class="style3">&quot;{list_modify.title}&quot; 팝업수정</span></b> </td>
+			</tr>
+			<tr>
+				<td bgcolor="#F8F8EA" valign="top">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td align="center" height="95" width="34%">
+							<table border="0" cellspacing="1" cellpadding="0" bgcolor="#CCCCCC">
+							<tr>
+								<td bgcolor="#F8F8EA" align="center"><img src="" width="180" height="235" border="0" id="popupSkin_preview" style="VISIBILITY: hidden"></td>
+							</tr>
+							</table>
+						</td>
+						<td width="66%" valign="top">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td valign="top">
+									<strong>&lt;스킨선택</strong>&gt;<br>
+									<select name='skin' style="width:auto " size=4 class="styletextarea" onChange="change_popupSkin_preview(this[this.selectedIndex].value);">
+									<option value="sample1" {selected_skin_sample1}>팝업스킨 : 1 (그린계열)</option>
+									<option value="sample2" {selected_skin_sample2}>팝업스킨 : 2 (오렌지계열)</option>
+									<option value="sample3" {selected_skin_sample3}>팝업스킨 : 3 (블루계열)</option>
+									<option value="default" {selected_skin_default}>배경수정가능 : 이미지업로드</option>
+									</select>
+								</td>
+							</tr>
+							</table>
+							<table width="98%" border="0" cellspacing="1" cellpadding="2" bgcolor="#CCCCCC">
+							<tr>
+								<td bgcolor="#F0EBD6" width="19%" align="center">타이틀</td>
+								<td bgcolor="#F8F8EA" width="81%">
+									<font color="#F8F8EA">..</font>
+									<input type="text" name="title" size="50" class="ccbox" value="{list_modify.title}" maxlength=60>
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#F0EBD6" width="19%" align="center">사이즈/위치</td>
+								<td bgcolor="#F8F8EA" width="81%">
+									<font color="#F8F8EA">..</font><strong>사이즈</strong> : width(넓이)
+									<input type="text" name="data0" size="4" class="ccbox"	maxlength="4" value="{list_modify.data0}">
+									, <font color="#F8F8EA">..</font>height(높이)
+									<input type="text" name="data1" size="4" class="ccbox"	maxlength="4" value="{list_modify.data1}">
+									<span class="pagecolortext">(이미지 높이 + 25)</span><strong><br>
+									<font color="#F8F8EA">..</font>위&nbsp; 치</strong> : left(왼쪽)
+									<input type="text" name="data6" size="4" class="ccbox"	maxlength="4" value="{list_modify.data6}">
+									, top(위)
+									<input type="text" name="data7" size="4" class="ccbox"	maxlength="4" value="{list_modify.data7}">
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#F0EBD6" width="19%" align="center">스크롤</td>
+								<td bgcolor="#F8F8EA" width="81%">
+									<font color="#F8F8EA">..</font>YES
+									<input type="radio" name="data2" value="yes" {checked_data2_yes}>
+									<font color="#F8F8EA">..</font> NO
+									<input type="radio" name="data2" value="no"	{checked_data2_no}>
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#F0EBD6" width="19%" align="center">팝업 사용</td>
+								<td bgcolor="#F8F8EA" width="81%">
+									<font color="#F8F8EA">..</font>YES
+									<input type="radio" name="data3" value="yes"	{checked_data3_yes}>
+									<font color="#F8F8EA">..</font> NO
+									<input type="radio" name="data3" value="no" {checked_data3_no}>
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#F0EBD6" align="center">사용기간</td>
+								<td bgcolor="#F8F8EA">
+									<font color="#F8F8EA">..</font>
+									<input name="data4" type="text" class="ccbox" id="data4" onFocus=this.className='in' onBlur=this.className='out' size="10" maxlength="10" onClick="Calendar(this);" value="{list_modify.data4}" >
+									~
+									<input name="data5" type="text" class="ccbox" id="data5" onFocus=this.className='in' onBlur=this.className='out' size="10" maxlength="10" onClick="Calendar(this);" value="{list_modify.data5}" >
+									<span class="style2"><br>
+									&nbsp;</span> <span class="style1">(사용기간이 지나면	팝업이 뜨지 않습니다)</span> 
+								</td>
+							</tr>
+							<tr>
+								<td bgcolor="#F0EBD6" align="center">기본스킨배경</td>
+								<td bgcolor="#F8F8EA">
+									<font color="#F8F8EA">..</font>
+									<input type="file" name="upfile" style="width:90% " class="ccbox">
+								</td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td height="20" bgcolor="#D2BF7E">
+					<table width="100%"	border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td width="26%"><strong>&nbsp;내용입력</strong> </td>
+						<td width="74%" align="right">{PREVIEW}</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#F9F9F9">
+					<textarea type="text" name="content" id="content" style="width:100%; height:250px;" required hname="내용을 입력 해 주세요">{list.content}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#D2BF7E" align="center" height="50">
+					<font color="#F8F8EA"> <font color="#F8F8EA">...</font>
+					<input type='submit'	name='send' value='	수정하기	' class="input02">
+					</font> 
+				</td>
+			</tr>
+			</form>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<block name="preview">(수정하기 버튼 클릭 후 사용하세요)&nbsp;<input name="preview2" type="button" class="input02" value=" 미리보기 " onClick="return onPreview('{list_modify.uid}', '{list_modify.scr_title}', '{list_modify.data0}', '{list_modify.data1}', '{list_modify.data2}', '{list_modify.skin}', '{list_modify.data6}', '{list_modify.data7}');">
+	&nbsp;</block name="preview">
+	<block name="firstpage"><a href="{href.firstpage}"><img src="images/board_button_first.gif"	width="18" height="9" border="0" align="absmiddle"></a></block name="firstpage">
+	<block name="nofirstpage"><img src="images/board_button_first_disabled.gif" width="18" height="9" border="0" align="absmiddle"></block name="nofirstpage">
+	<block name="prevblock"><a href='{href.prevblock}'><img src="images/board_button_prev.gif" border="0" align="absmiddle"></a>&nbsp;</block name="prevblock">
+	<block name="noprevblock"> <span><img src="images/board_button_prev_disabled.gif" width="9" height="9" border="0" align="absmiddle"></span>&nbsp;</block name="noprevblock">
+	<block name="block"><a href='{href.blockcount}'>[{blockcount}]</a>&nbsp;</block name="block">
+	<block name="noblock"><b>[{blockcount}]</b>&nbsp;</block name="noblock">
+	<block name="nextblock"><a href='{href.nextblock}'><img src="images/board_button_next.gif" border="0" align="absmiddle"></a>&nbsp;</block name="nextblock">
+	<block name="nonextblock"> <span><img src="images/board_button_next_disabled.gif" border="0" align="absmiddle"></span></block name="nonextblock">
+	<block name="lastpage"><a href="{href.lastpage}"><img src="images/board_button_end.gif" width="18" height="9" border="0" align="absmiddle"></a></block name="lastpage">
+	<block name="nolastpage"><img src="images/board_button_end_disabled.gif" width="18" height="9" border="0" align="absmiddle"></block name="nolastpage">
+
+	<script>
+	change_popupSkin_preview('{list_modify.skin}');
+	</script>
+
+	<script>
+	LoadPage();
+	</script>
+
+</body>

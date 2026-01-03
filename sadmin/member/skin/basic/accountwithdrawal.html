@@ -1,0 +1,242 @@
+
+<html>
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body onload="document.msearch.msc_string.focus();">
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black' width=500>
+	<tr>
+		<td bgcolor='#CCFFCC'>빠른검색</td>
+		<td bgcolor='#EDFEE9'>
+			<table>
+			<tr>
+				<td>
+					<form style='border:0px;margin:0px;padding:0px' method=get action=''>
+					<input type=hidden name='mode' value='{get.mode}'>
+					<input type=hidden name='msc_column' value='logon.userid'>
+					아이디
+					<input type="text" name="msc_string" size=10 value="{logon.userid}">
+					<input type="submit" value=" 검색 ">
+					</form>
+				</td>
+				<td>
+					<form style='border:0px;margin:0px;padding:0px' method=get action=''>
+					<input type=hidden name='mode' value='{get.mode}'>
+					<input type=hidden name='msc_column' value='logon.name'>
+					이름
+					<input type="text" name="msc_string" size=10 value="{logon.name}">
+					<input type="submit" value=" 검색 ">
+					</form>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'> 검색조건 </td>
+		<td bgcolor='#EDFEE9' nowrap>
+			<form style='border:0px;margin:0px;padding:0px' name="msearch" {form_msearch}>
+			<select name="msc_column" size="1">
+			<option value="payment.num"	 >주문번호</option>
+			<option value="logon.userid"	 >아이디</option>
+			<option value="logon.uid"		 >고유번호</option>
+			<option value="logon.level"		 >레벨</option>
+			<option value="logon.name"		 >이름</option>
+			<option value="logon.nickname"	 >별칭</option>
+			<option value="logon.email"		 >메일</option>
+			<option value="logon.idnum"	 >주민번호</option>
+			<option value="logon.hp"		 >휴대폰</option>
+			<option value="logon.tel"	 >전화</option>
+			<option value="logon.address" >주소</option>
+			<option value="logon.c_name"	 >회사이름</option>
+			</select>
+			<input type="text" name="msc_string" size=10 value={get.msc_string}>
+			<input type="submit" value=" 검색 ">
+			(와일드카드(%) 사용가능)
+
+			<script language="JavaScript" type="text/JavaScript">
+			var form_select = document.msearch.msc_column;
+			var form_value 				= '{get.msc_column}';
+			for(var i=0;i<form_select.length;i++) {
+				if(form_select.options[i].value==form_value) {
+					form_select.options[i].selected = true;
+				}
+			}
+			</script>
+
+			</form>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'> 검색결과 </td>
+		<td bgcolor='#EDFEE9'> 총 {count_msearch}명 회원이 검색되었습니다. - <a href="userinfoadd.php">신규회원추가</a> </td>
+	</tr>
+	</table>
+	<br>
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'	width=500>
+	<tr>
+		<td bgcolor='#CCFFCC' nowrap>
+			{logon.uid}&nbsp;&nbsp;{logon.userid}(<a href='mailto:{logon.email}'>{logon.name}</a>)&nbsp;&nbsp;&nbsp;&nbsp;권한:{logon.priv}({logon.level})&nbsp;&nbsp;&nbsp;&nbsp;전화: {logon.tel}(HP:<a href="javascript: window.open('/ssms/sms.php?mode=uids&uids={logon.uid}' , 'new21sms' , 'toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=1,scrollbars=1,width=300,height=400');void(0);">{logon.hp}</a>)&nbsp;&nbsp;<br>
+			<a href='userinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}'>회원정보</a> / <a href="joininfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">그룹정보</a> / <a href="serviceinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">서비스정보</a> / <a href="paymentinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">지불정보</a> / <a href="accountlist.php?msc_column={get.msc_column}&msc_string={get.msc_string}">포인트정보</a> / <a href="joinout.php?bid={logon.uid}">회원탈퇴</a> 
+		</td>
+	</tr>
+	</table>
+	<br>
+	<table width="570" border="0" cellspacing="2" cellpadding="0">
+	<tr>
+		<td bgcolor="#000000" height=1><img src="/common/spacer.gif" height=1></td>
+	</tr>
+	</table>
+	<table width="570" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="100">
+			<div align="center"><font size="2" color="#004B2C">예금주명 :</font></div>
+		</td>
+		<td width="185">
+			<font size="2" color="#004B2C">
+			{accountinfo.name}
+			</font>
+		</td>
+		<td width="100">
+			<div align="center"><font size="2" color="#004B2C">현재잔액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</font></div>
+		</td>
+		<td width="185">
+			<font color="#004B2C" size=2>
+			{accountinfo.balance}
+			</font>
+		</td>
+	</tr>
+	<tr>
+		<td width="100">
+			<div align="center"><font size="2" color="#004B2C">예금종류 :</font></div>
+		</td>
+		<td width="185">
+			<font size="2" color="#004B2C">
+			{accountinfo.accounttype}
+			</font>
+		</td>
+		<td width="100">
+			<div align="center"><font size="2" color="#004B2C">지급가능금액 :</font></div>
+		</td>
+		<td width="185">
+			<font color="#004B2C" size=2>
+			{accountinfo.banktransferbalance}
+			</font>
+		</td>
+	</tr>
+	<tr>
+		<td width="100">
+			<div align="center"><font size="2" color="#004B2C">계좌번호 :</font></div>
+		</td>
+		<td width="185">
+			<font color="#004B2C" size=2>
+			{accountinfo.account}
+			</font>
+		</td>
+		<td width="100">
+			<div align="center"><font size="2" color="#004B2C">신규일자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</font></div>
+		</td>
+		<td width="185">
+			<font size="2" color="#004B2C">
+			{accountinfo.rdate_date}
+			</font>
+		</td>
+	</tr>
+	<tr>
+		<td width="100">
+			<div align="center"><font size="2" color="#004B2C">상&nbsp;&nbsp;&nbsp; &nbsp; 태 :</font></div>
+		</td>
+		<td colspan="3">
+			<font size="2" color="#004B2C">
+			{accountinfo.status} <opt name="accountinfo.errornotice">- {accountinfo.errornotice}</opt name="accountinfo.errornotice">
+			</font><font color="#004B2C">&nbsp;</font> <font color="#004B2C">&nbsp;</font>
+		</td>
+	</tr>
+	<tr>
+		<td width="100">
+			<div align="center"><font size="2" color="#004B2C">특기사항 :</font></div>
+		</td>
+		<td colspan="3">
+			<div align="left">
+				<font size="2" color="#004B2C">
+				{accountinfo.comment}
+				</font>
+			</div>
+		</td>
+	</tr>
+	</table>
+	<br>
+	<form	style='margin : 0px' {form_withdrawal}>
+	<table width="570" border="0" cellpadding="0" cellspacing="2" background="사이트운영자 직접출금">
+	<tr>
+
+		<td bgcolor="#000000" height=1 colspan="2"><img src="/common/spacer.gif" height=1></td>
+	</tr>
+	<tr>
+		<td bgcolor="#F8FFE5" nowrap>
+			<div align="right"><font size="2" color="#004B2C">출금계좌번호</font></div>
+		</td>
+		<td bgcolor="#F8FFE5" nowrap>
+			<div align="left"><font size="2" color="#004B2C">{accountinfo.accounttype}(계좌번호:{accountinfo.account})</font></div>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor="#F8FFE5" nowrap>
+			<div align="right"><font size="2" color="#004B2C">출금 금액</font></div>
+		</td>
+		<td bgcolor="#F8FFE5" nowrap>
+			<input type='text' size=20 name='money'>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor="#F8FFE5" nowrap>
+			<div align="right"><font size="2" color="#004B2C">적요</font></div>
+		</td>
+		<td bgcolor="#F8FFE5" nowrap>
+			<input type='text' size=60 name='remark' value='사이트운영자 직접출금'>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor="#F8FFE5" nowrap>
+			<div align="right">
+				<font color="#004B2C" size="2"><font size="2"><font size="2"><font color="#004B2C"></font></font></font>
+				</font> 
+			</div>
+		</td>
+		<td bgcolor="#F8FFE5" nowrap>
+			<div align="left">
+				<font size="2" color="#004B2C">
+				<input type="submit" value=" 바로 출금 " name="submit">
+				</font>
+			</div>
+		</td>
+	</tr>
+	</table>
+	</form>
+	<br>
+	<table width="570" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center">	<input type="button"	onClick="document.location='{href.accountlist}';"	value=" 되돌아가기 "></td>
+	</tr>
+	</table>
+</body>
+</html>

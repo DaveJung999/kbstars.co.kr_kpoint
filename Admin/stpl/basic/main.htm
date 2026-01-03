@@ -1,0 +1,259 @@
+
+<html>
+<head>
+	<title>메인화면</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="/css/admin.css" type="text/css">
+
+	<script language="javascript" type="text/javascript">
+	<!--
+	var order_step = 0;
+	var stock_step = 0;
+	function on_opinion() {
+		var url="customer/opinion.php?type=basic";
+		url+="&member_url=http://seadiet.com/ttmall";
+		url+="&member_email=brain@brainvil.com";
+		window.open(url,"","width=580,height=460");
+	}
+	function on_expansion_option() {
+		window.open("http://ttmall.co.kr/cus/redir_mall_hosting.php?member_url=http://seadiet.com/ttmall","","");
+	}
+	function on_order_list() {
+		location.href = "/admin/payment/index.php";
+	}
+	function on_stock_amount( num ) {
+		location.href = "main.php?act=GoodsSearchList&srch_stock_amount_start=0&srch_stock_amount_end=" + num;
+	}
+	function on_page( page ) {
+		location.href = "main.php?act=Main&page=" + page;
+	}
+	//-->
+	</script>
+
+<style type="text/css">
+<!--
+.style1 {font-size: x-small}
+-->
+</style>
+
+</head>
+
+<body bgcolor="#F8F8EA" text="#000000">
+	<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+	<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+	<table border="0" cellpadding="0" cellspacing="0" width="100%" align="center">
+	<tr valign="top">
+		<td width="570">
+			<!----- 최근 주문/배송 현황 시작 ---->
+			<table width="97%" align="center" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+				<td background="/images/admin/tbox_bg.gif">
+					<b>최근 주문/배송 현황</b> (최근 10개) &nbsp;&nbsp;
+					<a href="javascript:on_order_list();">[more...]</a>
+				</td>
+				<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+			</table>
+			<br>
+			<table width="97%" align="center" border="0" cellpadding="2" cellspacing="1" bgcolor='#aaaaaa'>
+			<tr bgcolor="#D2BF7E" align="center">
+				<td width="127"><span class="style1"> 주문일시 </span></td>
+				<td width="78" ><span class="style1"> 회원 ID </span></td>
+				<td width="64" ><span class="style1"> 이름 </span></td>
+				<td width="88" ><span class="style1"> 상품구입액 </span></td>
+				<td width="81"><span class="style1"> 주문코드 </span></td>
+				<td width="84" ><span class="style1"> 처리상태 </span></td>
+			</tr>
+			{LIST}
+			<block name="list">
+			<tr bgcolor="#F8F8EA">
+				<td align="center" bgcolor="#F2F2F2"> <a href="/admin/payment/order_write.php?db=howon&rdate={list.rdate}" class="style1">{list.rdate_ymd}</a> </td>
+				<td align="center"><span class="style1">{list.userid}</span></td>
+				<td align="center"><span class="style1">{list.name}</span></td>
+				<td align="right" ><span class="style1">{list.totalprice}</span></td>
+				<td align="center"> <a href="/admin/payment/order_write.php?db=howon&rdate={list.rdate}" class="style1">{list.rdate}</a> </td>
+				<td align="center"> <span class="style1"><font color=#895b00>{list.status}</font> </span></td>
+			</tr>
+			</block name="list">
+			<block name="nolist">
+			<tr bgcolor="#F8F8EA">
+				<td height="29" colspan=6 align="center">등록된 주문이 없습니다.</td>
+			</tr>
+			</block name="nolist">
+			</table>
+			<br>
+			<!----- 최근 주문/배송 현황 종료 ----->
+			<!----- 재고부족물품 시작 ---->
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td><iframe align="top" frameborder="0" marginheight="0" name="proper_stock_main" scrolling="no" src="/sadmin/shop/proper_stock_main.php?db=howon" width="100%"></iframe></td>
+			</tr>
+			</table>
+			<br>
+			<!----- 재고부족물품 종료 ----->
+		</td>
+		<td valign="top" width="300">
+			<!----- 상점주 공지사항 시작 ----->
+			<!-- 이 부분은 절대 수정하지 마세요!! -->
+			<table border="0" cellpadding="0" cellspacing="0" width="97%" align="center">
+			<tr>
+				<td width="5"><img src="/images/admin/box1_tl.gif" width=5 height=21></td>
+				<td background="/images/admin/box1_tbg.gif" style="padding-top: 3px"><span class="style1"><img src="/images/admin/bul04.gif" width="11" height="11"> 공급사 공지사항</span></td>
+				<td width="5" align="right"><img src="/images/admin/box1_tr.gif" width=5 height=21></td>
+			</tr>
+			<tr>
+				<td width="5" background="/images/admin/box1_ml.gif"><img src="/images/admin/box1_ml.gif" width=5 height=5></td>
+				<td height="30" background="/images/admin/box1_bg.gif">
+					<iframe frameborder=0 marginwidth=0 marginheight=0 scrolling=no width=100% height=90 src="/sboard/list.php?db=sup_notice&skin=board_gonggi2&limitrows=5"></iframe>
+				</td>
+				<td width="5" align="right" background="/images/admin/box1_mr.gif"><img src="/images/admin/box1_mr.gif" width=5 height=5></td>
+			</tr>
+			<tr>
+				<td width="5"><img src="/images/admin/box1_bl.gif" width=5 height=5></td>
+				<td background="/images/admin/box1_bbg.gif"><img src="/images/admin/box1_bbg.gif" width=5 height=5></td>
+				<td width="5" align="right"><img src="/images/admin/box1_br.gif" width=5 height=5></td>
+			</tr>
+			</table>
+			<br>
+			<!----- 상점주 공지사항 종료 ----->
+			<!----- 접속현황 시작 ----->
+			<table border="0" cellpadding="0" cellspacing="0" width="97%" align="center">
+			<tr>
+				<td width="5"><img src="/images/admin/box1_tl.gif" width=5 height=21></td>
+				<td background="/images/admin/box1_tbg.gif" style="padding-top: 3px"><span class="style1"><img src="/images/admin/bul04.gif" width="11" height="11"> 접속 현황</span></td>
+				<td width="5" align="right"><img src="/images/admin/box1_tr.gif" width=5 height=21></td>
+			</tr>
+			<tr>
+				<td width="5" background="/images/admin/box1_ml.gif"><img src="/images/admin/box1_ml.gif" width=5 height=5></td>
+				<td background="/images/admin/box1_bg.gif">
+					<table border="0" cellpadding="5" cellspacing="0" align="center" width="100%" bgcolor="#F2F2F2">
+					<tr>
+						<td width="83%"><span class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 지난 1달간 일일 평균 접속자 수 :</span></td>
+						<td width="17%" align="right"><span class="style1"> {log.yea_total}명</span></td>
+					</tr>
+					<tr>
+						<td><span class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 지난 1주일간 일일 평균 접속자 수 :</span></td>
+						<td align="right"><span class="style1"> {log.day_total}명</span></td>
+					</tr>
+					<tr>
+						<td><span class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 오늘 접속자 수 :</span></td>
+						<td align="right"><span class="style1"> {log_hit.hit}명</span></td>
+					</tr>
+					<tr>
+						<td><span class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 총 회원수 :</span></td>
+						<td align="right"><span class="style1"> {log.membertotal}명</span></td>
+					</tr>
+					<tr>
+						<td><span class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 오늘 회원 가입자 수 :</span></td>
+						<td align="right"><span class="style1"> {log.todaytotal}명</span></td>
+					</tr>
+					<tr>
+						<td><span class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 오늘 구입 신청건 수 :</span></td>
+						<td align="right"><span class="style1"> 0명</span></td>
+					</tr>
+					</table>
+				</td>
+				<td width="5" align="right" background="/images/admin/box1_mr.gif"><img src="/images/admin/box1_mr.gif" width=5 height=5></td>
+			</tr>
+			<tr>
+				<td width="5"><img src="/images/admin/box1_bl.gif" width=5 height=5></td>
+				<td background="/images/admin/box1_bbg.gif"><img src="/images/admin/box1_bbg.gif" width=5 height=5></td>
+				<td width="5" align="right"><img src="/images/admin/box1_br.gif" width=5 height=5></td>
+			</tr>
+			</table>
+			<br>
+			<!----- 접속현황 종료 ----->
+			<!----- 오늘의 매출현황 시작 ----->
+			<table border="0" cellpadding="0" cellspacing="0" width="97%" align="center">
+			<tr>
+				<td width="5"><img src="/images/admin/box1_tl.gif" width=5 height=21></td>
+				<td background="/images/admin/box1_tbg.gif" style="padding-top: 3px"><span class="style1"><img src="/images/admin/bul04.gif" width="11" height="11"> 오늘의 매출 현황</span></td>
+				<td width="5" align="right"><img src="/images/admin/box1_tr.gif" width=5 height=21></td>
+			</tr>
+			<tr>
+				<td width="5" background="/images/admin/box1_ml.gif"><img src="/images/admin/box1_ml.gif" width=5 height=5></td>
+				<td background="/images/admin/box1_bg.gif">
+					<table border="0" cellpadding="5" cellspacing="0" align="center" width="100%" bgcolor="#F2F2F2">
+					<tr>
+						<td width="86%" class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 실결제액 (배송비제외) : </td>
+						<td width="14%" align="right"><span class="style1"> \0 </span></td>
+					</tr>
+					<tr>
+						<td><span class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 실결제액 (배송비포함) : </span></td>
+						<td align="right"><span class="style1"> \0 </span></td>
+					</tr>
+					<tr>
+						<td><span class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 상품 구입액 : </span></td>
+						<td align="right"><span class="style1"> \0 </span></td>
+					</tr>
+					<tr>
+						<td><span class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 포인트 결제액 : </span></td>
+						<td align="right"><span class="style1"> \0 </span></td>
+					</tr>
+					<tr>
+						<td><span class="style1"><img src="/images/admin/bul03.gif" width="10" height="10"> 총 매출액 : </span></td>
+						<td align="right"><span class="style1"> \0 </span></td>
+					</tr>
+					</table>
+				</td>
+				<td width="5" align="right" background="/images/admin/box1_mr.gif"><img src="/images/admin/box1_mr.gif" width=5 height=5></td>
+			</tr>
+			<tr>
+				<td width="5"><img src="/images/admin/box1_bl.gif" width=5 height=5></td>
+				<td background="/images/admin/box1_bbg.gif"><img src="/images/admin/box1_bbg.gif" width=5 height=5></td>
+				<td width="5" align="right"><img src="/images/admin/box1_br.gif" width=5 height=5></td>
+			</tr>
+			</table>
+			<br>
+
+
+			<!----- 개선사항 제안하기 시작 ----->
+			<table width="97%" align="center" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="5"><img src="/images/admin/box1_tl.gif" width=5 height=21></td>
+				<td background="/images/admin/box1_tbg.gif" style="padding-top: 3px"><img src="/images/admin/bul04.gif" width="11" height="11"> <span class="style1">개선사항 제안하기</span></td>
+				<td width="5" align="right"><img src="/images/admin/box1_tr.gif" width=5 height=21></td>
+			</tr>
+			<tr>
+				<td width="5" background="/images/admin/box1_ml.gif"><img src="/images/admin/box1_ml.gif" width=5 height=5></td>
+				<td background="/images/admin/box1_bg.gif">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#F2F2F2">
+					<tr height="60">
+						<td width="57%" align="center" style="line-height:160%">
+							<span class="style1">회원님의 소중한 의견을<br>
+							기다리고 있습니다.</span>&nbsp;&nbsp;
+						</td>
+						<td width="43%" align="center">
+							<input name="button" type="button" class="input02" style="height:30px" onClick="on_opinion()" value=" 제안하기 ">
+						</td>
+					</tr>
+					</table>
+				</td>
+				<td width="5" align="right" background="/images/admin/box1_mr.gif"><img src="/images/admin/box1_mr.gif" width=5 height=5></td>
+			</tr>
+			<tr>
+				<td width="5"><img src="/images/admin/box1_bl.gif" width=5 height=5></td>
+				<td background="/images/admin/box1_bbg.gif"><img src="/images/admin/box1_bbg.gif" width=5 height=5></td>
+				<td width="5" align="right"><img src="/images/admin/box1_br.gif" width=5 height=5></td>
+			</tr>
+			</table>
+			<!----- 개선사항 제안하기 종료 ----->
+		</td>
+	</tr>
+	</table>
+</body>
+</html>

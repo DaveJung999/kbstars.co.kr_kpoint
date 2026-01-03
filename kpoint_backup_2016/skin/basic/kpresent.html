@@ -1,0 +1,218 @@
+<html>
+<head>
+<title>Admin Manager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+.style1 {color: #FF0000}
+.style4 {font-size: 24px}
+-->
+</style>
+<script>
+function set_memo(f, val){
+	f.memo.value = val;
+}
+
+function set_change_sname(f, val){
+	f.s_name.value = val;
+}
+function set_present_val(f, val){
+	f.present_val.value = val;
+}
+
+function chkPoint(f){
+	var rtn, rtn_present;
+	rtn = confirm('자료를 등록/수정합니다.');
+	if (rtn == true){
+		var val = f.present_val.value;
+		var pt = parseInt(f.point.value.replace(/,/g,''));
+
+		
+		switch (val) {
+			case "KBSTARS로고스포츠양말":
+				if (pt < 500){
+					alert ("'" + val + "' 경품은\n 500 포인트 이상인 분에게\n 지급되어야 합니다.\n\n현재 포인트 : '" +pt + "'");
+					rtn_present = false;
+				}
+				break;
+			case "KBSTARS이색응원도구":
+				if (pt < 1100){
+					alert ("'" + val + "' 경품은\n 1100 포인트 이상인 분에게\n 지급되어야 합니다.\n\n현재 포인트 : '" +pt + "'");
+					rtn_present = false;
+				}
+				break;
+			case "KBSTARS사인볼":
+				if (pt < 1600){
+					alert ("'" + val + "' 경품은\n 1600 포인트 이상인 분에게\n 지급되어야 합니다.\n\n현재 포인트 : '" +pt + "'");
+					rtn_present = false;
+				}
+				break;
+			case "영화관람권10장":
+				if (pt < 2100){
+					alert ("'" + val + "' 경품은\n 2100 포인트 이상인 분에게\n 지급되어야 합니다.\n\n현재 포인트 : '" +pt + "'");
+					rtn_present = false;
+				}
+				break;
+			case "실내용자전거":
+				if (pt < 3000){
+					alert ("'" + val + "' 경품은\n 3000 포인트 이상 3900 포인트 미만인 분에게\n 지급되어야 합니다.\n\n현재 포인트 : '" +pt + "'");
+					rtn_present = false;
+				}
+				break;
+			case "대명숙박권":
+				if (pt < 4000){
+					alert ("'" + val + "' 경품은\n 4000 포인트 이상 4900 포인트 미만인 분에게\n 지급되어야 합니다.\n\n현재 포인트 : '" +pt + "'");
+					rtn_present = false;
+				}
+				break;
+			case "LEDTV":
+				if (pt < 5000){
+					alert ("'" + val + "' 경품은\n 5000 포인트 이상 6800 포인트 미만인 분에게\n 지급되어야 합니다.\n\n현재 포인트 : '" +pt + "'");
+					rtn_present = false;
+				}
+				break;
+			/*case "김치냉장고":
+				if (pt < 6600){
+					alert ("'" + val + "' 경품은\n 6600 포인트 이상 7100 포인트 미만인 분에게\n 지급되어야 합니다.\n\n현재 포인트 : '" +pt + "'");
+					rtn_present = false;
+				}
+				break;*/
+			default :
+				rtn_present = true;
+				break;
+		}
+	}
+	return rtn && rtn_present;
+
+}
+</script>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+<body onLoad="">
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr valign="top">
+        <td width="97%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+              <td background="/images/admin/tbox_bg.gif"><b>경품 지급 등록/수정</b></td>
+              <td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+            </tr>
+          </table>
+            <br>
+            <table width="100%" border=0 cellpadding='3' cellspacing='1' bgcolor='#aaaaaa'>
+              <form  name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
+                <input type="hidden" name="present_val" value="구단로고발목양말">
+                <input name="point" type="hidden" id="point" value="{klogon_list.balance}" >
+                <tr>
+                  <td bgcolor='#D2BF7E'><b>경품 지급 등록/수정</b></td>
+                </tr>
+                <tr>
+                  <td  bgcolor='#F8F8EA' nowrap><table width="100%" border=0 cellpadding='8' cellspacing='1' bgcolor='#aaaaaa'>
+                    <tr>
+                      <td height="50" align="center" bgcolor='#F0EBD6'><span class="style4"><strong>회원명</strong></span></td>
+                      <td width="34%" bgcolor='#FFFFFF' ><span class="style4"><strong>{klogon_list.name}</strong></span></td>
+                      <td height="50" align="center" bgcolor='#F0EBD6'><span class="style4"><strong>총 포인트</strong></span></td>
+                      <td bgcolor='#FFFFFF' ><span class="style4"><strong>{klogon_list.balance}</strong></span></td>
+                      </tr>
+                    <tr>
+                      <td height="50" align="center" bgcolor='#F0EBD6' class="style4"><strong>시즌</strong></td>
+                      <td bgcolor='#FFFFFF' class="style4" ><strong><font color="#FF0000">{kseason_list.s_name}</font></strong></td>
+                      <td height="50" align="center" bgcolor='#F0EBD6'><span class="style4"><strong>카드번호</strong></span></td>
+                      <td bgcolor='#FFFFFF' ><span class="style4"><strong>{klogon_list.accountno}</strong></span></td>
+                      </tr>
+                    <tr>
+                      <td height="50" align="center" bgcolor='#F0EBD6' class="style4"><strong>서포터즈 구분</strong></td>
+                      <td bgcolor='#FFFFFF' class="style4" ><strong>{klogon_list.spts_cate}</strong></td>
+                      <td height="50" align="center" bgcolor='#F0EBD6'>&nbsp;</td>
+                      <td bgcolor='#FFFFFF' >&nbsp;</td>
+                    </tr>
+                      <tr>
+                        <td align="center" bgcolor='#F0EBD6'>경품지급일(<span><span class="style1">*</span>)</span></td>
+                        <td colspan="3" bgcolor='#F8F8EA' ><input name="pdate" type="text" id="pdate" value="{kpresent_list.pdate}" onClick="Calendar(this);" size="12" hname="경품 지급일을 입력하세요" required></td>
+                      </tr>
+                      <tr>
+                        <td width="19%" align="center" bgcolor='#F0EBD6'>경품명(<span><span class="style1">*</span>)</span></td>
+                        <td colspan="3" bgcolor='#F8F8EA' ><table width="90%" border="0" cellpadding="5" cellspacing="5">
+                          <tr>
+                            <td><label>
+                              <input name="present" type="radio" id="present" value="KBSTARS로고스포츠양말" {present_checked_KBSTARS로고스포츠양말} onClick="set_present_val(this.form, this.value)">
+                              KB STARS 로고 스포츠양말</label></td>
+                            <td><label>
+                              <input name="present" type="radio" id="present" value="KBSTARS이색응원도구" {present_checked_KBSTARS이색응원도구} onClick="set_present_val(this.form, this.value)">
+                              KB STARS 이색응원도구</label></td>
+                            <td><label>
+                              <input name="present" type="radio" id="present" value="KBSTARS사인볼" {present_checked_KBSTARS사인볼} onClick="set_present_val(this.form, this.value)">
+                              KB STARS 사인볼</label></td>
+                            <td><label>
+                              <input name="present" type="radio" id="present" value="영화관람권10장" {present_checked_영화관람권10장} onClick="set_present_val(this.form, this.value)">
+                              영화관람권(10장)</label></td>
+                          </tr>
+                          <tr>
+                            <td><label>
+                              <input name="present" type="radio" id="present" value="실내용자전거" {present_checked_실내용자전거} onClick="set_present_val(this.form, this.value)">
+                              실내용 자전거</label></td>
+                            <td><label>
+                              <input name="present" type="radio" id="present" value="대명숙박권" {present_checked_대명숙박권} onClick="set_present_val(this.form, this.value)">
+                              대명 숙박권</label></td>
+                            <td><label>
+                              <input name="present" type="radio" id="present" value="LEDTV" {present_checked_LEDTV} onClick="set_present_val(this.form, this.value)">
+                              LED TV</label></td>
+                            <td><!--<label>
+                              <input name="present" type="radio" id="present" value="김치냉장고" {present_checked_김치냉장고} onClick="set_present_val(this.form, this.value)">
+                              김치냉장고</label>--></td>
+                          </tr>
+                        </table></td>
+                      </tr>
+                      <tr>
+                        <td align="center" bgcolor='#F0EBD6'>메모</td>
+                        <td colspan="3" bgcolor='#F8F8EA' ><input name="memo" type="text" id="memo" value="{kpresent_list.memo}" size="60">
+                            <br>
+                          (
+                          <label>
+                            <input name="memo_sample" type="radio" id="memo_sample" onClick="set_memo(this.form, this.value);" value="현장지급" {memo_checked_현장지급}>
+                            현장지급</label>
+                          <label>
+                            <input name="memo_sample" type="radio" id="memo_sample" value="택배발송" {memo_checked_택배발송} onClick="set_memo(this.form, this.value);">
+                            택배발송</label>
+                          <label>
+                            <input name="memo_sample" type="radio" id="memo_sample" value="추첨당첨" {memo_checked_추첨당첨} onClick="set_memo(this.form, this.value);">
+                            추첨당첨 )</label>
+                        </td>
+                      </tr>
+                      <!--<tr>
+                        <td bgcolor='#F0EBD6'>현재 포인트 </td>
+                        <td bgcolor='#F8F8EA' ><input name="point" type="text" id="point" value="{kpresent_list.point}" size="5" readonly="true"></td>
+                      </tr>-->
+                    </table>
+        <br>
+                      <table width="100%" border=0 cellpadding='3' cellspacing='0'>
+                        <tr>
+                          <td align="center"><input type="submit" name="Submit" value=" 등  록 " onClick="return chkPoint(this.form);">
+                            &nbsp;
+                            <input type="button" name="Submit2" value="목록보기" onClick="javascript:history.go(-1);"></td>
+                        </tr>
+                  </table></td>
+                </tr>
+              </form>
+            </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table> 
+</body>
+</html>

@@ -1,0 +1,65 @@
+
+<html>
+<!-- #CBF8D5-->
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body>
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'>
+	<tr>
+		<td bgcolor='#CCFFCC'><b>폼메일 종합 관리</b></td>
+	</tr>
+	<tr>
+		<td	bgcolor='#EDFEE9' nowrap>
+			<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'>
+			<tr align="center" bgcolor='#CCFFCC'>
+				<td>db=???</td>
+				<td>skin</td>
+				<td>type</td>
+				<td>title</td>
+				<td>메일</td>
+				<td>메뉴</td>
+			</tr>
+			{LIST}
+			<block name="list">
+			<tr bgcolor='#EDFEE9' onMouseOver="this.style.backgroundColor='#CCFFCC'"	onMouseOut="this.style.backgroundColor='#EDFEE9'">
+				<td>{list.db}</td>
+				<td>{list.skin}</td>
+				<td>{list.type}</td>
+				<td nowrap><a href='/sfmail/?db={list.db}' target=_blank>{list.title}</a></td>
+				<td nowrap>
+					<center>
+					{list.email}
+					</center>
+				</td>
+				<td><center><a href='{href.modify}'>수정</a>|<a href='{href.delete}' onclick="javascript: return confirm('정말 삭제하시겠습니까?.');">삭제</a></center></td>
+			</tr>
+			</block name="list">
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td	bgcolor='#CCFFCC' nowrap>
+			<a href='{href.write}'>신규추가</a>
+		</td>
+	</tr>
+	</table>

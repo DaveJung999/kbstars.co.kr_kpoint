@@ -1,0 +1,159 @@
+<link href="/style.css" rel="stylesheet" type="text/css">
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+  
+  <tr>
+    <td width="434" height="25" class="nevy_violet">&nbsp;</td>
+    <td width="166" height="25" class="nevy_violet"><!--opt name="cateinfo.catelist">
+      <form style='border:0px;margin:0px;padding:0px' method="get">
+        <SELECT NAME="chagecate" onChange="javascript: window.location='list.php?db={dbinfo.db}&cateuid='+this.value;">
+			{cateinfo.catelist}
+        </SELECT>
+      </form>
+</opt name="cateinfo.catelist"--></td>
+  </tr>
+</table>
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="10" colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="images/board_listtable_top.gif" width="600" height="7"></td>
+  </tr>
+  <tr>
+    <td height="30" colspan="2">&nbsp;&nbsp;<strong>제목&nbsp;:</strong>&nbsp;{list.title}</td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="images/board_listtable_bottom.gif" width="600" height="5"></td>
+  </tr>
+  <tr>
+    <td width="505" height="27">&nbsp;&nbsp;{list.userid}</td>
+    <td width="505" align="right">{list.rdate_dates}&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="images/dot_line.gif" width="600" height="1"></td>
+  </tr>
+</table>
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="8" colspan="3"></td>
+  </tr>
+  <tr>
+    <td width="10"></td>
+    <td height="130" valign="top" width="580">{list.content}</td>
+    <td width="10"></td>
+  </tr>
+  <tr>
+    <td height="10" colspan="3"></td>
+  </tr>
+</table>
+{MEMO}
+<block name="memo">
+		{MEMOLIST}
+  <table width="600" border="0" cellspacing="0" cellpadding="0" align="center" bgcolor="#FFFFFF">
+  <tr bgcolor="#FFFFFF">
+      <td height="10" colspan="3"><img src="images/dot_line.gif" width="600" height="1"></td>
+    </tr>
+  <form style='margin : 0px' {form_memo}>
+    <tr bgcolor="#FFFFFF">
+      <td>name&nbsp;:&nbsp;
+        <input name="userid" type="text" id="userid" value="{memouserid}" size="8" style="BORDER-RIGHT: #D7D7D7 0px solid; BORDER-TOP: #D7D7D7 0px solid; FONT-SIZE: 9pt; BORDER-LEFT: #D7D7D7 0px solid; COLOR: rgb(51,51,51); BORDER-BOTTOM: #D7D7D7 0px solid; BACKGROUND-COLOR: #F9F9F9;"></td>
+      <td>&nbsp;
+        <textarea name="title" cols="68" rows="3" style="BORDER-RIGHT: #D7D7D7 1px solid; BORDER-TOP: #D7D7D7 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: #D7D7D7 1px solid; COLOR: rgb(51,51,51); BORDER-BOTTOM: #D7D7D7 1px solid; BACKGROUND-COLOR: #F9F9F9;"></textarea></td>
+      <td align="right" bgcolor="#FFFFFF"><input type="image" src="images/comment_submit.gif" width="45" height="21"></td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+      <td height="10" colspan="3"><img src="images/dot_line.gif" width="600" height="1"></td>
+    </tr>
+  </form>
+</table>
+</block name="memo">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<block name="memolist">
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td colspan="4"><img src="images/dot_line.gif" width="600" height="1"></td>
+  </tr>
+  <tr>
+    <td width="90" height="44" align="center" bgcolor="#F9F9F9">{memolist.userid}</td>
+    <td width="7">&nbsp;</td>
+    <td width="376">{memolist.title}</td>
+    <td width="57" align="right">{memolist.rdate_date_}&nbsp;<a href="{memolist.href.delete}" onClick="javascript: return confirm('정말 삭제하시겠습니까?');"><img src="images/comment_del.gif" width="9" height="9" border="0"></a></td>
+  </tr>
+  <tr>
+    <td colspan="4"><img src="images/dot_line.gif" width="600" height="1"></td>
+  </tr>
+  <tr>
+    <td height="10" colspan="4"></td>
+  </tr>
+</table>
+</block name="memolist">
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="10" colspan="2"></td>
+  </tr>
+  
+  <opt name="href.prev">
+    <tr>
+      <td width="65"><a href="{href.prev}"><img src="images/prevread.gif" width="50" height="16" border="0"></a></td>
+      <td height="27" align="left"><a href="{href.prev}">{prevlist.title}</a></td>
+    </tr>
+  </opt name="href.prev">
+  <opt name="!href.prev">
+    <tr>
+      <td width="65"><img src="images/prevread.gif" width="50" height="16" border="0"></td>
+      <td height="27" align="left"><font color="#999999">이전 게시물이 없습니다.</font></td>
+    </tr>
+  </opt name="!href.prev">
+  
+  <opt name="href.next">
+    <tr>
+      <td width="65"><a href="{href.next}"><img src="images/nextread.gif" width="50" height="16" border="0"></a></td>
+      <td height="27" align="left"><a href="{href.next}">{nextlist.title}</a></td>
+    </tr>
+  </opt name="href.next">
+  <opt name="!href.next">
+    <tr>
+      <td width="65"><img src="images/nextread.gif" width="50" height="16" border="0"></td>
+      <td height="27" align="left"><font color="#999999">다음 게시물이 없습니다.</font></td>
+    </tr>
+  </opt name="!href.next">
+</table>
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="10" colspan="3"></td>
+  </tr>
+  <tr>
+    <td width="61" background="images/board_listbottom_bg.gif"><img src="images/board_listbottom_1.gif" width="49" height="40"></td>
+    <td align="center" background="images/board_listbottom_bg.gif"><opt name="href.prev"><a href="{href.prev}"><img src="images/read_btn_prev.gif" width="50" height="40" border="0" /></a></opt name="href.prev">
+        <a href="{href.list}"><img src="images/read_btn_list.gif" width="50" height="40" border="0" /></a><a href="{href.reply}"><img src="images/read_btn_reply.gif" width="50" height="40" border="0" /></a><a href="{href.modify}"><img src="images/read_btn_modify.gif" width="50" height="40" border="0" /></a><a href="{href.delete}" onclick="javascript: return confirm('정말 삭제하시겠습니까?');"><img src="images/read_btn_delete.gif" width="50" height="40" border="0" /></a><a href="{href.write}"><img src="images/read_btn_write.gif" width="51" height="40" border="0" /></a>
+      <opt name="href.next"><a href="{href.next}"><img src="images/read_btn_next.gif" width="51" height="40" border="0" /></a></opt name="href.next"></td>
+    <td width="61" background="images/board_listbottom_bg.gif"><img src="images/board_listbottom_2.gif" width="61" height="40"></td>
+  </tr>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+</table>
+<block name="highcate"> &gt; <a href="{href.highcate}" class="nevy_gcyan"> {highcate.title}</a> </block name="highcate">
+<block name="subcate"><opt name="blockloop"> 
+| </opt name="blockloop"><a href="{href.subcate}" class="base2"> {subcate.title}</a></block name="subcate">
+<block name="samecate">
+<option value="{samecate.uid}" {samecate.selected}>{samecate.title}</option>
+</block name="samecate">
+<block name="upfile"><a href="{upfile.href}">{upfile.name}</a>(크기: {upfile.size} bytes)<br></block name="upfile">

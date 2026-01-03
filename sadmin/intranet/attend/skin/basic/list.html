@@ -1,0 +1,127 @@
+<!--<? exit; ?>-->
+
+<html>
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body bgcolor="white" background="">
+
+	<table width="600" border=0 cellpadding='3' cellspacing='1' bgcolor='#666666'>
+	<tr>
+		<form name="searchmonth" >
+		<td align="center" bgcolor='#CFD8E9'>
+			<b>
+			{site.company}		개인별 출근부 (직원명 :
+			{session.seName}		) &nbsp;
+			<select name="year" id="year">
+
+			<option value=2002 selected>2002</option>
+			<option value=2003 selected>2003</option>
+			<option value=2004 selected>2004</option>
+			<option value=2005 selected>2005</option>		
+			</select>
+			년
+			<select name="month">
+
+			<option value=1>1</option>
+			<option value=2>2</option>
+			<option value=3>3</option>
+			<option value=4>4</option>
+			<option value=5>5</option>
+			<option value=6>6</option>
+			<option value=7>7</option>
+			<option value=8>8</option>
+			<option value=9>9</option>
+			<option value=10>10</option>
+			<option value=11 selected>11</option>
+			<option value=12>12</option>		
+			</select>
+			<input type="submit" name="Submit" value=" 조회▶ ">
+
+			<script language="JavaScript" type="text/JavaScript">
+			var form_select = document.searchmonth.year;
+			var form_value 				= '{get.year}';
+			for(var i=0;i<form_select.length;i++) {
+				if(form_select.options[i].value==form_value) {
+					form_select.options[i].selected = true;
+				}
+			}
+			var form_select = document.searchmonth.month;
+			var form_value 				= '{get.month}';
+			for(var i=0;i<form_select.length;i++) {
+				if(form_select.options[i].value==form_value) {
+					form_select.options[i].selected = true;
+				}
+			}
+			</script>
+
+			</b>
+		</td>
+		</form>
+	</tr>
+	<tr>
+		<td align="center" bgcolor='#F0F0F0'>총업무시간 {total.totalhours}시간 (정규 {total.dayhours}시간, 시간외 {total.overhours}시간, 야근 {total.nighthours}시간) </td>
+	</tr>
+	<tr>
+		<td bgcolor='#F0F0F0'>
+			<table width="600" border=0 align="left" cellpadding='3' cellspacing='1' bgcolor='#666666'>
+			<tr bgcolor="#B2CCE5">
+				<td rowspan="2" align="center"><strong>날짜</strong></td>
+				<td rowspan="2" align="center"><strong>구분</strong></td>
+				<td rowspan="2" align="center"><strong>출근</strong></td>
+				<td rowspan="2" align="center"><strong>퇴근</strong></td>
+				<td colspan="3" align="center"><p><strong>업무시간</strong></p></td>
+				<td width="200" rowspan="2" align="center">
+					<strong>반가운<br>
+					출근인사</strong>
+				</td>
+			</tr>
+			<tr align="center"	bgcolor="#B2CCE5">
+				<td width=30>정규</td>
+				<td width=30><font size=1>시간외</font></td>
+				<td width=30>야근</td>
+			</tr>
+			{LIST}
+			<block name="list">
+			<tr align="center" >
+				<td nowrap bgcolor='#F0F0F0'	align="right"	width=60>
+					<a href="{list.href.modify}">{list.date}</a>
+				</td>
+				<td nowrap bgcolor='#F0F0F0' width=40>{list.status}</td>
+				<td nowrap bgcolor='#F0F0F0' width=50>{list.begintime}</td>
+				<td nowrap bgcolor='#F0F0F0' width=50>
+					{list.finishtime}
+				</td>
+				<td nowrap bgcolor='#F0F0F0'>{list.dayhours}</td>
+				<td nowrap bgcolor='#F0F0F0'>{list.overhours}</td>
+				<td nowrap bgcolor='#F0F0F0'>{list.nighthours}</td>
+				<td width="200" align="left" bgcolor='#F0F0F0'>{list.memo}</td>
+				</block name="list">
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#F0F0F0' align="center"><input type="button"	value="퇴근함니다." onClick="javascript: window.location='./finishwork.php'"></td>
+		</tr>
+		</table>
+	</body>
+	</html>

@@ -1,0 +1,166 @@
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<form	name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
+<table border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+<tr>
+	<td bgcolor='#CCFFCC'><b>폼메일 종합 관리</b></td>
+</tr>
+<tr>
+	<td	bgcolor='#EDFEE9' nowrap>
+		<table width="500" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+		<tr>
+			<td width="109" bgcolor='#CCFFCC' lang="af">db</td>
+			<td width="376" bgcolor='#EDFEE9' ><input name="db" type="text" value="{list.db}" size="20" option=reg hname="db를 입력하세요" required></td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>skin</td>
+			<td bgcolor='#EDFEE9' ><input name="skin" type="text" id="skin" value="{list.skin}" size="20"></td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>type</td>
+			<td bgcolor='#EDFEE9' >
+				<SELECT name="type" id="type">
+				<OPTION value=formmail >formmail</OPTION>
+				<OPTION value=onlysend>onlysend</OPTION>
+				<OPTION value=onlyreceive>onlyreceive</OPTION>
+				</SELECT>
+
+				<script language="JavaScript" type="text/JavaScript">
+				var form_select = document.write.type;
+				var form_value 				= '{list.type}';
+				for(var i=0;i<form_select.length;i++) {
+					if(form_select.options[i].value==form_value) {
+						form_select.options[i].selected = true;
+					}
+				}
+				</script>
+
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>title</td>
+			<td bgcolor='#EDFEE9' ><input name="title" type="text" id="title" value="{list.title}" size="50" hname="title을 입력하세요" required></td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>메일주소</td>
+			<td bgcolor='#EDFEE9' >
+				이름
+				<input name="name" type="text" id="name" value="{list.name}" size="15">
+				메일
+				<input name="email" type="text" id="email" value="{list.email}" size="30">
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>메일제목</td>
+			<td bgcolor='#EDFEE9' >
+				접두사
+				<input name="subject_prefix" type="text" id="subject_prefix" value="{list.subject_prefix}" size="20">
+				접미사
+				<input name="subject_suffix" type="text" id="subject_suffix" value="{list.subject_suffix}" size="20"> 
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>메일본문</td>
+			<td bgcolor='#EDFEE9' >
+				접두사<br>
+				<textarea name="content_prefix" cols="50" id="content_prefix">{list.content_prefix}</textarea>
+				<br>
+				접미사<br>
+				<textarea name="content_suffix" cols="50" id="content_suffix">{list.content_suffix}</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>옵션-파일전송</td>
+			<td bgcolor='#EDFEE9' >
+				<input name="enable_upload" type="text" id="enable_upload" value="{list.enable_upload}" size="4">
+				(Y or N) 
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>옵션-스팸메일확인</td>
+			<td bgcolor='#EDFEE9' >
+				<input name="enable_nospam" type="text" id="enable_nospam" value="{list.enable_nospam}" size="4">
+				(Y or N) 
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>발송비용</td>
+			<td bgcolor='#EDFEE9' >
+				<input name="sendpoint" type="text" id="sendpoint" value="{list.sendpoint}" size="20">
+				원/건당<br>
+				(다음 도메인에 대해서만 부여) <br>
+				<textarea name="sendpointdomain" cols="50" rows="2" id="sendpointdomain">{list.sendpointdomain}</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>발송권한</td>
+			<td bgcolor='#EDFEE9' >
+				<input name="priv_send" type="text" id="priv_send" value="{list.priv_send}" size="4">
+				(0:누구나, 1:로그인유저만, 2이상:해당레벨만) 
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>사이트스킨</td>
+			<td bgcolor='#EDFEE9' >
+				삽입유형
+				<SELECT name="html_type" id="html_type">
+				<OPTION value=N>N</OPTION>
+				<OPTION value=ht>ht</OPTION>
+				<OPTION value=h>h</OPTION>
+				<OPTION value=t>t</OPTION>
+				<OPTION value=no>no</OPTION>
+				</SELECT>
+				사이트스킨명
+				<input name="html_skin" type="text" id="html_skin" value="{list.html_skin}" size="20">
+
+				<script language="JavaScript" type="text/JavaScript">
+				var form_select = document.write.html_type;
+				var form_value 				= '{list.html_type}';
+				for(var i=0;i<form_select.length;i++) {
+					if(form_select.options[i].value==form_value) {
+						form_select.options[i].selected = true;
+					}
+				}
+				</script>
+
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>페이지 해더 </td>
+			<td bgcolor='#EDFEE9' ><textarea name="html_head" cols="50" id="html_head">{list.html_head}</textarea></td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>페이지 테일 </td>
+			<td bgcolor='#EDFEE9' ><textarea name="html_tail" cols="50" id="html_tail">{list.html_tail}</textarea></td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>&nbsp;</td>
+			<td bgcolor='#EDFEE9' ><input type="submit" name="Submit" value=" 전송 "></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</form>

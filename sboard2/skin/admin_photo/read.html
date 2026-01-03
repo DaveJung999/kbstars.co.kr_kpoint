@@ -1,0 +1,187 @@
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/share/css/2016/boilerplate.css" />
+<link rel="stylesheet" type="text/css" href="/share/css/2016/sub.css" />
+<link rel="stylesheet" type="text/css" href="/share/css/2016/navigation.css"/>
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:#F8F8EA;
+}
+-->
+</style>
+
+<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+	<td background="/images/admin/tbox_bg.gif"><b>{dbinfo.title} 관리 </b></td>
+	<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+</tr>
+</table>
+<br>
+<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0" class="b01">
+<tr bgcolor="B5A978">
+	<td height="1"></td>
+</tr>
+</table>
+<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td width="13%" height="28" align="center" bgcolor="#F0EBD6" class="px11">제	목</td>
+	<td width="87%" height="28" class="b01"><span class="b01"><b> &nbsp;{list.title}</b></span></td>
+</tr>
+<tr>
+	<td colspan="2" bgcolor="B5A978" height="1"></td>
+</tr>
+<tr>
+	<td colspan=2>
+
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="13%" height="28" bgcolor="#F0EBD6" align="center" class="px11">작성자</td>
+			<td width="20%" align="center"><span class="b01">{list.userid}</span></td>
+			<td width="13%" bgcolor="#F0EBD6"	align="center" class="px11">등록일</td>
+			<td width="27%" align="center"><font size="2"><span class="b01">{list.rdate_date}</span></font></td>
+			<td width="13%" align="center" bgcolor="#F0EBD6" class="px11">조회</td>
+			<td width="14%" align="center"><span class="b01">{list.hit}</span></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="2"></td>
+</tr>
+<tr>
+	<td height="28" colspan="2">
+		<table width="97%"	border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="100%" height="300" valign="top" class="b01">
+				<br>
+				<table width=95% border="0" align="center">
+				<tr>
+					<td class="b01" id="board_contents_read"><br>{list.content}<br><br></td>
+				</tr>
+				<tr>
+					<td class="pagecolortext" style="text-align:right; padding-top:50px;">작성자 아이피 : {list.ip}</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<block name="upfiles">
+<tr>
+	<td colspan="2" bgcolor="B5A978" height="1"></td>
+</tr>
+<tr>
+	<td width="13%" height="28" align="center" bgcolor="#F0EBD6" class="px11">파 일</td>
+	<td width="87%" class="b01"><font size="2">{UPFILE}</font></td>
+</tr>
+</block name="upfiles">
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="2"></td>
+</tr>
+<tr>
+	<td height="40" colspan="2" align="right">
+		&nbsp; {WRITE}<span class="b01"> {REPLY}</span> {MODIFY}
+		{DELETE} <a href="{href.list}"><img src="images/board_button_list.gif" width="51" height="21" border="0" align="absmiddle"></a>&nbsp;&nbsp; 
+	</td>
+</tr>
+</table>
+<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td height="10" colspan="2"></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" bgcolor="#d5d5d5"></td>
+</tr>
+<opt name="href.prev">
+<tr>
+	<td width="158" align="center" bgcolor="#F0EBD6"><strong>이전글</strong></td>
+	<td width="1069" height="27" align="left"> &nbsp;<a href="{href.prev}">{prevlist.title}</a></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" bgcolor="#dedede"></td>
+</tr>
+</opt name="href.prev">
+<opt name="!href.prev">
+<tr>
+	<td width="158" align="center" bgcolor="#F0EBD6"><strong>이전글</strong></td>
+	<td height="27" align="left"> &nbsp;<font color="#999999">이전 게시물이 없습니다.</font></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" bgcolor="#dedede"></td>
+</tr>
+</opt name="!href.prev">
+<opt name="href.next">
+<tr>
+	<td width="158" align="center" bgcolor="#F0EBD6"><strong>다음글</strong></td>
+	<td height="27" align="left"> &nbsp;<a href="{href.next}">{nextlist.title}</a></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" bgcolor="#d5d5d5"></td>
+</tr>
+</opt name="href.next">
+<opt name="!href.next">
+<tr>
+	<td width="158" align="center" bgcolor="#F0EBD6"><strong>다음글</strong></td>
+	<td height="27" align="left"> &nbsp;<font color="#999999">다음 게시물이 없습니다.</font></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" bgcolor="#d5d5d5"></td>
+</tr>
+</opt name="!href.next">
+</table>
+<br>
+{MEMO}
+<block name="memo">
+<table width="97%" height="90" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="B5A978">
+<tr>
+	<td width="100%" bgcolor="#FFFFFF">
+		{MEMOLIST}
+		<table width="100%" height="80" border="0" cellpadding="0" cellspacing="1" bgcolor="B5A978">
+		<form style='margin : 0px' {form_memo}>
+		<tr>
+			<td width="16%" align="center" valign="middle" bgcolor="E5E0CA" class="b01">
+				<strong>메모<br>
+				글쓰기</strong>
+			</td>
+			<td bgcolor="#F0EBD6" width="84%">
+				<div align="center">
+					<textarea name="title" cols="70" rows="5" style="width:80% "></textarea>
+					<input type="image" border="0" name="imageField2" img src="images/board_button_save.gif" width="51" height="21">
+				</div>
+			</td>
+		</tr>
+		</form>
+		</table>
+	</td>
+</tr>
+</table>
+</block name="memo">
+<block name="memolist">
+<table width="100%" border="0" align="center" cellpadding="5" cellspacing="0">
+<tr>
+	<td width="16%" align="center" valign="top" class="b01">
+		{memolist.userid}&nbsp; <a href="{memolist.href.delete}" onclick="javascript: return confirm('정말 삭제하시겠습니까?');"><img src="images/board_button_memo_delete.gif" width="12" height="13" border="0" align="top"></a><br>
+		<font size="2" color="#909790">{memolist.rdate_date}</font><br>
+	</td>
+	<td style="LINE-HEIGHT:20px;" width="84%">{memolist.title}<br></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" background="images/dot_width.gif" bgcolor="#dedede"></td>
+</tr>
+</table>
+</block name="memolist">
+<p><block name="highcate">&gt; <a href="{href.highcate}" class="b01"> {highcate.title}</a></block name="highcate"></p>
+<block name="samecate"><opt name="samecate.selected"><b>{samecate.title}</b></opt name="samecate.selected"><opt name="!samecate.selected"><b><a href="{PHP_SELF}?db={dbinfo.db}&cateuid={samecate.uid}">{samecate.title}</a></b></opt name="!samecate.selected">&nbsp;</block name="samecate">
+<block name="subcate"><opt name="blockloop"> | </opt name="blockloop"><a href="{href.subcate}" class="b01"> {subcate.title}</a></block name="subcate"> <block name="upfile">&nbsp;<a href="{upfile.href}" class="b01"><b>{upfile.name}</b></a> (크기: {upfile.size} bytes)<br></block name="upfile">
+<block name="write"><a href="{href.write}"><img src="images/board_button_write.gif" width="51" height="21" border="0" align="absmiddle"></a></block name="write">
+<block name="reply"><a href="{href.reply}"><img src="images/board_button_reply.gif" width="51" height="21" border=0 align="absmiddle"></a></block name="reply">
+<block name="modify"><a href="{href.modify}" class="b01"><img src="images/board_button_modify.gif" width="51" height="21" border="0" align="absmiddle"></a></block name="modify">
+<block name="delete"><a href="{href.delete}" class="b01" onclick="javascript: return confirm('답변이 있다면 답변글까지 모두 삭제됩니다.\n정말 삭제하시겠습니다.');"><img src="images/board_button_delete.gif" width="51" height="21" border="0" align="absmiddle"></a> </block name="delete">

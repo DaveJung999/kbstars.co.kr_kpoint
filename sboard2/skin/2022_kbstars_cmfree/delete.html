@@ -1,0 +1,67 @@
+<!--<? exit; ?>-->
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<body onLoad="document.sboard2delete.passwd.focus();">
+
+
+
+	<script language="JavaScript">
+	function encode() {
+		var encoded = "";
+		var str = "";
+
+		element = document.getElementById('passwd');
+
+		str = element.value;
+		str = btoa(str);
+		str = btoa(str);
+
+		for (i=0; i<str.length;i++) {
+			var a = str.charCodeAt(i);
+			var b = a ^ 10; // bitwise XOR with any number, e.g. 123
+			encoded = encoded+String.fromCharCode(b);
+		}
+		encoded = btoa(encoded);
+
+		element.value = encoded;
+
+		return true;
+	}
+	</script>
+
+	<table width="100%" height="300" border="0" align="center" cellpadding="1">
+	<tbody>
+	<tr>
+		<td align="center" valign="middle">
+			<FORM name="sboard2delete"	onSubmit="return encode();" {form_default}>
+			<table width="366" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td height="74" align="center" background="images/board_delete_bg_yellow.jpg">
+					<table width="95%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td height="25" align="center" class="wtext"><strong>패스워드 입력</strong></td>
+					</tr>
+					<tr>
+						<td height="25" align="center">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td align="center"><input type=password name=passwd id=passwd size=15 style="height:23;" hname="패스워드를 입력 해 주세요." required /></td>
+								<td align="center"><input type="image" src="images/board_delete_btn_delete.jpg" width="56" height="22"></td>
+								<td align="center"><a href="{href.list}"><img src="images/board_delete_btn_list.jpg" width="56" height="22"></a></td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" height="10"></td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			</table>
+			</FORM>
+		</td>
+	</tr>
+	</tbody>
+	</table>

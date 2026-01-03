@@ -1,0 +1,119 @@
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>sephiroth.no-ip.com</title>
+	<link rel="stylesheet" href="default.css" />
+</head>
+
+<body>
+	<!-- Validate Test Page -->
+	<form id="test" method="post" action="test" validate onsubmit="return validate_submit(this);">
+	<table border="1">
+	<tr>
+		<td align="center">나이</td>
+		<td><input name="age" hname="나이" type="text" onlyNumber limitMin="19" limitMax="60" denyBlank />19~60세만 가입 가능합니다.</td>
+	</tr>
+	<tr>
+		<td align="center">한글이름</td>
+		<td><input name="name" hname="한글이름" type="text" onlyHangul denySpace denyBlank limitMinLen="#2" limitMaxLen="#3" />실명확인이 가능해야 합니다.</td>
+	</tr>
+	<tr>
+		<td align="center">영문이름</td>
+		<td><input name="engnamethumb" type="text" onlyAlphabet toUpper limitMinLen="5" />신용카드나 비자에 기재된 영문으로 적어 주십시오.</td>
+	</tr>
+	<tr>
+		<td align="center">주민등록번호</td>
+		<td><input name="personalno[]" hname="주민등록번호" checkPersonalNumber1 toFields="date_" size="6" maxlength="6" />-<input name="personalno[]" checkPersonalNumber size="7" maxlength="7" /></td>
+	</tr>
+	<tr>
+		<td align="center">생년월일</td>
+		<td><input name="year" hname="생년" id="date_year" onlyNumber limitMin="1940" limitMax="2099" size="4" maxlength="4" />년 <input name="month" hname="생월" id="date_month" onlyNumber limitMin="1" limitMax="12" size="2" maxlength="2" />월 <input name="day" hname="생일" id="date_day" onlyNumber limitMin="1" limitMax="31" size="2" maxlength="2" />일</td>
+	</tr>
+	<tr>
+		<td align="center">암호</td>
+		<td><input name="passwd[]" hname="암호" type="password" checkPassWord1 limitMinLen="3" style="background-color:#EEFFEE;" />3글자 이상 입력하세요.</td>
+	</tr>
+	<tr>
+		<td align="center">암호확인</td>
+		<td><input name="passwd[]" hname="암호확인" type="password" checkPassWord style="background-color:#EEFFEE;" /></td>
+	</tr>
+	<tr>
+		<td align="center">아이디</td>
+		<td><input name="uid" hname="아이디" type="text" onlyUID limitMinLen="4" limitMaxLen="10" denyBlank alertBG="#FFDDEE" /></td>
+	</tr>
+	<tr>
+		<td align="center">이메일</td>
+		<td><input name="email" hname="이메일" type="text" checkEmail maxlength="97" /></td>
+	</tr>
+	<tr>
+		<td align="center">전화</td>
+		<td><input name="tel[]" hname="전화번호" checkTel1 size="4" maxlength="4" />-<input name="tel[]" checkTel size="4" maxlength="4" />-<input name="tel[]" checkTel size="4" maxlength="4" /></td>
+	</tr>
+	<tr>
+		<td align="center">휴대전화</td>
+		<td><input name="cell[]" hname="휴대전화" checkCell1 size="4" maxlength="4" />-<input name="cell[]" checkCell size="4" maxlength="4" />-<input name="cell[]" checkCell size="4" maxlength="4" /></td>
+	</tr>
+	<tr>
+		<td align="center">기타사항</td>
+		<td><textarea name="text5" hname="기타사항" cols="30" rows="5" rTrim denySpace denyBlank></textarea></td>
+	</tr>
+	<tr>
+		<td>한영섞인곳 limitMaxLen="10" (byte계산)</td>
+		<td><input name="testt" hname="byte계산" limitMaxLen="10" /></td>
+	</tr>
+	<tr>
+		<td>한영섞인곳 limitMaxLen="#10" (글자계산)</td>
+		<td><input name="testt" hname="글자계산" limitMaxLen="#10" /></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value=" 입력 " /></td>
+	</tr>
+	</table>
+	</form>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	form 태그에 validate 선언을 해 주면 적용됨.(validate="UTF-8" 로 맞추면 한글 한글자를 3bytes 로 계산)<br />
+	form 태그에 id 필수<br />
+	<br />
+	<li>onlyNumber : 숫자만</li>
+	<li>onlyAlphabet : 영문만</li>
+	<li>onlyAlnum : 영문숫자</li>
+	<li>onlyHangul : 한글만</li>
+	<li>onlyHanNum : 한글숫자</li>
+	<li>onlyText : 한글영문숫자</li>
+	<li>onlyUID : 아이디</li>
+	<li>lTrim : 왼쪽 Trim (여러줄 가능)</li>
+	<li>rTrim : 오른쪽 Trim (여러줄 가능)</li>
+	<li>trim : 전체 Trim (여러줄 가능)</li>
+	<br />
+	<li>denyBlank : 반드시 채워야 함</li>
+	<li>denySpace : 공백 불허</li>
+	<li>toUpper : 대문자로</li>
+	<li>toLower : 소문자로</li>
+	<li>limitMin : 최소값</li>
+	<li>limitMax : 최대값</li>
+	<li>limitMinLen : 최소길이 bytes (값에 # 을 붙이면 글자수로 계산)</li>
+	<li>limitMaxLen : 최대길이 bytes (값에 # 을 붙이면 글자수로 계산)</li>
+	<li>checkTel : 전화번호 (name 을 같은 배열명으로 해야 함. 제일 처음 오는것은 checkTel1) </li>
+	<li>checkCell : 휴대전화번호 (name 을 같은 배열명으로 해야 함. 제일 처음 오는것은 checkCell1)</li>
+	<li>checkPersonalNumber : 주민등록번호 (name 을 같은 배열명으로 해야 함. 제일 처음 오는것은 checkPersonalNumber1)</li>
+	<li>checkPassWord : 암호, 암호확인 (name 을 같은 배열명으로 해야 함. 제일 처음 오는것은 checkPassWord1)</li>
+	<li>checkEmail : 이메일</li>
+	<br />
+	<li>
+		limitCheckMin : 체크박스 최소 선택 갯수 (name 을 같은 배열명으로 해야 하며, 가장 먼저 나온것에 선언하면 됨.)
+		<li>limitCheckMax : 체크박스 최대 선택 갯수 (name 을 같은 배열명으로 해야 하며, 가장 먼저 나온것에 선언하면 됨.)</li>
+		<br />
+		<br />
+		<li>normalBG : 보통 색 속성. 지정안하면 태그의 속성으로 적용.</li>
+		<li>alertBG : 경고 색 속성. 지정안하면 #FFDDDD 으로 적용.</li>
+
+		<script src="direct_validate.js"></script>
+
+	</body>
+	</html>

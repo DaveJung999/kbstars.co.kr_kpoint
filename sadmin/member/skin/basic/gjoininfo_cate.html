@@ -1,0 +1,126 @@
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body bgcolor="white" background=""	onload="document.gsearch.gsc_string.focus();">
+	<form name="gsearch" style='border:0px;margin:0px;padding:0px' {form_gsearch}>
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black' width=500>
+	<tr>
+		<td bgcolor='#CCFFCC'>
+			그룹검색
+		</td>
+		<td bgcolor='#EDFEE9' nowrap>
+			<select name="gsc_column" size="1">
+			<option value="groupinfo.groupid"	 selected >그룹아이디</option>
+			<option value="groupinfo.name"	 >그룹명</option>
+			<option value="groupinfo.uid"		 >그룹고유번호</option>
+			<option value="groupinfo.content"		 >그룹설명</option>
+			<option value="logon.userid"		 >그룹개설자아이디</option>
+			<option value="logon.name"		 >그룹개설자이름</option>
+			<option value="logon.uid"		 >그룹개설자고유번호</option>			
+			</select>
+			<input type="text" name="gsc_string" size=10 value={gsc_string}>
+			<input type="submit" value=" 검색 ">
+			(와일드카드(%) 사용가능)
+
+			<script language="JavaScript" type="text/JavaScript">
+			var form_select = document.gsearch.gsc_column;
+			var form_value 				= '{gsc_column}';
+			for(var i=0;i<form_select.length;i++) {
+				if(form_select.options[i].value==form_value) {
+					form_select.options[i].selected = true;
+				}
+			}
+			</script>
+
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'>
+			검색결과
+		</td>
+		<td bgcolor='#EDFEE9'>
+			총 1명 회원이 검색되었습니다.
+			- <a href="groupinfoadd.php">신규그룹추가</a> 
+		</td>
+	</tr>
+	</table>
+	</form><br>
+	<table	width=500 border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+	<tr>
+		<td bgcolor='#CCFFCC' nowrap>
+			{groupinfo.uid}&nbsp;&nbsp;{groupinfo.groupid}(개설자:<a href="msearch.php?userid={groupinfo.userid}" target="_blank">{groupinfo.userid}</a>)&nbsp;&nbsp;가입기본레벨:{groupinfo.default_level}<br>
+			<a href='groupinfo.php?gsc_column={gsc_column}&gsc_string={gsc_string}'>그룹정보수정</a> / <a href="gjoininfo_cate.php?gsc_column={gsc_column}&gsc_string={gsc_string}">조직도</a> / <a href="gjoininfo.php?gsc_column={gsc_column}&gsc_string={gsc_string}">가입회원들</a> / <a href="gboardlist.php?gsc_column={gsc_column}&gsc_string={gsc_string}">그룹게시판</a> / <a href="groupok.php?mode=groupinfodelete&groupid={groupinfo.groupid}">그룹삭제</a>
+		</td>
+	</tr>
+	</table>
+	<br>
+	<form name="form1" {form_catewrite}>
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'>
+	<tr>
+		<td bgcolor='#CCFFCC' colspan=2>메뉴 <opt name="is_modify">수정</opt name="is_modify"><opt name="!is_modify">추가 </opt name="!is_modify"> - <a href="{href.list}">최상위 추가</a></td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'>메뉴 이름</td>
+		<td bgcolor='#EDFEE'>
+			{cate_nevi}
+			<input type="text" name="title" value="{list.title}">
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'>&nbsp;</td>
+		<td bgcolor='#EDFEE'>
+			<input type="submit" name="Submit" value=' 메뉴 <opt name="is_modify">수정</opt name="is_modify"><opt name="!is_modify">추가</opt name="!is_modify"> '>
+		</td>
+	</tr>
+	</table>
+	<br>
+	</form>
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'>
+	<tr>
+		<td bgcolor='#CCFFCC' colspan=6>
+			<b> <? echo $title; ?></b>
+			메뉴 현황
+		</td>
+	</tr>
+	<tr bgcolor='#CCFFCC'>
+		<td width="145" > <div align="center">카테고리 제목</div></td>
+		<td	colspan=4 nowrap> <div align="center">메뉴</div></td>
+		<td align="center" nowrap >회원수</td>
+	</tr>
+	{LIST}
+	<block name="list">
+	<tr bgcolor='#EDFEE'>
+		<TD nowrap>
+			{list.title} [<a href="{href.list}">보기</a>]
+		</TD>
+		<td nowrap> <div align="center"><a href="javascript: window.open('{href.catesort}','_blank','toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,resizable=no,width=350,height=100,top=30 left=30'); void(0);">순서변경</a></div></td>
+		<td align="center" nowrap><a href="{href.catereply}">서브추가</a></td>
+		<td align="center" nowrap> <a href="{href.catemodify}">수정</a> </td>
+		<td align=center nowrap>
+			<a href="{href.catedelete}" onclick="return confirm('서브카테고리있다면 서비카테고리까지 삭제됩니다.\n정말 삭제 하시겠습니까?')">삭제</a>
+		</td>
+		<td align="center" nowrap>
+			{list.dbcount}
+		</td>
+	</tr>
+	</block name="list">
+	</table>

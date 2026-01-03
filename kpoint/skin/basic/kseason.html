@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Admin Manager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+.style1 {color: #FF0000}
+-->
+</style>
+<script>
+
+function set_change_sname(f, val){
+	alert(val);
+	alert(f);
+	f.s_name.value = val;
+}
+</script>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<body onLoad="">
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+		
+		<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+		  <tr valign="top">
+			<td width="97%">
+	
+			  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+				  <td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+				  <td background="/images/admin/tbox_bg.gif"><b>시즌별 정보 등록/수정</b></td>
+				  <td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+				</tr>
+			  </table>
+			 
+			  <br>
+			  <table width="100%" border=0 cellpadding='3' cellspacing='1' bgcolor='#aaaaaa'>
+<form  name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
+<input type=hidden name='s_name' value='{s_name}'> 
+                <tr>
+                  <td bgcolor='#D2BF7E'><b>시즌별 정보 등록/수정</b></td>
+                </tr>
+                <tr>
+                  <td  bgcolor='#F8F8EA' nowrap><table width="100%" border=0 cellpadding='3' cellspacing='1' bgcolor='#aaaaaa'>
+                    <tr>
+                      <td bgcolor='#F0EBD6'>시즌(<span><span class="style1">*</span>)</span></td>
+                      <td bgcolor='#F8F8EA' >
+                        <select name="s_id" onChange="set_change_sname(this.form, this.options[this.selectedIndex].text)">{sselect}
+                        </select>                        </td>
+                    </tr>
+
+                      <tr>
+                        <td width="20%" bgcolor='#F0EBD6'>성명(<span><span class="style1">*</span>)</span></td>
+                        <td width="80%" bgcolor='#F8F8EA' ><input name="name" type="text" id="name" value="{kpointinfo.name}" size="12" ></td>
+                      </tr>
+                      <tr>
+                        <td bgcolor='#F0EBD6'>카드번호</td>
+                        <td bgcolor='#F8F8EA' ><input name="accountno" type="text" id="accountno" value="{kpointinfo.accountno}" size="40"></td>
+                      </tr>
+                    </table>
+                      <br>
+                      <table width="100%" border=0 cellpadding='3' cellspacing='0'>
+
+                        <tr>
+                          <td align="center"><input type="submit" name="Submit" value=" 등  록 " onClick="return confirm('자료를 등록/수정합니다.');">
+                          &nbsp;  <input type="button" name="Submit2" value="목록보기" onClick="javascript:history.go(-1);"></td> 
+                        </tr>
+                    </table></td>
+                </tr></form>
+              </table></td>
+		  </tr>
+	  </table>
+    </td>
+  </tr>
+</table> 
+</body>
+</html>

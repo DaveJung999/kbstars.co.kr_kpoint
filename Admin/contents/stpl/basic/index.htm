@@ -1,0 +1,121 @@
+
+
+<html>
+<head>
+	<title>Admin Manager</title>
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+<style type="text/css">
+<!--
+.style2 {color: #993300}
+-->
+</style>
+
+</head>
+
+<script>
+/* 소스제작: http://www.script.ne.kr - Mlang */
+function Mlamg_ahrefview(ahrefview) {
+	Mlangwindow = window.open("", "Mlang_isao", "width=800, height=600, top=0, left=100, statusbar=no, resizable=yes, scrollbars=yes, toolbar=no");
+	Mlangwindow.document.open();
+	Mlangwindow.document.write("<link href='/css/basic_text.css' rel='stylesheet' type='text/css'>");
+	Mlangwindow.document.write("<link href='/css/link01.css' rel='stylesheet' type='text/css'>");
+	Mlangwindow.document.write("
+	<body bgcolor='white' text='black' link='blue' vlink='purple' alink='red' leftmargin='5' marginwidth='0' topmargin='5' marginheight='0' >");
+	Mlangwindow.document.write("<table width='100%' border='0' cellspacing='4' cellpadding='4'><tr><td>");
+	Mlangwindow.document.write("" + ahrefview + "");
+	Mlangwindow.document.write("</td></tr></table>");
+	Mlangwindow.document.write("</body>");
+	Mlangwindow.document.close();
+}
+function onChangeVal(){
+	var f = document.form;
+	if (eval("f.default_content.checked") == true){
+		f.default_val.value = "1";
+	}
+	else{
+		f.default_val.value = "0";
+	}
+}
+</script>
+
+<script type="text/javascript" src="/editor/ckeditor/ckeditor.js"></script>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<body>
+	<form name="form" method='post' action="./ok.php" enctype="multipart/form-data">
+	<input type="hidden" name="title" value="{list.title}">
+	<input type="hidden" name="db" value="content">
+	<input type="hidden" name="mode" value="modify">
+	<input type="hidden" name="uid" value="{list.uid}">
+	<input type="hidden" name="data1" value="{list.data1}">
+	<br>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+				<td background="/images/admin/tbox_bg.gif"><strong>{list.title} 관리 </strong></td>
+				<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+			</table>
+			<br>
+			<table width='97%' border='0' align="center" cellpadding='4' cellspacing='1' bgcolor='#aaaaaa'>
+			<tr height=25 bgcolor="#F8F8EA">
+				<td height="25" bgcolor="#F0EBD6" align="center">{list.title}<span class="style2"> (넓이는 560px 이하로)</span> </td>
+			</tr>
+			<tr bgcolor="#F8F8EA">
+				<td width="97%" bgcolor="#F8F8EA">
+					<table border=0 cellpadding=0 cellspacing=0 width='100%' bgcolor='#F8F8EA'>
+					<tr>
+						<td colspan=2 width=97%>
+							<table border='0' cellpadding='4' cellspacing='1' width='100%' bgcolor='#aaaaaa'>
+							<tr height=25>
+								<td width="120" align="center" bgcolor="#D2BF7E">
+									{list.title}<br>						 <br>
+									<input name="submit" type="button" class="input02" value="미 리 보 기 " onClick="Mlamg_ahrefview(document.form.content.value);">
+								</td>
+								<td height="80" bgcolor="#F8F8EA">
+									<textarea type="text" name="content" id="content" style="width:100%; height:450px;" required hname="내용을 입력 해 주세요">{list.content}</textarea>
+								</td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					<tr valign=middle>
+						<td height=50 align="center" bgcolor="#F0EBD6">
+							<input type="submit" class="input02" value=" 저장하기 ">
+							<input name="reset" type="reset" class="input02" value=" 취소하기 ">
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	</form>
+
+	<script>
+	LoadPage();
+	</script>
+
+</body>
+</html>

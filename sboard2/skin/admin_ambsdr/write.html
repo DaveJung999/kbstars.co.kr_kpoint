@@ -1,0 +1,239 @@
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:#F8F8EA;
+}
+-->
+</style>
+
+<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+	<td background="/images/admin/tbox_bg.gif"><b>{dbinfo.title} 관리 </b></td>
+	<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+</tr>
+</table>
+<br>
+<form name="board_write" style='margin : 0px' onSubmit="return chkForm(this)" {form_default}>
+<table border="0" cellpadding="0" cellspacing="0" width="97%" align="center" class="">
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="2"></td>
+</tr>
+{USERINFO}
+<block name="userinfo">
+<tr>
+	<td width="15%" height="28" align="center" bgcolor="#F0EBD6">이&nbsp;&nbsp; &nbsp; 름</td>
+	<td width="85%">{list.userid} ({list.email}) </td>
+</tr>
+<tr>
+	<td height="1" colspan="2" align="center" bgcolor="#B5A978"></td>
+</tr>
+</block name="userinfo">
+<block name="nouserinfo">
+<tr>
+	<td width="15%" height="28" align="center" bgcolor="#F0EBD6">이&nbsp;&nbsp; &nbsp; 름</td>
+	<td width="85%"><input type="text" name="userid" size="20"	value="{list.userid}" class="ccbox" required hname="이름을 입력 해 주세요"></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" align="center" bgcolor="#B5A978"></td>
+</tr>
+<tr>
+	<td height="28" align="center" bgcolor="#F0EBD6">패스워드</td>
+	<td><input name="passwd" type="password" id="passwd" size="10" class="ccbox" required hname="패스워드를 입력 해 주세요"></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" align="center" bgcolor="#B5A978"></td>
+</tr>
+<tr>
+	<td width="15%" height="28" align="center" bgcolor="#F0EBD6">메&nbsp;&nbsp; &nbsp; 일</td>
+	<td width="85%"><input type="text" name="email" size="40"	value="{list.email}" class="ccbox" option="regMail" hname="이메일을 정확히 입력 해 주세요"></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" align="center" bgcolor="#B5A978"></td>
+</tr>
+</block name="nouserinfo">
+{CATELIST}
+<block name="catelist">
+<tr>
+	<td width="15%" height="28" align="center" nowrap bgcolor="#F0EBD6">카테고리</td>
+	<td width="85%">
+		<SELECT NAME="catelist">{list.catelist}</SELECT>	
+	</tr>
+	<tr>
+		<td height="1" colspan="2" align="center" bgcolor="#B5A978"></td>
+	</tr>
+	</block name="catelist">
+	<tr>
+		<td width="15%" height="28" align="center" bgcolor="#F0EBD6">
+			제&nbsp;&nbsp;&nbsp;&nbsp;
+			목
+		</td>
+		<td width="85%">
+			<input type="text" name="title" size="30"	value="{list.title}" style="width:70% " class="ccbox" required hname="제목을 입력 해 주세요">
+			<input type="checkbox" name="docu_type" value="html" {list.docu_type_checked}> HTML{IFWRITEINFO}
+			<block name="ifwriteinfo">
+			<input type="checkbox" name="writeinfo" value="info" {list.writeinfo_checked}> 공지
+			</block name="ifwriteinfo">
+			<input type="checkbox" name="priv_hidelevel" value="99" />
+			&nbsp;비밀글
+
+			<script language="JavaScript" type="text/javascript">
+			var form_checkbox = document.board_write.priv_hidelevel;
+			var form_value 				= '{list.priv_hidelevel}';
+			if(Number(form_value)) {
+				form_checkbox.checked= true;
+			}
+			</script>
+		</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="2" align="center" bgcolor="#B5A978"></td>
+	</tr>
+	{UPLOAD}
+	<block name=" Upload ">
+	<tr>
+		<td width="15%" height="28" align="center" bgcolor="#F0EBD6">첨부파일 {upfile.no}</td>
+		<td width="85%">
+			<input name='{upfile.key}' type='file' id="{upfile.key}" style="width:95% " class="ccbox">
+			<opt name="upfile.name"><br>
+			<table width="500"	border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="56%"><strong>파일명 {upfile.no}</strong> : {upfile.name}</td>
+				<td width="44%">
+					<input name="del_{upfile.key}" type="checkbox" id="del_{upfile.key}" value="checkbox">
+					삭제	
+				</td>
+			</tr>
+			</table>
+			</opt name="upfile.name">
+		</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="2" bgcolor="#B5A978"></td>
+	</tr>
+	</block name=" Upload ">
+	{ENABLE_UPLOAD}
+	<block name="enable_upload">
+	<tr>
+		<td colspan="2"><table border='0' cellpadding='0' cellspacing='0' width='100%' align='center' class=''><TBODY id="AddFileForm"></TBODY></table></td>
+	</tr>
+
+	<script>
+	// 03/10/22 By Sunmin Park
+	AddFile(document.board_write,'upfile');
+	function AddFile(theform,elementName)
+	{
+		var count=1;
+		var fname;
+		var objTbody, objRow, objCell;
+		objTbody = document.all("AddFileForm");
+		objRow = objTbody.insertRow();
+		objCell = objRow.insertCell();
+
+		// 업로드 폼 개수 구하기
+		for( var i=0; i<theform.elements.length; i++) {
+			var ele = theform.elements[i];
+			if(ele.name.indexOf(elementName) == 0) {
+				if(count<=parseInt(ele.name.substr(elementName.length)))
+					count = parseInt(ele.name.substr(elementName.length))+1;
+			}
+		}
+		fname = elementName + count.toString();
+		var outHTML = "<table border='0' cellpadding='0' cellspacing='0' width='100%' align='center' class=''>";
+		outHTML += "	<tr class='b01'> ";
+		outHTML += "		<td width='15%' height='28' align='center' bgcolor='#F0EBD6' class='px11'>첨부파일 "+ count.toString() +"</td>";
+		outHTML += "		<td width='85%'> <input name='"+fname+"' type='file' id='"+fname+"' onChange=\"AddFile(this.form,'"+elementName+"');\"	style='width:95% ' class='ccbox'></td>";
+		outHTML += "	</tr>";
+		outHTML += "	<tr>";
+		outHTML += "		<td height='1' colspan='2' bgcolor='#B5A978' class='b01'></td>";
+		outHTML += "	</tr>";
+		outHTML += "	</table>";
+		objCell.insertAdjacentHTML("AfterBegin", outHTML);
+	}
+	</script>
+
+	</block name="enable_upload">
+	<tr>
+		<td width="15%" align="center" bgcolor="#F0EBD6">내&nbsp; &nbsp;&nbsp; 용</td>
+		<td width="85%">
+			<textarea rows="20" name="content" cols="60" style="width:100% " class="textarea01" required hname="내용을 입력 해 주세요">{list.content}</textarea>
+		</td>
+	</tr>
+	{LEVEL}
+	<block name="level">
+	<tr>
+		<td height="1" colspan="2" align="center" bgcolor="#B5A978"></td>
+	</tr>
+	<tr>
+		<td width="15%" height="28" align="center" nowrap bgcolor="#F0EBD6">읽기 레벨</td>
+		<td width="85%">
+			<input name=priv_level type=text id="priv_level" onChange="MM_validateForm('priv_level','','RinRange0:255');return document.MM_returnValue" value='{list.priv_level}' class="ccbox" size=4>
+			* 숫자 레벨(0-255)	&nbsp; <strong>[게스트-0, 일반회원-1, 선수-10, 중간관리자-30, 최고관리자-99]</strong>
+		</tr>
+		</block name="level">
+		<tr bgcolor="#B5A978">
+			<td height="1" colspan="2"></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td width="85%" height="40" align="right">
+				<input name="image" type=image src="images/board_button_save.gif" align="bottom" width="51" height="21" class="ccbox">&nbsp;
+				<a href="{href.list}"><img src="images/board_button_cancel.gif" width="51" height="21" border="0" align="top"></a>&nbsp; 
+			</td>
+		</tr>
+		</table>
+		<br>
+		<br>
+		</form>
+		<block name="highcate">&gt; <a href="{href.highcate}"> {highcate.title}</a></block name="highcate">
+		<block name="samecate"><opt name="samecate.selected"><b>{samecate.title}</b></opt name="samecate.selected"><opt name="!samecate.selected"><b><a href="{PHP_SELF}?db={dbinfo.db}&cateuid={samecate.uid}">{samecate.title}</a></b></opt name="!samecate.selected">&nbsp;</block name="samecate">
+		<block name="subcate"><opt name="blockloop"> | </opt name="blockloop"><a href="{href.subcate}" class="b012"> {subcate.title}</a></block name="subcate">
+
+		<script language="Javascript1.2">
+		<!-- // load htmlarea
+		function request(str){
+			QueryString=location.search.split("?");
+			Query=QueryString[1].split("&")
+			for(i=0;i<=Query.length-1;i++){
+				if(Query[i].indexOf(str)==0){
+					GetQuery=Query[i].split("=")
+					return GetQuery[1];
+				}
+			}
+		}
+		_editor_url = "/scommon/js/htmlarea203/"; // URL to htmlarea files
+		var win_ie_ver = parseFloat(navigator.appVersion.split("MSIE")[1]);
+		if (navigator.userAgent.indexOf('Mac')		>= 0) {
+			win_ie_ver = 0;
+		}
+		if (navigator.userAgent.indexOf('Windows CE') >= 0) {
+			win_ie_ver = 0;
+		}
+		if (navigator.userAgent.indexOf('Opera')		>= 0) {
+			win_ie_ver = 0;
+		}
+		if (win_ie_ver >= 5.5) {
+			document.write('<scr' + 'ipt src="' +_editor_url+ 'editor.js"');
+			document.write(' language="Javascript1.2"></scr' + 'ipt>');
+			//if(request('mode')!="modify") document.getElementById('docu_type').checked = 'true'; // by Sunmin Park
+		}
+		else {
+			document.write('<scr'+'ipt>function editor_generate() { return false; }</scr'+'ipt>');
+		}
+		// -->
+		</script>
+
+		<script language="JavaScript1.2" defer>
+		if(document.getElementById('docu_type').checked) editor_generate('content');
+		</script>
+

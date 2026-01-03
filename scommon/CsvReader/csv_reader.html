@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TXT 파일 업로드</title>
+</head>
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<body>
+<form name="uf" action="./csv_process.php" method='post' ENCTYPE='multipart/form-data' onSubmit="javascript:return confirm('파일을 업로드 하시겠습니까?');">
+<input type="hidden" name="s_id" value="<?=$_GET[s_id]?>" />
+<input type="hidden" name="s_name" value="<?=$_GET[s_name]?>" />
+<table width="500" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#cacaca">
+  <tr>
+    <td align="center" bgcolor="#f9f9f9"><strong>엑셀파일(TXT) 업로드<br />
+      </strong><font color="#0000FF">(반드시 <strong>탭 구분자</strong> 파일로 처리)</font></td>
+  </tr>
+  <tr>
+    <td height="65" align="center" bgcolor="#FFFFFF"><p>
+      
+      <input type="file" name="upfile" id="upfile" size="30" style="width:70%;">
+      <br>
+      <input type="checkbox" name="perm_update" id="perm_update" value="yes" >
+영구회원 강제추가 (작업 후 kpoint 회원정보 수정 필요)<br />
+      <br />
+      <font color="#FF0000">[0]이름, [1]연락처, [2]생년월일, [3]카드번호, [4]시즌회원/직원서포터즈</font></p></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFFFF"><input type="submit" value="TXT 파일 업로드"/>
+      &nbsp; <input type="button" value="  닫기  " onClick="javascript:self.close();"/>
+      &nbsp;</td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

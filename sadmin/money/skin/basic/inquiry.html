@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+<style type = "text/css">
+<!--
+	BODY, TABLE, TR, TD, INPUT, TEXTAREA
+	{	font-family:verdana, 굴림, Seoul, Gulim;
+		font-size: 10pt;
+		color: #595959;
+	}
+	A:link {font: 굴림,Arial; font-size: 9pt;	color: "#363688";}
+	A:visited {font: 굴림,Arial; font-size: 9pt;	color: "#363688";}
+	A:hover{font: 굴림,Arial; font-size: 9pt;	color: "black";}
+.bold_title {
+	color: #000000;
+	font-family: Tahoma, Verdana;
+	font-size: 12px;
+	font-weight: bold;
+}
+.menu_title {
+	font-family: Tahoma, Verdana;
+	font-size: 12px;
+	color: #333333;
+}
+-->
+</style>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<body>
+		<form name='inquiry' {form_default}>
+		<table width="700" border="0" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC" style="border-collapse:collapse;" >
+		<tr>
+			<td height="25" align="center" bgcolor="#F8F8F8" class="bold_title">조회기간선택</td>
+		</tr>
+		<tr>
+			<td align="center" bgcolor="#FFFFFF" class="bold_title">
+				<INPUT TYPE=text name="startdate" id="startdate" ONCLICK="Calendar(this);" VALUE="{startdate}" size='10' readonly>
+				~
+				<INPUT TYPE=text name="enddate" id="enddate" ONCLICK="Calendar(this);" VALUE="{enddate}" size='10' readonly>
+				<br>
+				<input type="submit" name="status" value=" 입금필요 ">
+				<input type="submit" name="status" value=" 입금완료 ">
+				<input type="submit" name="status" value=" 배송요청 ">
+				<input type="submit" name="status" value=" 재고준비 ">
+				<input type="submit" name="status" value=" 배송준비 ">
+				<input type="submit" name="status" value=" 배송중 ">
+				<input type="submit" name="status" value=" OK ">
+				<input type="submit" name="status" value=" 삭제접수 ">
+			</td>
+		</tr>
+		</table>
+		</form>
+		<opt name="form_deletebyafterday">
+		<form style="margin:0px" onSubmit="if(!confirm('정말 삭제하시겠습니까? 복구되지 않습니다.')) return false;" {form_deletebyafterday}>
+		<table width="500" border="1" cellpadding="0" cellspacing="0" bordercolor="cccccc" style="border-collapse:collapse;" >
+		<tr>
+			<td width="118" bgcolor="EEE5FF">특정일이전삭제</td>
+			<td width="376">
+				<INPUT TYPE=text name="afterday" id="afterday" ONCLICK="Calendar(this);" VALUE="" size='10' readonly>
+				일전
+				<input type="submit" name="Submit" value=" 일괄삭제 ">
+				(status:{status})
+			</td>
+		</tr>
+		</table>
+		</form>
+		</opt name="form_deletebyafterday"> <br>
+		<table width="95%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td height="25">
+				{LIST}<block name="list">
+				<table width="700" border="0" cellpadding="0" cellspacing="1" bgcolor="#333333" style="border-collapse:collapse;" >
+				<tr>
+					<td bgcolor="cccccc">
+						<table width="700" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+						<tr bgcolor="E4D3F2">
+							<td height="25" bgcolor="#C9ECEF" class="base2">&nbsp;<span class="base_gray_bold"><a href="javascript: window.open( '{href.rdatemodify}', 'openname', 'width=750,height=650,location=no,resizable=1,scrollbars=1,menubars=no,toolbars=no');void(0);">{list.rdate_date}주문(합계: {list.totalprice})</a> - ID:<a href="../member/msearch.php?mode=paymentinfo&msc_column=logon.userid&msc_string={list.logon.userid}" target="logon">{list.logon.userid}</a>({list.logon.name}, HP:<a href="javascript: window.open('/ssms/sms.php?mode=uids&uids={list.logon.uid}' , 'new21sms' , 'toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=1,scrollbars=1,width=300,height=400');void(0);">{list.logon.hp}</a>) {href.test.test} </span></td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<table width="100%" border="0" cellpadding="2" cellspacing="1" bgcolor="#CCCCCC" style="border-collapse:collapse;">
+								<opt name="list.re_address">
+								<tr>
+									<td width="70" rowspan="2" align="center" nowrap bgcolor="#F8F8F8" class="menu_title">배송정보</td>
+									<td height="25" bgcolor="#FFFFFF" class="menu_title">{list.re_name}(전화:{list.re_tel}) 메일:{list.re_email} </td>
+								</tr>
+								<tr>
+									<td height="25" bgcolor="#FFFFFF" class="menu_title">[{list.re_zip}] {list.re_address} </td>
+								</tr>
+								<tr>
+									<td width="70" height="25" align="center" nowrap bgcolor="#F8F8F8" class="menu_title">배송메모</td>
+									<td bgcolor="#FFFFFF" class="menu_title">{list.re_memo}</td>
+								</tr>
+								<tr>
+									<td width="70" height="25" align="center" nowrap bgcolor="#F8F8F8" class="menu_title">관리자메모</td>
+									<td bgcolor="#FFFFFF" class="menu_title">(송장:{list.re_invoice}){list.comment}</td>
+								</tr>
+								</opt name="list.re_address"> <opt name="list.taxcash_regi">
+								<tr>
+									<td width="70" height="25" align="center" nowrap bgcolor="#F8F8F8" class="menu_title">현금영수증</td>
+									<td bgcolor="#FFFFFF" class="menu_title">
+										발급자 이름 :{list.taxcash_name} 전화번호 : {list.taxcash_hp} <br>
+										주민번호 : {list.taxcash_num} 메일 : {list.taxcash_email}<br>
+										발급 상태 : {list.taxcash_status} 
+									</td>
+								</tr>
+								</opt name="list.taxcash_regi">
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td valign="top" >
+								<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC"	style="border-collapse:collapse;">
+								<tr bgcolor="#F8F8F8">
+									<td width="50" height="25" align="center" nowrap	class="menu_title">구분</td>
+									<td align="center" nowrap	class="menu_title">상품(서비스)명</td>
+									<td align="center" nowrap	class="menu_title">옵션</td>
+									<td align="center" nowrap	class="menu_title">수량</td>
+									<td align="center" nowrap	class="menu_title">브랜드</td>
+									<td align="center" nowrap	class="menu_title">상품코드</td>
+									<td align="center" nowrap	class="menu_title">구매가(판매가)</td>
+									<td align="center" nowrap	class="menu_title">bank</td>
+									<td align="center" nowrap	class="menu_title">적립포인트</td>
+									<td align="center" nowrap	class="menu_title">비고</td>
+								</tr>
+								{CELL}
+								</table>
+							</td>
+						</tr>
+						<!--
+				<tr>
+				<td align="center" valign="top"><a href="{href.inquirydetail}"><img src="images/botton_inqurydetail.gif" width="91" height="25" border="0"></a><opt name="href.delete">
+					<a href="{href.delete}"><img src="images/botton_allcancile.gif" width="91" height="25" border="0"></a></opt name="href.delete">
+				</td>
+				</tr>
+				-->
+						<tr>
+							<td height="25" align="center" bgcolor="#FFFFCC">{list.status_change}</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+				<br>
+				</block name="list"> <block name="nolist"> <br>
+				<center>
+				주문내역이 없습니다
+				</center>
+				<br>
+				</block name="nolist"> 
+			</td>
+		</tr>
+		<tr>
+			<td height="1" align="left" valign="middle"><img src="images/spacer.gif" width="1" height="1"></td>
+		</tr>
+		</table>
+		<block name="cell">
+		<tr height="25" bgcolor="#FFFFFF">
+			<td align="center" class="menu_title">{list.orderdb}</td>
+			<td class="menu_title">
+				<opt name="list.shopread"><a href="{list.shopread}" target="_blank">{list.title}</a></opt name="list.shopread"><opt name="!list.shopread">{list.title}</opt name="!list.shopread"><opt name="list.upfiles.upfile.name"> <br>
+				업로드파일:<a href="{list.upfiles.upfile.href}">{list.upfiles.upfile.name}</a> (
+
+				<script LANGUAGE="JavaScript">document.write(formatNum('{list.upfiles.upfile.size}'));</script>
+
+				bytes)</opt name="list.upfiles.upfile.name">
+			</td>
+			<td align="center" class="menu_title" nowrap>{list.options}</td>
+			<td align="center" class="menu_title" nowrap>{list.quantity}</td>
+			<td align="center" class="menu_title" nowrap>{list.shop.brand}</td>
+			<td align="center" class="menu_title" nowrap>{list.shop.publiccode}</td>
+			<td align="center" class="menu_title" nowrap>{list.price}({list.shop.price})</td>
+			<td align="center" class="menu_title" nowrap>{list.bank}</td>
+			<td align="center" class="menu_title" nowrap>{list.point}<opt name="list.pointdepositdate">(o)</opt name="list.pointdepositdate"><opt name="!list.pointdepositdate">(x)</opt name="!list.pointdepositdate"></td>
+			<td align="center" class="menu_title" nowrap><opt name="href.status"><a href="{href.status}">{list.status}</a></opt name="href.status"><opt name="!href.status">{list.status}</opt name="!href.status"></td>
+		</tr>
+		<opt name="list.memo">
+		<tr>
+			<td colspan="9">주문자메모:{list.memo}</td>
+		</tr>
+		</opt name="list.memo"> <opt name="list.text">
+		<tr>
+			<td colspan="9">문패에들어갈글:{list.text}</td>
+		</tr>
+		</opt name="list.text"> </block name="cell"> <br>
+		<br>
+		<hr>
+		<p>메일리스트 : {list_email} <br>
+		휴대폰리스트 : {list_hp}
+		<br>
+		주문 상품리스트 :<br>
+		{list_present.title}
+		</p>
+	</body>
+	</html>

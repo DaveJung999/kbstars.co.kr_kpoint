@@ -1,0 +1,60 @@
+<script src="/scommon/join_check.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+	function focus_move2(){
+		var len=document.getElementsByName('jumin1')[0].value.length;
+		if(len>5){
+			try{
+				document.getElementsByName('jumin2')[0].focus();
+			} catch(e){}
+		}
+	}
+</script>
+<script language="JavaScript" type="text/JavaScript">
+// 가입하기 클릭후 폼문을 제대로 입력했는지 체크
+function checkForm() {
+	var f= document.join;
+	
+	// 입력값 공백 체크
+	if( isEmpty( f.name.value )){
+		alert('이름을 입력하세요');
+		f.name.focus();
+		return false;
+	}	
+	// 입력값 공백 체크
+	if( isEmpty( f.jumin1.value )){
+		alert('주민번호를 입력하세요');
+		f.jumin1.focus();
+		return false;
+	}
+	// 입력값 공백 체크
+	if( isEmpty( f.jumin2.value )){
+		alert('주민번호를 입력하세요');
+		f.jumin2.focus();
+		return false;
+	}
+	
+	f.textarea1.value='';
+	f.textarea2.value='';
+
+	
+	//f.result.value = '1';
+	//f.action = 'join.php';
+}
+</script>
+
+<FORM name=join onSubmit="return checkForm()" action="https://name.siren24.com/servlet/name_check" method="post">
+<input type="hidden" name="id" value="KVR001">
+<input type=hidden name=ok_url value="http://kb.kbsavers.com/sjoin/join_siren24.php">
+<!--INPUT TYPE="hidden" NAME="priv" value="회원"  checked-->
+<table width=686 border=0 cellspacing=0 cellpadding=0>
+  <tr>
+    <td><img src="images/s_join_top_title.gif" width="690" height="71"></td>
+  </tr>
+  <tr>
+    <td height=20></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="/img/yet-16.gif" width="435" height="339" /></td>
+  </tr>
+</table>
+</FORM>

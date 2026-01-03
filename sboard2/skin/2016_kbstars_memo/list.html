@@ -1,0 +1,255 @@
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+.schedule {	font-weight: bold;
+	color: #FFF;
+	font-size: 12px;
+	font-family: "돋움체";
+}
+.news_title {color: #006cb8;
+	font-weight: bold;
+	font-size: 12px;
+}
+.pink {
+	font-size: 12px;
+	color: #ff6567;
+}
+.font_notice {	font-weight: bold;
+}
+.gibon_font {	font-size: 12px;
+	color: #666;
+	font-weight: normal;
+}
+.board_title {
+	font-size: 12px;
+	color: #FFF;
+	font-weight: bold;
+}
+.point_pink {
+	color: #F24F81;
+}
+.gibon_pink {	color: #f34371;
+	font-weight: bold;
+}
+-->
+</style>
+
+<script language=javascript>
+var oldStr, oldCnt;
+function checkByte(element) {
+	var onechar;
+	var tcount = 0;
+	for (k=0;k<element.value.length;k++) {
+		onechar = element.value.charAt(k);
+		if (escape(onechar).length > 4)
+			tcount += 2;
+		else if (onechar!='\r')
+			tcount++;
+	}
+	if(tcount>300) {
+		document.StrCountForm.cbyte.value = tcount;//수정할 부분
+		alert("허용된 글자수가 초과되었습니다.\r\n초과된 부분은 자동으로 삭제됩니다.");
+		element.value = oldStr;
+		tcount = oldCnt;
+	}
+	oldStr = element.value;
+	oldCnt = tcount;
+	document.StrCountForm.cbyte.value = tcount;//수정할 부분
+}
+function ChkLen() {
+	var msgtext, msglen;
+
+	msgtext = document.MsgForm.MSG_TXT.value;
+	msglen = document.MsgForm.MSG_TXT_CNT.value;
+
+	var i=0,l=0;
+	var temp,lastl;
+
+	//길이를 구한다.
+	while(i < msgtext.length)
+	{
+		temp = msgtext.charAt(i);
+
+		if (escape(temp).length > 4)
+			l+=2;
+		else if (temp!='\r')
+			l++;
+		// OverFlow
+		if(l>300)
+		{
+			//alert(l);
+			alert("메시지란에는 한글 150자, 영문300자까지만 쓰실 수 있습니다.");
+			temp = document.MsgForm.MSG_TXT.value.substr(0,i);
+			document.MsgForm.MSG_TXT.value = temp;
+			l = lastl;
+			break;
+		}
+		lastl = l;
+		i++;
+	}
+	MsgForm.MSG_TXT_CNT.value=l;
+}
+</script>
+
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td colspan="3" align="center">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td height="30">전체 : {count.total}&nbsp; 오늘 : {count.today} </td>
+		</tr>
+		<tr>
+			<td height="1" bgcolor="#aaaaaa"></td>
+		</tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr bgcolor="#f1e7de">
+			<td colspan="4">
+				<form name="StrCountForm" method="post" action="/sboard2/ok_cmmemo.php" style="margin:0px">
+				<input type="hidden" name="db" value="{dbinfo.db}" />
+				<input type="hidden" name="mode" value="write" />
+				<input type="hidden" name="cateuid" value="{get.cateuid}" />
+				<input type="hidden" name="goto" value="/sboard2/list.php?db={dbinfo.db}" />
+				<table width="100%" border="0" cellpadding="3" cellspacing="3">
+				<tr>
+					<td align="center">
+						<table width="98%" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td height="30" colspan="2" align="left">
+								<opt name="!session.seUid">
+								<label for="userid">* 작성자 : </label><input type="text" name="userid" id="userid" size="15" maxlength="10" value="{list.userid}" title="이름입력" required="required" hname="작성자를 입력 해 주세요." />
+								&nbsp;
+								&nbsp;	&nbsp;
+								<label for="userid"> * 패스워드 : </label>
+								<input type="password" name="passwd" id="passwd" size="10" required="required" title="패스워드 입력" hname="패스워드를 입력 해 주세요" />
+								&nbsp;
+								&nbsp; &nbsp;
+								<label for="userid"> * 인증 : </label><input type="text" name="captcha" id="captcha" size="10" required="required" title="자동글쓰기방지 입력" hname="자동글쓰기방지 인증 값을 입력 해 주세요" />					&nbsp;{captcha}
+								</opt name="!session.seUid"> 
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" scope="col"><textarea name="title" cols="60" rows="4" style="width:100%;"	onkeyup="checkByte(this)" id="title" required title="내용 입력" hname="응원 내용을 입력 해 주세요"></textarea></td>
+						</tr>
+						<tr>
+							<td width="90%" height="40">
+								<input type="text" name="cbyte" class="byte" value="0" size="3" />
+								/ 300Byte (한글150자)&nbsp;
+							</td>
+							<td width="10%" align="right"><input name="image" type="image" src="/images/2011/image/150write.jpg" width="69" height="31" /></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+				</form>
+			</td>
+		</tr>
+		<tr bgcolor="#aaaaaa">
+			<td height="1" colspan="4"></td>
+		</tr>
+		<tr>
+			<td height="20" colspan="4"></td>
+		</tr>
+		<tr bgcolor="#aaaaaa">
+			<td height="1" colspan="4"></td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td width="9%" height="30" align="center" bgcolor="#a7998d" class="board_title">번호</td>
+			<td width="72%" align="center" bgcolor="#a7998d" class="board_title">150자 응원 메시지</td>
+			<td width="9%" align="center" bgcolor="#a7998d" class="board_title">작성자</td>
+			<td width="10%" align="center" bgcolor="#a7998d" class="board_title">작성일</td>
+		</tr>
+		<tr bgcolor="#aaaaaa">
+			<td height="1" colspan="4"></td>
+		</tr>
+		{INFO}
+		<block name="info">
+		<tr>
+			<td height="30" align="center"><img src="images/icon_notice.jpg" width="36" height="18" /></td>
+			<td align="left">&nbsp;<a href="{list.href.read}"><strong>{list.cut_title}</strong></a></td>
+			<td align="center">{list.userid}</td>
+			<td align="center">{list.rdate_date}</td>
+		</tr>
+		<tr bgcolor="#eeeeee">
+			<td height="1" colspan="4"></td>
+		</tr>
+		</block name="info">
+		{LIST}
+		<block name="list">
+		<tr bgcolor="{list.bgcolor}">
+			<td height="30" align="center">{list.no}</td>
+			<td align="left" style="padding-top:5px; padding-bottom:5px;"><div align="justify">{list.title} <opt name="list.canDelete"><a href="{list.href.delete}" onclick="javascript: return confirm('정말 삭제하시겠습니까?');"><img src="images/comment_del.gif" width="9" height="9" border="0" /></a></opt name="list.canDelete"></div></td>
+			<td align="center">{list.userid}</td>
+			<td align="center">{list.rdate_date}</td>
+		</tr>
+		<tr bgcolor="#eeeeee">
+			<td height="1" colspan="4"></td>
+		</tr>
+		</block name="list">
+		<block name="nolist">
+		<tr>
+			<td height="60" colspan="4" align="center" bgcolor="#f6f6f6">등록된 게시물이 없습니다. </td>
+		</tr>
+		<tr bgcolor="#eeeeee">
+			<td height="1" colspan="4"></td>
+		</tr>
+		</block name="nolist">
+		<block name="nosearch">
+		<tr>
+			<td height="60" colspan="4" align="center" bgcolor="#f6f6f6">'<span class="gibon_pink">{sc_string}</span>'가 포함된 게시물을 찾을 수가 없습니다.</td>
+		</tr>
+		<tr bgcolor="#d5d5d5">
+			<td height="1" colspan="4"></td>
+		</tr>
+		</block name="nosearch">
+		</table>
+	</td>
+</tr>
+<tr>
+	<td height="10" colspan="3" align="center"></td>
+</tr>
+<tr>
+	<td width="100" align="center">&nbsp;</td>
+	<td width="486" align="center" valign="middle">{FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</td>
+	<td width="100" height="26" align="left">&nbsp;</td>
+</tr>
+<tr>
+	<td align="center" colspan="3">
+		<form name="board2search" id="board2search2" style='margin : 0px' {form_search}>
+		<select name="sc_column2"	style='height:23;'>
+		<option value='title'>제목</option>
+		<option value='content'>내용</option>
+		<option value='userid'>작성자</option>
+		</select>
+		<input type="text" name="sc_string" size="20" style='height:22;' value="{get.sc_string}" />
+		<input type="image" src="images/board_btn_search.jpg" align="middle" />
+		</form>
+	</td>
+</tr>
+<tr>
+	<td colspan="3" align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td height="100" colspan="3" align="center"><img src="/images/2014/1030/contents/board_private_bg.jpg" /></td>
+</tr>
+</table>
+<block name="firstpage"><a href="{href.firstpage}"><img src="images/board_btn_first_on.jpg" width="15" height="11" border="0" align="top"></a>&nbsp;</block name="firstpage">
+<block name="nofirstpage"><img src="images/board_btn_first.jpg" width="15" height="11" align="top">&nbsp;</block name="nofirstpage">
+<block name="prevblock"><a href='{href.prevblock}'><img src="images/board_btn_prev_on.jpg" width="14" height="11" border="0" align="top"></a>&nbsp;</block name="prevblock">
+<block name="noprevblock"><img src="images/board_btn_prev.jpg" width="14" height="11" align="top">&nbsp;</block name="noprevblock">
+<block name="block"><a href='{href.blockcount}'>[{blockcount}]</a>&nbsp;</block name="block">
+<block name="noblock"><b class="point_pink">[{blockcount}]</b>&nbsp;</block name="noblock">
+<block name="nextblock"><a href='{href.nextblock}'><img src="images/board_btn_next_on.jpg" width="14" height="11" border="0" align="top"></a>&nbsp;</block name="nextblock">
+<block name="nonextblock"><img src="images/board_btn_next.jpg" width="14" height="11" border="0" align="top">&nbsp;</block name="nonextblock">
+<block name="lastpage"><a href="{href.lastpage}"><img src="images/board_btn_end_on.jpg" width="15" height="11" border="0" align="top"></a></block name="lastpage">
+<block name="nolastpage"><img src="images/board_btn_end.jpg" width="15" height="11" border="0" align="top"></block name="nolastpage">
+<block name="write"><a href="{href.write}"><img src="images/board_btn_write.jpg" width="56" height="24" border="0" align="top"></a></block name="write">
+<block name="highcate"> &gt; <a href="{href.highcate}" class="nevy_gcyan"> {highcate.title}</a> </block name="highcate">
+<block name="subcate"><opt name="blockloop">
+| </opt name="blockloop"><a href="{href.subcate}" class="base2"> {subcate.title}</a></block name="subcate">
+<block name="samecate">
+<option value="{samecate.uid}" {samecate.selected}>{samecate.title}</option>
+</block name="samecate">

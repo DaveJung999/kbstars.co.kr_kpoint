@@ -1,0 +1,83 @@
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<table border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+<tr align="center" bgcolor='#CCFFCC'>
+	<td colspan="8"><b>예약	관리 (list) </b></td>
+</tr>
+<tr align="center" bgcolor='#CCFFCC'>
+	<td>&nbsp;</td>
+	<td width="60">예약상태</td>
+	<td width="80">아이디</td>
+	<td width="60">이름</td>
+	<td width="85">이메일</td>
+	<td width="85">연락처</td>
+	<td width="220">예약시간</td>
+	<td width="85">작성일</td>
+</tr>
+{LIST}
+<block name="list">
+<tr bgcolor='#EDFEE9' onMouseOver="this.style.backgroundColor='#CCFFCC'"	onMouseOut="this.style.backgroundColor='#EDFEE9'">
+	<td nowrap><a href="{list.href.read}">보기</a>/<a href="{href.modify}">수정</a>/<a href="{href.delete}" onClick="javascript: return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
+	<td width="60" align="center" nowrap>{list.status}</td>
+	<td width="80" align="center" nowrap>{list.userid}</td>
+	<td width="60" align="center" nowrap>{list.name}</td>
+	<td width="85" align="center" nowrap>{list.email}</td>
+	<td width="85" align="center" nowrap>{list.tel}</td>
+	<td width="220" align="center" nowrap>{list.rsv_date}&nbsp;{list.rsv_hour}&nbsp;{list.rsv_min}</td>
+	<td width="85" align="center" nowrap>{list.rdate_date}</td>
+
+</tr>
+</block name="list">
+<tr bgcolor='#EDFEE9'>
+	<td colspan="8" align="center" bgcolor='#CCFFCC'>
+		<table border="0" cellpadding="0" cellspacing="0" class="base">
+		<tr>
+			<td><p align="center"> {FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</p></td>
+		</tr>
+		<tr>
+			<td align="center">
+				<form style='margin : 0px' {form_search}>
+				<select name="sc_column">
+				<option value='userid'>아이디</option>
+				<option value='name'>이름</option>
+				<option value='email'>이메일</option>
+				</select>
+				<input type="text" name="sc_string" size="10" style='height:21;' value="{sc_string}">
+				<input type="image" src="images/button_search.gif" width="53" height="22" align="absmiddle">
+				</form>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<block name="firstpage"><a href="{href.firstpage}"><img src="images/font_first.gif" alt="link_firstpage.gif" width="27" height="15" border="0" align="absmiddle"></a></block name="firstpage">
+<block name="nofirstpage"><img src="images/font_nofirst.gif" alt="link_firstpage.gif" width="27" height="15" border="0" align="absmiddle"></block name="nofirstpage">
+<block name="prevblock"><a href='{href.prevblock}' class="base2">◀</a>&nbsp;</block name="prevblock">
+<block name="noprevblock"> <span class="base2_lightgray">◀</span>&nbsp;</block name="noprevblock">
+<block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block">
+<block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock">
+<block name="nextblock"><a href='{href.nextblock}' class="base2">▶</a>&nbsp;</block name="nextblock">
+<block name="nonextblock"> <span class="base2_lightgray">▶</span></block name="nonextblock">
+<block name="lastpage"><a href="{href.lastpage}"><img src="images/font_end.gif" alt="link_lastpage.gif" width="27" height="15" border="0" align="absmiddle"></a></block name="lastpage">
+<block name="nolastpage"><img src="images/font_noend.gif" alt="link_lastpage.gif" width="27" height="15" border="0" align="absmiddle"></block name="nolastpage">

@@ -1,0 +1,477 @@
+<html>
+<head>
+<title>Admin Manager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script src="/scommon/js/inputcalendar.js"></script>
+
+<script language="javascript">
+<!--
+var step=0;
+
+function onChange(term_id){
+    var f = document.SearchForm;
+	var years, months, days, sdate, edate;
+	
+	var edate = f.edate.value;
+	
+	var today =  new Date();
+	var today_years  = today.getFullYear();
+	var today_months = today.getMonth() + 1;
+	var today_days   = today.getDate();
+	
+	if (today_months.toString().length <= 1) today_months = "0" + today_months.toString();
+	if (today_days.toString().length <= 1) var today_days = "0" + today_days.toString();
+	today = today_years.toString()+"-"+today_months.toString()+"-"+today_days.toString();
+	edate = today;
+   
+	var YearStr  = today.substring(0,4);
+	var MonthStr = today.substring(5,7);
+	var DayStr   = today.substring(8,10);
+	
+	if (term_id == '1'){ //금일 셋팅
+		sdate = today;
+	}
+	else if (term_id == '2'){//1개월 셋팅
+	   today = new Date(YearStr, MonthStr-2, DayStr);
+	   today.setDate(today.getDate()+1);
+
+		years  = today.getFullYear();
+		months = today.getMonth() + 1;
+		days   = today.getDate();
+		if (months.toString().length <= 1) months = "0" + months.toString();
+		if (days.toString().length <= 1) days = "0" + days.toString();
+		sdate = years.toString()+"-"+months.toString()+"-"+days.toString();
+	}
+	else if (term_id == '3'){//1년 셋팅
+	   today = new Date(YearStr-1, MonthStr-1, DayStr);
+	   today.setDate(today.getDate()+1);
+
+		years  = today.getFullYear();
+		months = today.getMonth() + 1;
+		days   = today.getDate();
+		if (months.toString().length <= 1) months = "0" + months.toString();
+		if (days.toString().length <= 1) days = "0" + days.toString();
+		sdate = years.toString()+"-"+months.toString()+"-"+days.toString();
+   
+	}
+	else if (term_id == '4'){//3년 셋팅
+	   today = new Date(YearStr-3, MonthStr-1, DayStr);
+	   today.setDate(today.getDate()+1);
+
+		years  = today.getFullYear();
+		months = today.getMonth() + 1;
+		days   = today.getDate();
+		if (months.toString().length <= 1) months = "0" + months.toString();
+		if (days.toString().length <= 1) days = "0" + days.toString();
+		sdate = years.toString()+"-"+months.toString()+"-"+days.toString();
+   
+	}
+	f.sdate.value = sdate;
+	f.edate.value = edate;
+	f.term_id.value = term_id;
+}
+
+
+function on_view(userid)
+{
+   location.href="index_detail.php?class={get_class}&userid="+userid;
+}
+
+function on_page(page)
+{
+   var Form=document.ListForm;
+   Form.target="_self";
+   Form.action="index_detail.php?class={get_class}&act=MemberList&page="+page;
+   Form.submit();
+}
+
+function on_go() {
+	var frm = document.goform;
+	var f = document.SearchForm;
+
+	var start_day = f.sdate.value;
+	var end_day = f.edate.value;
+	var term_id = f.term_id.value;
+		
+	if(start_day.length < 3) start_day = "";
+	if(end_day.length < 3) end_day = "";
+    frm.action = "klist.php?class={get_class}&act=on_go&search="+frm.srch_order_stat.value+"&sdate="+start_day+"&edate="+end_day+"&term_id="+term_id+"&level="+f.srch_order_level;
+    frm.target = "_self";
+	alert( frm.action);
+	f.search.value = frm.srch_order_stat.value;
+	frm.submit();
+}
+
+function select_all()
+{
+  for( var i=0; i<document.ListForm.elements.length; i++)
+  {
+    var ele = document.ListForm.elements[i];
+    var Re = /code_.*/;
+    if( ele.name.search(Re)!=-1 )
+      ele.checked = !ele.checked;
+  }
+}
+
+function delete_selected()
+{
+   if( !confirm('★ 주의 ★\n\n삭제 처리가 완료 되면 회원에 대한 정보는 완전히 삭제 되며\n관련된 이전 모든 정보는 복구 할 수 없게 됩니다.\n\n그래도, 회원 정보를 삭제하시겠습니까?') ) return;
+
+   var Form=document.ListForm;
+   if( get_checked(Form)==0 )
+   {
+      alert('회원을 선택해 주십시오.');
+      return;
+   }
+   var s_id = document.ListForm.s_id.options[document.ListForm.s_id.selectedIndex].value;
+   //alert(s_id);
+   Form.target="_self";
+   Form.action="ok.php?mode=index_delete&s_id=" + s_id + "&total_num="+get_checked(Form);
+   Form.submit();
+}
+
+function delete_complete(bid)
+{
+   if( ! confirm('★ 주의 ★\n\n회원에 대한 카드정보를 완전삭제합니다. \n해당 시즌의 모든포인트와 경품 정보 그리고 회원의 카드정보도 함께 삭제 됩니다.\n\n(참고 : 카드정보를 제외한 시즌정보 삭제만 원하시면 리스트 아래 \n         \'시즌정보 삭제처리\' 버튼을 이용해주세요.) \n\n삭제처리 하시겠습니까?')) return;
+
+   var Form=document.ListForm;
+   var s_id = document.ListForm.s_id.options[document.ListForm.s_id.selectedIndex].value;
+   Form.target="_self";
+   Form.action="ok.php?mode=delete_complete&s_id=" + s_id + "&bid=" + bid;
+   Form.submit();
+}
+
+
+function withdraw_selected()
+{
+   if( !confirm('선택한 회원 데이타를 모두 탈퇴 처리 합니다.') ) return;
+
+   var Form=document.ListForm;
+   if( get_checked(Form)==0 )
+   {
+      alert('회원을 선택해 주십시오.');
+      return;
+   }
+   Form.target="_self";
+   Form.action="ok.php?class={get_class}&mode=index_draw&bid=1&total_num="+get_checked(Form);
+   Form.submit();
+}
+
+function gradeset_selected()
+{
+   var Form=document.ListForm;
+   if( get_checked(Form)==0 )
+   {
+      alert('회원을 선택해 주십시오.');
+      return;
+   }
+   window.open('','GradeAdjustWin','width=300,height=160');
+   Form.target="GradeAdjustWin";
+   Form.action="level_edit.php?class={get_class}&total_num="+get_checked(Form);
+   Form.submit();
+}
+
+
+function pointset_selected()
+{
+   var Form=document.ListForm;
+   if( get_checked(Form)==0 )
+   {
+      alert('회원을 선택해 주십시오.');
+      return;
+   }
+   window.open('','PointAdjustWin','width=400,height=195');
+   Form.target="PointAdjustWin";
+   Form.action="index_detail.php?class={get_class}&act=MemberPointAdjustSelected&page=";
+   Form.submit();
+}
+
+function mailing_selected()
+{
+   var Form=document.ListForm;
+   if( get_checked(Form)==0 )
+   {
+      alert('회원을 선택해 주십시오.');
+      return;
+   }
+   window.open('','MailingWin','width=400,height=165');
+   Form.target="MailingWin";
+   Form.action="index_detail.php?class={get_class}&act=MemberMailingSelected&page=";
+   Form.submit();
+}
+
+function get_checked(Form)
+{
+   num=0;
+   var total_num ="";
+   for( var i=0; i<Form.elements.length;  i++)
+   {
+      var ele = Form.elements[i];
+      var Re  = /code_.*/
+      if(ele.name.search(Re)!=-1)
+         if(ele.checked){
+            num++;
+			total_num = total_num +";"+ ele.value;
+		}
+   }
+   return num, total_num;
+}
+
+function on_search() {
+    var form = document.SearchForm;
+	var start_day = form.sdate.value;
+	var end_day = form.edate.value;
+	var s_id = form.s_id.value;
+		
+	if(start_day.length < 3) start_day = "";
+	if(end_day.length < 3) end_day = "";
+	
+    form.target = "_self";
+    form.action = "klist.php?class={get_class}&act=OrderList&sdate="+start_day+"&edate="+end_day+"&name="+form.srch_order_name.value+"&accountno="+form.srch_order_accountno.value+"&s_id="+s_id;
+    form.submit();
+}
+
+function on_sort(val) {
+    var form = document.SearchForm;
+	var s_id = form.s_id.value;
+		
+    form.target = "_self";
+    form.action = "klist.php?act=OrderList&sorderby="+val+"&s_id="+s_id;
+    form.submit();
+}
+
+function on_MemberExcelExport()
+{
+   var Form=document.SearchForm;
+   window.open("","ExcelWin","width=350,height=280");
+   Form.target="ExcelWin";
+   Form.action="index_detail.php?class={get_class}&act=MemberExcelExport";
+   Form.submit();
+}
+function member_regist(s_id){
+   location.href = 'kmember.php?s_id=' + s_id;
+}
+//-->
+</script>
+</head>
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+<script>
+function golist(val){
+	location.href='klist.php?s_id=' + val;
+}
+
+function on_ExcelExport()
+{
+   //location.href = "{href.klist_excel}";
+   window.open("{href.klist_excel}");
+}
+
+
+function on_memSeasonReg(){
+	s_id = document.ListForm.s_id.options[document.ListForm.s_id.selectedIndex].value;
+	s_name = document.ListForm.s_id.options[document.ListForm.s_id.selectedIndex].text;
+
+	
+	if ( confirm('★ 주의 ★\n\n' + s_name + '에  대한 회원정보가 없는 회원들의 시즌 정보를 일괄생성합니다. \n\n계속 실행하시겠습니까?') ){
+		location.href='kok.php?mode=memSeasonReg&s_id=' + s_id + '&s_name=' + s_name;
+	}
+}
+
+function on_ExlUp(){
+	s_id = document.ListForm.s_id.options[document.ListForm.s_id.selectedIndex].value;
+	s_name = document.ListForm.s_id.options[document.ListForm.s_id.selectedIndex].text;
+	window.open('/scommon/CsvReader/csv_reader.html?s_id=' + s_id + '&s_name=' + s_name,'csv_upload','scrollbars=yes,width=800,height=600,resizable=yes');	
+}
+
+
+</script>
+
+<body onLoad="">
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr valign="top">
+        <td width="97%" align="right"><form name="ListForm" method="post" action="">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+              <td background="/images/admin/tbox_bg.gif"><b>K-Point 회원정보 </b></td>
+              <td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+            </tr>
+          </table>
+          <input name="button22322" type="button"  onClick="javascript:location.href='/sjoin/logout.php';" value="로그아웃" />
+          <input name="button4" type="button"  onClick="on_ExcelExport()" value="Excel(전체) 다운">
+          <br>
+          <table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor='#aaaaaa'>
+            <tr bgcolor="#D2BF7E" height=25>
+              <td colspan=10 align=right bgcolor="#D2BF7E"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>시즌 :
+                    <select name="s_id" onChange="golist(this.value);">
+                      
+                        {sselect}
+                        
+                      
+                    </select>
+                    <input name="button42" type="button" class="CCboxw"  onClick="on_memSeasonReg()" value="회원별 시즌정보 일괄생성" style="width:170px;">
+                    {EXL_UP}
+                    <block name="exl_up">
+                    <input name="button5" type="button" class="CCbox03"  onClick="on_ExlUp()" value="엑셀 업로드" style="width:90px;">
+                    </block name="exl_up"></td>
+                  <td align="right">정렬 :
+                    <select name="sorderby" onChange="on_sort(this.value);">
+                      <option value="name" {sort_name}>이름</option>
+                      <option value="accountno" {sort_accountno}>카드번호</option>
+                      <option value="balance" {sort_balance}>총포인트</option>
+                      <option value="rdate" {sort_rdate}>등록일</option>
+                    </select></td>
+                </tr>
+              </table></td>
+            </tr>
+            <tr height=22 bgcolor="#F0EBD6" align="center">
+              <td width="2%"><strong>선택</strong></td>
+              <td width="5%"><strong>번호</strong></td>
+              <td width="10%" bgcolor="#F0EBD6"><strong>이름</strong></td>
+              <td width="14%"><strong>카드번호</strong></td>
+              <td width="10%"><strong>총 포인트</strong></td>
+              <td width="13%" ><strong>등록일</strong></td>
+              <td width="13%"><p><strong>서포터즈</strong></p>
+                <p><strong>구분</strong></p></td>
+              <td width="11%"><strong>정보수정</strong></td>
+              <td width="11%"><strong>포인트 조회</strong></td>
+              <td width="11%"><strong>카드정보 <br>
+                전체삭제</strong></td>
+            </tr>
+            {LIST}
+            <block name="list">
+              <tr bgcolor="#F8F8EA" align="center" onMouseOver="this.style.backgroundColor='#F5F5F5'" onMouseOut="this.style.backgroundColor=''">
+                <td><input type="checkbox" name="code_{list.uid}" value="{list.uid}"></td>
+                <td>{list.no}</td>
+                <td>{list.name}</td>
+                <td>{list.accountno}</td>
+                <td>{list.balance}</td>
+                <td>{list.rdate_date}</td>
+                <td>{list.spts_cate}</td>
+                <td><a href="{href.member}">수정</a></td>
+                <td><a href="{href.inquiry}">조회</a></td>
+                <td><a href="#" onClick="delete_complete('{list.uid}');return false;">삭제(주의)</a></td>
+              </tr>
+            </block name="list">
+            <block name="nolist">
+              <tr bgcolor="#F8F8EA" align="center" onMouseOver="this.style.backgroundColor='#F5F5F5'" onMouseOut="this.style.backgroundColor=''">
+                <td height="50" colspan="10" bgcolor="#F8F8EA">회원 정보가 없습니다.</td>
+              </tr>
+            </block name="nolist">
+          </table>
+          <input type=hidden name=sum_step value="10">
+          <br>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td height="30" align="left"><input type="button"  onClick="select_all()" value="모두선택">
+                <input type="button"  onClick="delete_selected()" value="시즌정보 삭제">
+                <!--<input name="button" type="button"  onClick="member_regist({s_id})" value="회원 등록">-->
+                <input name="button223" type="button"  onClick="javascript:location.href='{href.win}';" value="승리포인트일괄등록" />
+                <input name="button2232" type="button"  onClick="javascript:location.href='{href.windelete}';" value="승리포인트일괄삭제" />
+                <input name="button" type="button"  onClick="javascript:location.href='{href.allreg}';" value="포인트 일괄등록" /></td>
+            </tr>
+            <tr>
+              <td height="30" align="right">{FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE} </td>
+            </tr>
+          </table>
+        </form>
+          <br>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="9"><img src="/images/admin/box2_lt.gif" width=9 height=10></td>
+              <td background="/images/admin/box2_tbg.gif"></td>
+              <td width="9"><img src="/images/admin/box2_tr.gif" width=9 height=10></td>
+            </tr>
+            <tr>
+              <td background="/images/admin/box2_ml.gif"></td>
+              <td align="center"><table width="100%" border="0" cellpadding="2" cellspacing="0">
+                <tr>
+                  <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <form name="SearchForm" method="post" onSubmit="javascript:return false;">
+                        <input name="term_id" type="hidden" value="{term_id}">
+                        <input name="s_id" type="hidden" value="{s_id}">
+                        <input name="search" type="hidden" value="{search}">
+                        <td valign="top"><table border='0' cellpadding='4' cellspacing='1' width='100%' bgcolor='#aaaaaa'>
+                          <tr bgcolor="#F8F8EA" height=25>
+                            <td width="14%" bgcolor="#F0EBD6" align="center">등록일</td>
+                            <td colspan="3"><input name="sdate" type="text" class="input01" size="10" maxlength="10" onClick="Calendar(this);" value="{sdate}">
+                              ~
+                              <input name="edate" type="text" class="input01" id="edate" size="10" maxlength="10" onClick="Calendar(this);" value="{edate}">
+                              &nbsp;
+                              <input type=radio name='term' value="1" onClick="onChange('1');" {t_ch1}>
+                              금일 &nbsp;
+                              <input type=radio name='term' value="2" onClick="onChange('2');" {t_ch2}>
+                              1개월 &nbsp;
+                              <input name='term' type=radio onClick="onChange('3');" value="3"  {t_ch3}>
+                              1년 &nbsp;
+                              <input type=radio name='term' value="4" onClick="onChange('4');" {t_ch4}>
+                              3년</td>
+                          </tr>
+                          <tr bgcolor=#F8F8EA>
+                            <td bgcolor="#F0EBD6" align="center">이름</td>
+                            <td width="35%"><input name="srch_order_name" type="text" class="input01" value="{name}" size="28" onKeyDown="javascript: if (event.keyCode == 13) on_search();"></td>
+                            <td bgcolor="#F0EBD6" width="13%" align="center">카드번호</td>
+                            <td width="38%"><input name="srch_order_accountno" type="text" class="input01" id="srch_order_accountno" onKeyPress="if (event.keyCode &lt; 45 || event.keyCode &gt; 57) return false; " value="{accountno}"  onkeydown="javascript: if (event.keyCode == 13) on_search();" size="28" /></td>
+                          </tr>
+                        </table>
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                              <td height="40" align="center" valign="bottom"><input name="button2" type="button"  onClick="on_search()" value=" 검색하기 ">
+                                <!--<input name="reset" type="reset"  value=" 조건취소 ">-->
+                                <input name="button3" type="button" onClick="javascript:location.href='klist.php?class={get_class}&s_id={s_id}'" value=" 전체보기 "></td>
+                            </tr>
+                          </table></td>
+                      </form>
+                    </tr>
+                  </table></td>
+                </tr>
+              </table></td>
+              <td background="/images/admin/box2_mr.gif"></td>
+            </tr>
+            <tr>
+              <td width="9"><img src="/images/admin/box2_bl.gif" width=9 height=10></td>
+              <td background="/images/admin/box2_bbg.gif"></td>
+              <td width="9"><img src="/images/admin/box2_br.gif" width=9 height=10></td>
+            </tr>
+          </table></td>
+      </tr>
+    </table>
+    <br>
+        <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 수동 테스트 방법 : http://kpoint.kbstars.co.kr/kpoint/kok.php?mode=kpoint&amp;csn=3226202260&amp;kdate=20111015143010</table> 
+
+
+<block name="firstpage"><a href="{href.firstpage}"><img src="/Admin/images/board_button_first.gif" alt="link_firstpage.gif" width="18" height="9" border="0" align="absuiddle"></a>&nbsp;</block name="firstpage"> 
+<block name="nofirstpage"><img src="/Admin/images/board_button_first_disabled.gif" alt="link_firstpage.gif" width="18" height="9" border="0" align="absuiddle">&nbsp;</block name="nofirstpage"> 
+<block name="prevblock"><a href='{href.prevblock}' class="base2"><img src="/Admin/images/board_button_prev.gif" border="0" align="absuiddle"></a>&nbsp;</block name="prevblock"> 
+<block name="noprevblock"> <span class="base2_lightgray"><img src="/Admin/images/board_button_prev_disabled.gif" border="0" align="absuiddle"></span>&nbsp;</block name="noprevblock"> 
+<block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block"> 
+<block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock"> 
+<block name="nextblock"><a href='{href.nextblock}' class="base2"><img src="/Admin/images/board_button_next.gif" border="0" align="absuiddle"></a>&nbsp;</block name="nextblock"> 
+<block name="nonextblock"> <span class="base2_lightgray"><img src="/Admin/images/board_button_next_disabled.gif" border="0" align="absuiddle"></span>&nbsp;</block name="nonextblock"> 
+<block name="lastpage"><a href="{href.lastpage}"><img src="/Admin/images/board_button_end.gif" alt="link_lastpage.gif" width="18" height="9" border="0" align="absuiddle"></a>&nbsp;</block name="lastpage"> 
+<block name="nolastpage"><img src="/Admin/images/board_button_end_disabled.gif" alt="link_lastpage.gif" width="18" height="9" border="0" align="absuiddle">&nbsp;</block name="nolastpage">  
+		  
+
+</body>
+</html>

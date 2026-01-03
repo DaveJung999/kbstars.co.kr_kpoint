@@ -1,0 +1,198 @@
+
+<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+<link href="/himages/css/mulkang.css" rel="stylesheet" type="text/css">
+<table width="650" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td width="650">
+		<table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td height="15" align="left" valign="middle"><img src="images/top_inquires.gif" width="705" height="80"></td>
+		</tr>
+		<tr>
+			<td align="center" valign="top"></td>
+		</tr>
+		<tr>
+			<td align="center" valign="top">
+				<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td colspan="3"><img src="/sshop2/stpl/hbasic/images/cart_t_1.gif" width="620" height="25"></td>
+				</tr>
+				<tr>
+					<td width="30"><div align="left"><img src="/sshop2/stpl/hbasic/images/cart_t_2.gif" width="30" height="60"></div></td>
+					<td width="560" bgcolor="f5f5f5" class="basic0">
+						고객님의 주문 배송 조회 페이지 입니다.<br>
+						조회 기간을 입력하시면 해당 기간내의 주문 배송 내역을 조회하실수 있습니다. 
+					</td>
+					<td width="30"><div align="right"><img src="/sshop2/stpl/hbasic/images/cart_t_3.gif" width="30" height="60"></div></td>
+				</tr>
+				<tr>
+					<td colspan="3"><img src="/sshop2/stpl/hbasic/images/cart_t_4.gif" width="620" height="25"></td>
+				</tr>
+				</table>
+				<br>
+				<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td height="25"><img src="/sshop2/stpl/hbasic/images/tdot.gif" width="10" height="10"> <span class="gray_soft0">조회 기간 선택 </span></td>
+				</tr>
+				<tr>
+					<td height="1" bgcolor="cccccc"></td>
+				</tr>
+				<tr>
+					<td height="15" align="center" bgcolor="EBF9FA">
+						<form	style='border:0px;margin:0px;padding:0px' name=inquiry	action="inquiry.php">
+						<span class="blue_soft0">2005년 4월 7일 이후 :
+						<INPUT TYPE=text name="startdate" id="startdate" ONCLICK="Calendar(this);" VALUE="{startdate}" size='14' readonly>
+						부터
+						<INPUT TYPE=text name="enddate" id="enddate" ONCLICK="Calendar(this);" VALUE="{enddate}" size='14' readonly>
+						까지
+						<input type="image" src="/sshop2/stpl/hbasic/images/btn_inquires.gif" width="28" height="18" style=" vertical-align:text-bottom;">
+						<br>
+						</span>
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td height="15" align="center" bgcolor="EBF9FA">
+						<form style='border:0px;margin:0px;padding:0px' name=inquiry action="inquiryold.php">
+						<span class="blue_soft0">2005년 4월 7일 이전 :
+						<INPUT TYPE=text name="startdate" id="startdate" ONCLICK="Calendar(this);" VALUE="{startdate}" size='14' readonly>
+						부터
+						<INPUT TYPE=text name="enddate" id="enddate" ONCLICK="Calendar(this);" VALUE="2005-05-07" size='14' readonly>
+						까지
+						<input type="image" src="/sshop2/stpl/hbasic/images/btn_inquires.gif" width="28" height="18" style=" vertical-align:text-bottom;">
+						<br>
+						</span>
+						</form>
+					</td>
+				</tr>
+				<tr>
+					<td height="1" bgcolor="cccccc"></td>
+				</tr>
+				</table>
+				<br>
+				<br>
+				<table width="650" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="25">
+						{LIST} <block name="list">
+						<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td><img src="images/order_c_top.gif" width="620" height="10"></td>
+						</tr>
+						<tr>
+							<td width="620" align="center" background="images/order_c_center.gif">
+								<table width="600" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+								<tr>
+									<td width="600" height="25" class="base2">&nbsp;<span class="basic0"> {list.rdate_date} 주문(청구) 내용입니다.</span><span class="base_gray_bold"><strong class="orange_soft0"><font color="#FF6600"> </font></strong></span></td>
+								</tr>
+								<tr>
+									<td width="600" height="25" align="center">
+										<table width="556" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tr>
+											<td height="5" colspan="8"><img src="images/dot_line.gif" width="1" height="1"></td>
+										</tr>
+										<tr bgcolor="f8f8f8">
+											<td width="20" height="25" bgcolor="f8f8f8">&nbsp;</td>
+											<td width="204" align="center" class="blue_soft0">상품(서비스)명</td>
+											<td width="92" align="center" class="blue_soft0">적립포인트</td>
+											<td width="67" align="center" class="blue_soft0">단가</td>
+											<td width="56" align="center" bgcolor="f8f8f8" class="blue_soft0">수량</td>
+											<td width="57" align="center" bgcolor="f8f8f8" class="blue_soft0">금액</td>
+											<td width="60" align="center" bgcolor="f8f8f8" class="blue_soft0">비고</td>
+										</tr>
+										{CELL}
+										<tr>
+											<td height="1" colspan="8"><img src="images/dot_line.gif" width="1" height="1"></td>
+										</tr>
+										<tr>
+											<td height="1" colspan="8">&nbsp;</td>
+										</tr>
+										<tr>
+											<td height="1" colspan="8"><div align="center" class="red_soft0">총 결제 금액 : {list.totalprice}</div></td>
+										</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td align="center" valign="top">
+										<table width="300" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tr>
+											<td align="center"><a href="{href.inquirydetail}"> <img src="/smember/payment/stpl/basic/images/b_btn_detail.gif" width="75" height="25" border="0"></a> <opt name="href.delete"> <a href="{href.delete}"> <img src="/smember/payment/stpl/basic/images/b_btn_cancell.gif" width="75" height="25" border="0"></a></opt name="href.delete"> </td>
+										</tr>
+										</table>
+									</td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="images/order_c_tip.gif" width="620" height="10"></td>
+						</tr>
+						</table>
+						<br>
+						</block name="list"> <block name="nolist"> <br>
+						<center class="pink_soft0">
+						주문내역이 없습니다
+						</center>
+						<br>
+						</block name="nolist"> 
+					</td>
+				</tr>
+				<tr>
+					<td height="1" align="left" valign="middle"><img src="images/spacer.gif" width="1" height="1"></td>
+				</tr>
+				<tr>
+					<td height="70" class="base2" >
+						<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td><img src="images/order_c_top01.gif" width="620" height="10"></td>
+						</tr>
+						<tr>
+							<td width="620" height="50" align="center" background="images/order_c_center01.gif" class="basic0">
+								&nbsp;&nbsp; * 입금이 되지 않은 주문내역은 "<a href="{href.delete}">전체취소</a>" 버튼을 클릭하면, 주문이 취소됩니다. <br>
+								&nbsp;&nbsp; * " 입금필요 "를 클릭하면, 신용카드나 계좌이체 결제를 하실 수 있습니다. 
+							</td>
+						</tr>
+						<tr>
+							<td><img src="images/order_c_tip01.gif" width="620" height="10"></td>
+						</tr>
+						</table>
+						<br>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<block name="cell">
+<tr>
+	<td width="8" height="25">&nbsp;</td>
+	<td align="center" class="basic0">
+		<span class="basic0">{list.title} <opt name="list.options"></opt name="list.options"></span><opt name="list.options"><br>
+		(옵션:<span class="basic0"> {list.options}</span>)</opt name="list.options"><opt name="list.upfiles.upfile.name"> <br>
+		업로드파일:<a href="{list.upfiles.upfile.href}" class="basic0">{list.upfiles.upfile.name}</a> (
+
+		<script LANGUAGE="JavaScript">document.write(formatNum('{list.upfiles.upfile.size}'));</script>
+
+		bytes)</opt name="list.upfiles.upfile.name">
+	</td>
+	<td align="center" class="basic0">{list.point}</td>
+	<td align="center" class="basic0">{list.price}</td>
+	<td align="center" class="basic0">{list.quantity}</td>
+	<td align="center" class="basic0">{list.sum_price}</td>
+	<td align="center" class="basic0">
+		<span class="basic0"><opt name="href.status"><a href="{href.status}">{list.status}</a></opt name="href.status"><opt name="!href.status">{list.status}</opt name="!href.status"></span><opt name="!href.status"><br>
+		</opt name="!href.status">
+	</td>
+	<td width="8">&nbsp;</td>
+</tr>
+<tr>
+	<td background="images/dot_width.gif" height="1" colspan="7"	></td>
+</tr>
+</block name="cell">

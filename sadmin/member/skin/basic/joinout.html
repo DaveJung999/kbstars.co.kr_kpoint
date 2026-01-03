@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>무제 문서</title>
+</head>
+
+<style type = "text/css">
+<!--
+	BODY, TABLE, TR, TD, INPUT, TEXTAREA
+	{	font-family:verdana, 굴림, Seoul, Gulim;
+		font-size: 10pt;
+		color: #595959;
+	}
+	A:link {font: 굴림,Arial; font-size: 9pt; text-decoration: none; color: "#363688";}
+	A:visited {font: 굴림,Arial; font-size: 9pt; text-decoration: none; color: "#363688";}
+	A:hover{font: 굴림,Arial; font-size: 9pt; text-decoration: none; color: "black";}
+-->
+</style>
+
+<body>
+	<TABLE cellSpacing=1 cellPadding=3 width=500 bgColor=black border=0>
+	<TBODY>
+	<TR>
+		<TD noWrap bgColor=#edfee9>
+			<CENTER>
+			<FONT color=darkred>회원탈퇴 처리 페이지 </font>
+			</CENTER>
+			<TABLE width=500 border=0 cellPadding=3 cellSpacing=1 bgColor=black>
+			<TBODY>
+			<TR>
+				<TD width="140" bgColor=#ccffcc>logon(회원기본정보)</TD>
+				<TD width="345" bgColor=#edfee9><opt name="!logon.uid">삭제</opt name="!logon.uid"><opt name="logon.uid">고유번호: {logon.uid}, 아이디:{logon.userid}, 이름:{logon.name}), class:{logon.class}, level:{logon.level}</opt name="logon.uid"></TD>
+			</TR>
+			<TR>
+				<TD bgColor=#ccffcc>account(포인트계좌)</TD>
+				<TD bgColor=#edfee9><opt name="!accountinfo">포인트계정없음</opt name="!accountinfo"><opt name="accountinfo.uid">{accountinfo}</opt name="accountinfo.uid"></TD>
+			</TR>
+			</TBODY>
+			</TABLE>
+		</TD>
+	</TR>
+	</TBODY>
+	</TABLE>
+	<form name="form1" {form_default}>
+	<input type="hidden" name="mode" value="joinout">
+	<ul>
+		<li>
+			<input type="submit" name="del" value=" 계정삭제 " onClick="return confirm('회원정보를 삭제하면 복수할 수 없습니다.\n\n정말 삭제하시겠습니까?');">
+			<br>
+			* 회원기본정보와 회원 세부정보 삭제합니다. <br>
+			<br>
+		</li>
+	</ul>
+	</form>
+</body>
+</html>

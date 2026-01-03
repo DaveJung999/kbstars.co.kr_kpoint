@@ -1,0 +1,48 @@
+<main value="menu1">
+	<sub value="/kbstars/2011/d01/01.php"/>
+	<sub value="/kbstars/2011/d02/01.php"/>
+</main>
+
+
+<main value="menu2">
+	<sub value="/kbstars/2011/d03/01.php"/>
+	<sub value="/kbstars/2011/d03/02.php"/>
+    <sub value="/kbstars/2011/d03/03.php"/>
+	<sub value="/kbstars/2011/d03/04.php"/>
+	<sub value="/kbstars/2011/d03/05.php"/>
+</main>
+
+
+<main value="menu3">
+	<sub value="/kbstars/2011/d04/01.php"/>
+	<sub value="/kbstars/2011/d04/02.php"/>
+</main>
+
+
+
+<main value="menu4">
+	<sub value="/kbstars/2011/d05/01.php"/>
+	<sub value="/kbstars/2011/d05/02.php"/>
+	<sub value="/kbstars/2011/d05/03.php"/>
+	<sub value="/kbstars/2011/d05/04.php"/>
+</main>
+
+
+
+<main value="menu5">
+	<sub value="/kbstars/2011/d06/01.php"/>
+	<sub value="/kbstars/2011/d09/01.php"/>
+	<sub value="/kbstars/2011/d10/01.php"/>
+</main>
+
+
+<main value="menu6">
+	<sub value="/kbstars/2011/d07/01.php"/>
+	<sub value="/kbstars/2011/d08/01.php"/>
+	<sub value="/kbstars/2011/d11/01.php"/>
+</main>
+
+
+<main value="menu7">
+	<sub value="http://www.kbstars.co.kr"/>
+</main>

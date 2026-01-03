@@ -1,0 +1,152 @@
+<!--<? exit; ?>-->
+<link href="images/basic.css" rel="stylesheet" type="text/css">
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<table width="550" border="0" cellpadding="0" cellspacing="0" align="center">
+<tr>
+	<td height="25" colspan="2" class="nevy_violet">
+		<p class="bbl">게시판 제목 : <a href="list.php?db={dbinfo.db}">{dbinfo.title}</a> {HIGHCATE}<opt name="SAMECATE"> &gt;
+		<SELECT NAME="chagecate" onChange="javascript: window.location='list.php?db={dbinfo.db}&cateuid='+this.value;">
+		{SAMECATE}
+		</SELECT>
+		</opt name="SAMECATE"> </p>
+	</td>
+</tr>
+<opt name="SUBCATE">
+<tr>
+	<td width="134" height="25" align="center" bgcolor="#91B993"	class="nevy_violet"><a href="{href.list}" class="nevy_violet">{cateinfo.title}</a></td><td width="416" height="25">&nbsp;&nbsp; {SUBCATE}</td>
+</tr>
+</opt name="SUBCATE">
+</table>
+<form name="board2write" style='margin : 0px' onSubmit="return chkForm(this)" {form_default}>
+<table border="0" cellpadding="3" cellspacing="0" width="550" align="center" class="">
+<tr height="24">
+	<td height="9" colspan="2" bgcolor="#FFFFFF"><p align="center">&nbsp;</p></td>
+</tr>
+<tr bgcolor="#C6D8C5" height="24">
+	<td height="9" colspan="2">&nbsp;</td>
+</tr>
+<opt name="session.seUserid">
+<tr class="base">
+	<td width="82" bgcolor="#E8E8E0" class="bb">&nbsp;이&nbsp;&nbsp; &nbsp; 름</td>
+	<td width="457" bgcolor="#E8E8E0">{list.userid} ({list.email}) </td>
+</tr>
+</opt name="session.seUserid">
+<opt name="!session.seUserid">
+<tr class="base">
+	<td width="82" bgcolor="#E8E8E0" class="bb">&nbsp;이&nbsp;&nbsp; &nbsp; 름</td>
+	<td width="457" bgcolor="#E8E8E0"><input type="text" name="userid" size="20"	value="{list.userid}" hname="이름을 입력하여주세요" required></td>
+</tr>
+<tr bgcolor="#E8E8E0" class="base">
+	<td class="bb">&nbsp;패스워드</td>
+	<td><input name="passwd" type="password" id="passwd" size="10" hname="패스워드를 입력하여주세요" required></td>
+</tr>
+<tr class="base">
+	<td width="82" bgcolor="#E8E8E0" class="bb">&nbsp;메&nbsp;&nbsp; &nbsp; 일</td>
+	<td width="457" bgcolor="#E8E8E0"><input type="text" name="email" size="40"	value="{list.email}" option="regMail"></td>
+</tr>
+</opt name="!session.seUserid">
+{CATELIST}
+<block name="catelist">
+<tr class="base">
+	<td width="82" bgcolor="#E8E8E0" class="bb" nowrap>&nbsp;카테고리</td>
+	<td width="457" bgcolor="#E8E8E0">
+		<SELECT NAME="catelist">
+		{list.catelist}
+		</SELECT>
+	</tr>
+	</block name="catelist">
+	<tr class="base">
+		<td width="82" bgcolor="#E8E8E0" class="bb">&nbsp;제&nbsp;&nbsp;&nbsp;&nbsp; 목</td>
+		<td width="457" bgcolor="#E8E8E0">
+			<input type="text" name="title" size="45"	value="{list.title}" hname="제목을 입력하여주세요" required>
+			<input type="checkbox" name="docu_type" value="html" {list.docu_type_checked}>
+			<font color="#000000">HTML</font> {IFWRITEINFO}
+			<block name="ifwriteinfo">
+			<input type="checkbox" name="writeinfo" value="info" {list.writeinfo_checked}>
+			<font color="#000000">공지</font> </block name="ifwriteinfo">
+		</td>
+	</tr>
+	{UPLOAD}
+	<block name=" Upload ">
+	<tr class="base">
+		<td width="82" bgcolor="#E8E8E0" class="bb">&nbsp;첨부파일</td>
+		<td width="457" bgcolor="#E8E8E0">
+			<input type="file" name="upfile" size="20" >
+		</td>
+	</tr>
+	</block name=" Upload ">
+	<tr>
+		<td width="82" bgcolor="#E8E8E0" class="bb">&nbsp;내&nbsp; &nbsp;&nbsp; 용</td>
+		<td width="457" bgcolor="#E8E8E0">
+			<textarea rows="15" name="content" cols="50" >{list.content}</textarea>
+		</td>
+	</tr>
+	{LEVEL}
+	<block name="level">
+	<tr class="base">
+		<td width="82" bgcolor="#E8E8E0" class="bb" nowrap>&nbsp;읽기 레벨</td>
+		<td width="457" bgcolor="#E8E8E0">
+			<input name=priv_hidelevel type=text id="priv_hidelevel" onChange="MM_validateForm('priv_hidelevel','','RinRange0:255');return document.MM_returnValue" value='{list.priv_hidelevel}' size=4>
+			* 숫자 레벨(0-255)
+		</tr>
+		</block name="level">
+		<tr>
+			<td width="82" height="10" bgcolor="#E8E8E0"></td>
+			<td width="457" height="10" align="right" bgcolor="#E8E8E0"></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td width="457" align="right">
+				<input name="image" type=image src="images/bott_save.gif" width="61" height="25">
+				&nbsp;&nbsp;<a href="{href.list}"><img src="images/bott_list.gif" width="50" height="25" border=0> </a>
+			</td>
+		</tr>
+		</table>
+		</form>
+
+		<script language="Javascript1.2">
+		<!-- // load htmlarea
+		function request(str){
+			QueryString=location.search.split("?");
+			Query=QueryString[1].split("&")
+			for(i=0;i<=Query.length-1;i++){
+				if(Query[i].indexOf(str)==0){
+					GetQuery=Query[i].split("=")
+					return GetQuery[1];
+				}
+			}
+		}
+		_editor_url = "/scommon/js/htmlarea203/"; // URL to htmlarea files
+		var win_ie_ver = parseFloat(navigator.appVersion.split("MSIE")[1]);
+		if (navigator.userAgent.indexOf('Mac')		>= 0) {
+			win_ie_ver = 0;
+		}
+		if (navigator.userAgent.indexOf('Windows CE') >= 0) {
+			win_ie_ver = 0;
+		}
+		if (navigator.userAgent.indexOf('Opera')		>= 0) {
+			win_ie_ver = 0;
+		}
+		if (win_ie_ver >= 5.5) {
+			document.write('<scr' + 'ipt src="' +_editor_url+ 'editor.js"');
+			document.write(' language="Javascript1.2"></scr' + 'ipt>');
+			//if(request('mode')!="modify") document.getElementById('docu_type').checked = 'true'; // by Sunmin Park
+		}
+		else {
+			document.write('<scr'+'ipt>function editor_generate() { return false; }</scr'+'ipt>');
+		}
+		// -->
+		</script>
+
+		<script language="JavaScript1.2" defer>
+		if(document.getElementById('docu_type').checked) editor_generate('content');
+		</script>
+
+		<block name="highcate"> &gt; <a href="{href.highcate}" class="nevy_gcyan"> {highcate.title}</a> </block name="highcate">
+		<block name="subcate"><opt name="blockloop">
+		| </opt name="blockloop"><a href="{href.subcate}" class="base2"> {subcate.title}</a></block name="subcate">
+		<block name="samecate">
+		<option value="{samecate.uid}" {samecate.selected}>{samecate.title}</option>
+		</block name="samecate">

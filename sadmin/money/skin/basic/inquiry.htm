@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+<style type = "text/css">
+<!--
+	BODY, TABLE, TR, TD, INPUT, TEXTAREA
+	{	font-family:verdana, 굴림, Seoul, Gulim;
+		font-size: 10pt;
+		color: #595959;
+	}
+	A:link {font: 굴림,Arial; font-size: 9pt;	color: "#363688";}
+	A:visited {font: 굴림,Arial; font-size: 9pt;	color: "#363688";}
+	A:hover{font: 굴림,Arial; font-size: 9pt;	color: "black";}
+-->
+</style>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<body>
+		<form name='inquiry' {form_default}>
+		<table width="500" border="1" cellpadding="0" cellspacing="0" bordercolor="cccccc" style="border-collapse:collapse;" >
+		<tr>
+			<td bgcolor="EEE5FF">조회기간선택 </td>
+			<td align="center">
+				<INPUT TYPE=text name="startdate" id="startdate" ONCLICK="Calendar(this);" VALUE="{startdate}" size='10' readonly>
+				~
+				<INPUT TYPE=text name="enddate" id="enddate" ONCLICK="Calendar(this);" VALUE="{enddate}" size='10' readonly> <br>
+				<input type="submit" name="status" value=" 입금필요 ">
+				<input type="submit" name="status" value=" 입금완료 ">
+				<input type="submit" name="status" value=" 배송요청 ">
+				<input type="submit" name="status" value=" 재고준비 ">
+				<input type="submit" name="status" value=" 배송준비 ">
+				<input type="submit" name="status" value=" 배송중 ">
+				<input type="submit" name="status" value=" OK ">
+				<input type="submit" name="status" value=" 삭제접수 ">
+			</td>
+		</tr>
+		</table>
+		</form>
+		<opt name="form_deletebyafterday">
+		<form style="margin:0px" onSubmit="if(!confirm('정말 삭제하시겠습니까? 복구되지 않습니다.')) return false;" {form_deletebyafterday}>
+		<table width="500" border="1" cellpadding="0" cellspacing="0" bordercolor="cccccc" style="border-collapse:collapse;" >
+		<tr>
+			<td width="118" bgcolor="EEE5FF">특정일이전삭제</td>
+			<td width="376">
+				<INPUT TYPE=text name="afterday" id="afterday" ONCLICK="Calendar(this);" VALUE="" size='10' readonly>
+				일전
+				<input type="submit" name="Submit" value=" 일괄삭제 ">
+				(status:{status})
+			</td>
+		</tr>
+		</table>
+		</form>
+		</opt name="form_deletebyafterday">
+		<br>
+		<table width="95%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td height="25">
+				{LIST}<block name="list">
+				<table width="700" border="1" cellpadding="0" cellspacing="0" bordercolor="cccccc" style="border-collapse:collapse;" >
+				<tr>
+					<td bgcolor="cccccc">
+						<table width="700" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+						<tr bgcolor="E4D3F2">
+							<td width="600" height="25" bgcolor="E4D3F2" class="base2">
+								<span class="base_gray_bold"><a href="javascript: window.open( '{href.rdatemodify}', 'openname', 'width=650,height=650,location=no,resizable=1,scrollbars=1,menubars=no,toolbars=no');void(0);">{list.rdate}주문(합계:
+								{list.totalprice})</a> - ID:<a href="../member/msearch.php?mode=paymentinfo&msc_column=logon.userid&msc_string={list.logon.userid}" target="userinfo">{list.logon.userid}</a>({list.logon.name},
+								HP:<a href="javascript: window.open('/ssms/sms.php?mode=uids&uids={list.logon.uid}' , 'new21sms' , 'toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=1,scrollbars=1,width=300,height=400');void(0);">{list.userinfo.hp}</a>) </span>
+							</td>
+						</tr>
+						{DELIVERYINFO}
+						<tr>
+							<td valign="top" >
+								<table width="100%" border="1" cellpadding="0" cellspacing="0"	style="border-collapse:collapse;">
+								<tr>
+									<td align="center" nowrap bgcolor="EEE5FF" class="nevy_violet">상품(서비스)명</td>
+									<td align="center" nowrap bgcolor="EEE5FF" class="nevy_violet">옵션</td>
+									<td align="center" nowrap bgcolor="EEE5FF" class="nevy_violet">수량</td>
+									<td align="center" nowrap bgcolor="EEE5FF" class="nevy_violet">브랜드</td>
+									<td align="center" nowrap bgcolor="EEE5FF" class="nevy_violet">상품코드</td>
+									<td align="center" nowrap bgcolor="EEE5FF" class="nevy_violet">구매가(판매가)</td>
+									<td align="center" nowrap bgcolor="EEE5FF" class="nevy_violet">bank</td>
+									<td align="center" nowrap bgcolor="EEE5FF" class="nevy_violet">적립포인트</td>
+									<td align="center" nowrap bgcolor="EEE5FF" class="nevy_violet">비고</td>
+								</tr>
+								{CELL}
+								</table>
+							</td>
+						</tr>
+						<!--
+				<tr>
+				<td align="center" valign="top"><a href="{href.inquirydetail}"><img src="images/botton_inqurydetail.gif" width="91" height="25" border="0"></a><opt name="href.delete">
+					<a href="{href.delete}"><img src="images/botton_allcancile.gif" width="91" height="25" border="0"></a></opt name="href.delete">
+				</td>
+				</tr>
+				-->
+						<tr>
+							<td align="center" valign="top" bgcolor="#FFFFCC">{list.status_change}</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+				<br>
+				</block name="list"> <block name="nolist"> <br>
+				<center>
+				주문내역이 없습니다
+				</center>
+				<br>
+				</block name="nolist"> 
+			</td>
+		</tr>
+		<tr>
+			<td height="1" align="left" valign="middle"><img src="images/spacer.gif" width="1" height="1"></td>
+		</tr>
+		</table>
+		<block name="cell">
+		<tr>
+			<td class="base2">
+				<opt name="href.shop"><a href="{href.shop}" target="_blank">[{list.ordertable}]{list.title}</a></opt name="href.shop"><opt name="!href.shop">[{list.ordertable}]{list.title}</opt name="!href.shop"><opt name="list.upfiles.upfile.name">
+				<br>
+				업로드파일:<a href="{list.upfiles.upfile.href}">{list.upfiles.upfile.name}</a>
+				(
+				<script LANGUAGE="JavaScript">document.write(formatNum('{list.upfiles.upfile.size}'));</script>
+				bytes)</opt name="list.upfiles.upfile.name">
+			</td>
+			<td align="center" class="base2" nowrap>{list.options}</td>
+			<td align="center" class="base2" nowrap>{list.quantity}</td>
+			<td align="center" class="base2" nowrap>{list.shop.brand}</td>
+			<td align="center" class="base2" nowrap>{list.shop.publiccode}</td>
+			<td align="center" class="base2t" nowrap>{list.price}({list.shop.price})</td>
+			<td align="center" class="base2t" nowrap>{list.bank}</td>
+			<td align="center" class="base2t" nowrap>{list.point}<opt name="list.pointdepositdate">(o)</opt name="list.pointdepositdate"><opt name="!list.pointdepositdate">(x)</opt name="!list.pointdepositdate"></td>
+			<td align="center" class="base2" nowrap><opt name="href.status"><a href="{href.status}">{list.status}</a></opt name="href.status"><opt name="!href.status">{list.status}</opt name="!href.status"></td>
+		</tr>
+		<opt name="list.memo">
+		<tr>
+			<td colspan="9">주문자메모:{list.memo}</td>
+		</tr>
+		</opt name="list.memo">
+		<opt name="list.text">
+		<tr>
+			<td colspan="9">문패에들어갈글:{list.text}</td>
+		</tr>
+		</opt name="list.text">
+		</block name="cell">
+		<block name="deliveryinfo">
+		<tr>
+			<td valign="top">
+				<table width="100%" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+				<tr>
+					<td width="10%" nowrap bgcolor="EEE5FF">배송정보</td>
+					<td width="90%">
+						{list.re_name}(전화:{list.re_tel}) 메일:{list.re_email}<br>
+						[{list.re_zip}] {list.re_address} 
+					</td>
+				</tr>
+				<tr>
+					<td nowrap bgcolor="EEE5FF">배송메모</td>
+					<td>{list.re_memo}</td>
+				</tr>
+				<tr>
+					<td nowrap bgcolor="EEE5FF">관리자메모</td>
+					<td>(송장:{list.re_invoice}){list.comment}</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</block name="deliveryinfo">
+		<br>
+		<br>
+		<hr>
+		메일리스트 : {list_email}
+		<br>
+		휴대폰리스트 : {list_hp}
+	</body>
+	</html>

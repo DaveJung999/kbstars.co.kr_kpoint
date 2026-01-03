@@ -1,0 +1,75 @@
+<!--<? exit; ?>-->
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<form	name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
+<table border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+<tr>
+	<td align="center" bgcolor='#CCFFCC'><b>{dbinfo.title}</b></td>
+</tr>
+<tr>
+	<td	bgcolor='#EDFEE9' nowrap>
+		<table width="500" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+		<opt name="list.bid">
+		<tr>
+			<td width="109" bgcolor='#CCFFCC' lang="af">bid</td><td width="376" bgcolor='#EDFEE9' > {list.bid}</td>
+		</tr>
+		</opt name="list.bid">			
+			<tr>
+			<td bgcolor='#CCFFCC'>skin</td>
+			<td bgcolor='#EDFEE9' >
+				<select name="skin" id="skin">{list.skin_option}</select>
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>href_sadminmenu</td>
+			<td bgcolor='#EDFEE9' ><input name="href_sadminmenu" type="text" id="href_sadminmenu" value="{list.href_sadminmenu}" size="40"></td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>href_sadminmain</td>
+			<td bgcolor='#EDFEE9' ><input name="href_sadminmain" type="text" id="href_sadminmain" value="{list.href_sadminmain}" size="40"></td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>사이트스킨사용여부</td>
+			<td bgcolor='#EDFEE9' >
+				<select name="html_type">{list.html_type_option}</select>
+				스킨명:	<select name="html_skin">{list.html_skin_option}</select>
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>머리글</td>
+			<td bgcolor='#EDFEE9' ><textarea name="html_head" cols="50" rows="4" id="html_head">{list.html_head}</textarea></td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>꼬리글</td>
+			<td bgcolor='#EDFEE9' ><textarea name="html_tail" cols="50" rows="4" id="html_tail">{list.html_tail}</textarea></td>
+		</tr>
+		<tr>
+			<td bgcolor='#CCFFCC'>&nbsp;</td>
+			<td bgcolor='#EDFEE9' ><input type="submit" name="Submit" value=" 전송 "></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</form>

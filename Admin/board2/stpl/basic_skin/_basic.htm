@@ -1,0 +1,502 @@
+
+<script language="JavaScript">
+function ch_img(){
+	img_name = document.ok_setup.skin.value;
+	document.ok_setup.img_skin.src= "img/" + img_name + ".gif";
+}
+//-->
+</script>
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td>
+		<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+			<td background="/images/admin/tbox_bg.gif"><strong>게시판 정보관리 </strong></td>
+			<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+		</tr>
+		</table>
+		<br>
+		<form name="ok_setup" method='post' action='ok_setup.php?mode=basic'>
+		<input name="uid" type="hidden" value="{list.uid}">
+		<table width="97%" border="0" align="center" cellpadding="2" cellspacing="1"	bordercolordark="white" bgcolor="#666666">
+		<tr bgcolor="#F0EBD6">
+			<td height="25" colspan="2" align="center">
+				<span style="font-size:9pt;">&nbsp;▒ 기본설정 ▒</span>
+			</td>
+		</tr>
+		<tr>
+			<td height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;">&nbsp;&nbsp;게시판 DB명 </span></td>
+			<td bgcolor="#F8F8EA"><span style="font-size:9pt;">&nbsp; {list.db}</span></td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<span style="font-size:9pt;">&nbsp;&nbsp;게시판
+				제목</span>
+			</td>
+			<td width="80%" bgcolor="#F8F8EA">
+				<span style="font-size:9pt;">&nbsp;
+				<input name="title" type="text" class="input01" value="{list.title}" size="50">
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<span style="font-size:9pt;">&nbsp;&nbsp;Head,
+				Tail 삽입설정</span>
+			</td>
+			<td width="80%" bgcolor="#F8F8EA">
+				<table width="97%"	border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="html_headpattern" type="radio" value="no" {list.html_head_select1}>
+						Head, Tail 없음</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="html_headpattern" type="radio" value="h" {list.html_head_select2}>
+						Head 만 삽입</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="html_headpattern" type="radio" value="t" {list.html_head_select3}>
+						Tail&nbsp;만 삽입</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="html_headpattern" type="radio" value="ht" {list.html_head_select4}>
+						Head, Tail 둘다 삽입</span>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E"><p><span style="font-size:9pt;">&nbsp;&nbsp;Head, Tail 기본스킨</span></td>
+			<td bgcolor="#F8F8EA">&nbsp; <input name="html_headtpl" type="text" class="input01" value="{list.html_headtpl}" size="50"></td>
+		</tr>
+		<tr>
+			<td width="20%" bgcolor="#D2BF7E">
+				<span style="font-size:9pt;">&nbsp;&nbsp;Head
+				Text</span>
+			</td>
+			<td width="80%" bgcolor="#F8F8EA"><textarea name="html_head" cols="70" rows="10" class="textarea01" style="width:100% ">{list.html_head}</textarea></td>
+		</tr>
+		<tr>
+			<td width="20%" bgcolor="#D2BF7E">
+				<span style="font-size:9pt;">&nbsp;&nbsp;Tail
+				Text</span>
+			</td>
+			<td width="80%" bgcolor="#F8F8EA"><textarea name="html_tail" cols="70" rows="10" class="textarea01" style="width:100% ">{list.html_tail}</textarea></td>
+		</tr>
+		</table>
+		<br>
+		<table width="97%" border="0" align="center" cellpadding="2" cellspacing="1"	bordercolordark="white" bgcolor="#666666">
+		<tr bgcolor="#F0EBD6">
+			<td height="25" colspan="2" align="center">
+				<span style="font-size:9pt;">&nbsp;▒ 목록설정 ▒</span>
+			</td>
+		</tr>
+		<tr>
+			<td height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;">&nbsp;&nbsp;게시물 수 설정</span> </td>
+			<td bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="20%"><span style="font-size:9pt;">일반 게시물 수</span></td>
+					<td width="20%">
+						<span style="font-size:9pt;">
+						<input name="pern" type="text" class="input01" value="{list.pern}" size="5">
+						개</span>
+					</td>
+					<td width="20%">&nbsp;</td>
+					<td width="20%">&nbsp;</td>
+					<td width="20%">&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<span style="font-size:9pt;">&nbsp;&nbsp;한줄당 게시물 수 설정</span>
+			</td>
+			<td width="80%" bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="20%"><span style="font-size:9pt;">한줄당 게시물 수</span></td>
+					<td width="20%">
+						<span style="font-size:9pt;">
+						<input name="row_pern" type="text" class="input01" value="{list.row_pern}" size="5">
+						개</span>
+					</td>
+					<td width="20%">&nbsp;</td>
+					<td width="20%">&nbsp;</td>
+					<td width="20%">&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<span style="font-size:9pt;">&nbsp;&nbsp;게시물 제목 자르기</span>
+			</td>
+			<td width="80%" bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="20%"><span style="font-size:9pt;">제목 자르기</span></td>
+					<td width="20%">
+						<span style="font-size:9pt;">
+						<input name="cut_length" type="text" class="input01" value="{list.cut_length}" size="5">
+						자 </span>
+					</td>
+					<td width="20%">&nbsp;</td>
+					<td width="20%">&nbsp;</td>
+					<td width="20%">&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<span style="font-size:9pt;">&nbsp;&nbsp;페이지 설정</span>
+			</td>
+			<td width="80%" bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="20%"><span style="font-size:9pt;">페이지 나누기</span></td>
+					<td width="20%">
+						<span style="font-size:9pt;">
+						<input name="page_pern" type="text" class="input01" value="{list.page_pern}" size="5">
+						개</span> 
+					</td>
+					<td width="20%">&nbsp;</td>
+					<td width="20%">&nbsp;</td>
+					<td width="20%">&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+		<br>
+		<table width="97%" border="0" align="center" cellpadding="2" cellspacing="1"	bordercolordark="white" bgcolor="#666666">
+		<tr bgcolor="#F0EBD6">
+			<td height="25" colspan="2" align="center">
+				<span style="font-size:9pt;">&nbsp;▒ 게시판 속성 ▒</span>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<span style="font-size:9pt;">&nbsp;&nbsp;카테고리
+				설정</span>
+			</td>
+			<td width="80%" bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="25%"><span style="font-size:9pt;">카테고리 사용 </span></td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_cate" type="radio" value="Y" {list.enable_cate1}>
+						사용함</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_cate" type="radio" value="N" {list.enable_cate2}>
+						사용안함</span>
+					</td>
+					<td width="25%">&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<span style="font-size:9pt;"> &nbsp;
+				업로드 설정</span>
+			</td>
+			<td width="80%" bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="25%"><span style="font-size:9pt;">업로드 사용 </span></td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_upload" type="radio" value="Y" {list.enable_upload1}>
+						사용함</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_upload" type="radio" value="N" {list.enable_upload2}>
+						사용안함</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_upload" type="radio" value="multi" {list.enable_upload3}>
+						멀티업로드 사용함</span>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<span style="font-size:9pt;">&nbsp;&nbsp;메모
+				설정</span>
+			</td>
+			<td width="80%" bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="25%"><span style="font-size:9pt;">메모 사용</span></td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_memo" type="radio" value="Y" {list.enable_memo1}>
+						사용함</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_memo" type="radio" value="N" {list.enable_memo2}>
+						사용안함</span>
+					</td>
+					<td width="25%">&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;">&nbsp;&nbsp;공지 설정</span></td>
+			<td width="80%" bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="25%"><span style="font-size:9pt;">공지사용 </span></td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_type" type="radio" value="Y" {list.enable_type1}>
+						사용함</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_type" type="radio" value="N" {list.enable_type2}>
+						사용안함</span>
+					</td>
+					<td width="25%">&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;">&nbsp;&nbsp;비밀글 설정</span></td>
+			<td bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="25%"><span style="font-size:9pt;">비밀글사용 </span></td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_sec" type="radio" value="Y" {list.enable_sec1} />
+						사용함</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_sec" type="radio" value="N" {list.enable_sec2} />
+						사용안함</span>
+					</td>
+					<td width="25%">&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;">&nbsp;&nbsp;GET값 넘기기 설정</span></td>
+			<td bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="25%"><span style="font-size:9pt;">GET 값 계속 사용</span></td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_getinfo" type="radio" value="Y" {list.enable_getinfo1}>
+						사용함</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_getinfo" type="radio" value="N" {list.enable_getinfo2}>
+						사용안함</span>
+					</td>
+					<td width="25%">&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;">&nbsp;&nbsp;메일설정</span></td>
+			<td width="80%" bgcolor="#F8F8EA">
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="25%"><span style="font-size:9pt;">관리자에게 보내기</span></td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_adm_mail" type="radio" value="Y" {list.enable_writeinfo1}>
+						사용함</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_adm_mail" type="radio" value="N" {list.enable_writeinfo2}>
+						사용안함 </span>
+					</td>
+					<td width="25%">&nbsp;</td>
+				</tr>
+				</table>
+				<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="25%"><span style="font-size:9pt;">글쓴이이게 보내기</span></td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_rec_mail" type="radio" value="Y" {list.enable_writeinfo1}>
+						사용함</span>
+					</td>
+					<td width="25%">
+						<span style="font-size:9pt;">
+						<input name="enable_rec_mail" type="radio" value="N" {list.enable_writeinfo2}>
+						사용안함</span>
+					</td>
+					<td width="25%">&nbsp;</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;"> &nbsp; 이미지 섬네일</span></td>
+			<td bgcolor="#F8F8EA">
+				<span style="font-size:9pt;"><span style="font-size:9pt;">
+				&nbsp;
+				<input name="imagesize_thumbnail" type="text" class="input01" value="{list.imagesize_thumbnail}" size="10">
+				</span>
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;"> &nbsp; 이미지 본문중 사이즈 </span></td>
+			<td bgcolor="#F8F8EA">
+				<span style="font-size:9pt;"><span style="font-size:9pt;">
+				&nbsp;
+				<input name="imagesize_read" type="text" class="input01" value="{list.imagesize_read}" size="10">
+				</span>
+				</span>
+			</td>
+		</tr>
+		</table>
+
+		<div align="center">
+			<span style="font-size:9pt;"><br>
+			</span>
+			<table width="97%" border="0" cellpadding="2" cellspacing="1" bordercolordark="white" bgcolor="#666666">
+			<tr bgcolor="#F0EBD6">
+				<td height="25" colspan="2" align="center">
+					<span style="font-size:9pt;">&nbsp;▒ 스킨설정 ▒</span>
+				</td>
+			</tr>
+			<tr>
+				<td width="155" height="25" bgcolor="#D2BF7E">
+					<span style="font-size:9pt;">&nbsp;
+					스킨설정 설정</span>
+				</td>
+				<td width="80%" bgcolor="#F8F8EA">
+					<!--img src="img/{list.skin}.gif" name="img_skin" width="120" height="80" border="1"-->
+					&nbsp; 
+					<select name="skin">
+					{list.skin1}
+					</select>
+				</td>
+			</tr>
+			</table>
+			<br>
+			<table width="97%" border="0" cellpadding="2" cellspacing="1"	bordercolordark="white" bgcolor="#666666">
+			<tr bgcolor="#F0EBD6">
+				<td height="25" colspan="2" align="center">
+					<span style="font-size:9pt;">&nbsp;▒ 등급설정 ▒</span>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" height="25" bgcolor="#D2BF7E">
+					<span style="font-size:9pt;">&nbsp;&nbsp;리스트보기
+					권한 </span>
+				</td>
+				<td width="80%" bgcolor="#F8F8EA">
+					<span style="font-size:9pt;">&nbsp;
+					<input name="priv_list" type="text" class="input01" value="{list.priv_list}" size="10">
+					(0 ~ 99까지 숫자로입력)</span>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;">&nbsp;&nbsp;글쓰기 권한</span></td>
+				<td width="80%" bgcolor="#F8F8EA">
+					<span style="font-size:9pt;">&nbsp;
+					<input name="priv_write" type="text" class="input01" value="{list.priv_write}" size="10">
+					(0 ~ 99까지 숫자로입력) </span>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;">&nbsp;&nbsp;글읽기 권한</span></td>
+				<td width="80%" bgcolor="#F8F8EA">
+					<span style="font-size:9pt;">&nbsp;
+					<input name="priv_read" type="text" class="input01" value="{list.priv_read}" size="10">
+					(0 ~ 99까지 숫자로입력) </span>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" height="25" bgcolor="#D2BF7E">
+					<span style="font-size:9pt;">&nbsp;&nbsp;댓글 쓰기
+					권한 </span>
+				</td>
+				<td width="80%" bgcolor="#F8F8EA">
+					<span style="font-size:9pt;">&nbsp;
+					<input name="priv_reply" type="text" class="input01" value="{list.priv_reply}" size="10">
+					(0 ~ 99까지 숫자로입력) </span>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" height="25" bgcolor="#D2BF7E"><span style="font-size:9pt;">&nbsp;&nbsp;글삭제 권한</span></td>
+				<td width="80%" bgcolor="#F8F8EA">
+					<span style="font-size:9pt;">&nbsp;
+					<input name="priv_delete" type="text" class="input01" value="{list.priv_delete}" size="10">
+					(0 ~ 99까지 숫자로입력) </span>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" height="25" bgcolor="#D2BF7E">
+					<span style="font-size:9pt;">&nbsp;&nbsp;공지글쓰기
+					권한</span>
+				</td>
+				<td width="80%" bgcolor="#F8F8EA">
+					<span style="font-size:9pt;">&nbsp;
+					<input name="priv_writeinfo" type="text" class="input01" value="{list.priv_writeinfo}" size="10">
+					(0 ~ 99까지 숫자로입력) </span>
+				</td>
+			</tr>
+			</table>
+			<br>
+			<p><span style="font-size:9pt;"><span style="font-size:9pt;">
+			<input name=" OK " type="submit" value=" 저장 " class="CCbox03">
+			</span>				<span style="font-size:9pt;">
+			&nbsp;
+			<input name="ok2" type="button" value=" 뒤로 " class="CCbox03" onclick="history.back();">
+			<br>
+			<br>
+			</span> </span>
+		</div>
+		</form>
+	</td>
+</tr>
+</table>

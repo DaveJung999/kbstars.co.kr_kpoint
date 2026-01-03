@@ -1,0 +1,172 @@
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body bgcolor="white" background=""	onload="document.msearch.msc_string.focus();">
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black' width=500>
+	<tr>
+		<td bgcolor='#CCFFCC'>빠른검색</td>
+		<td bgcolor='#EDFEE9'>
+			<table>
+			<tr>
+				<td>
+					<form style='border:0px;margin:0px;padding:0px' method=get action=''>
+					<input type=hidden name='mode' value='{get.mode}'>
+					<input type=hidden name='msc_column' value='logon.userid'>
+					아이디
+					<input type="text" name="msc_string" size=10 value="{logon.userid}">
+					<input type="submit" value=" 검색 ">
+					</form>
+				</td>
+				<td>
+					<form style='border:0px;margin:0px;padding:0px' method=get action=''>
+					<input type=hidden name='mode' value='{get.mode}'>
+					<input type=hidden name='msc_column' value='logon.name'>
+					이름
+					<input type="text" name="msc_string" size=10 value="{logon.name}">
+					<input type="submit" value=" 검색 ">
+					</form>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'> 검색조건 </td>
+		<td bgcolor='#EDFEE9' nowrap>
+			<form style='border:0px;margin:0px;padding:0px' name="msearch" {form_msearch}>
+			<select name="msc_column" size="1">
+			<option value="payment.num"	 >주문번호</option>
+			<option value="logon.userid"	 >아이디</option>
+			<option value="logon.uid"		 >고유번호</option>
+			<option value="logon.level"		 >레벨</option>
+			<option value="logon.name"		 >이름</option>
+			<option value="logon.nickname"	 >별칭</option>
+			<option value="logon.email"		 >메일</option>
+			<option value="logon.idnum"	 >주민번호</option>
+			<option value="logon.hp"		 >휴대폰</option>
+			<option value="logon.tel"	 >전화</option>
+			<option value="logon.address" >주소</option>
+			<option value="logon.c_name"	 >회사이름</option>
+			</select>
+			<input type="text" name="msc_string" size=10 value={get.msc_string}>
+			<input type="submit" value=" 검색 ">
+			(와일드카드(%) 사용가능)
+
+			<script language="JavaScript" type="text/JavaScript">
+			var form_select = document.msearch.msc_column;
+			var form_value 				= '{get.msc_column}';
+			for(var i=0;i<form_select.length;i++) {
+				if(form_select.options[i].value==form_value) {
+					form_select.options[i].selected = true;
+				}
+			}
+			</script>
+
+			</form>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'> 검색결과 </td>
+		<td bgcolor='#EDFEE9'> 총 {count_msearch}명 회원이 검색되었습니다. - <a href="userinfoadd.php">신규회원추가</a> </td>
+	</tr>
+	</table>
+	<br>
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'	width=500>
+	<tr>
+		<td bgcolor='#CCFFCC' nowrap>
+			{logon.uid}&nbsp;&nbsp;{logon.userid}(<a href='mailto:{logon.email}'>{logon.name}</a>)&nbsp;&nbsp;&nbsp;&nbsp;권한:{logon.priv}({logon.level})&nbsp;&nbsp;&nbsp;&nbsp;전화: {logon.tel}(HP:<a href="javascript: window.open('/ssms/sms.php?mode=uids&uids={logon.uid}' , 'new21sms' , 'toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=1,scrollbars=1,width=300,height=400');void(0);">{logon.hp}</a>)&nbsp;&nbsp;<br>
+			<a href='userinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}'>회원정보</a> / <a href="joininfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">그룹정보</a> / <a href="serviceinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">서비스정보</a> / <a href="paymentinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">지불정보</a> / <a href="accountlist.php?msc_column={get.msc_column}&msc_string={get.msc_string}">포인트정보</a> / <a href="joinout.php?bid={logon.uid}">회원탈퇴</a> 
+		</td>
+	</tr>
+	</table>
+	<br>
+	<table width="553" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+	<tr>
+		<td colspan="5" bgcolor='#CCFFCC' lang="af"><strong>가입 그룹 정보(미완성) </strong>- <a href="{href.write}">그룹추가 </a></td>
+	</tr>
+	<tr bgcolor="#CCFFCC">
+		<th lang="af">그룹ID(코드)</th>
+		<th >그룹명(개설자)</th>
+		<th >가입레벨</th>
+		<th >가입일자</th>
+		<th >메뉴</th>
+	</tr>
+	{LIST}
+	<block name="list">
+	<tr bgcolor="#EDFEE9">
+		<td width="82" lang="af">{list.groupinfo.groupid}({list.gid})</td>
+		<td width="158" ><a href="gsearch.php?groupid={list.groupinfo.groupid}" target="_blank">{list.groupinfo.name}</a>(<a href="msearch.php?userid={list.grouplogon.userid}" target="_blank">{list.grouplogon.userid}</a>)</td>
+		<td width="81" >{list.level}</td>
+		<td width="74" >{list.rdate_date}</td>
+		<td width="60" bgcolor="#EDFEE9" ><a href="{href.modify}">수정</a>/<a href="{href.delete}">삭제</a></td>
+	</tr>
+	</block name="list">
+	</table>
+	<p>&nbsp;</p>
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'>
+	<tr>
+		<td	bgcolor='#CCFFCC'>
+			<b><>회원로그정보</b> -
+			<a href="/sadmin/myadmin224/read_dump.php?is_js_confirmed=0&lang=ko&server=1&pos=0&goto=db_details.php&zero_rows=SQL%B9%AE%C0%CC+%C1%A4%BB%F3%C0%FB%C0%B8%B7%CE+%BD%C7%C7%E0%B5%C7%BE%FA%BD%C0%B4%CF%B4%D9.&prev_sql_query=&sql_query=select+from_unixtime%28rdate%2C%27%25Y-%25m-%25d+%5B%25H%3A%25i%5D%27%29+as+date%2C+port%2C+ip%2C+ref_uri+from+new21_log_wtmp+where+bid%3D{logon.uid}+order+by+date+DESC+LIMIT+0%2C+40&show_query=y&sql_file=&SQL=%BD%C7%C7%E0" target="_sitephpbasic_loguser">로그인로그보기</a> - 마지막로그인:{date_lastlog}
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#EDFEE9'>
+			<form name="form1" {form_loguser}">
+			<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'	width=500>
+			<tr>
+				<td bgcolor='#CCFFCC' width=50 nowrap align=center>기록일</td>
+				<td width="237" align=center nowrap bgcolor='#CCFFCC'>제목</td>
+				<td width="94" align=center nowrap bgcolor='#CCFFCC'>기록자</td>
+				<td bgcolor='#CCFFCC' width=90 nowrap align=center>메뉴</td>
+			</tr>
+			{LOGUSERLIST}
+			<block name="loguserlist">
+			<tr bgcolor="#EDFEE9">
+				<td align=center nowrap>{loguserlist.rdate_date}</td>
+				<td align=center nowrap>{loguserlist.title}</td>
+				<td align=center nowrap>{loguserlist.logon.userid}</td>
+				<td align=center nowrap><a href="{href.delete}">삭제</a></td>
+			</tr>
+			<tr bgcolor="#EDFEE9">
+				<td colspan="4" nowrap>{loguserlist.content}</td>
+			</tr>
+			</block name="loguserlist">
+			<tr bgcolor="#EDFEE9">
+				<td align=center nowrap>제목</td>
+				<td colspan="3" nowrap><input name="title" type="text" id="title" size="50"></td>
+			</tr>
+			<tr align="center" bgcolor="#EDFEE9">
+				<td colspan="4" nowrap>
+					<textarea name="content" cols="60" rows="4" id="content"></textarea>
+					<input type="submit" name="Submit" value=" 등록 ">
+				</td>
+			</tr>
+			</table>
+			</form>
+		</td>
+	</tr>
+	</table>
+	<UL>
+		<LI>
+			<a href="/smember/recommenderme.php?userid=cs">추천 회원 리스트({count_recmder}명)</a> (<a href="/smember/recommenderranking.php">추천랭킹</a>)
+		</UL>

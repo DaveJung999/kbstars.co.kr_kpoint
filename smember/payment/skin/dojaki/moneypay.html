@@ -1,0 +1,98 @@
+
+<script language="JavaScript">
+/********************************************************************************
+*			KCP Payplus Version 5.- Web version 용 자바스크립트					*
+*																				*
+*===============================================================================*
+*다음 스크립트중 termid,cgiurl 은 부여받은 값으로 대체시키고 스크립트의 나머지	*
+*부분들은 별도 협의 없이 변경을 삼가해주시기 바랍니다.							*
+*스크립트에 대한 문의는 KCP 기술팀:02-2108-1029,1024로 해주시기 바랍니다.			*
+*********************************************************************************/
+function makeWin(orderid, amt, customerName, customerTel, userkey, customerEmail, returnurl)
+{
+	cgiurl = "https://secure.kcp.co.kr/webpay/gen_webauthpage.asp"	//test시 url과 실사용시 url이 다릅니다.
+	termid = "T08154"													//KCP로부터 부여받은 영업점코드(터미날 ID)를 정확히 입력하세요(6자리)
+	midbykcp = "MKC1"											//KCP로부터 부여받은 가맹점코드(가맹점 ID)를 정확히 입력하세요(4자리)
+	returnurl = "{href.returnurl}"; 		//결제성공시 응답받을 URL
+
+	cgiurl=cgiurl+"?orderid="+escape(orderid)+"&termid="+termid+"&midbykcp="+midbykcp+"&amt="+amt+"&customerName="+escape(customerName)+"&customerTel="+escape(customerTel)+"&userkey="+escape(userkey)+"&customerEmail="+escape(customerEmail)+"&returnurl="+escape(returnurl);
+	if(navigator.appName == "Netscape") {
+		newWin=window.open(cgiurl,"_new","width=530,height=530,scrollbars=0,scroll=0,resizable=0,status=1");
+	}
+	else {
+		newWin=window.open("","_new","width=530,height=530,scrollbars=0,scroll=0,resizable=0,status=1");
+		newWin.document.writeln("
+		<body>");
+		newWin.document.writeln("<form name=sendForm method=post action=" +cgiurl+">");
+		newWin.document.writeln("<\/form>");
+		newWin.document.writeln("<\/body>");
+		newWin.document.sendForm.submit();
+	}
+}
+</script>
+
+<table width="730" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td width="100%"><img src="images/payment_title_img.gif" width="730" height="42"></td>
+</tr>
+<tr>
+	<td height="10"></td>
+</tr>
+
+<tr>
+	<td height="5"></td>
+</tr>
+{LIST} <block name="list">
+<tr>
+	<td>
+		<table width="730" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td height="25" colspan="2"><font color="#CC3300"><strong>[주문번호 : {list.num}]</strong></font> {list.rdate_date} 주문(청구) 내용입니다.&nbsp;&nbsp;&nbsp;<strong><font color="#FF6600">(합계 : {list.totalprice} 원)</font></strong></td>
+		</tr>
+		<tr>
+			<td>
+				<table width="620" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="360" height="30" bgcolor="#D6B58C"><div align="center"><strong>상품명</strong></div></td>
+					<td width="130" bgcolor="#E2DACF"><div align="center"><strong>수량</strong></div></td>
+					<td width="120" bgcolor="#D6B58C"><div align="center"><strong>가격</strong></div></td>
+				</tr>
+				{CELL}
+				</table>
+			</td>
+			<td width="110" valign="top"><div align="center"></div></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td height="10"></td>
+</tr>
+</block name="list">
+<tr>
+	<td>
+		<div align="center">
+			총결제금액: {totalprice}<br />
+			<a href="#" onclick="{href.cardsubmit}"><img src="images/ok_btn.gif" width="80" height="25" border="0" align="absmiddle" /></a>(신용카드결제)
+		</div>
+	</td>
+</tr>
+</table>
+<br />
+<br />
+<block name="cell">
+<tr>
+	<td height="29">
+		<div align="center">
+			<opt name="href.shop"><a href='{href.shop}' target="_blank">{list.title}</a></opt name="href.shop">
+			<opt name="!href.shop">{list.title}</opt name="!href.shop">
+			(적립포인트 : {list.point} 점)
+		</div>
+	</td>
+	<td><div align="center">{list.quantity} 개</div></td>
+	<td><div align="center">{list.price}</div></td>
+</tr>
+<tr>
+	<td height="1" colspan="3" bgcolor="#EEB165"></td>
+</tr>
+</block name="cell">

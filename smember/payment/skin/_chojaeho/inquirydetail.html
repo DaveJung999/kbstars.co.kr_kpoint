@@ -1,0 +1,162 @@
+
+<style type="text/css">
+<!--
+.style14 {color: #FF9966}
+.style16 {color: #000000; font-weight: bold; }
+.style18 {color: #666666}
+.style19 {	color: #333333;
+	font-weight: bold;
+}
+.style20 {color: #333333}
+.style5 {color: #000000}
+-->
+</style>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+<TABLE width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+<TR>
+	<TD colspan="2"><img src="images/inquiry01.gif" width="120" height="50"></TD>
+</TR>
+<TR>
+	<TD width="160" colspan="2">&nbsp;</TD>
+</TR>
+<!-- 년도 이미지 시작 -->
+<!-- 년도 이미지 아웃 -->
+<TR>
+	<TD colspan="2">
+		<TABLE width="620" border="0" cellspacing="1" cellpadding="0" bgcolor="#786F66">
+		<TR>
+			<TD bgcolor="#695F55" align="center">
+				<TABLE width="600" border="0" cellspacing="0" cellpadding="0">
+				<TR>
+					<TD height="10" colspan="3"></TD>
+				</TR>
+				<TR>
+					<TD colspan="3">{list.rdate_date} 주문(청구) 내용입니다.</TD>
+				</TR>
+				<TR>
+					<TD height="10" colspan="3"></TD>
+				</TR>
+				<TR>
+					<TD width="350" height="20" bgcolor="#A69B8C"><div align="center" class="style5">상품(서비스)명</div></TD>
+					<TD width="150" height="20" bgcolor="#A69B8C"><div align="center" class="style5">가격</div></TD>
+					<TD width="100" height="20" bgcolor="#A69B8C"><div align="center" class="style5">비고</div></TD>
+				</TR>
+				{CELL}
+				<block name="cell">
+				<TR>
+					<TD height="25">
+						<div align="center">
+							<opt name="href.shop"><a href='{href.shop}' target="_blank">{list.title} </a></opt name="href.shop">
+							<opt name="!href.shop">{list.title} </opt name="!href.shop">
+						</div>
+					</TD>
+					<TD height="25"><div align="center">{list.price}</div></TD>
+					<TD height="25">
+						<div align="center">
+							<opt name="href.status"><a href="{href.status}">{list.status}</a></opt name="href.status">
+							<opt name="!href.status">{list.status}</opt name="!href.status">
+						</div>
+					</TD>
+				</TR>
+				</block name="cell">
+				<TR bgcolor="#A69B8C">
+					<TD height="1" colspan="3"></TD>
+				</TR>
+				<TR>
+					<TD height="10" colspan="3"></TD>
+				</TR>
+				<TR valign="top">
+					<TD height="25" colspan="3"><div align="center"><strong>총 결제 금액 : <span class="style14">{list.totalprice}</span> 원</strong></div></TD>
+				</TR>
+				</TABLE>
+			</TD>
+		</TR>
+		</TABLE>
+		<br>
+		<table width="620" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><img src="images/cart_12.gif" width="620" height="14"></td>
+		</tr>
+		<tr>
+			<td background="images/cart_bg.gif">
+				<table width="620" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="21" rowspan="14"><span class="style5">&nbsp;<span class="style20"><strong> </strong></span></span><span class="style5"></span><span class="style5">&nbsp;<span class="style20"></span></span><span class="style5">&nbsp;<span class="style20"></span></span><span class="style5"></span><span class="style16"></span><span class="style5"></span><span class="style5"></span><span class="style5"></span><span class="style18"></span><span class="style5">&nbsp;</span></td>
+					<td width="94">
+						<span class="style16"><br>
+						<img src="images/cart_16.gif" width="4" height="8">&nbsp; 배송정보</span>
+					</td>
+					<td width="505">&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">&nbsp;</td>
+				</tr>
+				<tr align="left" valign="middle">
+					<td height="27" align="left"><span class="style5"><span class="style20"><strong>이름</strong></span></span></td>
+					<td><span class="style5">{dlist.re_name}</span></td>
+				</tr>
+				<tr align="left" valign="middle">
+					<td height="27" align="left"><span class="style5"><span class="style20"><strong>전화번호</strong></span></span></td>
+					<td><span class="style5">{dlist.re_tel}</span></td>
+				</tr>
+				<tr align="left" valign="middle">
+					<td height="27" align="left"><span class="style5"><span class="style20"><strong> 주소</strong></span></span></td>
+					<td><span class="style5">{dlist.re_address}</span></td>
+				</tr>
+				<tr align="left" valign="middle">
+					<td height="27" align="left"><span class="style5"><span class="style20"><strong> 연락메일주소</strong></span></span></td>
+					<td><span class="style5">{dlist.re_email}</span></td>
+				</tr>
+				<tr align="left" valign="middle">
+					<td height="27" align="left"><span class="style5"><span class="style20"><strong>메모</strong></span></span></td>
+					<td><span class="style5">{dlist.re_memo}</span></td>
+				</tr>
+				<tr align="left" valign="middle">
+					<td height="58" align="left"><span class="style16"><span class="style20">배송추적</span></span></td>
+					<td align="left" valign="middle">
+						<FORM name=inv_submit action=http://www.doortodoor.co.kr/servlets/cmnChnnel method=post style="margin:0px; " target=_blank>
+						<input type="hidden" name="tc" value="dtd.cmn.command.c03condiCrg01Cmd">
+						<input type="hidden" name="cust_id" value="">
+						<p class="style5"><br>
+						<br>
+						운송장번호
+						<input name="invc_no" type="text" id="invc_no" value="{dlist.re_invoice}" size="20">
+						<input type="submit" name="Submit" value=" 배송추적(대한통운) ">
+						</p>
+						<p class="style5">&nbsp; </p>
+						</FORM>
+					</td>
+				</tr>
+				<tr align="left" valign="middle">
+					<td height="21" align="left"><span class="style16"><img src="images/cart_16.gif" width="4" height="8">&nbsp; 결제정보</span></td>
+					<td>&nbsp;</td>
+					<tr align="left" valign="middle">
+						<td height="13" colspan="2" valign="middle">&nbsp;</td>
+						<tr align="left" valign="middle">
+							<td height="27" align="left"><span class="style5"><span class="style19">결제여부</span></span></td>
+							<td valign="middle"><span class="style5">{dlist.paid}</span></td>
+							<tr align="left" valign="middle">
+								<td height="27" align="left"><span class="style5"><span class="style19">결제날짜</span></span></td>
+								<td><span class="style5">{dlist.idate_date}</span></td>
+								<tr align="left" valign="middle">
+									<td height="27" align="left"><span class="style5"><span class="style19">결제방법</span></span></td>
+									<td><span class="style5">{dlist.bank}</span></td>
+									<tr align="left" valign="middle">
+										<td height="27" align="left"><span class="style18"><span class="style19">결제정보</span></span></td>
+										<td><span class="style5">{dlist.receiptor}</span></td>
+										<tr align="left" valign="middle"> </tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td height="17"><img src="images/cart_17.gif" width="620" height="17"></td>
+								</tr>
+								</table>
+							</TD>
+						</TR>
+						<TR>
+							<TD colspan="2">&nbsp;</TD>
+						</TR>
+						</TABLE>

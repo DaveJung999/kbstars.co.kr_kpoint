@@ -1,0 +1,136 @@
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body bgcolor="white" background=""	onload="document.gsearch.gsc_string.focus();">
+	<form name="gsearch" style='border:0px;margin:0px;padding:0px' {form_gsearch}>
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black' width=500>
+	<tr>
+		<td bgcolor='#CCFFCC'>
+			그룹검색
+		</td>
+		<td bgcolor='#EDFEE9' nowrap>
+			<select name="gsc_column" size="1">
+			<option value="groupinfo.groupid"	 selected >그룹아이디</option>
+			<option value="groupinfo.name"	 >그룹명</option>
+			<option value="groupinfo.uid"		 >그룹고유번호</option>
+			<option value="groupinfo.content"		 >그룹설명</option>
+			<option value="logon.userid"		 >그룹개설자아이디</option>
+			<option value="logon.name"		 >그룹개설자이름</option>
+			<option value="logon.uid"		 >그룹개설자고유번호</option>			
+			</select>
+			<input type="text" name="gsc_string" size=10 value={get.gsc_string}>
+			<input type="submit" value=" 검색 ">
+			(와일드카드(%) 사용가능)
+
+			<script language="JavaScript" type="text/JavaScript">
+			var form_select = document.gsearch.gsc_column;
+			var form_value 				= '{get.gsc_column}';
+			for(var i=0;i<form_select.length;i++) {
+				if(form_select.options[i].value==form_value) {
+					form_select.options[i].selected = true;
+				}
+			}
+			</script>
+
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'>
+			검색결과
+		</td>
+		<td bgcolor='#EDFEE9'>
+			총 {count_gsearch}명 회원이 검색되었습니다. - <a href="groupinfoadd.php">신규그룹추가</a> 
+		</td>
+	</tr>
+	</table>
+	</form>
+	<form name="boardlist">
+	<TABLE cellSpacing=1 cellPadding=3	bgColor=black border=0>
+	<TR bgcolor="#ccffcc">
+		<TD align=center nowrap>&nbsp;</TD>
+		<TD align=center nowrap>검색결과</TD>
+		<TD align=center nowrap><opt name="sort_uid"><a href="{href.listthis}&sort=!uid">gid▼</a></opt name="sort_uid"><opt name="!sort_uid"><a href="{href.listthis}&sort=uid">gid</a></opt name="!sort_uid"></TD>
+		<TD align=center nowrap><opt name="sort_groupid"><a href="{href.listthis}&sort=!groupid">그룹아이디▼</a></opt name="sort_groupid"><opt name="!sort_groupid"><a href="{href.listthis}&sort=groupid">그룹아이디</a></opt name="!sort_groupid"></TD>
+		<TD align=center nowrap><opt name="sort_name"><a href="{href.listthis}&sort=!name">그룹명▼</a></opt name="sort_name"><opt name="!sort_name"><a href="{href.listthis}&sort=name">그룹명</a></opt name="!sort_name"></TD>
+		<TD align=center nowrap><opt name="sort_userid"><a href="{href.listthis}&sort=!userid">그룹개설자▼</a></opt name="sort_userid"><opt name="!sort_userid"><a href="{href.listthis}&sort=userid">그룹개설자</a></opt name="!sort_userid"></TD>
+		<TD nowrap>회원수</TD>
+		<TD nowrap><opt name="sort_rdate"><a href="{href.listthis}&sort=!rdate">생성날자▼</a></opt name="sort_rdate"><opt name="!sort_rdate"><a href="{href.listthis}&sort=rdate">생성날자</a></opt name="!sort_rdate"></TD>
+	</TR>
+	{LIST}
+	<block name="list">
+	<TR bgcolor="#edfee9">
+		<TD noWrap align=center><a href="{href.modify}">수정</a>/<a href="{href.delete}">삭제</a></TD>
+		<TD nowrap>{list.gsc_column}</TD>
+		<TD align=center noWrap>{list.uid}</TD>
+		<TD noWrap align=center><a href="{href.go}"><strong>{list.groupid}</strong></a></TD>
+		<TD noWrap align=center>{list.name}</TD>
+		<TD noWrap><a href="gsearch.php?bid={list.bid}" target="_blank">{list.userid}</a></TD>
+		<TD nowrap>{list.joincount}</TD>
+		<TD nowrap>{list.rdate_date}</TD>
+	</TR>
+	</block name="list">
+	</TABLE>
+	<br>
+	</form>
+	<table width="550" border="0" cellpadding="0" cellspacing="0" class="base">
+	<tr>
+		<td width="33" rowspan="2"></td>
+		<td width="459" height="35"><p align="center"> {FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</p></td>
+		<td width="58"> {WRITE} </td>
+	</tr>
+	<tr>
+		<td align="center">
+			<form name="listsearch" style='margin : 0px' {form_search}>
+			<select name="sc_column">
+			<option value='userid'>아이디</option>
+			<option value='name'>이름</option>
+			<option value='email'>메일</option>
+			<option value='tel'>전화</option>
+			<option value='hp'>휴대폰</option>
+			<option value='address'>주소</option>
+			</select>
+
+			<script language="JavaScript" type="text/JavaScript">
+			var form_select = document.listsearch.sc_column;
+			var form_value 				= '{sc_column}';
+			for(var i=0;i<form_select.length;i++) {
+				if(form_select.options[i].value==form_value) {
+					form_select.options[i].selected = true;
+				}
+			}
+			</script>
+
+			<input type="text" name="sc_string" size="10" style='height:21;' value="{sc_string}">
+			<input type="submit" value=" 검색 ">
+			</form>
+		</td>
+		<td width="58">&nbsp;</td>
+	</tr>
+	</table>
+	<block name="firstpage"><a href="{href.firstpage}">first</a></block name="firstpage">
+	<block name="nofirstpage"> firstpage </block name="nofirstpage">
+	<block name="prevblock"><a href='{href.prevblock}'>◀</a>&nbsp;</block name="prevblock">
+	<block name="noprevblock">◀&nbsp;</block name="noprevblock"> <block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block">
+	<block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock">
+	<block name="nextblock"><a href='{href.nextblock}'>▶</a>&nbsp;</block name="nextblock">
+	<block name="nonextblock">▶&nbsp;</block name="nonextblock"> <block name="lastpage"><a href="{href.lastpage}">lastpage</a></block name="lastpage">
+	<block name="nolastpage"> lastpage </block name="nolastpage">

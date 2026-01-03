@@ -1,0 +1,86 @@
+<!--
+PHP : /join/certifyid.php
+매크로
+	SITE_HEAD	: 사이트 기본 해더 HTML
+	SITE_TAIL	: 사이트 기본 테일 HTML
+	MSG			: 아이디가 있을 경우 "닫기", 아이디가 없을 경우 "신청"
+구문
+	userid_use : 아이디가 있을 경우
+	userid_nouse : 아이디가 없을 경우
+-->
+
+<html>
+<head>
+	<title>아이디 확인</title>
+</head>
+
+<script language="JavaScript">
+<!--
+function delete_id()
+{
+	opener.document.join.userid.value = "";
+	self.close();
+}
+function ok_id()
+{
+	self.close();
+}
+//-->
+</script>
+
+<body>
+	<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+	<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:#F8F8EA;
+}
+-->
+</style>
+
+	<table width="230" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<table width="230" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+				<td background="/images/admin/tbox_bg.gif"><strong>중복체크</strong></td>
+				<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+			</table>
+			<br>
+			<table width="97%" border="1" align="center" cellspacing="0" bordercolor="#666666" bordercolordark="white">
+			<tr>
+				<td width="20%" height="25" align="center" bgcolor="#F0EBD6">
+					<p><span style="font-size:9pt;">&nbsp;▒
+					게시판 아이디 중복 체크 ▒</span></p>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" height="23" bgcolor="white">
+					<div align="center">
+						{result}
+					</div>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<block name="userid_use">
+	<font size="2">신청하신 아이디는 이미 등록되어 있습니다! <BR>
+	다른 아이디로 신청하여 주십시오.</font><br><br>
+	<center><input type="button" class="input02" name="Submit2" OnClick="delete_id()" value="{MSG}"></center>
+	</block name="userid_use">
+	<block name="userid_nouse">
+	<font size="2">신청하신 아이디는 등록되어 있지 않으므로 사용가능 합니다.</font><br><br>
+	<center><input type="button" class="input02" name="Submit2" OnClick="ok_id()" value="{MSG}"></center>
+	</block name="userid_nouse">
+</body>
+</html>

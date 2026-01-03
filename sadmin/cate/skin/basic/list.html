@@ -1,0 +1,103 @@
+<!--<? exit; ?>-->
+<html>
+<!-- #CBF8D5-->
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+.style1 {color: #FF0000}
+.style2 {font-weight: bold}
+.style3 {font-weight: bold}
+.style4 {
+	color: #000000;
+	font-weight: bold;
+}
+-->
+</style>
+
+<body>
+	<table width="95%" border=0 align="center" cellpadding='3' cellspacing='1' bgcolor='#999999'>
+	<tr align="center" bgcolor='#F8F8EA'>
+		<td height="30" colspan="8" bgcolor="#F8F8EA"><b>카테고리(메뉴) 종합 관리</b></td>
+	</tr>
+	<tr align="center" bgcolor='#F8F8EA'>
+		<td width="9%" height="30" bgcolor="#D2BF7E"><strong>db</strong></td>
+		<td width="9%" bgcolor="#D2BF7E"><strong>skin</strong></td>
+		<td width="20%" bgcolor="#D2BF7E"><strong>title</strong></td>
+		<td width="8%" bgcolor="#D2BF7E"><strong>cate_depth</strong></td>
+		<td width="17%" bgcolor="#D2BF7E">
+			<strong>enable_priv/<br>
+			enable_hide</strong>
+		</td>
+		<td width="17%" bgcolor="#D2BF7E">
+			<strong>권한 list/<br>
+			catemanage</strong>
+		</td>
+		<td width="6%" bgcolor="#D2BF7E"><strong>목록수</strong></td>
+		<td width="14%" bgcolor="#D2BF7E"><strong>메뉴</strong></td>
+	</tr>
+	{LIST}
+	<block name="list">
+	<tr align="center" bgcolor="#F8F8EA" onMouseOver="this.style.backgroundColor='#C6E2F9'" onMouseOut="this.style.backgroundColor=''">
+		<td height="25" align="center" nowrap>{list.db}</td>
+		<td align="center" nowrap>{list.skin}</td>
+		<td nowrap><a href='/scate/cate.php?db={list.db}' target=_blank>{list.cut_title}</a></td>
+		<td align="center" nowrap>{list.cate_depth}</td>
+		<td align="center" nowrap>{list.enable_priv}/{list.enable_hide}</td>
+		<td align="center" nowrap>{list.priv_list}/{list.priv_catemanage}</td>
+		<td align="center" nowrap>
+			<center>
+			{list.count}
+			</center>
+		</td>
+		<td align="center" nowrap>
+			<input name="back" type="button" class="CCboxw" id="back" onclick="window.open('/scate/?db={list.db}', '_blank')" value="보기" /> 
+			<input name="back" type="button" class="CCboxw" id="back" onclick="window.open('/scate/cate.php?db={list.db}', '_blank')" value="목록관리" /> 
+			<input name="back" type="button" class="CCboxw" id="back" onclick="window.open('write.php?mode=modify&uid={list.uid}', '_blank')" value="수정" /> 
+			<input name="back" type="button" class="CCboxw" id="back" onClick="javascript: if(confirm('정말 삭제하시겠습니까?.')) window.open('ok.php?mode=delete&uid={list.uid}', '_blank')" value="삭제" /></td>
+	</tr>
+	</block name="list">
+	<tr bgcolor='#F8F8EA'>
+		<td colspan="8" align="center" bgcolor='#F8F8EA'>
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="base">
+			<tr>
+				<td width="88%"><p align="center"> {FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</p></td>
+				<td width="12%" align="center"><a href="{href.write}"><img src="images/button_write.gif" width="53" height="22" border="0"></a></td>
+			</tr>
+			<tr>
+				<td align="center">
+					<form style='margin : 0px' {form_search}>
+					<select name="sc_column">
+					<option value='title'>제목</option>
+					<option value='content'>내용</option>
+					<option value='userid'>아이디</option>
+					</select>
+					<input type="text" name="sc_string" size="20" style='height:21;' value="{sc_string}">
+					<input type="submit" value=" 검색 " align="middle">
+					</form>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<block name="firstpage"><a href="{href.firstpage}"><img src="images/font_first.gif" alt="link_firstpage.gif" width="27" height="15" border="0" align="absmiddle"></a></block name="firstpage">
+	<block name="nofirstpage"><img src="images/font_nofirst.gif" alt="link_firstpage.gif" width="27" height="15" border="0" align="absmiddle"></block name="nofirstpage">
+	<block name="prevblock"><a href='{href.prevblock}' class="base2">◀</a>&nbsp;</block name="prevblock">
+	<block name="noprevblock"> <span class="base2_lightgray">◀</span>&nbsp;</block name="noprevblock">
+	<block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block">
+	<block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock">
+	<block name="nextblock"><a href='{href.nextblock}' class="base2">▶</a>&nbsp;</block name="nextblock">
+	<block name="nonextblock"> <span class="base2_lightgray">▶</span></block name="nonextblock">
+	<block name="lastpage"><a href="{href.lastpage}"><img src="images/font_end.gif" alt="link_lastpage.gif" width="27" height="15" border="0" align="absmiddle"></a></block name="lastpage">
+	<block name="nolastpage"><img src="images/font_noend.gif" alt="link_lastpage.gif" width="27" height="15" border="0" align="absmiddle"></block name="nolastpage">
+	<block name="write"><a href="%7Bhref.write%7D" class="base">글쓰기</a></block name="write">

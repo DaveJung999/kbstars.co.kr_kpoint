@@ -1,0 +1,246 @@
+<link href="/himages/css/mulkang.css" rel="stylesheet" type="text/css">
+
+<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+<table width="706" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td width="650"><img src="images/top_inquires.gif" width="705" height="80"></td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>
+		<table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td height="25" align="left" valign="middle">&nbsp; <img src="/sshop2/stpl/hbasic/images/tdot.gif" width="10" height="10">&nbsp; <span class="gray_soft0">주문/배송조회-세부내역</span></td>
+		</tr>
+		<tr>
+			<td height="1" align="center" valign="top" bgcolor="cdcdcd"><img src="images/spacer.gif" width="1" height="1"></td>
+		</tr>
+		<tr>
+			<td align="center" valign="top"></td>
+		</tr>
+		<tr>
+			<td align="center" valign="top">
+				<table width="620" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="25" align="center">
+						<br>
+						<br>
+						<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td><img src="images/order_c_top.gif" width="620" height="10"></td>
+						</tr>
+						<tr>
+							<td width="620" align="center" background="images/order_c_center.gif">
+								<table width="600" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+								<tr>
+									<td width="600" height="25" class="base2">&nbsp; <span class="orange_soft0"><strong>{list.rdate_date} </strong>주문(청구) 내용입니다</span></td>
+								</tr>
+								<tr>
+									<td align="center" valign="top" width="500">
+										<table width="600" border="0" cellpadding="0" cellspacing="0">
+										<tr>
+											<td height="5" colspan="7"><img src="images/spacer.gif" width="1" height="1"></td>
+										</tr>
+										<tr>
+											<td width="20" height="25" bgcolor="f8f8f8">&nbsp;</td>
+											<td align="center" bgcolor="f8f8f8" class="blue_soft0">상품(서비스)명</td>
+											<td align="center" bgcolor="f8f8f8" class="blue_soft0">적립포인트</td>
+											<td align="center" bgcolor="f8f8f8" class="blue_soft0">가격</td>
+											<td align="center" bgcolor="f8f8f8" class="blue_soft0">비고</td>
+											<td width="8" bgcolor="f8f8f8">&nbsp;</td>
+										</tr>
+										{CELL}
+										<block name="cell">
+										<tr>
+											<td width="8" height="25">&nbsp;</td>
+											<td align="center" class="basic0">
+												<opt name="href.shop"><a href='{href.shop}' target="_blank">{list.title} </a></opt name="href.shop">
+												<opt name="!href.shop">{list.title} </opt name="!href.shop">
+												<opt name="list.options"><br>
+												(옵션: {list.options})</opt name="list.options">
+												<opt name="list.upfiles.upfile.name"> <br>
+												업로드파일:<a href="{list.upfiles.upfile.href}">{list.upfiles.upfile.name}</a> (
+
+												<script LANGUAGE="JavaScript">document.write(formatNum('{list.upfiles.upfile.size}'));</script>
+
+												bytes)</opt name="list.upfiles.upfile.name">
+											</td>
+											<td align="center" class="basic0">{list.point}</td>
+											<td align="center" class="basic0">{list.price}</td>
+											<td align="center" class="basic0">
+												<opt name="href.status"><a href="{href.status}">{list.status}</a></opt name="href.status">
+												<opt name="!href.status">{list.status}</opt name="!href.status">
+											</td>
+											<td width="8">&nbsp;</td>
+										</tr>
+										<tr>
+											<td height="1" colspan="6"	background="images/dot_width.gif"><img src="images/dot_width.gif" width="3" height="1"></td>
+										</tr>
+										</block name="cell">
+										<tr bgcolor="FFFFFF">
+											<td height="1" colspan="6"><img src="images/spacer.gif" width="1" height="1"></td>
+										</tr>
+										<tr bgcolor="FFFFFF">
+											<td height="1" colspan="6">&nbsp;</td>
+										</tr>
+										<tr bgcolor="FFFFFF">
+											<td height="1" colspan="6"><div align="center"><span class="base2"><span class="base_gray_bold"><span class="orange_soft0"><strong>총 결제 금액 </strong></span><strong class="orange_soft0">: {list.totalprice}</strong></span></span></div></td>
+										</tr>
+										</table>
+									</td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="images/order_c_tip.gif" width="620" height="10"></td>
+						</tr>
+						</table>
+						<br>
+						<opt name="dlist.re_address">
+						<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td><img src="images/order_c_top.gif" width="620" height="10"></td>
+						</tr>
+						<tr>
+							<td width="620" align="center" background="images/order_c_center.gif">
+								<table width="600" border="0" cellpadding="0" cellspacing="0" bordercolor="0">
+								<tr>
+									<td height="25" colspan="2" class="base2">&nbsp; <img src="/sshop2/stpl/hbasic/images/tdot.gif" width="10" height="10"> <span class="gray_soft0">배송정보</span></td>
+								</tr>
+								<tr class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 이름</p></td>
+									<td height="25" class="base2"> {dlist.re_name}</td>
+								</tr>
+								<tr bgcolor="F7F7F7" class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 전화번호</p></td>
+									<td height="25"> {dlist.re_tel} </td>
+								</tr>
+								<tr class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 주소</p></td>
+									<td height="25">{dlist.re_address} </td>
+								</tr>
+								<tr bgcolor="F7F7F7" class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 연락메일주소</p></td>
+									<td height="25"> {dlist.re_email} </td>
+								</tr>
+								<tr class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 메모</p></td>
+									<td height="25"> {dlist.re_memo} </td>
+								</tr>
+								<tr bgcolor="F7F7F7" class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 배송추적</p></td>
+									<td height="25">
+										<FORM name=inv_submit action=http://www.doortodoor.co.kr/servlets/cmnChnnel method=post style="margin:0px; " target=_blank>
+										<input type="hidden" name="tc" value="dtd.cmn.command.c03condiCrg01Cmd">
+										<input type="hidden" name="cust_id" value="">
+										운송장번호
+										<INPUT maxLength=10 size=10 name=invc_no value="{dlist.re_invoice}">
+										<input type="submit" value=" 배송추적(대한통운) "">
+										</form>
+									</td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="images/order_c_tip.gif" width="620" height="10"></td>
+						</tr>
+						</table>
+						</opt name="dlist.re_address">
+						<br>
+						<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td><img src="images/order_c_top.gif" width="620" height="10"></td>
+						</tr>
+						<tr>
+							<td width="620" align="center" background="images/order_c_center.gif">
+								<table width="600" border="0" cellpadding="0" cellspacing="0" bordercolor="0">
+								<tr>
+									<td height="25" colspan="2" class="base2">&nbsp; <img src="/sshop2/stpl/hbasic/images/tdot.gif" width="10" height="10"> <span class="gray_soft0"> 결제정보</span></td>
+								</tr>
+								<tr class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 결제여부</p></td>
+									<td height="25" class="base2"> {dlist.paid}</td>
+								</tr>
+								<tr bgcolor="F7F7F7" class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 결제날짜</p></td>
+									<td height="25" bgcolor="F7F7F7"> {dlist.idate_date} </td>
+								</tr>
+								<tr class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 결제방법</p></td>
+									<td height="25">{dlist.bank} </td>
+								</tr>
+								<tr bgcolor="F7F7F7" class="basic0">
+									<td height="25" align="left"><p class="base2">&nbsp; 결제정보</p></td>
+									<td height="25" bgcolor="F7F7F7"> {dlist.receiptor} </td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="images/order_c_tip.gif" width="620" height="10"></td>
+						</tr>
+						</table>
+
+						<opt name="dlist.taxcash_status">
+						<form name='taxcash' {form_taxcash}>
+						<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td><img src="images/order_c_top.gif" width="620" height="10"></td>
+						</tr>
+						<tr>
+							<td width="620" align="center" background="images/order_c_center.gif">
+								<table width="600" border="0" cellpadding="0" cellspacing="0" bordercolor="0">
+								<tr>
+									<td height="25" colspan="2" class="base2">&nbsp; <img src="/sshop2/stpl/hbasic/images/tdot.gif" width="10" height="10"> <span class="gray_soft0"> 현금영수증 발행 정보/수정</span></td>
+								</tr>
+								<tr class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 발행상태</p></td>
+									<td height="25" class="base2"> {dlist.taxcash_status}	- <a href="http://www.taxsave.go.kr" target="_blank">사이트이동: 국세청 현금영수증.kr</a></td>
+								</tr>
+								<tr bgcolor="F7F7F7" class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 이름(상호) </p></td>
+									<td height="25" bgcolor="F7F7F7"> <input name="taxcash_name" type="text" id="taxcash_name" value="{dlist.taxcash_name}" size="13"></td>
+								</tr>
+								<tr class="basic0">
+									<td width="100" height="25" align="left"><p class="base2">&nbsp; 발행정보 </p></td>
+									<td height="25">
+										<input name="taxcash_num" type="text" id="taxcash_num" value="{dlist.taxcash_num}" size="13">
+										주민등록번호 혹은 사업자등록번호 
+									</td>
+								</tr>
+								<tr bgcolor="F7F7F7" class="basic0">
+									<td height="25" align="left"><p class="base2">&nbsp; 연락처 </p></td>
+									<td height="25" bgcolor="F7F7F7"> <input name="taxcash_hp" type="text" id="taxcash_hp" value="{dlist.taxcash_hp}" size="14"></td>
+								</tr>
+								<tr class="basic0">
+									<td height="25" align="left"><p class="base2">&nbsp; 메일 </p></td>
+									<td height="25"><input name="taxcash_email" type="text" id="taxcash_email" value="{dlist.taxcash_email}" size="25"></td>
+								</tr>
+								<tr bgcolor="F7F7F7" class="basic0">
+									<td height="25" align="left"><p class="base2">&nbsp; </p></td>
+									<td height="25" bgcolor="F7F7F7"> <input type="submit" name="Submit" value=" 수정하기 "></td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td><img src="images/order_c_tip.gif" width="620" height="10"></td>
+						</tr>
+						</table>
+						</form>
+						</opt name="dlist.taxcash_status">
+						<br>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>

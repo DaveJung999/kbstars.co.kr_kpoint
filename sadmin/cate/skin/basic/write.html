@@ -1,0 +1,125 @@
+<!--<? exit; ?>-->
+<html>
+<!-- #CBF8D5-->
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+.style1 {color: #FF0000}
+.style2 {font-weight: bold}
+.style3 {font-weight: bold}
+.style4 {
+	color: #000000;
+	font-weight: bold;
+}
+-->
+</style>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<body>
+
+<form	name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
+<table width="95%" border="0" align="center" cellpadding='3' cellspacing='1' bgcolor='#999999'>
+<tr>
+	<td height="30" colspan="2" bgcolor='#F8F8EA'><b>카테고리(메뉴) 종합 관리</b></td>
+</tr>
+<opt name="list.db">
+<tr>
+	<td width="19%" height="25" align="center" bgcolor='#D2BF7E' lang="af" xml:lang="af"><strong>db</strong></td>
+	<td width="81%" bgcolor='#F8F8EA' > {list.db}</td>
+</tr>
+</opt name="list.db">
+<opt name="!list.db">
+<tr>
+	<td width="19%" height="25" align="center" bgcolor='#D2BF7E' lang="af" xml:lang="af"><strong>db</strong></td>
+	<td width="81%" bgcolor='#F8F8EA' ><input name="db" type="text" value="{list.db}" size="20" hname="db를 입력하세요" required="required" /></td>
+</tr>
+</opt name="!list.db">
+<tr>
+	<td height="25" align="center" bgcolor='#D2BF7E'><strong>그룹gid</strong></td>
+	<td bgcolor='#F8F8EA' ><input name="gid" type="text" id="gid" value="{list.gid}" size="8" /></td>
+</tr>
+<tr>
+	<td height="25" align="center" bgcolor='#D2BF7E'><strong>skin</strong></td>
+	<td bgcolor='#F8F8EA' >
+		<select name="skin" id="skin">
+		{list.skin_option}
+		</select>
+	</td>
+</tr>
+<tr>
+	<td height="25" align="center" bgcolor='#D2BF7E'><strong>title</strong></td>
+	<td bgcolor='#F8F8EA' ><input name="title" type="text" id="title" value="{list.title}" size="50" hname="title을 입력하세요" required="required" /></td>
+</tr>
+<tr>
+	<td height="25" align="center" bgcolor='#D2BF7E'><strong>cate_depth</strong></td>
+	<td bgcolor='#F8F8EA' ><input name="cate_depth" type="text" id="cate_depth" value="{list.cate_depth}" size="4" /></td>
+</tr>
+<tr>
+	<td height="25" align="center" bgcolor='#D2BF7E'><strong>권한-보기</strong></td>
+	<td bgcolor='#F8F8EA' ><input name="priv_list" type="text" id="priv_list" value="{list.priv_list}" size="20" /></td>
+</tr>
+<tr>
+	<td height="25" align="center" bgcolor='#D2BF7E'><strong>권한-관리</strong></td>
+	<td bgcolor='#F8F8EA' ><input name="priv_catemanage" type="text" id="priv_catemanage" value="{list.priv_catemanage}" size="20" /></td>
+</tr>
+<tr>
+	<td height="25" align="center" bgcolor='#D2BF7E'><strong>옵션-priv</strong></td>
+	<td bgcolor='#F8F8EA' >
+		<select name="enable_priv">
+
+		{list.enable_priv_option}
+
+		</select>
+		(Y or N) 
+	</td>
+</tr>
+<tr>
+	<td height="25" align="center" bgcolor='#D2BF7E'><strong>옵션-hide</strong></td>
+	<td bgcolor='#F8F8EA' >
+		<select name="enable_hide">
+
+		{list.enable_hide_option}
+
+		</select>
+		(Y or N) 
+	</td>
+</tr>
+<tr>
+	<td height="25" align="center" bgcolor='#D2BF7E'><strong>사이트스킨사용여부</strong></td>
+	<td bgcolor='#F8F8EA' >
+		<select name="html_type">
+		{list.html_type_option}
+		</select>
+		스킨명:
+		<select name="html_skin">
+		{list.html_skin_option}
+		</select>
+	</td>
+</tr>
+<tr>
+	<td align="center" bgcolor='#D2BF7E'><strong>머리글</strong></td>
+	<td bgcolor='#F8F8EA' ><textarea name="html_head" cols="50" rows="4" id="html_head">{list.html_head}</textarea></td>
+</tr>
+<tr>
+	<td align="center" bgcolor='#D2BF7E'><strong>꼬리글</strong></td>
+	<td bgcolor='#F8F8EA' ><textarea name="html_tail" cols="50" rows="4" id="html_tail">{list.html_tail}</textarea></td>
+</tr>
+<tr>
+	<td height="40" colspan="2" align="center" bgcolor='#F8F8EA'>
+		<input type="submit" name="Submit" value=" 확인 " />
+		<input type="button" name="Submit2" value=" 취소 " onclick="location.href='list.php'" />
+	</td>
+</tr>
+</table>
+</form>
+</body>

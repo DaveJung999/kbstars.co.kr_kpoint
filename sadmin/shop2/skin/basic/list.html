@@ -1,0 +1,89 @@
+<!--<? exit; ?>-->
+<html>
+<!-- #CBF8D5-->
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body>
+	<table width="624" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+	<tr align="center" bgcolor='#CCFFCC'>
+		<td colspan="6"><b>쇼핑몰2 종합 관리</b></td>
+	</tr>
+	<tr align="center" bgcolor='#CCFFCC'>
+		<td width="65">db</td>
+		<td width="71">skin</td>
+		<td width="192">title</td>
+		<td width="67">pern/row/page</td>
+		<td width="67">상품수</td>
+		<td width="119">메뉴</td>
+	</tr>
+	{LIST}
+	<block name="list">
+	<tr bgcolor='#EDFEE9' onMouseOver="this.style.backgroundColor='#CCFFCC'"	onMouseOut="this.style.backgroundColor='#EDFEE9'">
+		<td nowrap>{list.db}</td>
+		<td nowrap>{list.skin}</td>
+		<td nowrap><a href='/sshop2/list.php?db={list.db}' target=_blank>{list.title}</a></td>
+		<td nowrap>{list.pern}/{list.row_pern}/{list.page_pern}</td>
+		<td nowrap>
+			<center>
+			{list.dbcount}
+			</center>
+		</td>
+		<td align="center" nowrap><a href="/sshop2/cate.php?db={list.db}">카테고리</a>|<a href='write.php?mode=modify&uid={list.uid}'>수정</a>|<a href='ok.php?mode=delete&uid={list.uid}' onclick="javascript: return confirm('정말 삭제하시겠습니까?.');">삭제</a></td>
+	</tr>
+	</block name="list">
+	<tr bgcolor='#EDFEE9'>
+		<td colspan="6" align="center" bgcolor='#CCFFCC'>
+			<table border="0" cellpadding="0" cellspacing="0" class="base">
+			<tr>
+				<td><p align="center"> {FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</p></td>
+				<td align="center"><a href="{href.write}"><img src="images/button_write.gif" width="53" height="22" border="0"></a></td>
+			</tr>
+			<tr>
+				<td align="center">
+					<form style='margin : 0px' {form_search}>
+					<select name="sc_column">
+					<option value='title'>제목</option>
+					<option value='content'>내용</option>
+					<option value='userid'>아이디</option>
+					</select>
+					<input type="text" name="sc_string" size="10" style='height:21;' value="{sc_string}">
+					<input type="image" src="images/button_search.gif" width="53" height="22" align="middle">
+					</form>
+				</td>
+				<td>&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<block name="firstpage"><a href="{href.firstpage}"><img src="images/font_first.gif" alt="link_firstpage.gif" width="27" height="15" border="0" align="absmiddle"></a></block name="firstpage">
+	<block name="nofirstpage"><img src="images/font_nofirst.gif" alt="link_firstpage.gif" width="27" height="15" border="0" align="absmiddle"></block name="nofirstpage">
+	<block name="prevblock"><a href='{href.prevblock}' class="base2">◀</a>&nbsp;</block name="prevblock">
+	<block name="noprevblock"> <span class="base2_lightgray">◀</span>&nbsp;</block name="noprevblock">
+	<block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block">
+	<block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock">
+	<block name="nextblock"><a href='{href.nextblock}' class="base2">▶</a>&nbsp;</block name="nextblock">
+	<block name="nonextblock"> <span class="base2_lightgray">▶</span></block name="nonextblock">
+	<block name="lastpage"><a href="{href.lastpage}"><img src="images/font_end.gif" alt="link_lastpage.gif" width="27" height="15" border="0" align="absmiddle"></a></block name="lastpage">
+	<block name="nolastpage"><img src="images/font_noend.gif" alt="link_lastpage.gif" width="27" height="15" border="0" align="absmiddle"></block name="nolastpage">
+	<block name="write"><a href="%7Bhref.write%7D" class="base">글쓰기</a></block name="write">

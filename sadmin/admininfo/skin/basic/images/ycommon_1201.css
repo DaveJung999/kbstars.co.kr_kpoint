@@ -1,0 +1,532 @@
+BODY, TABLE, TR, TD, INPUT, TEXTAREA
+{	font-family:verdana, 굴림, Seoul, Gulim;
+	font-size: 10pt;
+	color: #595959;}
+
+.base {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+	letter-spacing:normal;
+	}
+	
+.base_10pt_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+	letter-spacing:normal;
+	}	
+	
+.base_10pt {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+	letter-spacing:normal;
+	}	
+	
+.base_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+	letter-spacing:normal;
+	}
+		
+
+.base2 {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #737373;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+A.base2:link, A.base2:visited {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: normal;
+	color: #737373;
+	background: none;
+	text-decoration: none;
+	}
+	A.base2:hover {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #737373;
+	text-decoration: underline;
+	}
+
+
+A.base_link:link, A.base_link:visited {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: normal;
+	color: #737373;
+	background: none;
+	text-decoration: none;
+	}
+	A.base_link:hover {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: normal;
+	color: #737373;
+	text-decoration: none;
+	background: none;
+	}
+
+.base2_lightgray {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #BABABA;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+.base2_10pt_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: bold;
+	color: #737373;
+	text-decoration: none;
+	letter-spacing:normal;
+}
+	
+.base3_violet {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #BEA8EC;
+	text-decoration: none;
+	letter-spacing:normal;
+	
+}
+
+.base4_violet_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: bolder;
+	color: #662E91;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+.base5_green_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: bolder;
+	color: #8DC63F;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+.base6_wite {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #ffffff;
+	text-decoration: none;
+	letter-spacing:normal;
+	}
+	
+.base6_wite_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: bold;
+	color: #ffffff;
+	text-decoration: none;
+	letter-spacing:normal;
+	}
+		
+.base7_blue{
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: normal;
+	color: #0060FF;
+	background: none;
+	text-decoration: none;}
+
+A.base7_blue:link, A.base7_blue:visited {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: normal;
+	color: #0060FF;
+	background: none;
+	text-decoration: none;
+
+}
+	A.base7_blue:hover {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #0060FF;
+	background: none;
+	text-decoration: underline;
+		
+	}
+	
+.base7_blue_bold{
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: bold;
+	color: #468CC8;
+	text-decoration: none;}	
+	
+.base8_13pt_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 12pt;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+	letter-spacing:normal;
+	}
+	
+.base9_bluegreen {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #13768D;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+.base9_bluegreen_tender {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #72C0D7;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}		
+
+.base_orang {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #FF8C00;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+.base_gray_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #737373;
+	text-decoration: none
+}
+
+A.base_gray_bold:link, A.base_gray_bold:visited {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #737373;
+	text-decoration: none;
+}
+
+
+A.base_gray_bold:hover {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #737373;
+	text-decoration: none;
+}
+
+ .base_green {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #649127;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+.notice {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: normal;
+	color: #737373;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+
+.nevy_gcyan {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: normal;
+	color: #39BCB4;
+	text-decoration: none;
+	letter-spacing:normal;
+	
+}
+
+A.nevy_gcyan:link, A.nevy_gcyan:visited {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-style: normal;
+	font-weight: normal;
+	color: #39BCB4;
+	background: none;
+	text-decoration: none;
+
+}
+	A.nevy_gcyan:hover {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: normal;
+	color: #39BCB4;
+	background: none;
+	text-decoration: underline;
+		
+	}
+
+.nevy_gcyan_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: bolder;
+	color: #39BCB4;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+A.nevy_gcyan_bold:link, A.nevy_gcyan_bold:visited {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-style: normal;
+	font-weight: bolder;
+	color: #39BCB4;
+	background: none;
+	text-decoration: none;
+
+}
+	A.nevy_gcyan_bold:hover {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: bolder;
+	color: #39BCB4;
+	background: none;
+	text-decoration: underline;
+		
+	}
+
+.name_large {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: bold;
+	color: #662E91;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+	
+	}
+
+.nevy_violet_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 11pt;
+	font-weight: bolder;
+	color: #662E91;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+	
+.nevy_violet {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	color: #652D92;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}	
+
+.nevy_violet_9bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: bold;
+	color: #652D92;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+A.nevy_violet:link, A.nevy_violet:visited {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-style: normal;
+	font-weight: normal;
+	color: #652D92;
+	background: none;
+	text-decoration: none;
+	}
+	A.nevy_violet:hover {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #652D92;
+	text-decoration: none;
+	text-decoration: underline;
+	}
+	
+.event_bold {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 13pt;
+	font-weight: bolder;
+	color: #ED145B;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+
+.point {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-weight: bolder;
+	color: #8DC63F;
+	text-decoration: none;
+	letter-spacing:normal;
+	word-spacing: normal;
+
+}
+.space {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: xx-small;
+	font-weight: normal;
+	color: #FFFFFF;
+	text-decoration: none;
+	letter-spacing:normal;
+	
+}	
+	
+.title {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	line-height: 120%;
+	font-weight: bold;
+	color: #000000;}
+
+	
+.money {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #F26522;
+	text-decoration: none;
+	}
+	
+.money_red {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	color: #F9232F;
+	text-decoration: none;
+}
+	
+.money_gray {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 8pt;
+	line-height: normal;
+	color: #A4A4A4;
+	text-decoration: line-through;
+}		
+	
+.smoll_title_cyan {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #67CCC4;}
+	
+.smoll_title_red {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #F36896;}	
+
+.smoll_title_yellow {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #A88D01;}	
+
+.bgreen {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	line-height: 120%;
+	color: #09AE00;
+}
+
+.topsmenu {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #BEA8EC;
+}
+
+}
+	A.topsmenu:link, A.topmenu:active, A.topsmenu:visited {
+	font-size: 10px;
+	text-decoration: none;
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #D5C5F4;
+}
+	A.topsmenu:hover {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #D5C5F4;}
+
+	
+	

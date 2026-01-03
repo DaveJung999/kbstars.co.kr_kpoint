@@ -1,0 +1,164 @@
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body bgcolor="white" background=""	onload="document.msearch.msc_string.focus();">
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black' width=500>
+	<tr>
+		<td bgcolor='#CCFFCC'>빠른검색</td>
+		<td bgcolor='#EDFEE9'>
+			<table>
+			<tr>
+				<td>
+					<form style='border:0px;margin:0px;padding:0px' method=get action=''>
+					<input type=hidden name='mode' value='{get.mode}'>
+					<input type=hidden name='msc_column' value='logon.userid'>
+					아이디
+					<input type="text" name="msc_string" size=10 value="{logon.userid}">
+					<input type="submit" value=" 검색 ">
+					</form>
+				</td>
+				<td>
+					<form style='border:0px;margin:0px;padding:0px' method=get action=''>
+					<input type=hidden name='mode' value='{get.mode}'>
+					<input type=hidden name='msc_column' value='logon.name'>
+					이름
+					<input type="text" name="msc_string" size=10 value="{logon.name}">
+					<input type="submit" value=" 검색 ">
+					</form>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'> 검색조건 </td>
+		<td bgcolor='#EDFEE9' nowrap>
+			<form style='border:0px;margin:0px;padding:0px' name="msearch" {form_msearch}>
+			<select name="msc_column" size="1">
+			<option value="payment.num"	 >주문번호</option>
+			<option value="logon.userid"	 >아이디</option>
+			<option value="logon.uid"		 >고유번호</option>
+			<option value="logon.level"		 >레벨</option>
+			<option value="logon.name"		 >이름</option>
+			<option value="logon.nickname"	 >별칭</option>
+			<option value="logon.email"		 >메일</option>
+			<option value="logon.idnum"	 >주민번호</option>
+			<option value="logon.hp"		 >휴대폰</option>
+			<option value="logon.tel"	 >전화</option>
+			<option value="logon.address" >주소</option>
+			<option value="logon.c_name"	 >회사이름</option>
+			</select>
+			<input type="text" name="msc_string" size=10 value={get.msc_string}>
+			<input type="submit" value=" 검색 ">
+			(와일드카드(%) 사용가능)
+
+			<script language="JavaScript" type="text/JavaScript">
+			var form_select = document.msearch.msc_column;
+			var form_value 				= '{get.msc_column}';
+			for(var i=0;i<form_select.length;i++) {
+				if(form_select.options[i].value==form_value) {
+					form_select.options[i].selected = true;
+				}
+			}
+			</script>
+
+			</form>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#CCFFCC'> 검색결과 </td>
+		<td bgcolor='#EDFEE9'> 총 {count_msearch}명 회원이 검색되었습니다. - <a href="userinfoadd.php">신규회원추가</a> </td>
+	</tr>
+	</table>
+	<br>
+	<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'	width=500>
+	<tr>
+		<td bgcolor='#CCFFCC' nowrap>
+			{logon.uid}&nbsp;&nbsp;{logon.userid}(<a href='mailto:{logon.email}'>{logon.name}</a>)&nbsp;&nbsp;&nbsp;&nbsp;권한:{logon.priv}({logon.level})&nbsp;&nbsp;&nbsp;&nbsp;전화: {logon.tel}(HP:<a href="javascript: window.open('/ssms/sms.php?mode=uids&uids={logon.uid}' , 'new21sms' , 'toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=1,scrollbars=1,width=300,height=400');void(0);">{logon.hp}</a>)&nbsp;&nbsp;<br>
+			<a href='userinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}'>회원정보</a> / <a href="joininfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">그룹정보</a> / <a href="serviceinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">서비스정보</a> / <a href="paymentinfo.php?msc_column={get.msc_column}&msc_string={get.msc_string}">지불정보</a> / <a href="accountlist.php?msc_column={get.msc_column}&msc_string={get.msc_string}">포인트정보</a> / <a href="joinout.php?bid={logon.uid}">회원탈퇴</a> 
+		</td>
+	</tr>
+	</table>
+	<form name=groupinfoadd {form_default}>
+	<table width="347" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+	<tr>
+		<td colspan="2" bgcolor='#CCFFCC' lang="af"><strong>그룹 추가</strong></td>
+	</tr>
+	<opt name="list.bid"></opt name="list.bid">
+	<opt name="!list.bid">
+	<tr >
+		<td bgcolor="#CCFFCC">그룹ID</td>
+		<td	bgcolor="#EDFEE9"><input name="groupid" type="text" id="groupid" size="20"></td>
+	</tr>
+	</opt name="!list.bid">
+	<tr >
+		<td bgcolor="#CCFFCC">level</td>
+		<td	bgcolor="#EDFEE9"><input name="level" type="text" id="level" value="{list.level}" size="10"></td>
+	</tr>
+	<tr >
+		<td bgcolor="#CCFFCC">open_email</td>
+		<td	bgcolor="#EDFEE9">
+			<input name="open_email" type="text" id="open_email" value="{list.open_email}" size="5">
+			(N/Y/A)
+		</td>
+	</tr>
+	<tr >
+		<td bgcolor="#CCFFCC">open_tel</td>
+		<td	bgcolor="#EDFEE9">
+			<input name="open_tel" type="text" id="open_tel" value="{list.open_tel}" size="5">
+			(N/Y/A)
+		</td>
+	</tr>
+	<tr >
+		<td bgcolor="#CCFFCC">open_hp</td>
+		<td	bgcolor="#EDFEE9">
+			<input name="open_hp" type="text" id="open_hp" value="{list.open_hp}" size="5">
+			(N/Y/A)
+		</td>
+	</tr>
+	<tr >
+		<td bgcolor="#CCFFCC">open_birth</td>
+		<td	bgcolor="#EDFEE9">
+			<input name="open_birth" type="text" id="open_birth" value="{list.open_birth}" size="5">
+			(N/Y/A)
+		</td>
+	</tr>
+	<tr >
+		<td bgcolor="#CCFFCC">open_address</td>
+		<td	bgcolor="#EDFEE9">
+			<input name="open_address" type="text" id="open_address" value="{list.open_address}" size="5">
+			(N/Y/A)
+		</td>
+	</tr>
+	<tr >
+		<td bgcolor="#CCFFCC">open_orders</td>
+		<td	bgcolor="#EDFEE9">
+			<input name="open_orders" type="text" id="open_orders" value="{list.open_orders}" size="5">
+			(N/Y/A)
+		</td>
+	</tr>
+	<tr >
+		<td width="88" bgcolor="#CCFFCC">&nbsp;</td>
+		<td width="244"	bgcolor="#EDFEE9"><input type="submit" name="Submit" value=" 전송 "></td>
+	</tr>
+	</table>
+	</form>

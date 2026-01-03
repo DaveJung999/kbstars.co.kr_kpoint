@@ -1,0 +1,130 @@
+.eprint {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+	font-weight: normal;
+	color: #666666;
+	text-decoration: none;
+}
+.base {
+	font-family: verdana, "돋움", "돋움체";
+	font-size: 9pt;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+}
+.line {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	line-height: 130%;
+
+}
+.bl {
+	line-height: 200%;
+	font-weight: normal;
+	color: #333333;
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+}
+.bb {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	line-height: 150%;
+	font-weight: bold;
+	color: #004000;
+}
+.bbl {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: 150%;
+	font-weight: bold;
+	color: #333333;
+}
+.bw {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 9pt;
+	line-height: 150%;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.batv {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	line-height: 130%;
+	font-weight: bold;
+	color: #DB0000;
+	text-decoration: underline;
+}
+.by {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	line-height: 130%;
+	font-weight: bold;
+	color: #FFFF00;
+}
+.dline {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	line-height: 150%;
+}
+.bred {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	line-height: 150%;
+	font-weight: bold;
+	color: #EA0000;
+}
+.gr {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	line-height: 130%;
+	font-weight: normal;
+	color: #333333;
+}
+a:link {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	color: #003399;
+	text-decoration: none;
+}
+a:hover {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	color: #CC00CC;
+	text-decoration: none;
+}
+a:visited {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	font-variant: normal;
+	color: #006633;
+
+
+}
+a:active {
+	color: #FF0000;
+	text-decoration: none;
+}
+a.eprint:link {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	color: #0033CC;
+	text-decoration: none;
+}
+a.eprint:hover {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	color: #CC00CC;
+	text-decoration: underline;
+}
+a.eprint:active {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	color: #EA0000;
+	text-decoration: none;
+}
+a.eprint:visited {
+	font-family: "굴림", "돋움", "바탕";
+	font-size: 10pt;
+	color: #006600;
+	text-decoration: none;
+}

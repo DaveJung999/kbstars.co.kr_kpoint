@@ -1,0 +1,138 @@
+<!--<? exit; ?>-->
+
+<html>
+<head>
+	<title>대량메일 발송</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="images/style.css" type="text/css">
+
+<style type="text/css">
+.navtext
+{
+	text-align:left;
+	width:300px;
+	font:9pt;
+	border-width:2px;
+	border-style:outset;
+	border-color:#333333;
+	background-color:#DFDFDF;
+	layer-background-color:white;
+	color:#FF6600;
+}
+</style>
+
+
+	<script	language="javascript" src="images/writetxt.js"></script>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+	<table width="100%" border="0" cellspacing="0" cellpadding="1">
+	<tr>
+		<td align="center" colspan="12" bgcolor="#000000" height='1'></td>
+	</tr>
+	<tr>
+		<td align="center" height="20" bgcolor="#DDDDCC"><b> DB name </b></td>
+		<td align="center" height="20" bgcolor="#DDDDCC"><b> 총인원 </b></td>
+		<td align="center" height="20" bgcolor="#DDDDCC"><b> 발송인원 </b></td>
+		<td align="center" height="20" bgcolor="#DDDDCC"><b> 읽은인원 </b></td>
+		<td align="center" height="20" bgcolor="#DDDDCC"><b> 등록일 </b></td>
+		<td colspan="7" align="center" height="20" bgcolor="#DDDDCC"><b> 메뉴 </b></td>
+	</tr>
+	<tr>
+		<td colspan="12" bgcolor="#000000" height='1'></td>
+	</tr>
+	<tr>
+		<td colspan="12" height='5' bgcolor="fffaf0"></td>
+	</tr>
+	{LIST}
+	<block name="list">
+	<tr valign="middle">
+		<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " height="20" bgcolor="fffaf0">
+			<a href="#" onMouseOver="writetxt('보내시고자 하는 메일링의 그룹이름입니다.')" onMouseOut="writetxt(0)">
+			{list.db}
+			</a> 
+		</td>
+		<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " align="center" height="20" bgcolor="fffaf0">
+			<a href="#" onMouseOver="writetxt('메일링 리스트에 등록된 메일 총개수 입니다.')" onMouseOut="writetxt(0)">
+
+			<script LANGUAGE="JavaScript">document.write(formatNum('{list.count_total}'));</script>
+
+			</a> 
+		</td>
+		<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " align="center" height="20" bgcolor="fffaf0">
+			<a href="#" onMouseOver="writetxt('발송된 메일의 개수 입니다.')" onMouseOut="writetxt(0)">
+
+			<script LANGUAGE="JavaScript">document.write(formatNum('{list.count_send}'));</script>
+
+			</a> 
+		</td>
+		<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " align="center" height="20" bgcolor="fffaf0">
+			<a href="#" onMouseOver="writetxt('발송된 메일을 읽은 회원님의 수 입니다.')" onMouseOut="writetxt(0)">
+
+			<script LANGUAGE="JavaScript">document.write(formatNum('{list.count_read}'));</script>
+
+			</a>
+			<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " align="center" height="20" bgcolor="fffaf0">
+				<a href="#" onMouseOver="writetxt('메일링 리스트 그룹을 생성한 날짜입니다.')" onMouseOut="writetxt(0)">
+				{list.rdate_date} </a> 
+			</td>
+			<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " align="center" height="20" bgcolor="fffaf0">
+				<a href="listemail/ok.php?db={list.db}&mode=reset" onMouseOver="writetxt('메일 리스트 전체를 보내지 않은 상태로 되돌립니다.')" onMouseOut="writetxt(0)" onClick="return confirm('초기화 하면 발송인원과 읽은인원이 0(제로) 이 됩니다!!!')">[초기화]</a>
+			</td>
+			<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " align="center" height="20" bgcolor="fffaf0">
+				<a href="./testmail.php?db={list.db}" onMouseOver="writetxt('메일링 리스트에 등록된 메일중 임으로 몇개를 뽑아서 관리자(자신)에게 테스트 해 볼 수 있습니다.')" onMouseOut="writetxt(0)">[테스트]</a>
+			</td>
+			<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " align="center" height="20" bgcolor="fffaf0">
+				<a href="sendmail2.php?db={list.db}" onMouseOver="writetxt('메일링 리스트에 등록되어 있는 회원님들께 전체 메일을 보냅니다.')" onMouseOut="writetxt(0)" onClick="return confirm('전체 메일을 보내시겠습니까?')"><b>[보내기]</b></a>
+			</td>
+			<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " align="center" height="20" bgcolor="fffaf0">
+				<a href="listemail/list.php?db={list.db}" onMouseOver="writetxt('등록된 회원님들의 명단을 확인할 수 있으며, 발송여부의 확인과 읽은 회원님과 읽은 시각을 확인하실 수 있습니다.')" onMouseOut="writetxt(0)">[리스트</a>]
+			</td>
+			<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " align="center" height="20" bgcolor="fffaf0">
+				<a href="./delnospam.php?db={list.db}" onMouseOver="writetxt('수신거부메일 삭제합니다')" onMouseOut="writetxt(0)">(거부삭제)</a>
+			</td>
+			<td	onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " align="center" height="20" bgcolor="fffaf0">
+				<a href="./write.php?mode=modify&uid={list.uid}" onMouseOver="writetxt('발송될 메일의 내용과 기타 설정등을 수정하실 수 있습니다.')" onMouseOut="writetxt(0)">(수정)</a>
+				<a href="./ok.php?mode=delete&uid={list.uid}" onMouseOver="writetxt('생성된 메일링 리스트를 삭제하실 수 있습니다.')" onMouseOut="writetxt(0)" onClick="return confirm('정말 삭제하시겠습니까?')">(삭제)</a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" height="1" bgcolor="#ffdab9"></td>
+		</tr>
+		</block name="list">
+		<tr>
+			<td colspan="12" height="1" bgcolor="#ffdab9"></td>
+		</tr>
+		<tr>
+			<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " colspan="12" align="center" height="20" bgcolor="fffaf0">{FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</td>
+		</tr>
+		<tr>
+			<td colspan="12" height="1" bgcolor="#ffdab9"></td>
+		</tr>
+		<tr>
+			<td onMouseOut="this.style.backgroundColor=''" onMouseOver="this.style.backgroundColor='#e6e6fa' " colspan="12" align="center" height="20" bgcolor="fffaf0">
+				<a href="./write.php" onMouseOver="writetxt('발송할 메일링 리스트의 그룹을 추가하실 수 있습니다.')" onMouseOut="writetxt(0)"><b>발송리스트
+				추가하기</b></a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="12" height='5' bgcolor="#DDDDCC"></td>
+		</tr>
+		<tr>
+			<td colspan="12" height="1" bgcolor="#000000"></td>
+		</tr>
+		</table>
+		<div id="navtxt" class="navtext" style="position:absolute; top:-100px; left:0px; visibility:hidden"></div>
+		<block name="firstpage"><a href="{href.firstpage}"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></a></block name="firstpage">
+		<block name="nofirstpage"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></block name="nofirstpage">
+		<block name="prevblock"><a href='{href.prevblock}'>◀</a>&nbsp;</block name="prevblock">
+		<block name="noprevblock">◀&nbsp;</block name="noprevblock">
+		<block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block">
+		<block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock">
+		<block name="nextblock"><a href='{href.nextblock}'>▶</a>&nbsp;</block name="nextblock">
+		<block name="nonextblock">▶&nbsp;</block name="nonextblock">
+		<block name="lastpage"><a href="{href.lastpage}"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></a></block name="lastpage">
+		<block name="nolastpage"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></block name="nolastpage">

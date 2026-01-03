@@ -1,0 +1,59 @@
+<!--<? exit; ?>-->
+<link href="images/basic.css" rel="stylesheet" type="text/css">
+<table width="550" border="0" cellpadding="0" cellspacing="0" align="center">
+<tr>
+	<td width="550" height="25" colspan="2" class="nevy_violet"><p class="bbl">제목 : <a href="list.php?db={dbinfo.db}">{dbinfo.title}</a><opt name="SAMECATE"></opt name="SAMECATE"> </p></td>
+</tr>
+<opt name="SUBCATE">
+
+</opt name="SUBCATE">
+</table>
+<table border="0" cellpadding="3" cellspacing="0" width="550" align="center">
+<tr height="24">
+	<td height="15" colspan="5" bgcolor="#FFFFFF"></td>
+</tr>
+<tr height="24">
+	<td height="25" colspan="5" bgcolor="#87AD85"><p align="center" class="bw"><font size=2><b>{list.title}</b></font></td>
+</tr>
+<tr>
+	<td width="82" height="20" align="center" bgcolor="#F2F2EE" class="bb"><font size="2">이&nbsp;&nbsp; &nbsp;름</font></td>
+	<td width="11" bgcolor="#F2F2EE"><font size="2">:</font></td>
+	<td width="457" bgcolor="#F2F2EE"><font size="2">{list.userid}</font></td>
+</tr>
+<tr>
+	<td width="82" height="20" align="center" bgcolor="#F2F2EE" class="bb"><font size="2">E-mail</font></td>
+	<td width="11" bgcolor="#F2F2EE"><font size="2">:</font></td>
+	<td width="457" bgcolor="#F2F2EE"><font size="2">{list.email}</font></td>
+</tr>
+<tr bgcolor="#F5F5F5" height=200>
+	<td width="82" align="center" valign="top" class="bb"><font size="2">내&nbsp;&nbsp;&nbsp; 용</font></td>
+	<td width="11" valign="top"><font size="2">&nbsp;</font></td>
+	<td width="457" valign="top"><font size="2">{list.content}</font></td>
+</tr>
+<tr bgcolor="#87AD85">
+	<td width="82" height="3"></td>
+	<td width="11" height="3"></td>
+	<td height="3" ></td>
+</tr>
+{UPFILES}
+<block name="upfiles">
+<tr bgcolor="#F5F5F5">
+	<td width="82" align="center" valign="top" class="bb"><font size="2">파&nbsp;&nbsp;&nbsp; 일</font></td>
+	<td width="11" valign="top"><font size="2">:</font></td>
+	<td width="457" valign="top"><font size="2">{UPFILE}</font></td>
+</tr>
+</block name="upfiles">
+<tr>
+	<td width="82" bgcolor="#FFFFFF">&nbsp;</td>
+	<td width="11" bgcolor="#FFFFFF">&nbsp;</td>
+	<td width="457" align="right" bgcolor="#FFFFFF" class="base"> {REPLY} {WRITE} {MODIFY} {DELETE} <a href="{href.list}"><img src="images/bott_list.gif" width="50" height="25" border=0></a> </td>
+</tr>
+</table>
+<br>
+<br>
+<block name="upfile"><a href="{upfile.href}">{upfile.name}</a>(크기: {upfile.size} bytes)<br>
+</block name="upfile">
+<block name="reply"><a href="{href.reply}"><img src="images/bott_answer.gif" width="67" height="25" border=0></a></block name="reply">
+<block name="write"><a href="{href.write}"><img src="images/bott_write.gif" width="45" height="25" border="0"></a></block name="write">
+<block name="modify"><a href="{href.modify}"><img src="images/bott_modify.gif" width="69" height="25" border="0"></a></block name="modify">
+<block name="delete"><a href="{href.delete}" onclick="javascript: return confirm('답변이 있다면 답변글까지 모두 삭제됩니다.\n정말 삭제하시겠습니다.');"><img src="images/bott_delete.gif" width="61" height="25" border="0"></a></block name="delete">

@@ -1,0 +1,525 @@
+<script src="/scommon/join_check.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+	function focus_move_tel2(){
+		var len=document.getElementsByName('tel1')[0].value.length;
+		if(len>3){
+			try{
+				document.getElementsByName('tel2')[0].focus();
+			} catch(e){}
+		}
+	}
+	function focus_move_tel3(){
+		var len=document.getElementsByName('tel2')[0].value.length;
+		if(len>3){
+			try{
+				document.getElementsByName('tel3')[0].focus();
+			} catch(e){}
+		}
+	}
+	function focus_move_hp3(){
+		var len=document.getElementsByName('hp2')[0].value.length;
+		if(len>3){
+			try{
+				document.getElementsByName('hp3')[0].focus();
+			} catch(e){}
+		}
+	}	
+</script>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+<!--
+// 아이디 존재 여부 확인
+function certify_userid()
+{
+	userid = document.join.userid.value;
+	if (!check_userid(userid)) 
+	{
+		alert( "아이디는 2-10자까지 숫자, 영문자로만 조합만 가능합니다. 첫문자는 영문자여야 합니다.\n\n아이디를 올바른 형식으로 먼저 기입을 하셔야합니다." );
+		document.join.userid.focus();
+		return;
+	}
+   window.open( './certifyid.php?userid=' + userid, 'idcheck', 'width=350,height=220,resizable=1,scrollbars=0' );
+   return;	
+}
+
+// 주민번호 존재 여부 확인
+function certify_idnum()
+{
+	idnum1 = document.join.idnum1.value;
+	idnum2 = document.join.idnum2.value;	
+	if (!idnum1 || !idnum2) 
+	{
+		alert( "주민번호를 먼저 입력하세요" );
+		document.join.idnum1.focus();
+		return;
+	}
+   window.open( './certifyidnum.php?idnum=' + idnum1+'-'+idnum2, 'idcheck', 'width=350,height=220,resizable=1,scrollbars=0' );
+   return;	
+}
+
+// 주소 검색 창
+function search_zip()
+{
+   window.open('./searchzip.php', 'idcheck', 'width=470,height=200,resizable=1,scrollbars=1' );
+   return;		
+}
+
+// 추천인 아이디 찾기 창
+function certify_nameperuserid()
+{
+	userid = document.join.recommender.value;
+	if(!userid) {
+		alert('추천인 아이디를 입력해 주시기 바랍니다.');
+		document.join.recommender.focus();
+		return false;
+	}
+	url = "./certify_nameperuserid.php?userid=" + userid;
+	window.open(url, 'idcheck', 'width=370,height=250,resizable=1,scrollbars=1' );
+	return;		
+}
+
+// 가입하기 클릭후 폼문을 제대로 입력했는지 체크
+function checkForm() {
+	var f= document.join;
+
+	// 입력값 공백 체크
+	if( isEmpty( f.userid.value )){
+		alert('ID를  입력하시기 바랍니다.');
+		f.userid.focus();
+		return false;
+	}
+	if( isEmpty( f.passwd.value )){
+		alert('비밀번호를  입력하시기 바랍니다.');
+		f.passwd.focus();
+		return false;
+	}
+	if( isEmpty( f.passwd_ok.value )){
+		alert('비밀번호확인을 입력하시기 바랍니다.');
+		f.passwd_ok.focus();
+		return false;
+	}
+	if( isEmpty( f.name.value )){
+		alert('이름을  입력하시기 바랍니다.');
+		f.name.focus();
+		return false;
+	}
+	if( isEmpty( f.email.value )){
+		alert('이메일을  입력하시기 바랍니다.');
+		f.email.focus();
+		return false;
+	}
+	if( isEmpty( f.idnum1.value )){
+		alert('주민등록번호를  입력하시기 바랍니다.');
+		f.idnum1.focus();
+		return false;
+	}
+	if( isEmpty( f.idnum2.value )){
+		alert('주민등록번호를  입력하시기 바랍니다.');
+		f.idnum2.focus();
+		return false;
+	}
+
+	if( isEmpty( f.zip1.value )){
+		alert('우편번호를  입력하시기 바랍니다.');
+		f.zip1.focus();
+		return false;
+	}
+	if( isEmpty( f.zip2.value )){
+		alert('우편번호를  입력하시기 바랍니다.');
+		f.zip2.focus();
+		return false;
+	}
+	if( isEmpty( f.address.value )){
+		alert('주소를  입력하시기 바랍니다.');
+		f.address.focus();
+		return false;
+	}
+	if( isEmpty( f.tel.value )){
+		alert('연락처를  입력하시기 바랍니다.');
+		f.tel.focus();
+		return false;
+	}
+	
+	if( isEmpty( f.job.value )){
+		alert('직업을  입력하시기 바랍니다.');
+		f.job.focus();
+		return false;
+	}
+
+	// 아이디 체크
+	if( !check_userid(f.userid.value)) 
+		{		
+		alert('아이디는 2-16자까지 숫자, 영문자, - 의 조합만 가능합니다. 첫문자는 영문자여야 합니다.');
+		f.userid.focus();
+		return false;
+	}
+
+	// 비밀번호 체크
+	if( !check_passwd(f.passwd.value, f.passwd_ok.value)) 
+	{
+		alert('비밀번호는 3자 이상이며, 비밀번호가 일치한지 확인하여 다시 입력하시기 바랍니다.');
+		f.passwd.focus();
+		return false;
+	}
+
+	// 이메일 체크
+	if( !check_email(f.email.value)) {
+		alert('이메일을 정확히 입력하시기 바랍니다.');
+		f.email.focus();
+		return false;
+	}
+	// 주민등록 체크
+	if( !check_idnum(f.idnum1.value, f.idnum2.value)) 
+	{
+		alert('주민 등록를 올바르게 입력하시기 바랍니다.');
+		f.idnum1.focus();
+		return false;
+	}
+
+	// 주소 체크
+	if(f.address.value.length < 10) 
+	{
+		alert('주소를 정확히 입력하시기 바랍니다.');
+		f.address.focus();
+		return false;
+	}
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+-->
+</style>
+
+<form name="join" onSubmit="return checkForm()" {form_default}>
+<input type=hidden name=country value=kr style="margin:0px ">
+<table width=685 border=0 cellspacing=0 cellpadding=0>
+  <tr>
+    <td><img src="images/s_join_top_title.gif" width="690" height="71"></td>
+  </tr>
+  <tr>
+    <td height=20></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/s_join_title_01.gif" width="655" height="21"></td>
+  </tr>
+  <tr>
+    <td align="center"><table border=0 cellpadding=0 cellspacing=0>
+      <tr>
+        <td height="15" colspan="3"></td>
+      </tr>
+      <tr align="left">
+        <td colspan="3"><img src="images/s_join_txt_01.gif" width="524" height="98"></td>
+      </tr>
+      <tr>
+        <td colspan="3" align=center>&nbsp;</td>
+      </tr>
+      <tr align="left">
+        <td colspan="3">&nbsp;&nbsp;<img src="images/s_join_from_title_01.gif" width="97" height="14"></td>
+      </tr>
+      <tr>
+        <td width="5">&nbsp;</td>
+        <td width="504"><table width="507" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="10" colspan="3"></td>
+          </tr>
+          <tr bgcolor="#C0B7B0">
+            <td height="2" colspan="3"></td>
+            </tr>
+          <tr bgcolor="#FCFCFC">
+            <td width="20" height="30"></td>
+            <td width="122" height="30"><img src="images/s_join_from_title_name.gif" width="22" height="12"></td>
+            <td width="362" height="30"><input name="name" type="text" id="name" size="15" value="{session.join_name}"  readonly=""/></td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+            </tr>
+          <tr bgcolor="#FCFCFC">
+            <td height="30"></td>
+            <td height="30"><img src="images/s_join_from_title_ppno.gif" width="67" height="12"></td>
+            <td height="30"><input name="idnum1" type="text" id="idnum1" size="8" value="{session.join_jumin1}"  readonly=""/>
+              -
+                <input name="idnum2" type="password" id="idnum2" size="8" value="{session.join_jumin2}"  readonly=""/></td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+          </tr>
+          <tr bgcolor="#FCFCFC">
+            <td height="50"></td>
+            <td height="50"><img src="images/s_join_from_title_id.gif" width="33" height="12">(<span class="style1">*</span>)</td>
+            <td height="50"><input name="userid" type="text" id="userid" size="15">
+              <a href="#" onClick="certify_userid()"><img src="images/s_join_idcheck_bnt.gif" width="54" height="17" border="0" align="absmiddle"></a> <br>
+영문 숫자 6자이상 10자 이내 사용가능</td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+          </tr>
+          <tr bgcolor="#FCFCFC">
+            <td height="50"></td>
+            <td height="50"><img src="images/s_join_from_title_pw.gif" width="45" height="12">(<span class="style1">*</span>)</td>
+            <td><input name="passwd" type="password" id="passwd" size="15">
+              <br>
+              영문 숫자 6자이상 10자 이내 사용가능</td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+          </tr>
+          <tr bgcolor="#FCFCFC">
+            <td height="30"></td>
+            <td height="30"><img src="images/s_join_from_title_pwcheck.gif" width="67" height="12">(<span class="style1">*</span>)</td>
+            <td height="30"><input name="passwd2" type="password" id="passwd2" size="15"></td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+          </tr>
+          <tr bgcolor="#FCFCFC">
+            <td height="30"></td>
+            <td height="30"><img src="images/s_join_from_title_phone01.gif" width="45" height="12"></td>
+            <td height="30"><input name=tel1 class=inputclass id="tel1" size="7" onkeyup="focus_move_tel2()"> 
+              - 
+                <input name=tel2 class=inputclass id="tel2" size="7" onkeyup="focus_move_tel3()">
+                - 
+                <input name="tel3" class="inputclass" id="tel3" size="7" /></td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+          </tr>
+          <tr bgcolor="#FCFCFC">
+            <td height="30"></td>
+            <td height="30"><img src="images/s_join_from_title_phone02.gif" width="34" height="12"></td>
+            <td height="30"><select name=hp1>
+            <option selected>010</option>
+            <option>011</option>
+            <option>016</option>
+            <option>017</option>
+			<option>018</option>
+            <option>019</option>
+          </select>
+-
+  <input name=hp2 class=inputclass id="hp2" size="7" onkeyup="focus_move_hp3()">
+-
+<input name=hp3 class=inputclass id="hp3" size="7"></td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+          </tr>
+          <tr bgcolor="#FCFCFC">
+            <td height="50"></td>
+            <td height="50"><img src="images/s_join_from_title_mail.gif" width="58" height="11">(<span class="style1">*</span>)</td>
+            <td height="50"><input name="email" type="text" id="email">
+              <br>
+              hanmail.net / daum.net이 아닌 메일 주소를 입력하여주세요. </td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+          </tr>
+          <tr bgcolor="#FCFCFC">
+            <td height="30"></td>
+            <td height="30"><img src="images/s_join_from_title_mailagree.gif" width="81" height="12"></td>
+            <td height="30">
+              <input name="yesmail" type="radio" value="1" checked>
+              이메일 수신  
+              <input type="radio" name="yesmail" value="0"> 
+              수신 안함           </td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+          </tr>
+          <tr bgcolor="#FCFCFC">
+            <td height="50"></td>
+            <td height="50"><img src="images/s_join_from_title_adrss.gif" width="23" height="12">(<span class="style1">*</span>)</td>
+            <td><input name="zip1" type="text" id="zip1" size="10" readonly="">
+-
+  <input name="zip2" type="text" id="zip2" size="10"  readonly="">
+  &nbsp;
+  <a href="#" onClick="search_zip()"><img src="images/s_join_codecheck_bnt.gif" width="59" height="18" border="0" align="absmiddle"></a><br>
+  <input name="address" type="text" id="address" size="40" readonly="">
+  <br />
+  상세주소:
+  <input name="address2" type="text" id="address2" size="33" /></td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+          </tr>
+          <tr bgcolor="#FCFCFC">
+            <td height="30"></td>
+            <td height="30"><img src="images/s_join_from_title_job.gif" width="23" height="12"></td>
+            <td height="30">
+              <select name="job">
+                    <option>회사원</option>
+                    <option>중/고등학생</option>
+                    <option>대학(원)생</option>
+                    <option>전업주부</option>
+                    <option>공무원 </option>
+                    <option>교육업 </option>
+                    <option>서비스업 </option>
+                    <option>예술 </option>
+                    <option>연예/스포츠 </option>
+                    <option>언론/기자 </option>
+                    <option>광고/마케팅/홍보 </option>
+                    <option>컨설팅/MD </option>
+                    <option>사진/디자인 </option>
+                    <option>컴퓨터/인터넷 </option>
+                    <option>프로그래머/기술 </option>
+                    <option>금융/증권/보험/회계 </option>
+                    <option>경영간부 </option>
+                    <option>법조인 </option>
+                    <option>의료 </option>
+                    <option>서비스업 </option>
+                    <option>유통/판매 </option>
+                    <option>자영업 </option>
+                    <option>농/수/임/광업 </option>
+                    <option>제조업 </option>
+                    <option>무직 </option>
+                    <option>기타 </option>
+                  </select>
+            </td>
+          </tr>
+          <tr bgcolor="#DDDDDD">
+            <td height="1" colspan="3"></td>
+          </tr>
+        </table></td>
+        <td width="5">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3">&nbsp;</td>
+        </tr>
+    </table>
+    <br>
+    <table border=0 cellpadding=0 cellspacing=0>
+      <tr align="left">
+        <td colspan="3">&nbsp;&nbsp;<img src="images/s_join_from_title_02.gif" width="375" height="14"></td>
+      </tr>
+      <tr>
+        <td width="5">&nbsp;</td>
+        <td width="504"><table width="507" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="10" colspan="3"></td>
+            </tr>
+            <tr bgcolor="#C0B7B0">
+              <td height="2" colspan="3"></td>
+            </tr>
+            <tr bgcolor="#FCFCFC">
+              <td width="7" height="30"></td>
+              <td width="322" height="30"><img src="images/s_join_from_title_question_01.gif" width="183" height="11"></td>
+              <td width="175" height="30"><select name="p_time" id="p_time">
+			  	<option value="">소요시간선택</option>
+                <option value="30분이내">30분이내</option>
+                <option value="1시간이내">1시간이내</option>
+                <option value="1시간30분이내">1시간30분이내</option>
+                <option value="2시간이내">2시간이내</option>
+                <option value="2시간30분이내">2시간30분이내</option>
+                <option value="3시간이내">3시간이내</option>
+              </select></td>
+            </tr>
+            <tr bgcolor="#DDDDDD">
+              <td height="1" colspan="3"></td>
+            </tr>
+            <tr bgcolor="#FCFCFC">
+              <td height="30"></td>
+              <td height="30"><img src="images/s_join_from_title_question_02.gif" width="220" height="11"></td>
+              <td height="30">&nbsp;</td>
+            </tr>
+            <tr bgcolor="#FCFCFC">
+              <td height="30"></td>
+              <td height="30" colspan="2">
+                <input type="radio" name="p_bus" value="도서">
+            
+                도보
+                <input type="radio" name="p_bus" value="자가용" />
+                자가용
+                <input type="radio" name="p_bus" value="버스" />
+                버스
+                <input type="radio" name="p_bus" value="지하철" />
+                지하철
+                <input type="radio" name="p_bus" value="택시" />
+                택시<br></td>
+              </tr>
+            <tr bgcolor="#DDDDDD">
+              <td height="1" colspan="3"></td>
+            </tr>
+            <tr bgcolor="#FCFCFC">
+              <td height="30"></td>
+              <td height="30"><img src="images/s_join_from_title_question_03.gif" width="218" height="12"></td>
+              <td height="30"></td>
+            </tr>
+            <tr bgcolor="#FCFCFC">
+              <td height="30"></td>
+              <td height="30" colspan="2"> <input type="radio" name="p_why" value="선수">
+                선수
+                  <input type="radio" name="p_why" value="팀" />
+                팀
+                <input type="radio" name="p_why" value="KB국민은행" /> 
+                KB국민은행
+                <input type="radio" name="p_why" value="지역연고지" />
+                지역연고지
+                <input type="radio" name="p_why" value="치어리더" /> 
+                치어리더
+                <input type="radio" name="p_why" value="농구관람" />
+                농구관람 </td>
+              </tr>
+            <tr bgcolor="#DDDDDD">
+              <td height="1" colspan="3"></td>
+            </tr>
+            <tr bgcolor="#FCFCFC">
+              <td height="30"></td>
+              <td height="30"><img src="images/s_join_from_title_question_04.gif" width="254" height="12"></td>
+              <td height="30"><select name="p_player" id="p_player">
+                <option value="">선수선택</option>
+                <option value="김영옥">김영옥</option>
+                <option value="김지윤">김지윤</option>
+                <option value="한재순">한재순</option>
+                <option value="김나연">김나연</option>
+                <option value="곽주영">곽주영</option>
+                <option value="김지현">김지현</option>
+                <option value="정선화">정선화</option>
+                <option value="김태경">김태경</option>
+                <option value="김수연">김수연</option>
+                <option value="이경희">이경희</option>
+                <option value="이효나">이효나</option>
+                <option value="윤미주">윤미주</option>
+                <option value="손주희">손주희</option>
+                <option value="최민경">최민경</option>
+                <option value="정유진">정유진</option>
+                <option value="그리피스">그리피스</option>
+              </select></td>
+            </tr>
+            <tr bgcolor="#DDDDDD">
+              <td height="1" colspan="3"></td>
+            </tr>
+			 <tr bgcolor="#FCFCFC">
+              <td height="30"></td>
+              <td height="30"><img src="images/s_join_from_title_question_05.gif" width="308" height="12"></td>
+              <td height="30"><select name="p_gamecount" id="p_gamecount">
+				  <option value="">관람횟수</option>
+                  <option value="1회~3회">1회~3회</option>
+                  <option value="4회~7회">4회~7회</option>
+                  <option value="8회~13회">8회~13회</option>
+                  <option value="14회~19회">14회~19회</option>
+                  <option value="전경기">전경기</option>
+                </select>              </td>
+            </tr>
+            <tr bgcolor="#DDDDDD">
+              <td height="1" colspan="3"></td>
+            </tr>
+        </table></td>
+        <td width="5">&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="3">&nbsp; </td>
+      </tr>
+    </table>
+    <table width="600" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="center"><input type="image" src="images/s_join_btn.gif" width="64" height="25"> &nbsp; <a href="javascript:document.join.reset()"><img src="images/s_no_btn.gif" width="53" height="25" border="0"></a></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</form>

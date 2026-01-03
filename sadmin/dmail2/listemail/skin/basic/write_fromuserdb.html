@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+	<h3>회원 데이터베이스에서 db 추출</h3>
+	<p>db : {get.db}
+	</p>
+	<form {form_default}>
+	<table width="400" border="1" cellspacing="0" cellpadding="0">
+	<tr>
+		<td colspan="3">조건선택</td>
+	</tr>
+	<tr>
+		<td width="20"><input name="fyesmail" type="checkbox" id="fyesmail" value="1"></td>
+		<td colspan="2">수신거부리스트 제외 </td>
+	</tr>
+	<tr>
+		<td><input name="fyesmail" type="checkbox" id="fyesmail" value="1"></td>
+		<td width="44">나이</td>
+		<td width="328">
+			<input name="agestart" type="text" id="agestart" size="4">
+			~
+			<input name="ageend" type="text" id="ageend" size="4">
+		</td>
+	</tr>
+	<tr>
+		<td><input name="fyesmail" type="checkbox" id="fyesmail" value="1"></td>
+		<td>성별</td>
+		<td>
+			<input type="radio" name="sex" value="1">
+			남자
+			<input type="radio" name="sex" value="0">
+			여자
+		</td>
+	</tr>
+	<tr>
+		<td><input name="fyesmail" type="checkbox" id="fyesmail" value="1"></td>
+		<td>class</td>
+		<td><input name="class" type="text" id="class" size="10"></td>
+	</tr>
+	<tr>
+		<td><input name="fyesmail" type="checkbox" id="fyesmail" value="1"></td>
+		<td>level</td>
+		<td>
+			<input name="levelstart" type="text" id="levelstart" size="4">
+			~
+			<input name="levelend" type="text" id="levelend" size="4">
+		</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan="2"><input type="submit" name="Submit" value=" 메일 추가 "></td>
+	</tr>
+	</table>
+	</form>
+	<p>&nbsp;</p>
+</body>
+</html>

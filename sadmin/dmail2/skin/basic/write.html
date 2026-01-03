@@ -1,0 +1,279 @@
+<!--<? exit; ?>-->
+
+<html>
+<head>
+	<title>대량메일발송</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="images/style.css" type="text/css">
+
+	<script language="JavaScript">
+	<!--
+	function tpl_input() {
+		var f=document.ITwizard;
+		var field=prompt("필드 이름을 입력하십시오");
+		if(field) {
+			for(i=0;i<f.tpl_field.length;i++){
+				if(f.tpl_field.options[i].value==field) {
+					alert("이미 있는 필드를 추가하려고 하였습니다");
+					return false;
+				}
+			}
+			var option_name=new Option(field,field,true,true);
+			f.tpl_field.options[f.tpl_field.length]=option_name;
+		}
+	}
+	function tpl_del() {
+		var f=document.ITwizard;
+		if(f.tpl_field.selectedIndex !=-1) {
+			if(f.tpl_field.selectedIndex==0) {
+				alert("email은 삭제할 수 없습니다");
+			}
+			else {
+				f.tpl_field.options[f.tpl_field.selectedIndex]= null;
+			}
+		}
+	}
+	function tpl_submit() {
+		if(!checkForm()) {
+			return false;
+		}
+		var f=document.ITwizard;
+		f.fields.value="";
+		for(i=0;i<f.tpl_field.length;i++) {
+			f.fields.value=f.fields.value + f.tpl_field.options[i].text ;
+			if(i!=f.tpl_field.length-1) {
+				f.fields.value=f.fields.value+":";
+			}
+		}
+		f.submit();
+	}
+	function MM_popupMsg(msg) {
+		//v1.0
+		alert(msg);
+
+	}
+	function checkForm() {
+		var f= document.ITwizard;
+		<opt name="mode_write">
+		if( isEmpty( f.db.value )){
+			alert('생성하실 테이블 이름을 입력하세요!');
+			f.db.focus();
+			return false;
+		}
+		</opt name="mode_write">
+		if( isEmpty( f.s_name.value )){
+			alert('보내는 사람 이름을 입력하세요!');
+			f.s_name.focus();
+			return false;
+		}
+		if( isEmpty( f.s_mail.value )){
+			alert('보내는 사람 이메일을 입력하세요!');
+			f.s_mail.focus();
+			return false;
+		}
+		if( isEmpty( f.title.value )){
+			alert('보내실 메일의 제목을 입력하세요!');
+			f.title.focus();
+			return false;
+		}
+		if( isEmpty( f.comment.value )){
+			alert('보내실 편지 내용을 입력하세요.!');
+			f.comment.focus();
+			return false;
+		}
+		if( !check_email(f.s_mail.value)) {
+			alert('이메일을 정확히 입력하시기 바랍니다.');
+			f.s_mail.focus();
+			return false;
+		}
+		return true;
+	}
+	function isEmpty( data ) {
+		for ( var i = 0 ; i < data.length ; i++ )
+		{
+			if ( data.substring( i, i+1 ) != " " )
+				return false;
+		}
+		return true;
+	}
+	function check_email(s_mail) {
+		var f_s_mail = document.ITwizard.s_mail;
+		var strs_mail = f_s_mail.value;
+		//	이메일 주소는 입력한 경우에만 valid한지 체크한다.
+		var i;
+		var strCheck1 = false;
+		var strCheck2 = false;
+		var is_mailLen = strs_mail.length
+		if (is_mailLen > 0) {
+			// strs_mail 에 '.@', '@.' 이 있는 경우 에러메시지.
+			// strs_mail의 맨앞 또는 맨뒤에	'@', '.' 이 있는 경우 에러메시지.
+			if ((strs_mail.indexOf(".@") != -1) || (strs_mail.indexOf("@.") != -1) ||
+				(strs_mail.substring(0,1) == ".") || (strs_mail.substring(0,1) == "@") ||
+				(strs_mail.substring(is_mailLen-1,is_mailLen) == ".") || (strs_mail.substring(is_mailLen-1,is_mailLen) == "@"))
+			{
+				return false;
+			}
+
+			for(i=0; i < is_mailLen; i++) {
+				if ((strs_mail.substring(i,i+1) == ".") ||
+					(strs_mail.substring(i,i+1) == "-") || (strs_mail.substring(i,i+1) == "_") ||
+					((strs_mail.substring(i,i+1) >= "0") && (strs_mail.substring(i,i+1) <= "9")) ||
+					((strs_mail.substring(i,i+1) >= "@") && (strs_mail.substring(i,i+1) <= "Z")) ||
+					((strs_mail.substring(i,i+1) >= "a") && (strs_mail.substring(i,i+1) <= "z"))) {
+					if (strs_mail.substring(i,i+1) == ".")
+						strCheck1 = true;
+					if (strs_mail.substring(i,i+1) == "@")
+						strCheck2 = true;
+				}
+				else {
+					return false;
+				}
+			}
+
+			if ((strCheck1 == false) || (strCheck2 == false)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	//-->
+	</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+	<form name="ITwizard" {form_default}>
+	<input type="hidden" name="fields">
+	<table width="600" border="0" cellspacing="0" cellpadding="2">
+	<tr bgcolor="#000000">
+		<td colspan="2" height="1"></td>
+	</tr>
+	<tr bgcolor="#DDDDCC">
+		<td colspan="2" height="5"></td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td colspan="2" bgcolor="#F1F1EB" height="8"></td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td width="110">
+			<div align="left">db 이름</div>
+		</td>
+		<td >
+			<font size="2">
+			<opt name="mode_write">
+			<input type='text' name='db' class='input'> &nbsp;(영문자와 숫자로만 구성)
+			</opt name="mode_write">
+			<opt name="mode_modify">
+			{list.db}
+			</opt name="mode_modify">
+			</font> 
+		</td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td width="110">
+			<div align="left">보내는 사람 이름 </div>
+		</td>
+		<td >
+			<font size="2">
+			<input type="text" name="s_name" value='{list.s_name}' class="input">
+			</font>
+		</td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td width="110">
+			<div align="left">보내는 사람 E-mail </div>
+		</td>
+		<td >
+			<font size="2">
+			<input type="text" name="s_mail"	value='{list.s_mail}' class="input">
+			</font>
+		</td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td width="110">
+			<div align="left">HTML 사용 </div>
+		</td>
+		<td >
+			<font size="2">
+			<input type="checkbox" name="h_yesno" value="1" <opt name="list.h_yesno">checked</opt name="list.h_yesno"> >
+			</font>
+		</td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td width="110">
+			<div align="left">변경문자사용</div>
+		</td>
+		<td >
+			<font size="2">
+			<input type="checkbox" name="tpl_yesno" value='1' <opt name="list.tpl_yesno">checked</opt name="list.tpl_yesno"> >
+			({???}이라할경우 해당 필드 값으로 1:1 변경)</font>
+		</td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td width="110">
+			<div align="left">메일 제목 </div>
+		</td>
+		<td >
+			<font size="2">
+			<input type="text" name="title" value='{list.title}' class="input" size="65" maxlength="255">
+			</font>
+		</td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td width="110">
+			<div align="left">메일 내용 </div>
+		</td>
+		<td >
+			<font size="2">
+			<textarea name="comment" cols="65" rows="10" class="textarea">{list.comment}</textarea>
+			</font>
+		</td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td width="110">
+			<p align="left">변경문자 필드 </p>
+		</td>
+		<td >
+			<font size="2">
+			<select name="tpl_field" size="5" class="textarea">
+			{list.tpl_field}
+			</select>
+			<opt name="mode_write">
+			<a href='#' onClick='tpl_input(); return false;'>리스트 추가</a>, <a href='#' onClick='tpl_del(); return false;'>삭제</a></font>
+		</td>
+		</opt name="mode_write">
+		</font> 
+	</td>
+</tr>
+<tr bgcolor="#F1F1EB">
+	<td width="110">
+		<div align="left">파일 첨부 </div>
+	</td>
+	<td >
+		<font size="2">
+		<input type="file" name="upfile" size="30" maxlength="50" class="input">
+		</font>
+	</td>
+</tr>
+<tr bgcolor="#F1F1EB">
+	<td width="110">
+		<div align="left">
+			<br>
+		</div>
+	</td>
+	<td >
+		<br>
+		<input type="button" name="Button" onClick="return tpl_submit()" value=' 확	인' class="submit">
+		<input type='button' value=' Back ' onClick='history.back()' class='submit'>
+	</td>
+</tr>
+<tr bgcolor="#DDDDCC">
+	<td colspan="2" height="5"></td>
+</tr>
+<tr bgcolor="#000000">
+	<td colspan="2" height="1"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

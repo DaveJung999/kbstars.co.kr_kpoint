@@ -1,0 +1,31 @@
+body  	 {  font-family: "돋움", "돋움체", "Arial"; 
+			font-size: 9pt; 
+			color: #4F4F4F; 
+			margin: 0px; 
+			background-repeat:repeat-Y;
+ 
+			scrollbar-3dlight-color:DBDBDB;
+			scrollbar-arrow-color:#000000;
+			scrollbar-track-color:#F8F8EA;
+			scrollbar-darkshadow-color:DBDBDB;
+			scrollbar-face-color:DBDBDB;
+			scrollbar-highlight-color:#F8F8EA;
+			scrollbar-shadow-color:gray
+		}
+		
+table 	 { font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; color: #4F4F4F; line-height: 1.6;}
+td	 	 { font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; color: #4F4F4F; line-height: 1.6;}
+font   	 { font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; color: #4F4F4F; line-height: 1.6;}
+					
+A:link	   { text-decoration:none; color: #4F4F4F; font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; line-height: 1.6;}
+A:visited	{ text-decoration:none; color: #4F4F4F; font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; line-height: 1.6;}
+A:active	 { text-decoration:none; color: #246AB6; font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; line-height: 1.6;}
+A:hover	  { text-decoration:none; color: #246AB6; font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; line-height: 1.6;}
+
+A.ablack:link		{ text-decoration:none; color: #000000; font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; line-height: 1.6;}
+A.ablack:visited	{ text-decoration:none; color: #000000; font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; line-height: 1.6;}
+A.ablack:active	 { text-decoration:none; color: #000000; font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; line-height: 1.6;}
+A.ablack:hover	  { text-decoration:none; color: #000000; font-family: "돋움", "돋움체", "Arial"; font-size: 9pt; line-height: 1.6; text-decoration:underline ;}
+
+.font_01_dbrown { font-family: "돋움", "돋움체", "Arial"; FONT-SIZE: 9pt; line-height: 1.6; color: #7D3D00;	}
+.font_02_orange { font-family: "돋움", "돋움체", "Arial"; FONT-SIZE: 9pt; line-height: 1.6; color: #E25500;	}

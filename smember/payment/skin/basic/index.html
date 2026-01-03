@@ -1,0 +1,338 @@
+<link href="/himages/css/mulkang.css" rel="stylesheet" type="text/css">
+
+<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+<script language="JavaScript">
+function showhide(what){
+	if (what.style.display=='none'){
+		what.style.display='';
+	}
+	else{
+		what.style.display='none';
+	}
+}
+</script>
+
+<style type="text/css">
+td	{font-family: "돋움", "돋움체"; font-size:12px; line-height:140%; COLOR: #666666; text-decoration: none;}
+body	{font-family: "돋움", "돋움체"; font-size:12px; line-height:140%; color: #666666; text-decoration: none; text-align: justify}
+A:link {COLOR: #6E6E6E; TEXT-DECORATION: none}
+A:visited {COLOR: #6E6E6E; TEXT-DECORATION: none}
+A:hover {COLOR: #EF7318; TEXT-DECORATION: none}
+A:active {COLOR: #6E6E6E; TEXT-DECORATION: none}
+.style3 {color: #003366; font-weight: bold; }
+.style12 {font-size: 9pt; line-height: normal; color: #737373; text-decoration: none; font-family: "굴림", "돋움", "바탕";}
+</style>
+
+<form name='money' method='post' action='./moneypay.php' style='margin : 0px'>
+<table width="706" border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td><img src="images/top_payment.gif" width="705" height="80"></td>
+</tr>
+<tr>
+	<td >&nbsp;</td>
+</tr>
+<tr>
+	<td align="center">
+		<table width="650" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td height="25" align="left" valign="middle">
+				<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td><img src="images/order_c_top.gif" width="620" height="10"></td>
+				</tr>
+				<tr>
+					<td width="620" align="center" background="images/order_c_center.gif" >
+						<table width="600" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="5">&nbsp;</td>
+							<td height="30" colspan="2"><img src="/sshop2/skin/hbasic/images/tdot.gif" width="10" height="10">&nbsp; <span class="gray_soft0">결제 방법 안내</span></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td width="10"></span></td>
+							<td>
+								<img src="images/icon_star.gif" width="5" height="4"> 멀캉은 </span><span class="gray_soft0">신용카드 결제 </span>, </span><span class="gray_soft0">휴대폰</span> 결제 그리고 15개 국내은행 </span><span class="gray_soft0">인터넷 계좌이체</span>를 제공합니다. <br>
+								<br>
+								본 결제 페이지를 통해서 결제하시면 실시간으로 입금 확인이 이루어지며, 본 결제는 <span class="money_red">100% 취소가 가능</span>하오니, 결제에 문제가 발생하였다면 고객센터에 요청해주십시오. </span>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>
+								<p class="base2">&nbsp;&nbsp;&nbsp; 메일&nbsp;&nbsp;&nbsp; : <a href="mailto:help@mulkang.com" class="base7_blue">help@mulkang.com<br>
+								</a> &nbsp;&nbsp;&nbsp; 콜센터 : 02 - 444 - 2945 <br>
+								<br>
+								&nbsp;&nbsp;&nbsp; 무통장입금은 아래 계좌로 하여 주시면 되며, <br>
+								&nbsp;&nbsp;&nbsp; 입금인은 반드시 <span class="blue_soft0">회원 성함</span>, <span class="blue_soft0">아이디</span> 혹은 <span class="blue_soft0">휴대폰번호</span>로 하여 주시기 바랍니다.</p>
+								<p class="base2">&nbsp;<img src="images/icon_star.gif" width="5" height="4" align="absmiddle"> <strong> 무통장입금은행
+								- </strong><span class="base_gray_bold">예금주</span> :<span class="base_gray_bold"> 최태훈</span><br>
+								<br>
+								&nbsp;&nbsp; <a href="http://www.kbstar.com" target="_blank"><img src="/himages/main/left_banking_kb.gif" width="30" height="20" border="0"></a> 국민은행 : 828201-04-002586<br>
+								&nbsp;&nbsp; <a href="http://www.wooribank.com" target="_blank"><img src="/himages/main/left_banking_uri.gif" width="30" height="20" border="0"></a>우리은행 : 699-424011-13-001<br>
+								&nbsp;&nbsp; <a href="http://www.nonghyup.com" target="_blank"><img src="/himages/main/left_banking_nh.gif" width="30" height="20" border="0"></a>농협
+								: 100062-56-047513<span class="base_gray_bold"><br>
+								<br>
+								</span></p>
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="images/order_c_tip.gif" width="620" height="10"></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" valign="top" >
+				<br>
+				<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td height="25">
+						{LIST} <block name="list">
+						<table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" style="border-collapse:collapse;" >
+						<tr>
+							<td height="30" bgcolor="#F3FBFC">&nbsp;&nbsp;<span class="blue_soft0">&nbsp;</span><span class="blue_soft0"><strong>{list.rdate_date}주문(청구) 내용입니다.</strong></span><span class="blue_soft0"></span><font color="#990066" class="orange_soft0"><strong> (합계:{list.totalprice})</strong></font></td>
+						</tr>
+						<tr>
+							<td height="10" bgcolor="#FFFFFF"></td>
+						</tr>
+						<tr background="/mypage/images/pay_list_title_bg01.gif" >
+							<td align="center" bgcolor="#FFFFFF">
+								<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><img src="images/order_c_top.gif" width="620" height="10"></td>
+								</tr>
+								<tr>
+									<td width="620" align="center" background="images/order_c_center.gif">
+										<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tr>
+											<td width="30" align="center" valign="top">
+												<table width="100%" height="5" border="0" cellpadding="0" cellspacing="0">
+												<tr>
+													<td height="5"><img src="images/spacer.gif" width="1" height="1"></td>
+												</tr>
+												</table>
+												{list.check}
+											</td>
+											<td align="center" valign="middle">
+												<table width="442" border="0" cellpadding="0" cellspacing="0">
+												<tr bgcolor="f7f7f7">
+													<td width="4" height="25">&nbsp;</td>
+													<td width="205" align="center"><font color="#E85C00">상품(서비스)명</font></td>
+													<td width="72" align="center"><font color="#E85C00">적립포인트</font></td>
+													<td width="43" align="center"><font color="#E85C00">단가</font></td>
+													<td width="37" align="center"><font color="#E85C00">수량</font></td>
+													<td width="44" align="center"><font color="#E85C00">금액</font></td>
+													<td width="37" align="center"><font color="#E85C00">비고</font></td>
+												</tr>
+												{CELL}
+												</table>
+											</td>
+											<td width="100" align="center" valign="top">
+												<a href="{href.delete}"><img src="images/s_btn_cancel.gif" width="60" height="15" border="0"></a><br>
+												<a href="{href.inquirydetail}"><img src="images/s_btn_detail.gif" width="60" height="15" border="0"></a> 
+											</td>
+										</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td><img src="images/order_c_tip.gif" width="620" height="10"></td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td height="10" bgcolor="#FFFFFF"></td>
+						</tr>
+						</table>
+						</block name="list"> 
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="1" align="left" valign="middle" bgcolor="#EAEAEA"></td>
+		</tr>
+		<tr>
+			<td height="25" align="left" valign="middle">
+				<table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td><img src="images/order_c_top.gif" width="620" height="10"></td>
+				</tr>
+				<tr>
+					<td width="620" align="center" background="images/order_c_center.gif">
+						<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tr>
+							<td height="25"><img src="/sshop2/skin/hbasic/images/tdot.gif" width="10" height="10">&nbsp; <span class="gray_soft0">결제 방법 선택</span></td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td height="25" >&nbsp;<img src="images/icon_star.gif" width="5" height="4" align="absmiddle"> <span class="olive_green">온라인 실시간 결제	</span></td>
+							<td >
+								<font size="2">
+								<input type="radio" name="bank" value="신용카드" checked>
+								<strong>신용카드</strong>
+								<input type="radio" name="bank" value="계좌이체">
+								<strong>인터넷뱅킹(개인통장)</strong>
+								<input type="radio" name="bank" value="계좌이체-법인">
+								<strong>인터넷뱅킹(법인통장) </strong></font>
+								<!--
+					<input type="radio" name="bank" value="계좌이체">
+					<strong>인터넷뱅킹(개인통장)</strong>
+					<input type="radio" name="bank" value="계좌이체-법인">
+					<strong>인터넷뱅킹(법인통장) </strong></font>
+					-->
+							</td>
+						</tr>
+						<tr>
+							<td height="10" ></td>
+							<td height="10" ></td>
+						</tr>
+						<tr>
+							<td width="24%" height="25"><span class="base_gray_bold"><font size="2" >&nbsp;<img src="images/icon_star.gif" width="5" height="4" align="absmiddle"></font> </span><span class="style12"><span class="olive_green">무통장 입금 </span></span></td>
+							<td width="76%">
+								<input name="bank" type="radio" value="무통장" checked>
+								<strong>무통장입금</strong>(무통장은 아래 송금정보를 입력하여주시기 바랍니다)
+							</td>
+						</tr>
+						<tr>
+							<td height="20">&nbsp;</td>
+							<td>
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td width="4%" height="30" align="left">&nbsp;</td>
+									<td width="23%" align="left"><span class="style3">입금할 은행선택</span></td>
+									<td width="73%">
+										<font size="2">
+										<select name="remitbank">
+										<option value="국민">국민은행 : 828201-04-002586</option>
+										<option value="우리" selected>우리은행 : 699-424011-13-001 </option>
+										<option value="농협">농협 : 100062-56-047513</option>
+										</select>
+										</font> 
+									</td>
+								</tr>
+								<tr>
+									<td align="left">&nbsp;</td>
+									<td align="left">&nbsp;</td>
+									<td><strong><font size="2">예금주 : 최태훈 </font></strong></td>
+								</tr>
+								<tr>
+									<td height="30" align="left">&nbsp;</td>
+									<td align="left"><span class="style3">송금인</span></td>
+									<td>
+										<input name="remitname" type="text" id="remitname" value="{remitname}" size="10">
+										*회원아이디,휴대폰번호가 좋습니다
+									</td>
+								</tr>
+								<tr>
+									<td height="30" align="left">&nbsp;</td>
+									<td align="left"><span class="style3">입금예정일자</span></td>
+									<td>
+										<INPUT TYPE=text name="remitdate" id="remitdate" ONCLICK="Calendar(this);" VALUE="{remitdate}" size='10' readonly>
+										*클릭하면 달력이 나타납니다
+									</td>
+								</tr>
+								<tr>
+									<td height="30" align="left">&nbsp;</td>
+									<td colspan="2" align="left">
+										<span class="style3">
+										<input name="taxcash_check" type="checkbox" id="taxcash_check" value="1" onClick="showhide(taxoutline)">
+										현금영수증 발행요청(무통장 입금에만 해당)</span>
+									</td>
+								</tr>
+								<tr id="taxoutline" style="display:'none'">
+									<td height="30" align="left">&nbsp;</td>
+									<td colspan="2" align="left">
+										<table cellpadding="0" cellspacing="0" >
+										<tr>
+											<td height="30" align="left" class="style3">이름(상호) </td>
+											<td>
+												<input name="taxcash_name" type="text" id="taxcash_name" value="{logon.name}" size="13">
+												아래 주민등록번호와 일치하여야합니다. 
+											</td>
+										</tr>
+										<tr>
+											<td width="110" height="30" align="left" class="style3">주민등록번호</td>
+											<td width="330">
+												<input name="taxcash_num" type="text" id="taxcash_num" value="{logon.idnum}" size="13">
+												법인은 사업자등록번호 입력 
+											</td>
+										</tr>
+										<tr>
+											<td width="110" height="30" align="left" class="style3">휴대폰 번호 </td>
+											<td width="330">
+												<input name="taxcash_hp" type="text" id="taxcash_hp" value="{logon.hp}" size="14">
+												&nbsp; '-' 를 제외하고 입력해주세요. 
+											</td>
+										</tr>
+										<tr>
+											<td width="110" height="30" align="left" class="style3">E-mail</td>
+											<td width="330"><input name="taxcash_email" type="text" id="taxcash_email" value="{logon.email}" size="25"></td>
+										</tr>
+										</table>
+									</td>
+								</tr>
+								</table>
+							</td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td><img src="images/order_c_tip.gif" width="620" height="10"></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td >&nbsp;</td>
+		</tr>
+		<tr>
+			<td height="8" align="center" valign="middle"><input type="image" src="images/btn_payment_ok.gif" width="67" height="28"></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+</table>
+</form>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+<block name="cell">
+<tr>
+	<td width="8">&nbsp;</td>
+	<td align="center" class="base2" height="20">
+		<opt name="href.shop"><a href='{href.shop}' target="_blank">{list.title}</a></opt name="href.shop"><opt name="!href.shop">{list.title}</opt name="!href.shop"><opt name="list.options"><br>
+		(옵션: {list.options})</opt name="list.options"><opt name="list.upfiles.upfile.name"> <br>
+		업로드파일:<a href="{list.upfiles.upfile.href}">{list.upfiles.upfile.name}</a> (
+
+		<script LANGUAGE="JavaScript">document.write(formatNum('{list.upfiles.upfile.size}'));</script>
+
+		bytes)</opt name="list.upfiles.upfile.name">
+	</td>
+	<td align="center" class="base2">{list.point}</td>
+	<td align="center" class="base_gray_bold">{list.price}</td>
+	<td align="center" class="base2">{list.quantity}</td>
+	<td align="center" class="base_gray_bold">{list.sum_price}</td>
+	<td align="center" class="base2"><opt name="href.delete"><a href="{href.delete}"><img src="images/botton_del.gif" width="44" height="17" border="0"></a></opt name="href.delete"></td>
+	<td width="8">&nbsp;</td>
+</tr>
+<tr>
+	<td height="1" colspan="7" background="images/dot_width.gif"></td>
+</tr>
+</block name="cell">

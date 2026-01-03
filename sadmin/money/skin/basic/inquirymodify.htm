@@ -1,0 +1,336 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style type="text/css">
+<!--
+body,td,th {
+	font-family:"굴림";
+	font-size:13px;
+	color:"#000000";
+	line-height:21px;
+}
+.color-red {color: #FF0000}
+-->
+</style>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+</head>
+
+<body >
+	<table width="590px" border="1" cellspacing="0" cellpadding="0" bordercolor="#000000" style='border-collapse:collapse;'>
+	<tr>
+		<td width="1169391" colspan="8" class="style2">
+			주문번호:{list.rdate} (<strong>{list.rdate_date}</strong>, <strong>합계:
+			{list.totalprice}</strong>) <br>
+			주문자 회원아이디:<a href="../member/search.php?mode=search&sc_column=logon.userid&sc_string={logon.userid}" target="userinfo">{logon.userid}</a>({logon.name},
+			HP:{userinfo.hp}) 
+		</td>
+	</tr>
+	<tr>
+		<td colspan="8">
+			<table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000" style='border-collapse:collapse;'>
+			<tr>
+				<th width="73" nowrap>주문년월</th>
+				<th width="219" nowrap><div align="center">상품(서비스)명</div></th>
+				<th width="83" nowrap><div align="center">수량</div></th>
+				<th width="67" nowrap><div align="center">구매가</div></th>
+				<th width="65" nowrap><div align="center">bank</div></th>
+				<th width="65" nowrap><div align="center">적립</div></th>
+			</tr>
+			{LIST}
+			<block name="list">
+			<tr>
+				<td>{list.year}-{list.month}</td>
+				<td>
+					[{list.ordertable}]<opt name="href.shop"><a href="{href.shop}" target="_blank">[{list.ordertable}]{list.title}</a></opt name="href.shop"><opt name="!href.shop">[{list.ordertable}]{list.title}</opt name="!href.shop"><a href="{href.uidmodify}#uidmodify">수정</a>/<a href="{href.uiddelete}" onclick="javascript: return confirm('삭제하시면 복구되지 않습니다.\n정말 삭제하시겠습니다.');">삭제</a><opt name="list.options"><br>
+					(옵션:{list.options})</opt name="list.options"><opt name="list.upfiles.upfile.name">
+					<br>
+					업로드파일:<a href="{list.upfiles.upfile.href}">{list.upfiles.upfile.name}</a>
+					(
+					<script LANGUAGE="JavaScript">document.write(formatNum('{list.upfiles.upfile.size}'));</script>
+					bytes)</opt name="list.upfiles.upfile.name">
+				</td>
+				<td><div align="center">{list.quantity}</div></td>
+				<td><div align="right">{list.price}</div></td>
+				<td><div align="center">{list.bank}</div></td>
+				<td><div align="right">{list.point}</div></td>
+			</tr>
+			</block name="list">
+			</table>
+			<opt name="LIST">
+			<table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000" style='border-collapse:collapse;'>
+			<form name="rdatemodify" style="margin:0px;" {form_rdatemodify}>
+			<tr>
+				<td>주문일자</td>
+				<td>
+					<span class="style2">
+					<input name="rdate_date" type="text" id="rdate_date" value="{list.rdate_date}" size="20">
+					* 변경하시면 주문번호도 모두 바뀝니다. </span>
+				</td>
+			</tr>
+			<tr>
+				<td width="13%">입금관련</td>
+				<td width="87%">
+					입금여부 <input type="checkbox" name="paid" value="1" <opt name="slist.paid">checked</opt name="slist.paid">>
+					입금은행 <input type="text" name="bank" value="{slist.bank}" size="15">
+					입금날자 <input type="text" name="idate_date" value="{slist.idate_date}" size="20">
+					<br>
+					입금정보 <input type="text" name="receiptor" value="{slist.receiptor}" size="50">
+				</td>
+			</tr>
+			<tr>
+				<td>적립/세금</td>
+				<td>
+					적립일자 : {slist.pointdepositdate} <a href="#">적립하여주기</a><br>
+					세금계산서 발행번호 : {companytax_uid} <a href="#">세금계산서 발행하기</a>
+				</td>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>
+					<select name="newstatus">
+					{slist.status_option}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<input type="submit" name="Submit" value=" 전체수정 ">
+					&nbsp;
+					<input type='button' OnClick="javascript: document.location='{href.append}';" value=' 신규추가 '>
+					&nbsp; <input type='button' OnClick="javascript: document.location='{href.write}';" value=' 새로운주문 '>&nbsp;
+					<input type='button' OnClick='javascript: self.close();' value=' 창 닫기 '>
+				</td>
+			</tr>
+			</form>
+			</table>
+			</opt name="LIST">
+		</td>
+	</tr>
+	</table>
+	<br>
+	<a name="uidmodify">
+	<table width="590px" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000" style='border-collapse:collapse;'>
+	<form name="uidmodify" style="margin:0px;" {form_uidmodify}>
+	<opt name="!slist.uid">
+	<tr>
+		<td nowrap class="style2">신규입력</td>
+		<td colspan="8" class="style2">
+			<span class="color-red">주문일자</span>		<input name="rdate_date" type="text" id="rdate_date" value="{slist.rdate_date}" size="20">
+			<span class="color-red">주문년월</span>		
+			<select name="year" id="year">
+			<option value="2003">2003</option>
+			<option value="2004" selected>2004</option>
+			<option value="2005">2005</option>
+			<option value="2006">2006</option>
+			</select>
+			<span class="color-red">년</span>
+			<select name="month" id="month">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			</select>
+			<span class="color-red">월</span>
+			<script language="JavaScript" type="text/JavaScript">
+			var form_select = document.uidmodify.year;
+				var form_value 				= '{slist.year}';
+				if(!form_value) {
+					form_value = new Date();
+					form_value = form_value.getFullYear().toString();
+					}
+					for(var i=0;i<form_select.length;i++) {
+						if(form_select.options[i].value==form_value) {
+							form_select.options[i].selected = true;
+						}
+					}
+			</script>
+
+
+			<script language="JavaScript" type="text/JavaScript">
+					var form_select = document.uidmodify.month;
+						var form_value 				= '{slist.month}';
+						if(!form_value) {
+							form_value = new Date();
+							form_value = form_value.getMonth()+1;
+							}
+							for(var i=0;i<form_select.length;i++) {
+								if(form_select.options[i].value==form_value) {
+									form_select.options[i].selected = true;
+								}
+							}
+			</script>
+
+			<br>
+			상품종류
+			<input name="ordertype" type="text" id="ordertype" size="10">
+			상품테이블
+			<input name="ordertable" type="text" id="ordertable" size="10">
+			상품고유번호
+			<input name="orderuid" type="text" id="orderuid" size="10">
+			<br>
+			<span class="color-red">상품(서비스)명</span>		<input name="title" type="text" id="title" size="40">
+		</td>
+	</tr>
+	</opt name="!slist.uid">
+	<opt name="slist.uid">
+	<tr>
+		<td width="88" nowrap class="style2">주문정보</td>
+		<td width="496" colspan="8" class="style2">
+			주문일자
+			<strong>{slist.rdate_date}</strong> 주문년월
+			<select name="year" id="year">
+			<option value="2003">2003</option>
+			<option value="2004" selected>2004</option>
+			<option value="2005">2005</option>
+			<option value="2006">2006</option>
+			</select>
+			년
+			<select name="month" id="month">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			</select>
+			월
+
+			<script language="JavaScript" type="text/JavaScript">
+							var form_select = document.uidmodify.year;
+								var form_value 				= '{slist.year}';
+								if(!form_value) {
+									form_value = new Date();
+									form_value = form_value.getFullYear().toString();
+									}
+									for(var i=0;i<form_select.length;i++) {
+										if(form_select.options[i].value==form_value) {
+											form_select.options[i].selected = true;
+										}
+									}
+			</script>
+
+			<script language="JavaScript" type="text/JavaScript">
+									var form_select = document.uidmodify.month;
+										var form_value 				= '{slist.month}';
+										if(!form_value) {
+											form_value = new Date();
+											form_value = form_value.getMonth()+1;
+											}
+											for(var i=0;i<form_select.length;i++) {
+												if(form_select.options[i].value==form_value) {
+													form_select.options[i].selected = true;
+												}
+											}
+			</script>
+			<br>
+			상품종류
+			<input name="ordertype" type="text" id="ordertype" value="{slist.ordertype}" size="10">
+			상품테이블
+			<input name="ordertable" type="text" id="ordertable" value="{slist.ordertable}" size="10">
+			상품고유번호
+			<input name="orderuid" type="text" id="orderuid" value="{slist.orderuid}" size="10">
+			<br>
+			상품(서비스)명
+			<input name="title" type="text" id="title" value="{slist.title}" size="40">
+		</td>
+	</tr>
+	</opt name="slist.uid">
+	<tr>
+		<td class="style2">옵션</td>
+		<td colspan="8" class="style2"><input type="text" name="options" value="{slist.options}" size="40"></td>
+	</tr>
+	<tr>
+		<td class="style2">가격/적립금</td>
+		<td colspan="8" class="style2">
+			구매가<input type="text" name="price" value="{slist.price}" size="20">
+			적립금 <input type="text" name="point" value="{slist.point}" size="20">
+		</td>
+	</tr>
+	<tr>
+		<td class="style2">수량/기간</td>
+		<td colspan="8" class="style2">
+			주문수량 <input type="text" name="quantity" value="{slist.quantity}" size="5">
+			이용기간 <input type="text" name="period" value="{slist.period}" size="5">월
+		</td>
+	</tr>
+	<opt name="mode_write">
+	<tr>
+		<td nowrap class="style2">입금정보</td>
+		<td colspan="8" class="style2">
+			입금여부
+			<input type="checkbox" name="paid" value="1" > 입금은행
+			<input type="text" name="bank" value="" size="15">
+			입금날자
+			<input type="text" name="idate" value="" size="20">
+			<br>
+			입금정보
+			<input type="text" name="receiptor" size="50">
+		</td>
+	</tr>
+	</opt name="mode_write">
+
+	<tr>
+		<td class="style2">배송정보</td>
+		<td colspan="8" class="style2">
+			이름<input type="text" name="re_name" value="{slist.re_name}" size="10">
+			전화<input type="text" name="re_tel" value="{slist.re_tel}" size="15">
+			메일<input type="text" name="re_email" value="{slist.re_email}" size="20"><br>
+			주소<input type="text" name="re_address" value="{slist.re_address}" size="30">
+			ZIP <input type="text" name="re_zip" value="{slist.re_zip}" size="10">
+		</td>
+	</tr>
+	<tr>
+		<td class="style2">송장번호</td>
+		<td colspan="8" class="style2"><input type="text" name="re_invoice" value="{slist.re_invoice}" size="30"></td>
+	</tr>
+	<tr>
+		<td colspan="9" class="style2">
+			<table width="100%"	border="0" cellspacing="0" cellpadding="0">
+			<tr align="center">
+				<td width="33%">배송memo</td>
+				<td width="33%">주문memo</td>
+				<td width="33%">관리comment</td>
+			</tr>
+			<tr align="center">
+				<td width="33%"><textarea name="re_memo" cols="25" rows="6" id="re_memo">{slist.re_memo}</textarea></td>
+				<td width="33%"><textarea name="memo" cols="25" rows="6" id="memo">{slist.memo}</textarea></td>
+				<td width="33%"><textarea name="comment" cols="25" rows="6" id="comment">{slist.comment}</textarea></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="style2">&nbsp;</td>
+		<td colspan="8" class="style2">
+			<input type="submit" name="submit" value=" ::전송:: ">
+			([{slist.ordertable}]{slist.title})
+		</td>
+	</tr>
+	</form>
+	</table>
+	<hr>
+	<center><input type='button' OnClick='javascript: self.close();' value=' 창 닫기 '></center>
+</body>
+</html>

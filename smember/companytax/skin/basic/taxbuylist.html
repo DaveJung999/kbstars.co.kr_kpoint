@@ -1,0 +1,193 @@
+<!--<? exit; ?>-->
+
+<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+<link href="images/basic.css" rel="stylesheet" type="text/css">
+<p><a href="./">세금계산서관리</a> &gt; 매입세금계산서 조회 </p>
+<form name="taxsearch" style='margin : 0px' {form_search}>
+<table width="550" border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td>공급자번호</td>
+	<td><input name="sc_from_c_num" type="text" id="sc_from_c_num" value="{get.sc_from_c_num}" size="20"></td>
+</tr>
+<tr>
+	<td width="100">공급받는자번호</td>
+	<td width="450"><input name="sc_to_c_num" type="text" id="sc_to_c_num" value="{get.sc_to_c_num}" size="20"></td>
+</tr>
+<tr>
+	<td>상태</td>
+	<td>
+		<select name="sc_status">
+		<option value=''>전체</option>
+		<option value="발행">발행</option>
+		<option value="통지">통지</option>
+		<option value="승인">승인</option>
+		<option value="반송">반송</option>
+		<option value="재통지">재통지</option>
+		<option value="폐기">폐기</option>
+		<option value="등록번호오류">등록번호오류</option>
+		</select>
+
+		<script language="JavaScript" type="text/JavaScript">
+		var form_select = document.taxsearch.sc_status;
+		var form_value 				= '{get.sc_status}';
+		for(var i=0;i<form_select.length;i++) {
+			if(form_select.options[i].value==form_value) {
+				form_select.options[i].selected = true;
+			}
+		}
+		</script>
+
+	</td>
+</tr>
+<tr>
+	<td>발행유형</td>
+	<td>
+		<select name="sc_type">
+		<option value=''>전체</option>
+		<option value="직접입력">직접입력</option>
+		<option value="사이트발행">사이트발행</option>
+		</select>
+
+		<script language="JavaScript" type="text/JavaScript">
+		var form_select = document.taxsearch.sc_type;
+		var form_value 				= '{get.sc_type}';
+		for(var i=0;i<form_select.length;i++) {
+			if(form_select.options[i].value==form_value) {
+				form_select.options[i].selected = true;
+			}
+		}
+		</script>
+
+
+	</td>
+</tr>
+<tr>
+	<td>검색기간</td>
+	<td>
+		<INPUT TYPE=text name="startdate" id="startdate" ONCLICK="Calendar(this);" VALUE="{get.startdate}" size='10' readonly>
+		~
+		<INPUT TYPE=text name="enddate" id="enddate" ONCLICK="Calendar(this);" VALUE="{get.enddate}" size='10' readonly>
+		<br>
+		<input type="radio" name="sc_rdate" value="rdate">
+		작성일
+		<input type="radio" name="sc_rdate" value="rdate_send">
+		통지일
+		<input type="radio" name="sc_rdate" value="rdate_receive">
+		승인일
+		<input type="radio" name="sc_rdate" value="rdate_reject">
+		반송일
+		<input type="radio" name="sc_rdate" value="rdate_resend">
+		재통지일
+		<input type="radio" name="sc_rdate" value="rdate_cancle">
+		폐기일<br>
+
+		<script language="JavaScript" type="text/JavaScript">
+		var form_radio = document.taxsearch.sc_rdate;
+		var form_value 				= '{get.sc_rdate}';
+		if(form_value=='') form_value = 'rdate';
+			for(var i=0;i<form_radio.length;i++) {
+				if(form_radio[i].value==form_value) {
+					form_radio[i].checked = true;
+				}
+			}
+		</script>
+
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>
+		<input type="submit" value=" 검색 ">
+		<a href="{href.write}">세금계산서직접입력</a>
+	</td>
+</tr>
+</table>
+</form>
+<p>&nbsp;</p>
+<table border="0" cellpadding="0" cellspacing="0" width="550" align="center" class="base">
+<tr>
+	<td width="363"><p>전체:{count.total}</p></td>
+	<td width="363" align="right"> </td>
+</tr>
+<tr>
+	<td width="726" colspan="2">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="base">
+		<tr bgcolor="#91B993" class="bw" height="24">
+			<td height="25"><p align="center">No</p></td>
+			<td align="center">발행유형</td>
+			<td align="center">상태</td>
+			<td height="25" nowrap><p align="center">공급자번호</p></td>
+			<td height="25" nowrap><p align="center">공급받는자번호</p></td>
+			<td height="25" nowrap><p align="center">품목</p></td>
+			<td nowrap>공급가액</td>
+			<td nowrap>세액</td>
+			<td height="25" nowrap><p align="center">작성일</p></td>
+		</tr>
+		{LIST}
+		<block name="list">
+		<tr height="20">
+			<td align="center" bgcolor="#F0F8F0"><p>{list.no}</p></td>
+			<td align="center" nowrap bgcolor="#F0F8F0">{list.type}</td>
+			<td align="center" nowrap bgcolor="#F0F8F0">{list.status}</td>
+			<td align="left" nowrap bgcolor="#F0F8F0"><p><a href="{href.read}">{list.from_c_num}</a></p></td>
+			<td align="center" nowrap bgcolor="#F0F8F0"><p>{list.to_c_num}</p></td>
+			<td align="center" nowrap bgcolor="#F0F8F0"><p>{list.item1}</p></td>
+			<td align="center" nowrap bgcolor="#F0F8F0">{list.total_supply}</td>
+			<td align="center" nowrap bgcolor="#F0F8F0">{tax.total_tax}</td>
+			<td align="center" nowrap bgcolor="#F0F8F0"><p>{list.rdate_date}</p></td>
+		</tr>
+		<tr height="1">
+			<td colspan="9" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="list">
+		<block name="nolist">
+		<tr height="20">
+			<td height="11" colspan="9"><p align="center">세금계산서가 없습니다.</p></td>
+		</tr>
+		<tr height="1">
+			<td colspan="9" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="nolist">
+		<block name="nosearch">
+		<tr height="20">
+			<td align="center" colspan="9"><p>'&nbsp;{sc_string}'가 포함된 세금계산서를 찾을 수가 없습니다.</p></td>
+		</tr>
+		<tr height="1">
+			<td colspan="9" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="nosearch">
+		<tr height="3"	bgcolor="#87AD85">
+			<td colspan="9"></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="base">
+		<tr>
+			<td width="10%"></td>
+			<td width="80%" height="35"><p align="center"> {FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</p></td>
+			<td width="10%">&nbsp;</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<block name="firstpage"><a href="{href.firstpage}"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></a></block name="firstpage">
+<block name="nofirstpage"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></block name="nofirstpage">
+<block name="prevblock"><a href='{href.prevblock}'>◀</a>&nbsp;</block name="prevblock">
+<block name="noprevblock">◀&nbsp;</block name="noprevblock">
+<block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block">
+<block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock">
+<block name="nextblock"><a href='{href.nextblock}'>▶</a>&nbsp;</block name="nextblock">
+<block name="nonextblock">▶&nbsp;</block name="nonextblock">
+<block name="lastpage"><a href="{href.lastpage}"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></a></block name="lastpage">
+<block name="nolastpage"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></block name="nolastpage">
+<block name="highcate"> &gt; <a href="{href.highcate}" class="nevy_gcyan"> {highcate.title}</a> </block name="highcate">
+<block name="subcate"><opt name="blockloop">
+| </opt name="blockloop"><a href="{href.subcate}" class="base2"> {subcate.title}</a></block name="subcate">
+<block name="samecate">
+<option value="{samecate.uid}" {samecate.selected}>{samecate.title}</option>
+</block name="samecate">

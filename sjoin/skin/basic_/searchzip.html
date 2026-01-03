@@ -1,0 +1,66 @@
+<link href="/style.css" rel="stylesheet" type="text/css">
+<script language="JavaScript">
+<!--
+function setid(zip1, zip2, address) 
+{
+	opener.document.{formname}.{inputzip}1.value = zip1;
+	opener.document.{formname}.{inputzip}2.value = zip2;
+	opener.document.{formname}.{inputaddress}.value = address + " ";
+	self.close();
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+.font12px {font-size: 12px}
+-->
+</style>
+<table width="450" height="81" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr align="center">
+    <td height="15" valign="top"> </td>
+  </tr>
+  <tr align="center">
+    <td width="482" height="26" valign="top"><img src="images/zip_toptitle_01.gif" width="413" height="26"></td>
+  </tr>
+  <tr align="center">
+    <td height="50" valign="bottom">찾고자 하는 주소의 동/읍/면 이름을 입력하세요.<br>
+    (예:대치동,곡성읍,오곡면)</td>
+  </tr>
+  <tr align="center">
+    <td height="60"><form {form_default}>
+      <input name="region" type="text" size="30">
+    &nbsp;<input name="Submit" type="image" value="검색" src="images/apply_btn.gif" align="absmiddle" width="82" height="26">
+    </form></td>
+  </tr>
+</table>
+<opt name="RESULT">
+<script language='javascript'>
+<!--
+window.resizeTo(486,400);
+-->
+</script>
+<table width="450" height="81" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr align="center">
+    <td width="482" valign="top"><table width="94%"  border="1" cellpadding="7" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
+      <tr>
+        <td bgcolor="#FFFFFF"><table width="100%"  border="0" cellspacing="0" cellpadding="5">
+		{RESULT}<block name="resultzip">
+          <tr>
+            <td width="76%" bgcolor="#FBFBFB">{zip1}-{zip2} {add1} {add2} {add3}</td>
+            <td width="24%" bgcolor="#FBFBFB"><input name='Submit23' type='image' OnClick="setid('{zip1}', '{zip2}', '{add1} {add2}')" value='입력' src="images/btn_ok.gif" width="82" height="26"></td>
+          </tr>
+		  </block name="resultzip">
+		  <block name="nozip">
+		  <tr>
+            <td colspan="2" bgcolor="#FBFBFB"><div align="center">찾으시는 주소가 없습니다. </div></td>
+            </tr>
+		  </block name="nozip">
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr align="center">
+    <td height="10"></td>
+  </tr>
+</table>
+</opt name="RESULT">

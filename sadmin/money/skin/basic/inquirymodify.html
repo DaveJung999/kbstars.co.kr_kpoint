@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style type="text/css">
+<!--
+body,td,th {
+	font-family:"굴림";
+	font-size:13px;
+	color:"#000000";
+	line-height:21px;
+}
+.color-red {color: #FF0000}
+-->
+</style>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+	<link href="images/basic.css" rel="stylesheet" type="text/css">
+</head>
+
+<body >
+	<table width="650" border="0" cellpadding="0" cellspacing="0" style='border-collapse:collapse;'>
+	<tr>
+		<td class="base">
+			주문번호:{list.rdate} (<strong class="base">{list.rdate_date}</strong>, <strong class="base">합계: {list.totalprice}</strong>) <br>
+			주문자 회원아이디:<a href="../member/search.php?mode=search&sc_column=logon.userid&sc_string={logon.userid}" target="userinfo">{logon.userid}</a>({logon.name}, HP:{logon.hp}) 
+		</td>
+	</tr>
+	<tr>
+		<td >
+			<table border="0" cellpadding="3" cellspacing="1" bordercolor="#000000" bgcolor="#CCCCCC" style='border-collapse:collapse;'>
+			<tr bgcolor="#F3F3F3">
+				<th width="80" nowrap>주문년월</th>
+				<th nowrap><div align="center">상품(서비스)명</div></th>
+				<th nowrap><div align="center">수량</div></th>
+				<th nowrap><div align="center">구매가</div></th>
+				<th nowrap bgcolor="#F3F3F3"><div align="center">bank</div></th>
+				<th nowrap><div align="center">적립</div></th>
+				<th nowrap>작업</th>
+			</tr>
+			{LIST} <block name="list">
+			<tr bgcolor="#FFFFFF">
+				<td width="80" align="center" class="base">{list.year}-{list.month}</td>
+				<td bgcolor="#FFFFFF" class="base">
+					[{list.orderdb}] <opt name="href.shop"><a href="{href.shop}" target="_blank">{list.title}</a></opt name="href.shop"><opt name="!href.shop">{list.title}</opt name="!href.shop"><opt name="list.options"><br>
+					(옵션:{list.options})</opt name="list.options"><opt name="list.upfiles.upfile.name"> <br>
+					업로드파일:<a href="{list.upfiles.upfile.href}">{list.upfiles.upfile.name}</a> (
+
+					<script LANGUAGE="JavaScript">document.write(formatNum('{list.upfiles.upfile.size}'));</script>
+
+					bytes)</opt name="list.upfiles.upfile.name">
+				</td>
+				<td class="base"><div align="center">{list.quantity}</div></td>
+				<td class="base"><div align="right">{list.price}</div></td>
+				<td class="base"><div align="center">{list.bank}</div></td>
+				<td class="base"><div align="right">{list.point}</div></td>
+				<td class="base"><a href="{href.uidmodify}#uidmodify">수정</a>/<a href="{href.uiddelete}" onclick="javascript: return confirm('삭제하시면 복구되지 않습니다.\n정말 삭제하시겠습니다.');">삭제</a><opt name="list.options"></opt name="list.options"></td>
+			</tr>
+			</block name="list">
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="5"></td>
+	</tr>
+	<tr>
+		<td class="bbl" >주문 내역 결제 정보 수정</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC" style='border-collapse:collapse;'>
+			<form name="rdatemodify" style="margin:0px;" {form_rdatemodify}>
+			<tr>
+				<td width="80" bgcolor="#F3F3F3" class="base">주문일자</td>
+				<td bgcolor="#FFFFFF" class="base">
+					<span class="style2">
+					<input name="rdate_date" type="text" id="rdate_date" value="{list.rdate_date}" size="20">
+					* 변경하시면 주문번호도 모두 바뀝니다. </span>
+				</td>
+			</tr>
+			<tr>
+				<td width="80" bgcolor="#F3F3F3" class="base">입금관련</td>
+				<td bgcolor="#FFFFFF" class="base">
+					입금여부
+					<select name="paid">{paid_option}</select>
+					<br>
+					입금은행
+					<input type="text" name="bank" value="{list.bank}" size="15">
+					입금날자
+					<input type="text" name="idate_date" value="{list.idate_date}" size="20">
+					<br>
+					입금정보
+					<input type="text" name="receiptor" value="{list.receiptor}" size="50">
+				</td>
+			</tr>
+			<tr>
+				<td width="80" bgcolor="#F3F3F3" class="base">적립/세금</td>
+				<td bgcolor="#FFFFFF" class="base">
+					적립일자 : {list.pointdepositdate} <a href="#">적립하여주기</a><br>
+					세금계산서 발행번호 : {companytax_uid} <a href="#">세금계산서 발행하기</a> 
+				</td>
+			</tr>
+			<tr>
+				<td width="80" bgcolor="#F3F3F3" class="base">상태</td>
+				<td bgcolor="#FFFFFF" class="base">
+					<select name="newstatus">
+
+
+					{status_option}
+
+
+					</select>
+				</td>
+			</tr>
+			<opt name="list.taxcash_regi">
+			<tr>
+				<td colspan="2" bgcolor="#F3F3F3" class="base">현금영수증관련</td>
+			</tr>
+			<tr>
+				<td width="80" bgcolor="#F3F3F3" class="base"> 발급 정보 </td>
+				<td bgcolor="#FFFFFF" class="base">
+					{list.taxcash_name}({list.taxcash_email})<br>
+					hp : {list.taxcash_hp} 주민번호 :{list.taxcash_num} 
+				</td>
+			</tr>
+			<br>
+			<tr>
+				<td width="80" bgcolor="#F3F3F3" class="base">발행상태</td>
+				<td bgcolor="#FFFFFF" class="base">
+					<select name="taxcashnewstatus">
+
+
+					{taxcash_status_option}
+
+
+					</select>
+				</td>
+			</tr>
+			</opt name="list.taxcash_regi">
+			<tr align="center" bgcolor="#FFFFFF">
+				<td colspan="2">
+					<input type="submit" name="Submit" value=" 결제정보수정 ">
+					&nbsp;
+					&nbsp;
+					&nbsp;
+				</td>
+			</tr>
+			</form>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="5"></td>
+	</tr>
+	<tr>
+		<td height="5">주문 내역 배송정보</td>
+	</tr>
+	<tr>
+		<td height="5">
+			<table width="100%" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC" style='border-collapse:collapse;'>
+			<form name="uidmodify" style="margin:0px;" {form_uidmodify}>
+			<tr>
+				<td bgcolor="#EFEFEF" class="base">배송정보</td>
+				<td colspan="8" bgcolor="#FFFFFF" class="base">
+					이름
+					<input type="text" name="re_name" value="{re_info.re_name}" size="10">
+					전화
+					<input type="text" name="re_tel" value="{re_info.re_tel}" size="15">
+					메일
+					<input type="text" name="re_email" value="{re_info.re_email}" size="20">
+					<br>
+					주소
+					<input type="text" name="re_address" value="{re_info.re_address}" size="50">
+					ZIP
+					<input type="text" name="re_zip" value="{re_info.re_zip}" size="10">
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#EFEFEF" class="base">송장번호</td>
+				<td colspan="8" bgcolor="#FFFFFF" class="base"><input type="text" name="re_invoice" value="{re_info.re_invoice}" size="30"></td>
+			</tr>
+			<tr bgcolor="#FFFFFF">
+				<td colspan="9" class="style2">
+					<table width="100%"	border="0" cellspacing="0" cellpadding="0">
+					<tr align="center" bgcolor="#F3F3F3" class="base">
+						<td height="25">배송memo</td>
+						<td height="25">주문memo</td>
+						<td height="25">관리comment</td>
+					</tr>
+					<tr align="center">
+						<td width="33%"><textarea name="re_memo" cols="25" rows="6" id="re_memo">{re_info.re_memo}</textarea></td>
+						<td width="33%"><textarea name="memo" cols="25" rows="6" id="memo">{re_info.memo}</textarea></td>
+						<td width="33%"><textarea name="comment" cols="25" rows="6" id="comment">{re_info.comment}</textarea></td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			<tr align="center" bgcolor="#FFFFFF">
+				<td colspan="9" class="style2"><input type="submit" name="submit" value=" 배송 정보 수정 "></td>
+			</tr>
+			</form>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<br>
+	<a name="uidmodify">
+	<center>
+	<input type='button' OnClick='javascript: self.close();' value=' 창 닫기 '>
+	</center>
+</body>
+</html>

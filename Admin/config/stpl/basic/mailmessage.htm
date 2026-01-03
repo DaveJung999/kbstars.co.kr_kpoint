@@ -1,0 +1,265 @@
+
+
+<script language='JavaScript'>
+function on_view(uid)
+{
+	var Form=document.MailForm;
+	location.href="mailmessage.php?db=mailmessage&uid="+uid;
+}
+function on_submit(uid)
+{
+	var Form=document.MailForm;
+	Form.action="ok.php?mode=mailmessage&uid="+uid;
+	Form.submit();
+}
+
+//-->
+</script>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+.style2 {color: #993300}
+-->
+</style>
+
+<body>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+				<td background="/images/admin/tbox_bg.gif"><strong>메일메시지 설정 </strong></td>
+				<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+			</table>
+			<br>
+			<table width="97%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="bbbbbb">
+			<tr>
+				<td height="23" colspan="6" bgcolor="#D2BF7E">
+					<table width="100%"	border="0" align="center" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="22%" align="center"> 메시지 설정</td>
+						<td width="78%">
+							<table width="100%"	border="0" cellspacing="1" cellpadding="1">
+							<tr>
+								<td width="20%"><a href="#" class="black" onClick="on_view(1);">[가입축하]</a></td>
+								<td width="20%"><a href="#" class="black" onClick="on_view(2);">[회원정보수정]</a> </td>
+								<td width="20%"><a href="#" class="black" onClick="on_view(3);">[비밀번호찾기]</a></td>
+								<td width="20%"><a href="#" class="black" onClick="on_view(7);">[비밀번호설정 완료]</a></td>
+								<td width="20%"><a href="#" class="black" onClick="on_view(8);">[비밀번호찾기 실패]</a></td>
+							</tr>
+							<tr>
+								<td><a href="#" class="black" onClick="on_view(4);">[탈퇴처리]</a></td>
+								<td><a href="#" class="black" onClick="on_view(5);">[회원등급조정]</a></td>
+								<td><a href="#" class="black" onClick="on_view(16);">[게시판 글쓰기]</a></td>
+								<td><a href="#" class="black" onClick="on_view(9);">[게시판 답변]</a></td>
+								<td><a href="#" class="black" onClick="on_view(10);"></a></td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			</table>
+			<table border='0' cellpadding='0' cellspacing='0' bgcolor="#aaaaaa" align='center' width=97%>
+			<form name="MailForm" method="post" action="" enctype="multipart/form-data">
+			<input name="uid" type="hidden" value="{list.uid}">
+			<input name="mode" type="hidden" value="mailmessage">
+			<tr bgcolor="#aaaaaa">
+				<td bgcolor="#aaaaaa" width="97%">
+					<table border='0' cellpadding='2' cellspacing='1' width='100%' bgcolor='#aaaaaa'>
+					<!--tr height=25 bgcolor=#c1c1c1>
+					<td bgcolor=#D2BF7E width=27% align=center>사용</td>
+					<td bgcolor=#F8F8EA width="73%"><input type=checkbox name="data1" value="1" checked>해당 경우 메일을 발송합니다. </td>
+				</tr-->
+					<tr>
+						<td bgcolor=#F0EBD6 width=22% align=center>보내는이 이름</td>
+						<td bgcolor=#F8F8EA width="78%">
+							<input type=text class="ccbox"	value="{list.data2}" name='data2' size=40>
+						</td>
+					</tr>
+					<tr>
+						<td bgcolor=#F0EBD6 width=22% align=center>보내는이 E-Mail</td>
+						<td bgcolor=#F8F8EA width="78%">
+							<input type=text class="ccbox" value="{list.data3}" name='data3' size=40>
+						</td>
+					</tr>
+					<tr >
+						<td bgcolor=#F0EBD6 width=22% align=center>메일 제목</td>
+						<td bgcolor=#F8F8EA width="78%">
+							<input name='data4' type=text class="ccbox" id="data42" style="width:97%" value="{list.data4}" size=60 >
+						</td>
+					</tr>
+					<tr >
+						<td colspan="2" align=center bgcolor=#D2BF7E>내 &nbsp; &nbsp; 용 </td>
+					</tr>
+					<tr align="center">
+						<td bgcolor=#F8F8EA colspan=2><textarea rows=12 cols=60 class="ccbox" style="width:100%" name='content'>{list.content}</textarea></td>
+					</tr>
+					<!--tr >
+					<td colspan="2" align=center bgcolor=#D2BF7E>기타 (이벤트,상품소개,광고)</td>
+					</tr>
+					<tr align="center">
+					<td bgcolor=#F8F8EA colspan=2><textarea rows=6 cols=80 class="ccbox" style="width:100%" name='data5'>{list.data5}</textarea>
+					</td>
+					</tr-->
+					<tr align="center">
+						<td height="55" colspan=2 bgcolor=#F8F8EA><input name="button" type=button class=input02 onClick="javascript:on_submit({list.uid});" value=" 설 정 완 료 "></td>
+					</tr>
+					<tr bgcolor="#F8F8EA">
+						<td colspan=2>
+							<table border='0' cellpadding='4' cellspacing='1' width='100%' bgcolor='#aaaaaa'>
+							<tr height=25 bgcolor=#c1c1c1>
+								<td height="25" align=center bgcolor="F0EBD6"> * <strong>{ }</strong> 의 구분자를 제목/내용에 쓰시면 메일을 발송시에 해당 인자와 대치됩니다 *</td>
+							</tr>
+							<tr>
+								<td align=center bgcolor=#D2BF7E>공통 적용</td>
+							</tr>
+							<tr>
+								<td bgcolor=#F8F8EA style="line-height:1.4 ">
+									<table width="100%"	border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td width="5%" height="15">&nbsp; </td>
+										<td width="19%"><strong>{userid<img width="0" height="0">}</strong></td>
+										<td width="26%">아이디</td>
+										<td width="3%">&nbsp; </td>
+										<td><strong>{boardtitle<img width="0" height="0">}</strong></td>
+										<td>게시판명</td>
+									</tr>
+									<tr>
+										<td height="15">&nbsp; </td>
+										<td><strong>{name<img width="0" height="0">}</strong></td>
+										<td>이름</td>
+										<td>&nbsp; </td>
+										<td><strong>{writer<img width="0" height="0">} </strong></td>
+										<td>게시판 게시물 글쓴이 </td>
+									</tr>
+									<tr>
+										<td height="15">&nbsp; </td>
+										<td><strong>{today<img width="0" height="0">}</strong> </td>
+										<td>오늘날짜</td>
+										<td>&nbsp; </td>
+										<td><strong>{title<img width="0" height="0">} </strong></td>
+										<td>게시판 게시물 제목 </td>
+									</tr>
+									<tr>
+										<td width="5%" height="15">&nbsp; </td>
+										<td><strong>{today_time<img width="0" height="0">}</strong> </td>
+										<td>오늘날짜 + 오늘시간 </td>
+										<td width="3%">&nbsp; </td>
+										<td><strong>{content<img width="0" height="0">} </strong></td>
+										<td>게시판 게시물 내용 </td>
+									</tr>
+									<tr>
+										<td height="15">&nbsp; </td>
+										<td width="19%"><strong>{certifycode<img width="0" height="0">}</strong></td>
+										<td width="26%">비밀번호찾기 인증코드 </td>
+										<td>&nbsp; </td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td height="15">&nbsp; </td>
+										<td><strong>{ip_address<img width="0" height="0">} </strong></td>
+										<td>해당 고객의 IP 어드레스 </td>
+										<td>&nbsp; </td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<tr>
+										<td height="15">&nbsp; </td>
+										<td><strong>{new_level<img width="0" height="0">} </strong></td>
+										<td>회원 조정 등급 </td>
+										<td>&nbsp; </td>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+									</tr>
+									<!--tr>
+							<td height="15"> &nbsp;</td>
+							<td><strong>{shop_name<img width="0" height="0">}</strong> </td>
+							<td>Admin Manager</td>
+							</tr>
+							<tr>
+							<td height="15"> &nbsp;</td>
+							<td><strong>{c_name<img width="0" height="0">}</strong> </td>
+							<td>(주)호원약품</td>
+							</tr>
+							<tr>
+							<td height="15"> &nbsp;</td>
+							<td><strong>{c_tel<img width="0" height="0">}</strong> </td>
+							<td>062-383-5883</td>
+							</tr>
+							<tr>
+							<td height="15"> &nbsp;</td>
+							<td><strong>{c_fax<img width="0" height="0">}</strong> </td>
+							<td>062-383-5884</td>
+							</tr-->
+									</table>
+								</td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					</table>
+				</td>
+			</tr>
+			</form>
+			</table>
+			<br>
+		</td>
+	</tr>
+	</table>
+
+	<script language="Javascript1.2">
+	<!-- // load htmlarea
+	function request(str){
+		QueryString=location.search.split("?");
+		Query=QueryString[1].split("&")
+		for(i=0;i<=Query.length-1;i++){
+			if(Query[i].indexOf(str)==0){
+				GetQuery=Query[i].split("=")
+				return GetQuery[1];
+			}
+		}
+	}
+	_editor_url = "/scommon/js/htmlarea203/"; // URL to htmlarea files
+	var win_ie_ver = parseFloat(navigator.appVersion.split("MSIE")[1]);
+	if (navigator.userAgent.indexOf('Mac')		>= 0) {
+		win_ie_ver = 0;
+	}
+	if (navigator.userAgent.indexOf('Windows CE') >= 0) {
+		win_ie_ver = 0;
+	}
+	if (navigator.userAgent.indexOf('Opera')		>= 0) {
+		win_ie_ver = 0;
+	}
+	if (win_ie_ver >= 5.5) {
+		document.write('<scr' + 'ipt src="' +_editor_url+ 'editor.js"');
+		document.write(' language="Javascript1.2"></scr' + 'ipt>');
+		//if(request('mode')!="modify") document.getElementById('docu_type').checked = 'true'; // by Sunmin Park
+	}
+	else {
+		document.write('<scr'+'ipt>function editor_generate() { return false; }</scr'+'ipt>');
+	}
+	// -->
+	</script>
+
+	<script language="JavaScript1.2" defer>
+	editor_generate('content');
+	</script>
+
+</body>

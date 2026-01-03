@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style type="text/css">
+<!--
+body,td,th {
+	font-family:"굴림";
+	font-size:13px;
+	color:"#000000";
+	line-height:21px;
+}
+-->
+</style>
+
+</head>
+
+<body >
+	<input type="button" value="인쇄하기" onClick="window.print();">
+	<table width="590px" border="1" cellspacing="0" cellpadding="0" bordercolor="#000000" style='border-collapse:collapse;'>
+	<tr>
+		<td colspan="8" class="style2">
+			{list.rdate_date}주문(합계:
+			{list.totalprice}) - ID:<a href="../member/search.php?mode=search&sc_column=logon.userid&sc_string={list.logon.userid}" target="logon">{list.logon.userid}</a>({list.logon.name},
+			HP:{list.logon.hp})
+		</td>
+	</tr>
+	<tr>
+		<td width="100"><div align="center">배송정보</div></td>
+		<td width="347" colspan="7">
+			{list.re_name}(전화:{list.re_tel}) 메일:{list.re_email}<br>
+			[{list.re_zip}] {list.re_address}
+		</td>
+	</tr>
+	<tr>
+		<td width="100"><div align="center">배송메모</div></td>
+		<td colspan="7">{list.re_memo}</td>
+	</tr>
+	<tr>
+		<td width="100"><div align="center">운영자메모</div></td>
+		<td colspan="7">{list.memo}</td>
+	</tr>
+	<tr>
+		<td colspan="8">
+			<table width="593" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000" style='border-collapse:collapse;'>
+			<tr>
+				<th width="217" nowrap><div align="center">상품(서비스)명</div></th>
+				<th width="43" nowrap><div align="center">수량</div></th>
+				<th width="112" nowrap><div align="center">브랜드</div></th>
+				<th width="77" nowrap><div align="center">구매가</div></th>
+				<th width="65" nowrap><div align="center">bank</div></th>
+				<th width="65" nowrap><div align="center">적립</div></th>
+			</tr>
+			{CELL}
+			<block name="cell">
+			<tr>
+				<td><A HREF="{href.shop}">{list.title}</A><opt name="list.options"><br>(옵션:{list.options})</opt name="list.options"></td>
+				<td><div align="center">{list.quantity}</div></td>
+				<td><div align="center">{list.shop.brand}</div></td>
+				<td><div align="right">{list.price}</div></td>
+				<td><div align="center">{list.bank}</div></td>
+				<td><div align="right">{list.point}</div></td>
+			</tr>
+			</block name="cell">
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="8">
+			* 교환, 반품 및 환불 안내 (전화 먼저 주세요 :
+			02-455-4614) &nbsp;<br>
+			아래의 경우로 인해 교환 및 환불을 원하시는 경우는 제품수취 후 20일 이내에 연락을 주시면 당사 반품절차에 따라 교환과
+			환불이 가능합니다.
+			<p> ◆ 배송 후 오배송, 파손, 피부 트러블로 인한 교환, 환불 요청시 &nbsp;&nbsp;<br>
+			- 환불 시 : 반품 상품에 해당되는 금액 전액 환불 &nbsp;&nbsp;<br>
+			- 교환 시 : 맞교환 해드립니다. (교환상품을 수령하시면서 반품처리)
+			&nbsp; &nbsp;</p>
+			<p>◆ 배송 후 고객변심으로 인한 교환, 환불 요청시 &nbsp;&nbsp;<br>
+			- 환불 시 : 전체 반품 또는 반품하는 상품을 제외한 나머지 금액이 3만원 이하인 경우 배송료 3000원 공제 후 환불.
+			&nbsp;&nbsp;<br>
+			- 교환 시 : 왕복 배송료 고객 부담 (차액과 왕복배송료를 추가결제 하신 후 맞교환)
+			&nbsp; &nbsp;</p>
+			<p>* 반품 시에는 반드시 주문번호와 함께 &quot;쇼핑몰 반품 상품&quot;이라고 박스에 기재하신 후 현품상태 그대로 대한통운 택배를 이용하셔서 아래 주소로 보내 주시길 바랍니다.
+			&nbsp; &nbsp;&nbsp;&nbsp;</p>
+			<p>서울시 강동구 성내3동 440-4 멀캉 (전화 :
+			02-455-4614) &nbsp;&nbsp;&nbsp;<br>
+			대한통운 전화 : 전국 어디서나 1588-1255 &nbsp; &nbsp;&nbsp;&nbsp;</p>
+			<p>감사합니다. </p>
+		</td>
+	</tr>
+	</table>
+	<p>&nbsp;</p>
+	<hr>
+	[관리자메모]
+	{dlist.comment}
+</body>
+</html>

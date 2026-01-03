@@ -1,0 +1,191 @@
+
+<style type="text/css">
+<!--
+.style5 {color: #000000}
+.style6 {color: #666666}
+.style7 {color: #000000; font-weight: bold; }
+.style8 {	color: #333333;
+	font-weight: bold;
+}
+.style11 {color: #FFCC33; font-weight: bold; }
+-->
+</style>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+<form name='money' method='post' action='./moneypay.php' style='margin : 0px'>
+<TABLE width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+<TR>
+	<TD><img src="images/cart_15.gif" width="120" height="50"></TD>
+</TR>
+<!-- 년도 이미지 시작 -->
+<!-- 년도 이미지 아웃 -->
+<TR>
+	<TD>
+		<table width="620" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="620" colspan="5">
+				&nbsp;
+				<div align="center"></div>				<div align="center"></div>
+			</td>
+		</tr>
+		{LIST} <block name="list">
+		<tr>
+			<td colspan="5" align="center" valign="middle">
+
+				<table width="620" border="0" cellspacing="1" cellpadding="0" bgcolor="#786F66">
+				<tr>
+					<td bgcolor="#695F55" align="center">
+						<table width="600" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td height="10" colspan="2"></td>
+						</tr>
+						<tr>
+							<td colspan="2">{list.check} {list.rdate_date} 주문(청구) 내용입니다.&nbsp;&nbsp;&nbsp;<span class="style11">(합계 : {list.totalprice} 원)</span></td>
+						</tr>
+						<tr>
+							<td height="10" colspan="2"></td>
+						</tr>
+						<tr>
+							<td width="450" height="20" bgcolor="#A69B8C"><div align="center" class="style5">상품(서비스)명</div></td>
+							<td width="150" height="20" bgcolor="#A69B8C"><div align="center" class="style5">가격</div></td>
+						</tr>
+						{CELL}
+						<tr bgcolor="#A69B8C">
+							<td height="1" colspan="2"></td>
+						</tr>
+						<tr>
+							<td height="40" colspan="2"><div align="center"><a href="{href.inquirydetail}"><img src="images/inquiry_btn2.gif" width="76" height="17" border="0" /></a>&nbsp;&nbsp;<a href="{href.delete}"><img src="images/inquiry_btn3.gif" width="76" height="17" border="0" /></a></div></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+
+			</td>
+		</tr>
+
+
+		<tr>
+			<td height="20" colspan="5">&nbsp;</td>
+		</tr>
+		</block name="list">
+		</table>
+		<table width="620" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><img src="images/cart_12.gif" width="620" height="14"></td>
+		</tr>
+		<tr>
+			<td align="left" valign="top" background="images/cart_bg.gif">
+				<span class="style5"><br>
+				</span>
+				<table width="620" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="22" class="style5">&nbsp;</td>
+					<td colspan="3" class="style5">
+						<strong><img src="images/cart_16.gif" width="4" height="8">&nbsp; 결제 방법 안내</strong><br>
+						<br>
+						다완 쇼핑은 무통장 입금 결제방식을 채택하고 있습니다. <br>
+						<br>
+						본 결제 페이지를 통해서 결제하시면 실시간으로 입금 확인이 이루어지며, <br>
+						본 결제는 100% 취소가 가능하오니, 결제에 문제가 발생하였다면 고객센터에 요청해주십시오. <br>
+						<br>
+						메일 : tft@new21.com <br>
+						콜센터 : 02-3442-6339 <br>
+						<br>
+						무통장입금은 아래 계좌로 하여 주시면 되며, <br>
+						입금인은 반드시	성함, 아이디 혹은 휴대폰번호로 하여 주시기 바랍니다. 
+					</td>
+				</tr>
+				<tr>
+					<td width="22" class="style5">&nbsp;</td>
+					<td width="111" height="29" class="style7">입금할 은행 선택 </td>
+					<td width="487" colspan="2" class="style5">
+						<select name="remitbank" id="remitbank">
+						<option value="국민">국민은행 : 000-00-0000-000</option>
+						<option value="우리" selected>우리은행 : 000-00000-00</option>
+						<option value="농협">농협 : 00-000-0000 </option>
+						</select>
+						<input name="bank" type='hidden' value="무통장" checked>
+					</td>
+				</tr>
+				<tr>
+					<td width="22" class="style5">&nbsp;</td>
+					<td height="18" class="style5">&nbsp;</td>
+					<td colspan="2" valign="middle" class="style5"><span class="style8">예금주 : 다완 </span></td>
+				</tr>
+				<tr>
+					<td width="22" class="style5">&nbsp;</td>
+					<td height="19" class="style7">송금인</td>
+					<td colspan="2" class="style5"><input name="remitname" type="text" id="remitname" value="{remitname}"></td>
+				</tr>
+				<tr>
+					<td width="22" class="style5">&nbsp;</td>
+					<td height="22" class="style7">입금예정일자</td>
+					<td colspan="2" valign="middle" class="style5">
+						<input name="remitdate" type="text" id="remitdate" value="{remitdate}" onclick="Calendar(this);" readonly>
+						<span class="style6">클릭하면 달력이 나타납니다.</span>
+					</td>
+				</tr>
+				<!-- 현금영수증 발행요청
+					<tr>
+					<td width="22" class="style5">&nbsp;</td>
+					<td height="22" colspan="3" class="style7"><input type="checkbox" name="checkbox" value="checkbox">
+						현금 영수증 발행요청 </td>
+					</tr>
+					<tr>
+					<td width="22" class="style5">&nbsp;</td>
+					<td height="22" class="style7">이름(상호)</td>
+					<td colspan="2" valign="middle" class="style5"><input name="taxcash_name" type="text" id="taxcash_name" value="{logon.name}">
+						<span class="style6">아래 주민등록번호와 일치하여야합니다. </span></td>
+					</tr>
+					<tr>
+					<td width="22" class="style5">&nbsp;</td>
+					<td height="22" class="style7">주민등록번호</td>
+					<td colspan="2" valign="middle" class="style5"><input name="taxcash_num" type="text" id="taxcash_num" value="{logon.idnum}">
+						<span class="style6">법인은 사업자등록번호 입력. </span></td>
+					</tr>
+					<tr>
+					<td width="22" class="style5">&nbsp;</td>
+					<td height="22" class="style7">휴대폰 번호 </td>
+					<td colspan="2" valign="middle" class="style5"><input name="taxcash_hp" type="text" id="taxcash_hp" value="{logon.hp}">
+						<span class="style6">'-' 를 제외 하고 입력해주세요.</span></td>
+					</tr>
+					<tr>
+					<td width="22" class="style5">&nbsp;</td>
+					<td height="22" class="style7">E-mail</td>
+					<td colspan="2" valign="middle" class="style5"><input name="taxcash_email" type="text" id="taxcash_email" value="{logon.email}" size="30"></td>
+					</tr>
+					-->
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td height="22" class="style5">&nbsp;</td>
+					<td class="style7">&nbsp;</td>
+					<td colspan="2" valign="middle" class="style5"><a href="#" onclick="document.money.submit();"><img src="images/cart_04.gif" width="76" height="17" border="0"></a></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td><img src="images/cart_14.gif" width="620" height="17"></td>
+		</tr>
+		</table>
+	</TD>
+</TR>
+</TABLE>
+</form>
+<block name="cell">
+<tr>
+	<td height="25">
+		<div align="center">
+			<opt name="href.shop"><a href='{href.shop}' target="_blank">{list.title}</a></opt name="href.shop">
+			<opt name="!href.shop">{list.title}</opt name="!href.shop">
+		</div>
+	</td>
+	<td width="150" height="25"><div align="center">{list.price}</div></td>
+</tr>
+</block name="cell">

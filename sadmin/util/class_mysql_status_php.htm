@@ -1,0 +1,2190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0073)http://ftp.linuxchannel.net/devel/php_mysql_status/class.mysql.status.php -->
+
+<html>
+<HEAD>
+	<META http-equiv=Content-Type content="text/html; charset=ks_c_5601-1987">
+	<META content="MSHTML 6.00.2800.1126" name=GENERATOR>
+</HEAD>
+
+<body>
+	<CODE><FONT color=#000000><FONT color=#0000cc>&lt;?php<BR></FONT><FONT
+	color=#ff9900>##<BR>## this file name is 'class.mysql.status.php'<BR>##<BR>##
+	show mysql my database status<BR>## and mysql server status and
+	comments<BR>##<BR>## author : &lt;san2(at)linuxchannel.net&gt;,
+	http://linuxchannel.net/<BR>## changes :<BR>##&nbsp;&nbsp;&nbsp;&nbsp;-
+	2003.01.26 : bug fixed, and upgraded comments, support MySQL
+	4.0.x<BR>##&nbsp;&nbsp;&nbsp;&nbsp;- 2003.01.24 : add status of
+	[Threads_cached]<BR>##&nbsp;&nbsp;&nbsp;&nbsp;- 2003.01.23 : fixed
+	errata<BR>##&nbsp;&nbsp;&nbsp;&nbsp;- 2003.01.20 : add parsing to
+	HTML<BR>##&nbsp;&nbsp;&nbsp;&nbsp;- 2003.01.19 : add
+	comments<BR>##&nbsp;&nbsp;&nbsp;&nbsp;- 2003.01.10 : get mydb, status,
+	vars<BR>##<BR>## references :<BR>##&nbsp;&nbsp;&nbsp;&nbsp;-
+	http://www.mysql.com/doc/en/SHOW_TABLE_STATUS.html<BR>##&nbsp;&nbsp;&nbsp;&nbsp;-
+	http://www.mysql.com/doc/en/SHOW_STATUS.html<BR>## &nbsp;&nbsp;&nbsp;&nbsp;-
+	http://www.mysql.com/doc/en/SHOW_VARIABLES.html<BR>##&nbsp;&nbsp;&nbsp;&nbsp;-
+	http://www.mysql.com/information/presentations/presentation-oscon2000-20000719/<BR>##<BR>##
+	download :<BR>##&nbsp;&nbsp;&nbsp;&nbsp;-
+	http://ftp.linuxchannel.net/devel/php_mysql_status/<BR>##&nbsp;&nbsp;&nbsp;&nbsp;-
+	download 'class.mysql.status.php.txt' file and rename to
+	class.mysql.status.php<BR>##<BR>## usage :<BR>##&nbsp;&nbsp;&nbsp;&nbsp;ex1) all
+	status view<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status = new
+	mysql_status; // default $what
+	7<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status-&gt;tohtml();<BR>##<BR>##&nbsp;&nbsp;&nbsp;&nbsp;ex2)
+	only my database status
+	view<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status = new
+	mysql_status(1); // or
+	mysql_status(1,'mydb_name')<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status-&gt;tohtml();<BR>##<BR>##&nbsp;&nbsp;&nbsp;&nbsp;ex3)
+	only server status
+	view<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status = new
+	mysql_status(2);<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status-&gt;tohtml();<BR>##<BR>##&nbsp;&nbsp;&nbsp;&nbsp;ex4)
+	my database and server status
+	view<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status = new
+	mysql_status(3);<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status-&gt;tohtml();<BR>##<BR>##&nbsp;&nbsp;&nbsp;&nbsp;ex5)
+	only server variables
+	view<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status = new
+	mysql_status(4);<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status-&gt;tohtml();<BR>##<BR>##&nbsp;&nbsp;&nbsp;&nbsp;ex6)
+	HTML handle : see arguments of tohtml()
+	function<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status = new
+	mysql_status;<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// '#000000'
+	default, is line color of HTML
+	table<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// '#CCCCCC' default,
+	is head color of HTML
+	table<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// '#FFFFFF' default,
+	is TD color of HTML
+	table<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$color =
+	array('line'=&gt;'#000000','th'=&gt;'#CCCCCC','td'=&gt;'#FFFFFF');<BR>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$status-&gt;tohtml($color);
+	// is defaults<BR>##<BR>##&nbsp;&nbsp;&nbsp;&nbsp;and, more see $what argument
+	of mysql_status() function<BR>##&nbsp;&nbsp;&nbsp;&nbsp;also see $color
+	arguments of tohtml() function<BR>##<BR><BR></FONT><FONT
+	color=#006600>class&nbsp;</FONT><FONT color=#0000cc>mysql_status<BR></FONT><FONT
+	color=#006600>{<BR>&nbsp;&nbsp;var&nbsp;</FONT><FONT
+	color=#0000cc>$mydb&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;array();&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>// array, mydb(current database)
+	information<BR>&nbsp;&nbsp;</FONT><FONT color=#006600>var&nbsp;</FONT><FONT
+	color=#0000cc>$stat&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;array();&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>// array, MySQL server status<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>var&nbsp;</FONT><FONT
+	color=#0000cc>$vars&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;array();&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>// array, MySQL server variables<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>var&nbsp;</FONT><FONT
+	color=#0000cc>$dbs&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;</FONT><FONT color=#0000cc>0</FONT><FONT
+	color=#006600>;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>// string, number of databases<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>var&nbsp;</FONT><FONT
+	color=#0000cc>$comments&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;array();&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>// array, MySQL server status comments<BR><BR>&nbsp;&nbsp;## get
+	mysql mydb status and server variables and
+	status<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;## arguments
+	:<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;$what&nbsp;&nbsp;&nbsp;&nbsp;integer(0
+	&lt;= $what &lt;= 7), bits of get
+	mode<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- default
+	: $what 7<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+	$what 0 : all, same as $what
+	7<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $what 1 :
+	only my database
+	infomation<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+	$what 2 : only server
+	status<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $what
+	3 : $what 1 + $what
+	2<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $what 4 :
+	only server
+	variables<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+	$what 5 : $what 1 + $what
+	4<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $what 6 :
+	$what 2 + $what
+	4<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- $what 7 :
+	$what 1 + $waht 2 + $what
+	4<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;$db&nbsp;&nbsp;&nbsp;&nbsp;string,
+	table status of $db, default(current connected
+	database)<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>function&nbsp;</FONT><FONT color=#0000cc>mysql_status</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$what</FONT><FONT
+	color=#006600>=</FONT><FONT color=#0000cc>7</FONT><FONT
+	color=#006600>,&nbsp;</FONT><FONT color=#0000cc>$db</FONT><FONT
+	color=#006600>=</FONT><FONT color=#cc0000>''</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$what</FONT><FONT color=#006600>&lt;</FONT><FONT
+	color=#0000cc>1&nbsp;</FONT><FONT color=#006600>||&nbsp;</FONT><FONT
+	color=#0000cc>$what</FONT><FONT color=#006600>&gt;</FONT><FONT
+	color=#0000cc>7&nbsp;</FONT><FONT color=#006600>||&nbsp;!</FONT><FONT
+	color=#0000cc>is_int</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$what</FONT><FONT color=#006600>))&nbsp;</FONT><FONT
+	color=#0000cc>$what&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>7</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$bits&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>get_bits</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$what</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>##
+	'SHOW TABLE STATUS', same as 'mysqlshow [OPTIONS] --status
+	mydb'<BR>&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>if(</FONT><FONT color=#0000cc>$bits</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>0</FONT><FONT
+	color=#006600>])&nbsp;</FONT><FONT color=#0000cc>$this</FONT><FONT
+	color=#006600>-&gt;</FONT><FONT color=#0000cc>get_mydb</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$db</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>##
+	'SHOW STATUS', same as 'mysqladmin [OPTIONS]
+	extended-status'<BR>&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>if(</FONT><FONT color=#0000cc>$bits</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>1</FONT><FONT
+	color=#006600>])&nbsp;</FONT><FONT color=#0000cc>$stat&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;</FONT><FONT color=#0000cc>$this</FONT><FONT
+	color=#006600>-&gt;</FONT><FONT color=#0000cc>get_array</FONT><FONT
+	color=#006600>(</FONT><FONT color=#cc0000>'SHOW STATUS'</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>##
+	'SHOW VARIABLES', same as 'mysqladmin [OPTIONS]
+	variables'<BR>&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>if(</FONT><FONT color=#0000cc>$bits</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>2</FONT><FONT
+	color=#006600>])&nbsp;</FONT><FONT color=#0000cc>$vars&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;</FONT><FONT color=#0000cc>$this</FONT><FONT
+	color=#006600>-&gt;</FONT><FONT color=#0000cc>get_array</FONT><FONT
+	color=#006600>(</FONT><FONT color=#cc0000>'SHOW VARIABLES'</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>##
+	then, get main server
+	status<BR>&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>if(</FONT><FONT color=#0000cc>$bits</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>1</FONT><FONT
+	color=#006600>])<BR>&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>## 'SHOW DATABASES', same as 'mysqlshow [OPTIONS]' or
+	mysql_list_dbs()<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>get_dbs</FONT><FONT
+	color=#006600>();<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>## get comments from $vars,
+	$stat<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>get_comments</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>## then, get main server
+	status<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>get_stat</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>## and then, get main server
+	variables<BR>&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>if(</FONT><FONT color=#0000cc>$bits</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>2</FONT><FONT
+	color=#006600>])&nbsp;</FONT><FONT color=#0000cc>$this</FONT><FONT
+	color=#006600>-&gt;</FONT><FONT color=#0000cc>get_vars</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>##
+	force to flush
+	buffer<BR>&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>unset(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;unset(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>## decimal to binary<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>function&nbsp;</FONT><FONT color=#0000cc>get_bits</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$dec</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;if(!</FONT><FONT
+	color=#0000cc>is_int</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$dec</FONT><FONT color=#006600>))&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>0</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$dec&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>abs</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$dec</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$bits&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>strrev</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>decbin</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$dec</FONT><FONT
+	color=#006600>));<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>$bits</FONT><FONT color=#006600>;&nbsp;</FONT><FONT
+	color=#ff9900>// is not integer, is string<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>}<BR><BR>&nbsp;&nbsp;</FONT><FONT color=#ff9900>## get my
+	databases information<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;##
+	http://www.mysql.com/doc/en/SHOW_TABLE_STATUS.html<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>function&nbsp;</FONT><FONT color=#0000cc>get_mydb</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$db</FONT><FONT
+	color=#006600>=</FONT><FONT color=#cc0000>''</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$db</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$sql&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#cc0000>' FROM '</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$db</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;if(!</FONT><FONT
+	color=#0000cc>$result&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>mysql_query</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'SHOW TABLE STATUS'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$sql</FONT><FONT color=#006600>))&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>0</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$i&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>0</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;while(</FONT><FONT
+	color=#0000cc>$lists&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>mysql_fetch_assoc</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$result</FONT><FONT color=#006600>))&nbsp;</FONT><FONT
+	color=#ff9900>// associative array<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb</FONT><FONT
+	color=#006600>[]&nbsp;=&nbsp;array(<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'name'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Name</FONT><FONT
+	color=#006600>],<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'type'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Type</FONT><FONT
+	color=#006600>],<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'rows'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Rows</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'srow'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Avg_row_length</FONT><FONT color=#006600>]),&nbsp;</FONT><FONT
+	color=#ff9900>// size of avg
+	row<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'size'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Data_length</FONT><FONT color=#006600>]),&nbsp;</FONT><FONT
+	color=#ff9900>// size of this
+	table<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'sidx'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Index_length</FONT><FONT
+	color=#006600>])<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$sum</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>rows</FONT><FONT color=#006600>]&nbsp;+=&nbsp;</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Rows</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$sum</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>size</FONT><FONT color=#006600>]&nbsp;+=&nbsp;</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Data_length</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$sum</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>sidx</FONT><FONT color=#006600>]&nbsp;+=&nbsp;</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Index_length</FONT><FONT
+	color=#006600>];<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$i</FONT><FONT
+	color=#006600>++;<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>mysql_free_result</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$result</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$i</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;array(<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'name'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;B&gt;SUM&lt;/B&gt;'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'type'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#0000cc>$i</FONT><FONT color=#006600>.</FONT><FONT color=#cc0000>'
+	tables'</FONT><FONT color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'rows'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$sum</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>rows</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'srow'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(@</FONT><FONT
+	color=#0000cc>round</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$sum</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>size</FONT><FONT color=#006600>]/</FONT><FONT
+	color=#0000cc>$sum</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>rows</FONT><FONT
+	color=#006600>])),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'size'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;B&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$sum</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>size</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>'&lt;/B&gt;'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'sidx'&nbsp;</FONT><FONT color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$sum</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>sidx</FONT><FONT
+	color=#006600>])<BR>&nbsp;&nbsp;&nbsp;&nbsp;);<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>## get MySQL server status and
+	variables<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;##
+	http://www.mysql.com/doc/en/SHOW_STATUS.html<BR>&nbsp;&nbsp;##
+	http://www.mysql.com/doc/en/SHOW_VARIABLES.html<BR>&nbsp;&nbsp;##
+	http://www.mysql.com/information/presentations/presentation-oscon2000-20000719/<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>function&nbsp;</FONT><FONT color=#0000cc>get_array</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$sql</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;if(!</FONT><FONT
+	color=#0000cc>$result&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>mysql_query</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$sql</FONT><FONT color=#006600>))&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>0</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>## get
+	array to
+	$vars<BR>&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>while(</FONT><FONT color=#0000cc>$lists&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;</FONT><FONT color=#0000cc>mysql_fetch_row</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$result</FONT><FONT
+	color=#006600>))<BR>&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;</FONT><FONT
+	color=#0000cc>$array</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>0</FONT><FONT color=#006600>]]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>$lists</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>1</FONT><FONT
+	color=#006600>];&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>mysql_free_result</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$result</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>$array</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;function&nbsp;</FONT><FONT
+	color=#0000cc>get_dbs</FONT><FONT
+	color=#006600>()<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$result&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>mysql_list_dbs</FONT><FONT color=#006600>();&nbsp;</FONT><FONT
+	color=#ff9900>// 'SHOW DATABASES' same as 'mysqlshow
+	[OPTIONS]'<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$num&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>mysql_num_rows</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$result</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>mysql_free_result</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$result</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$num&nbsp;</FONT><FONT color=#006600>&lt;&nbsp;</FONT><FONT
+	color=#0000cc>2</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>dbs&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#cc0000>'hidden'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>dbs&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>$num&nbsp;</FONT><FONT color=#006600>.</FONT><FONT color=#cc0000>'
+	or more'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>## get comments and return
+	$stat(added)<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;## 1) MySQL caches(all threads
+	shared) [***]<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	key_buffer_size&nbsp;&nbsp;&nbsp;&nbsp;: 8MB &lt; INDEX
+	key<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	table_cache&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 64 &lt; number of
+	open tables for all threads<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	thread_cache_size&nbsp;&nbsp;&nbsp;&nbsp;: 0 &lt; number of keep in a cache for
+	reuse<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;## 2) MySQL buffers(not shared)
+	[***]<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	join_buffer_size&nbsp;&nbsp;&nbsp;&nbsp;: 1MB &lt;
+	FULL-JOIN<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;- myisam_sort_buffer_size :
+	8MB &lt; REPAIR, ALTER, LOAD<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	record_buffer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 2MB &lt;
+	sequential scan allocates<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	record_rnd_buffer&nbsp;&nbsp;&nbsp;&nbsp;: 2MB &lt; ORDER BY(to avoid
+	disk)<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	sort_buffer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 2MB &lt; ORDER BY,
+	GROUP BY<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	tmp_table_size&nbsp;&nbsp;&nbsp;&nbsp;: 32MB &lt; advanced GROUP BY(to avoid
+	disk)<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;## 3) MySQL memory size of
+	INDEX(key)/JOIN/RECORD(read)/SORT/TABLE<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	INDEX(key)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 8MB &lt; [***]
+	key_buffer_size (shared)<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;- JOIN
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 1MB
+	&lt;&nbsp;&nbsp;&nbsp;&nbsp;[***] join_buffer_size (not
+	shared)<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	RECORD(read)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 2MB &lt; [***]
+	record_buffer (not
+	shared)<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+	2MB &lt; [***] record_rnd_buffer (not
+	shared)<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	SORT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+	8MB &lt; [&nbsp;&nbsp;&nbsp;] myisam_sort_buffer_size (not
+	shared)<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+	2MB &lt;&nbsp;&nbsp;&nbsp;&nbsp;[***] sort_buffer (not
+	shared)<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	TABLE(tmp)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 32MB&lt; [***]
+	tmp_table_size(not shared)<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;## 4) MySQL
+	timeout<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	interactive_timeout&nbsp;&nbsp;&nbsp;&nbsp;: 28800 &gt; active to re-active
+	timeout<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	wait_timeout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 28000 &gt; not
+	active to active timeout<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;## 5) MySQL
+	connections<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	max_connections&nbsp;&nbsp;&nbsp;&nbsp;: 100 &lt; 'to many connections'
+	error<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;-
+	max_user_connections&nbsp;&nbsp;&nbsp;&nbsp;: 0(no limit) or upto
+	[Max_used_connect] status<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>function&nbsp;</FONT><FONT color=#0000cc>get_comments</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>,&nbsp;</FONT><FONT color=#0000cc>$stat</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>ab_clients</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%.2f'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Aborted_clients</FONT><FONT color=#006600>]*</FONT><FONT
+	color=#0000cc>100</FONT><FONT color=#006600>/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Connections</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>ab_connects</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%.2f'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Aborted_connects</FONT><FONT color=#006600>]*</FONT><FONT
+	color=#0000cc>100</FONT><FONT color=#006600>/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Connections</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_qs</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%.2f'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Questions</FONT><FONT color=#006600>]/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Uptime</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_qc</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%.2f'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Questions</FONT><FONT color=#006600>]/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Connections</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_cs</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%.2f'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Connections</FONT><FONT color=#006600>]/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Uptime</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_kr</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%.2f'</FONT><FONT color=#006600>,@(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Key_reads</FONT><FONT color=#006600>]/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Key_read_requests</FONT><FONT
+	color=#006600>]));<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_kw</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%.2f'</FONT><FONT color=#006600>,@(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Key_writes</FONT><FONT color=#006600>]/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Key_write_requests</FONT><FONT
+	color=#006600>]));<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_tc</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%.2f'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Threads_created</FONT><FONT color=#006600>]/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Connections</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_oc</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%.2f'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Opened_tables</FONT><FONT color=#006600>]/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Connections</FONT><FONT
+	color=#006600>]);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>##
+	share refer
+	vars<BR>&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>if(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_wait_timeout</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>wait_timeout</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>wait_timeout</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_interactive_timeout</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>interactive_timeout</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>interactive_timeout</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_connect_timeout</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>connect_timeout</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>connect_timeout</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_key_buffer_size</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>key_buffer_size</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>key_buffer_size</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_max_connections</FONT><FONT
+	color=#006600>]&nbsp;=<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_connections</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_table_cache</FONT><FONT
+	color=#006600>]&nbsp;=<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>table_cache</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_thread_cache_size</FONT><FONT
+	color=#006600>]&nbsp;=<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>thread_cache_size</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_tmp_table_size</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>tmp_table_size</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>tmp_table_size</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_long_query_time</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>long_query_time</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>long_query_time</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$B</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>b</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;FONT COLOR=#0000FF&gt;'</FONT><FONT
+	color=#006600>;&nbsp;</FONT><FONT color=#ff9900>// for
+	blue<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>r</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#cc0000>'&lt;FONT
+	COLOR=#FF0000&gt;'</FONT><FONT color=#006600>;&nbsp;</FONT><FONT
+	color=#ff9900>// for red<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$B</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>e</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/FONT&gt;'</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$busy&nbsp;</FONT><FONT color=#006600>=&nbsp;array(</FONT><FONT
+	color=#cc0000>'normal'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'busy'</FONT><FONT color=#006600>,</FONT><FONT color=#cc0000>'very
+	busy'</FONT><FONT color=#006600>,</FONT><FONT color=#cc0000>'hot
+	busy'</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>ab_clients</FONT><FONT color=#006600>]&nbsp;&gt;&nbsp;</FONT><FONT
+	color=#0000cc>1</FONT><FONT
+	color=#006600>)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>wait_timeout</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>$B</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>r</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>',&lt;BR&gt;연결 취소가 많습니다(기준 1 %).&lt;BR&gt;'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_wait_timeout</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'(wait_timeout)초나 '</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_interactive_timeout</FONT><FONT
+	color=#006600>].</FONT><FONT
+	color=#cc0000>'(interactive_timeout)초보다&lt;BR&gt;'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'늦게 close 하거나 연결을 끊지 않는 경우가 많습니다.'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>interactive_timeout</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$this</FONT><FONT
+	color=#006600>-&gt;</FONT><FONT color=#0000cc>comments</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>wait_timeout</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>wait_timeout</FONT><FONT
+	color=#006600>]&nbsp;=<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>interactive_timeout</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>b</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>', 정상'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>ab_connects</FONT><FONT
+	color=#006600>]&nbsp;&gt;&nbsp;</FONT><FONT color=#0000cc>1</FONT><FONT
+	color=#006600>)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>connect_timeout</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>r</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>',&lt;BR&gt;잘못된(fail) 접속 요청이
+	많습니다'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'(기준 1 %).&lt;BR&gt;'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_connect_timeout</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>'(connect_timeout)값을
+	올리세요.'</FONT><FONT color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>connect_timeout</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>b</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>', 정상'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_qs</FONT><FONT color=#006600>]&nbsp;&lt;&nbsp;</FONT><FONT
+	color=#0000cc>1</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$bkey&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>0</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_qs</FONT><FONT color=#006600>]&nbsp;&lt;&nbsp;</FONT><FONT
+	color=#0000cc>10</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$bkey&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>1</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_qs</FONT><FONT color=#006600>]&nbsp;&lt;&nbsp;</FONT><FONT
+	color=#0000cc>20</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$bkey&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>2</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;</FONT><FONT
+	color=#0000cc>$bkey&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>3</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>busy</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>$busy</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$bkey</FONT><FONT
+	color=#006600>];<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_kr</FONT><FONT color=#006600>]&nbsp;&gt;&nbsp;</FONT><FONT
+	color=#0000cc>0.01</FONT><FONT
+	color=#006600>)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>key_buffer_size</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>r</FONT><FONT
+	color=#006600>].<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>',&lt;BR&gt;DISK에서 Key를 읽는 요청이 많습니다'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'(기준 0.01).&lt;BR&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_key_buffer_size</FONT><FONT
+	color=#006600>].<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'(key_buffer_size)값을 올리세요.'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>key_buffer_size</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>b</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>', 정상'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_connections</FONT><FONT
+	color=#006600>])<BR>&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$max</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>vars</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>max</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Max_used_connections</FONT><FONT color=#006600>],</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_connections</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$max</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>stat</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Max_used_connections</FONT><FONT
+	color=#006600>]&nbsp;/&nbsp;</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>max_connections</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$max</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>stat</FONT><FONT color=#006600>]&nbsp;&gt;&nbsp;</FONT><FONT
+	color=#0000cc>0.95&nbsp;</FONT><FONT
+	color=#006600>)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$max</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>to</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>$max</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>vars</FONT><FONT color=#006600>]&nbsp;+&nbsp;(int)(</FONT><FONT
+	color=#0000cc>$max</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>vars</FONT><FONT color=#006600>]*</FONT><FONT
+	color=#0000cc>0.2</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_connections</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>r</FONT><FONT
+	color=#006600>].<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>',&lt;BR&gt;최대 접속수에 근접하거나 초과했습니다.&lt;BR&gt;'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_max_connections</FONT><FONT
+	color=#006600>].<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'(max_connections)값을 '</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$max</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>to</FONT><FONT color=#006600>].</FONT><FONT color=#cc0000>' 정도로
+	올리세요.'</FONT><FONT color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_connections</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>b</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>', 정상'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$max</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>table</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>$max</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>vars</FONT><FONT color=#006600>]&nbsp;*&nbsp;</FONT><FONT
+	color=#0000cc>2</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$max</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>table</FONT><FONT color=#006600>]&nbsp;&gt;&nbsp;</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>table_cache</FONT><FONT
+	color=#006600>])&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>table_cache</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>$B</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>r</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>',&lt;BR&gt;'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_table_cache</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'(table_cache)값을 올리세요.'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$B</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>table_cache</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>$B</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>b</FONT><FONT color=#006600>].</FONT><FONT color=#cc0000>',
+	'</FONT><FONT color=#006600>.</FONT><FONT color=#0000cc>$stat</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>per_oc</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>'/Connections'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_tc</FONT><FONT color=#006600>]&nbsp;&gt;&nbsp;</FONT><FONT
+	color=#0000cc>0.01</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_cs</FONT><FONT color=#006600>]&nbsp;&gt;&nbsp;</FONT><FONT
+	color=#0000cc>1</FONT><FONT
+	color=#006600>)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>thread_cache_size</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>r</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>',&lt;BR&gt;'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_thread_cache_size</FONT><FONT
+	color=#006600>].<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[thread_cache_size]값을 올리세요.'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>thread_cache_size</FONT><FONT
+	color=#006600>]&nbsp;&lt;&nbsp;</FONT><FONT color=#0000cc>2</FONT><FONT
+	color=#006600>)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>thread_cache_size</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>r</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>',&lt;BR&gt;'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'현재 서버가 매우 바쁘지 않으므로 '</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_thread_cache_size</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>'[thread_cache_size]값을 2 정도로
+	'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'올려 보세요.'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$B</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>thread_cache_size</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>r</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>',&lt;BR&gt;'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'현재 서버가 매우 바쁘지 않으므로, 시간이 좀더 지나면 '</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'이 메시지가 보이질 않아야 정상입니다.'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$B</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>thread_cache_size</FONT><FONT
+	color=#006600>]&nbsp;=&nbsp;</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>b</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>', 정상'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$B</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>e</FONT><FONT
+	color=#006600>];<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>## get main status<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>function&nbsp;</FONT><FONT color=#0000cc>get_stat</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$stat</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>stat&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;array(<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'TOTAL_STATUS'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_qs</FONT><FONT color=#006600>],</FONT><FONT
+	color=#cc0000>'&lt;B&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>busy</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&lt;/B&gt; (1초당 평균 쿼리 요청수)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'All_databases'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>dbs</FONT><FONT color=#006600>,</FONT><FONT color=#cc0000>'데이터베이스
+	수'</FONT><FONT color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Aborted_clients'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Aborted_clients</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'연결 취소 Clients 수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Aborted_connects'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Aborted_connects</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'연결 실패수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Aborted_clients_percent'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>ab_clients</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>' %'</FONT><FONT color=#006600>,</FONT><FONT color=#cc0000>'연결
+	취소율'</FONT><FONT color=#006600>.</FONT><FONT color=#0000cc>$this</FONT><FONT
+	color=#006600>-&gt;</FONT><FONT color=#0000cc>comments</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>wait_timeout</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Aborted_connects_percent'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>ab_connects</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>' %'</FONT><FONT color=#006600>,</FONT><FONT color=#cc0000>'연결
+	실패율'</FONT><FONT color=#006600>.</FONT><FONT color=#0000cc>$this</FONT><FONT
+	color=#006600>-&gt;</FONT><FONT color=#0000cc>comments</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>connect_timeout</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Bytes_received'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Bytes_received</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'수신량(총)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Bytes_sent'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Bytes_sent</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'전송량(총)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Bytes_sent_per_sec'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Bytes_sent</FONT><FONT color=#006600>]/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Uptime</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'전송량(초당)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Bytes_sent_per_min'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Bytes_sent</FONT><FONT color=#006600>]*</FONT><FONT
+	color=#0000cc>60</FONT><FONT color=#006600>/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Uptime</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'전송량(분당)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Bytes_sent_per_hour'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Bytes_sent</FONT><FONT color=#006600>]*</FONT><FONT
+	color=#0000cc>3600</FONT><FONT color=#006600>/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Uptime</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'전송량(시간당)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Bytes_sent_per_day'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Bytes_sent</FONT><FONT color=#006600>]*</FONT><FONT
+	color=#0000cc>86400</FONT><FONT color=#006600>/</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Uptime</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'전송량(하루평균)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Connections'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Connections</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'총 connections 수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Connections_per'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_cs</FONT><FONT color=#006600>],</FONT><FONT color=#cc0000>'초당
+	connections 수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Created_tmp_disk_tables'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Created_tmp_disk_tables</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'DISK에 생성된 임시 테이블 수, refer '</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_tmp_table_size</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'[tmp_table_size]'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Created_tmp_tables'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Created_tmp_tables</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'메모리에 생성된 임시 테이블 수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Key_reads'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Key_reads</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'DISK에서 Key 읽은 수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Key_read_requests'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Key_read_requests</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'캐시에서 Key 읽기 요청수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Key_writes'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Key_writes</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'DISK에 Key를 쓴 수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Key_write_requests'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Key_write_requests</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'캐시에 Key 쓰기 요청수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Key_reads_per_request'&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;</FONT><FONT color=#ff9900>// to &lt;
+	0.01<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>$stat</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>per_kr</FONT><FONT
+	color=#006600>],</FONT><FONT color=#cc0000>'DISK에서 Key를 읽는 비율'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$this</FONT><FONT
+	color=#006600>-&gt;</FONT><FONT color=#0000cc>comments</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>key_buffer_size</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Key_writes_per_request'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_kw</FONT><FONT color=#006600>],</FONT><FONT
+	color=#cc0000>'DISK에 Key를 쓰는 비율, 보통 1에 가까워야 정상'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Max_used_connections'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Max_used_connections</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'동시에 연결된 최대값'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_connections</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Open_tables'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Open_tables</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'현재 열려있는 Tables 수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Opened_tables'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Opened_tables</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'열렸던 Tables 수, refer '</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_table_cache</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'[table_cache]'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>table_cache</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Questions'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Questions</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'현재까지 쿼리 요청수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Questions_per_connect'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_qc</FONT><FONT color=#006600>],</FONT><FONT
+	color=#cc0000>'커넥션당 평균 쿼리 요청수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Select_full_join'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Select_full_join</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'Key 없이 FULL-JOIN 횟수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Slow_queries'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Slow_queries</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_long_query_time</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>'(long_query_time)초 보다 큰 쿼리
+	요청수'</FONT><FONT color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Table_locks_waited'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Table_locks_waited</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'Lock wait 총시간'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Threads_cached'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Threads_cached</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'캐시된 쓰레드수, '</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>refer_vars_thread_cache_size</FONT><FONT
+	color=#006600>].<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[thread_cache_size]보다 항상 작음'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Threads_connected'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Threads_connected</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'현재 열려있는 커넥션 수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Threads_created'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Threads_created</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'handle 커넥션에 생성된 쓰레드 수'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Threads_created_per'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>per_tc</FONT><FONT color=#006600>],</FONT><FONT
+	color=#cc0000>'커넥션당 생성된 평균 쓰레드 수(기준 0.01)'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>thread_cache_size</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Threads_running'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Threads_running</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'현재 구동중인 쓰레드 수(not sleeping)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'Uptime'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Uptime</FONT><FONT color=#006600>]),</FONT><FONT color=#cc0000>'최근
+	MySQL 서버 구동 시간'</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;&nbsp;&nbsp;);<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>## get main
+	variables<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>function&nbsp;</FONT><FONT color=#0000cc>get_vars</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$ver&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>explode</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'.'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>preg_replace</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'/-.+$/'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>''</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>version</FONT><FONT
+	color=#006600>]));<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$ver</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>1</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%02d'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$ver</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>1</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$ver</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>2</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>sprintf</FONT><FONT color=#006600>(</FONT><FONT
+	color=#cc0000>'%02d'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$ver</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>2</FONT><FONT
+	color=#006600>]);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$ver&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>$ver</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>0</FONT><FONT color=#006600>].</FONT><FONT
+	color=#0000cc>$ver</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>1</FONT><FONT color=#006600>].</FONT><FONT
+	color=#0000cc>$ver</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>2</FONT><FONT
+	color=#006600>];<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>##
+	http://www.mysql.com/doc/en/Upgrading-from-3.23.html<BR>&nbsp;&nbsp;&nbsp;&nbsp;##
+	myisam_max_extra_sort_file_size,
+	myisam_max_sort_file_size<BR>&nbsp;&nbsp;&nbsp;&nbsp;##<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>if(</FONT><FONT color=#0000cc>$ver&nbsp;</FONT><FONT
+	color=#006600>&lt;&nbsp;</FONT><FONT color=#0000cc>40003</FONT><FONT
+	color=#006600>)&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$upg&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;array(<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'ast'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;</FONT><FONT color=#0000cc>1048576</FONT><FONT
+	color=#006600>,&nbsp;</FONT><FONT color=#ff9900>//
+	1024*1024<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//'bulk'&nbsp;&nbsp;&nbsp;&nbsp;=&gt;
+	'myisam_bulk_insert_tree_size',<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//'qtype'&nbsp;&nbsp;&nbsp;&nbsp;=&gt;
+	'query_cache_startup_type',<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'rbuffer'&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;</FONT><FONT color=#cc0000>'record_buffer'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'rndbuffer'&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#cc0000>'record_rnd_buffer'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'sbuffer'&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;</FONT><FONT color=#cc0000>'sort_buffer'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>//'warn'&nbsp;&nbsp;&nbsp;&nbsp;=&gt;
+	'warnings'<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$upg&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;array(<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'ast'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;</FONT><FONT color=#0000cc>1</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>//'bulk'&nbsp;&nbsp;&nbsp;&nbsp;=&gt;
+	'bulk_insert_buffer_size',<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//'qtype'&nbsp;&nbsp;&nbsp;&nbsp;=&gt;
+	'query_cache_type',<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'rbuffer'&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#cc0000>'read_buffer_size'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'rndbuffer'&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#cc0000>'read_rnd_buffer_size'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'sbuffer'&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;</FONT><FONT
+	color=#cc0000>'sort_buffer_size'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>//'warn'&nbsp;&nbsp;&nbsp;&nbsp;=&gt;
+	'log-warnings'<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>vars&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;array(<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'back_log'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>back_log</FONT><FONT color=#006600>]),</FONT><FONT
+	color=#cc0000>'man 2 listen, '</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'net.ipv4.tcp_max_syn_backlog'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'connect_timeout'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>connect_timeout</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>connect_timeout</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'bad handshake timeout(초)'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>connect_timeout</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>//'delayed_insert_limit',<BR>&nbsp;&nbsp;&nbsp;&nbsp;//'delayed_insert_timeout',<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'join_buffer_size'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>join_buffer_size</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>join_buffer_size</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[***] FULL-JOIN에 사용되는 메모리'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'key_buffer_size'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>key_buffer_size</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>key_buffer_size</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[***] INDEX key buffer에 사용되는 메모리, refer [Key_xxx]'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>key_buffer_size</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'long_query_time'&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>//
+	status(--log-slow-queries=file)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>long_query_time</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>long_query_time</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'refer '</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Slow_queries</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>0</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'[Slow_queries]'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'lower_case_table_names'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>lower_case_table_names</FONT><FONT
+	color=#006600>],<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'테이블 대소문자 구별유무(0 구별)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'max_allowed_packet'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_allowed_packet</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_allowed_packet</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'최대 허용할 패킷'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'max_connections'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_connections</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[***] 최대 동시 접속 커넥션 수, refer '</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Max_used_connections</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>0</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'[Max_used_connections]'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_connections</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'max_join_size'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_join_size</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_join_size</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'JOIN에 사용될 최대 크기(메모리 아님)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'max_sort_length'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_sort_length</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_sort_length</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'TEXT, BLOB의 정렬에 사용되는 최대 크기'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'max_user_connections'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>max_user_connections</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'최대 동시 user 수(0은 제한없음)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>/***<BR>&nbsp;&nbsp;&nbsp;&nbsp;'max_tmp_tables'
+	=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// doesn't yet do
+	anything<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(number_format($vars[max_tmp_tables]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'최대
+	임시 테이블
+	수'),<BR>&nbsp;&nbsp;&nbsp;&nbsp;***/<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'myisam_max_extra_sort_file_size'&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>//
+	MBytes(4.0.3 use
+	bytes)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT
+	color=#0000cc>myisam_max_extra_sort_file_size</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>myisam_max_extra_sort_file_size</FONT><FONT
+	color=#006600>]*</FONT><FONT color=#0000cc>$upg</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>ast</FONT><FONT
+	color=#006600>]).</FONT><FONT color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'빠른 INDEX를 생성시 사용되는 최대 임시 파일 크기'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'myisam_max_sort_file_size'&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>//
+	MBytes(4.0.3 use
+	bytes)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>myisam_max_sort_file_size</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>myisam_max_sort_file_size</FONT><FONT color=#006600>]*</FONT><FONT
+	color=#0000cc>$upg</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>ast</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'REPAIR, ALTER, LOAD...등 INDEX를 재생성시 사용되는 임시 파일 크기'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'myisam_sort_buffer_size'&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>// [***]
+	use REPAIR, INDEX
+	sort<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>myisam_sort_buffer_size</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>myisam_sort_buffer_size</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[***] REPAIR, INDEX, ALTER 정렬에 사용하는 메모리'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'open_files_limit'&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>// error 'Too many open file files', default
+	'0'<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>open_files_limit</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'파일 open 제한 수(0은 제한없음)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>/***<BR>&nbsp;&nbsp;&nbsp;&nbsp;'query_buffer_size'
+	=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// only 3.23.x, start(init)
+	query buffer, default
+	'0'<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(number_format($vars[query_buffer_size]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'('.$this-&gt;hsize($vars[query_buffer_size]).')',<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'초기
+	쿼리 버퍼용 메모리(기본값은
+	0)'),<BR>&nbsp;&nbsp;&nbsp;&nbsp;***/<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$upg</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>rbuffer</FONT><FONT
+	color=#006600>]&nbsp;=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#cc0000>"$upg</FONT><FONT color=#006600>[</FONT><FONT
+	color=#cc0000>rbuffer</FONT><FONT color=#006600>]</FONT><FONT
+	color=#cc0000>"</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#cc0000>"$upg</FONT><FONT color=#006600>[</FONT><FONT
+	color=#cc0000>rbuffer</FONT><FONT color=#006600>]</FONT><FONT
+	color=#cc0000>"</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[***] 순차적인 검색에 사용되는 메모리(read_buffer_size)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$upg</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>rndbuffer</FONT><FONT
+	color=#006600>]&nbsp;=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>// [***] use improve ORDER BY(to avoid a disk
+	seek)<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>record_rnd_buffer</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>record_rnd_buffer</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[***] ORDER BY 정렬에 사용되는 메모리(avoid disk seek)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$upg</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>sbuffer</FONT><FONT
+	color=#006600>]&nbsp;=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>// [***] use ORDER BY, GROUP
+	BY<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#cc0000>"$upg</FONT><FONT
+	color=#006600>[</FONT><FONT color=#cc0000>sbuffer</FONT><FONT
+	color=#006600>]</FONT><FONT color=#cc0000>"</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#cc0000>"$upg</FONT><FONT color=#006600>[</FONT><FONT
+	color=#cc0000>sbuffer</FONT><FONT color=#006600>]</FONT><FONT
+	color=#cc0000>"</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[***] ORDER BY, GROUP BY 정렬에 사용되는 메모리'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'table_cache'&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>// [***] refer to [Opened_tables]
+	status<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>table_cache</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[***] 한번에(all thread) 열 수 있는 테이블 수 refer '</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Opened_tables</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>0</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'[Opened_tables]'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'thread_cache_size'&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#ff9900>// [***]
+	refer to [Connections] and [Threads_created]
+	status<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>thread_cache_size</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[***] 쓰레드 캐시 재사용 수, refer '</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Connections</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>0</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'[Connections], '</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>stat</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>Threads_created</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>0</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'[Threads_created]'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>thread_cache_size</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'tmp_table_size'&nbsp;</FONT><FONT
+	color=#006600>=&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>// [***] use in-memory(to disk), GROUP
+	BY<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>array(</FONT><FONT color=#0000cc>number_format</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$vars</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>tmp_table_size</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>tmp_table_size</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'[***] 복잡한 GROUP BY 정렬에 사용되는 메모리(avoid disk)'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'interactive_timeout'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>interactive_timeout</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>interactive_timeout</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'interactive -&gt; re-active에 기다리는 시간(이후 closed)'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>interactive_timeout</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'wait_timeout'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>wait_timeout</FONT><FONT
+	color=#006600>]).<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'('</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>wait_timeout</FONT><FONT color=#006600>]).</FONT><FONT
+	color=#cc0000>')'</FONT><FONT
+	color=#006600>,<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'none interactive -&gt; active에 기다리는 시간(이후 closed)'</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>comments</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>wait_timeout</FONT><FONT
+	color=#006600>]),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'timezone'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>timezone</FONT><FONT
+	color=#006600>],<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'현재 MySQL 서버의 TIME-ZONE'</FONT><FONT
+	color=#006600>),<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'version'&nbsp;</FONT><FONT
+	color=#006600>=&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</FONT><FONT
+	color=#0000cc>$vars</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>version</FONT><FONT
+	color=#006600>],<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'현재 MySQL 서버 버전'</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;&nbsp;&nbsp;);<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;</FONT><FONT
+	color=#ff9900>## parsing to html<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;## arguments
+	:<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;$color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array,
+	parsing to TABLE
+	cloor<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;$color[line]&nbsp;&nbsp;&nbsp;&nbsp;string,
+	line color of HTML table, default
+	'#000000'<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;$color[th]&nbsp;&nbsp;&nbsp;&nbsp;string,
+	head color of HTML table, default
+	'#CCCCCC'<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;$color[td]&nbsp;&nbsp;&nbsp;&nbsp;string,
+	TD color of HTML table, default
+	'#FFFFFF'<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;##&nbsp;&nbsp;&nbsp;&nbsp;$return&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boolean,
+	return(1) or print(0)<BR>&nbsp;&nbsp;##<BR>&nbsp;&nbsp;</FONT><FONT
+	color=#006600>function&nbsp;</FONT><FONT color=#0000cc>tohtml</FONT><FONT
+	color=#006600>(</FONT><FONT color=#0000cc>$color</FONT><FONT
+	color=#006600>=array(),&nbsp;</FONT><FONT color=#0000cc>$return</FONT><FONT
+	color=#006600>=</FONT><FONT color=#0000cc>0</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;if(!</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>line</FONT><FONT color=#006600>])&nbsp;</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>line</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#cc0000>'#000000'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;if(!</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>th</FONT><FONT color=#006600>])&nbsp;</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>th</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#cc0000>'#CCCCCC'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;if(!</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>td</FONT><FONT color=#006600>])&nbsp;</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>td</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#cc0000>'#FFFFFF'</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$html&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb2html</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$color</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>stat</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$html&nbsp;</FONT><FONT color=#006600>.=&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>array2html</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>stat</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'STATUS'</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>vars</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$html&nbsp;</FONT><FONT color=#006600>.=&nbsp;</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>array2html</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>vars</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'VARIABLES'</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$return</FONT><FONT color=#006600>)&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>$html</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;echo&nbsp;</FONT><FONT
+	color=#0000cc>$html</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;function&nbsp;</FONT><FONT
+	color=#0000cc>mydb2html</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$color</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$r&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#cc0000>'&lt;B&gt;MY
+	DATABASE STATUS&lt;/B&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TABLE BORDER=0 WIDTH=100% CELLPADDING=0 CELLSPACING=0
+	BGCOLOR='</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>line</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TR&gt;&lt;TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TABLE BORDER=0 WIDTH=100% CELLPADDING=3
+	CELLSPACING=1&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TR BGCOLOR='</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>th</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right NOWRAP&gt;테이블 이름&lt;/TD&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=center NOWRAP&gt;테이블 타입&lt;/TD&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right NOWRAP&gt;레코드 수&lt;/TD&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right NOWRAP&gt;레코드 평균 크기&lt;/TD&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right NOWRAP&gt;사용량&lt;/TD&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right NOWRAP&gt;Index 크기&lt;/TD&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/TR&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$nums&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>sizeof</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;for(</FONT><FONT
+	color=#0000cc>$i</FONT><FONT color=#006600>=</FONT><FONT
+	color=#0000cc>0</FONT><FONT color=#006600>;&nbsp;</FONT><FONT
+	color=#0000cc>$i</FONT><FONT color=#006600>&lt;</FONT><FONT
+	color=#0000cc>$nums</FONT><FONT color=#006600>;&nbsp;</FONT><FONT
+	color=#0000cc>$i</FONT><FONT
+	color=#006600>++)<BR>&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$r&nbsp;</FONT><FONT
+	color=#006600>.=&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#cc0000>'&lt;TR
+	BGCOLOR='</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>td</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$i</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>name</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&lt;/TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=center&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$i</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>type</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&lt;/TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$i</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>rows</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&lt;/TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$i</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>srow</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&lt;/TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$i</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>size</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&lt;/TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$this</FONT><FONT color=#006600>-&gt;</FONT><FONT
+	color=#0000cc>mydb</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$i</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>sidx</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&lt;/TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/TR&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$r&nbsp;</FONT><FONT
+	color=#006600>.=&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/TABLE&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/TD&gt;&lt;/TR&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/TABLE&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n&lt;BR&gt;\n"</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>$r</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;function&nbsp;</FONT><FONT
+	color=#0000cc>array2html</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$array</FONT><FONT color=#006600>,&nbsp;</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>,&nbsp;</FONT><FONT
+	color=#0000cc>$name</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$r&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;B&gt;MYSQL SERVER '</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$name</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>'&lt;/B&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TABLE BORDER=0 WIDTH=100% CELLPADDING=0 CELLSPACING=0
+	BGCOLOR='</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>line</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TR&gt;&lt;TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TABLE BORDER=0 WIDTH=100% CELLPADDING=3
+	CELLSPACING=1&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TR BGCOLOR='</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>th</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD WIDTH=25% ALIGN=right&gt;항목&lt;/TD&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD WIDTH=10% ALIGN=right&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$name</FONT><FONT
+	color=#006600>.</FONT><FONT color=#cc0000>'&lt;/TD&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD WIDTH=65%&gt;commnets, [***] 표시는 성능 향상과
+	관련됨&lt;/TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/TR&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$tmp&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>array_keys</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$array</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;foreach(</FONT><FONT
+	color=#0000cc>$tmp&nbsp;</FONT><FONT color=#006600>AS&nbsp;</FONT><FONT
+	color=#0000cc>$key</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$r&nbsp;</FONT><FONT
+	color=#006600>.=&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT color=#cc0000>'&lt;TR
+	BGCOLOR='</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$color</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>td</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$key</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>'&lt;/TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD ALIGN=right NOWRAP&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#0000cc>$array</FONT><FONT
+	color=#006600>[</FONT><FONT color=#0000cc>$key</FONT><FONT
+	color=#006600>][</FONT><FONT color=#0000cc>0</FONT><FONT
+	color=#006600>].</FONT><FONT color=#cc0000>'&lt;/TD&gt;'</FONT><FONT
+	color=#006600>.</FONT><FONT color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$array</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$key</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>1</FONT><FONT color=#006600>].</FONT><FONT
+	color=#cc0000>'&lt;/TD&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/TR&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$r&nbsp;</FONT><FONT
+	color=#006600>.=&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/TABLE&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/TD&gt;&lt;/TR&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n"</FONT><FONT
+	color=#006600>.<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#cc0000>'&lt;/TABLE&gt;'</FONT><FONT color=#006600>.</FONT><FONT
+	color=#cc0000>"\n&lt;BR&gt;\n"</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>$r</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;function&nbsp;</FONT><FONT
+	color=#0000cc>hsize</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$bfsize</FONT><FONT color=#006600>,&nbsp;</FONT><FONT
+	color=#0000cc>$sub</FONT><FONT color=#006600>=</FONT><FONT
+	color=#0000cc>0</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$BYTES&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$bfsize</FONT><FONT color=#006600>).</FONT><FONT color=#cc0000>'
+	Bytes'</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$bfsize&nbsp;</FONT><FONT color=#006600>&lt;&nbsp;</FONT><FONT
+	color=#0000cc>1024</FONT><FONT color=#006600>)&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>$BYTES</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(</FONT><FONT
+	color=#0000cc>$bfsize&nbsp;</FONT><FONT color=#006600>&lt;&nbsp;</FONT><FONT
+	color=#0000cc>1048576</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$bfsize&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>round</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$bfsize</FONT><FONT color=#006600>/</FONT><FONT
+	color=#0000cc>1024</FONT><FONT color=#006600>)).</FONT><FONT color=#cc0000>'
+	KB'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;if(</FONT><FONT
+	color=#0000cc>$bfsize&nbsp;</FONT><FONT color=#006600>&lt;&nbsp;</FONT><FONT
+	color=#0000cc>1073741827</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$bfsize&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>round</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$bfsize</FONT><FONT color=#006600>/</FONT><FONT
+	color=#0000cc>1048576</FONT><FONT color=#006600>)).</FONT><FONT color=#cc0000>'
+	MB'</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;</FONT><FONT
+	color=#0000cc>$bfsize&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>number_format</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$bfsize</FONT><FONT color=#006600>/</FONT><FONT
+	color=#0000cc>1073741827</FONT><FONT color=#006600>,</FONT><FONT
+	color=#0000cc>1</FONT><FONT color=#006600>).</FONT><FONT color=#cc0000>'
+	GB'</FONT><FONT color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;if(</FONT><FONT
+	color=#0000cc>$sub</FONT><FONT color=#006600>)&nbsp;</FONT><FONT
+	color=#0000cc>$bfsize&nbsp;</FONT><FONT color=#006600>.=&nbsp;</FONT><FONT
+	color=#cc0000>"($BYTES)"</FONT><FONT
+	color=#006600>;<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>$bfsize</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;}<BR><BR>&nbsp;&nbsp;function&nbsp;</FONT><FONT
+	color=#0000cc>runtime</FONT><FONT color=#006600>(</FONT><FONT
+	color=#0000cc>$term</FONT><FONT color=#006600>,&nbsp;</FONT><FONT
+	color=#0000cc>$lang</FONT><FONT color=#006600>=</FONT><FONT
+	color=#cc0000>'kr'</FONT><FONT
+	color=#006600>)<BR>&nbsp;&nbsp;{&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$l</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>kr</FONT><FONT color=#006600>]&nbsp;=&nbsp;</FONT><FONT
+	color=#0000cc>$l</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>ko</FONT><FONT color=#006600>]&nbsp;=&nbsp;array(</FONT><FONT
+	color=#cc0000>'초'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'분'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'시간'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'일'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'달'</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$l</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>en</FONT><FONT color=#006600>]&nbsp;=&nbsp;array(</FONT><FONT
+	color=#cc0000>'seconds'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'minutes'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'hours'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'days'</FONT><FONT color=#006600>,</FONT><FONT
+	color=#cc0000>'months'</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$months&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;(int)(</FONT><FONT color=#0000cc>$term&nbsp;</FONT><FONT
+	color=#006600>/&nbsp;</FONT><FONT color=#0000cc>2592000</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$term&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;(int)(</FONT><FONT color=#0000cc>$term&nbsp;</FONT><FONT
+	color=#006600>%&nbsp;</FONT><FONT color=#0000cc>2592000</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$days&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;(int)(</FONT><FONT color=#0000cc>$term&nbsp;</FONT><FONT
+	color=#006600>/&nbsp;</FONT><FONT color=#0000cc>86400</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$term&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;(int)(</FONT><FONT color=#0000cc>$term&nbsp;</FONT><FONT
+	color=#006600>%&nbsp;</FONT><FONT color=#0000cc>86400</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$hours&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;(int)(</FONT><FONT color=#0000cc>$term&nbsp;</FONT><FONT
+	color=#006600>/&nbsp;</FONT><FONT color=#0000cc>3600</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$term&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;(int)(</FONT><FONT color=#0000cc>$term&nbsp;</FONT><FONT
+	color=#006600>%&nbsp;</FONT><FONT color=#0000cc>3600</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$mins&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;(int)(</FONT><FONT color=#0000cc>$term&nbsp;</FONT><FONT
+	color=#006600>/&nbsp;</FONT><FONT color=#0000cc>60</FONT><FONT
+	color=#006600>);<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$secs&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#006600>=&nbsp;(int)(</FONT><FONT color=#0000cc>$term&nbsp;</FONT><FONT
+	color=#006600>%&nbsp;</FONT><FONT color=#0000cc>60</FONT><FONT
+	color=#006600>);<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$months&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>$months&nbsp;</FONT><FONT color=#006600>?&nbsp;</FONT><FONT
+	color=#0000cc>$months</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$l</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$lang</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>4</FONT><FONT color=#006600>].</FONT><FONT color=#cc0000>'
+	'&nbsp;</FONT><FONT color=#006600>:&nbsp;</FONT><FONT
+	color=#cc0000>''</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$days&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>$days&nbsp;</FONT><FONT color=#006600>?&nbsp;</FONT><FONT
+	color=#0000cc>$days</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$l</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$lang</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>3</FONT><FONT color=#006600>].</FONT><FONT color=#cc0000>'
+	'&nbsp;</FONT><FONT color=#006600>:&nbsp;</FONT><FONT
+	color=#cc0000>''</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$hours&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>$hours&nbsp;</FONT><FONT color=#006600>?&nbsp;</FONT><FONT
+	color=#0000cc>$hours</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$l</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$lang</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>2</FONT><FONT color=#006600>].</FONT><FONT color=#cc0000>'
+	'&nbsp;</FONT><FONT color=#006600>:&nbsp;</FONT><FONT
+	color=#cc0000>''</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$mins&nbsp;</FONT><FONT color=#006600>=&nbsp;</FONT><FONT
+	color=#0000cc>$mins&nbsp;</FONT><FONT color=#006600>?&nbsp;</FONT><FONT
+	color=#0000cc>$mins</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$l</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$lang</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>1</FONT><FONT color=#006600>].</FONT><FONT color=#cc0000>'
+	'&nbsp;</FONT><FONT color=#006600>:&nbsp;</FONT><FONT
+	color=#cc0000>''</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;&nbsp;&nbsp;</FONT><FONT
+	color=#0000cc>$secs&nbsp;</FONT><FONT color=#006600>.=&nbsp;</FONT><FONT
+	color=#0000cc>$l</FONT><FONT color=#006600>[</FONT><FONT
+	color=#0000cc>$lang</FONT><FONT color=#006600>][</FONT><FONT
+	color=#0000cc>0</FONT><FONT
+	color=#006600>];<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</FONT><FONT
+	color=#0000cc>$months</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$days</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$hours</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$mins</FONT><FONT color=#006600>.</FONT><FONT
+	color=#0000cc>$secs</FONT><FONT
+	color=#006600>;<BR>&nbsp;&nbsp;}<BR>}&nbsp;</FONT><FONT color=#ff9900>// end of
+	class<BR><BR>/*** example<BR>require
+	'class.mysql.status.php';<BR><BR>mysql_connect('localhost','mysql','');<BR>mysql_select_db('board');<BR><BR>$status
+	= new
+	mysql_status;<BR>$status-&gt;tohtml();<BR><BR>mysql_close();<BR>***/<BR></FONT><FONT
+	color=#0000cc>?&gt;<BR></FONT></FONT></CODE>
+</BODY>
+</HTML>

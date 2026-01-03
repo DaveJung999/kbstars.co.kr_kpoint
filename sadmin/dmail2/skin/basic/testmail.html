@@ -1,0 +1,156 @@
+
+<html>
+<head>
+	<title>대량메일 발송</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<script language="JavaScript">
+	<!--
+	function checkForm() {
+		var f= document.ITwizard;
+		if( isEmpty( f.email.value )) {
+			alert('테스트 하실 이메일을 입력하쎄용!!');
+			f.email.focus();
+			return false;
+		}
+		if( !check_email(f.email.value)) {
+			alert('이메일을 정확히 입력하시기 바랍니다.');
+			f.email.focus();
+			return false;
+		}
+
+	}
+	function check_email(email) {
+		var f_email = document.ITwizard.email;
+		var stremail = f_email.value;
+		//	이메일 주소는 입력한 경우에만 valid한지 체크한다.
+		var i;
+		var strCheck1 = false;
+		var strCheck2 = false;
+		var iemailLen = stremail.length
+		if (iemailLen > 0) {
+			// stremail 에 '.@', '@.' 이 있는 경우 에러메시지.
+			// stremail의 맨앞 또는 맨뒤에	'@', '.' 이 있는 경우 에러메시지.
+			if ((stremail.indexOf(".@") != -1) || (stremail.indexOf("@.") != -1) ||
+				(stremail.substring(0,1) == ".") || (stremail.substring(0,1) == "@") ||
+				(stremail.substring(iemailLen-1,iemailLen) == ".") || (stremail.substring(iemailLen-1,iemailLen) == "@"))
+			{
+				return false;
+			}
+
+			for(i=0; i < iemailLen; i++) {
+				if ((stremail.substring(i,i+1) == ".") ||
+					(stremail.substring(i,i+1) == "-") || (stremail.substring(i,i+1) == "_") ||
+					((stremail.substring(i,i+1) >= "0") && (stremail.substring(i,i+1) <= "9")) ||
+					((stremail.substring(i,i+1) >= "@") && (stremail.substring(i,i+1) <= "Z")) ||
+					((stremail.substring(i,i+1) >= "a") && (stremail.substring(i,i+1) <= "z"))) {
+					if (stremail.substring(i,i+1) == ".")
+						strCheck1 = true;
+					if (stremail.substring(i,i+1) == "@")
+						strCheck2 = true;
+				}
+				else {
+					return false;
+				}
+			}
+
+			if ((strCheck1 == false) || (strCheck2 == false)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	function isEmpty( data ) {
+		for ( var i = 0 ; i < data.length ; i++ )
+		{
+			if ( data.substring( i, i+1 ) != " " )
+				return false;
+		}
+		return true;
+	}
+	//-->
+	</script>
+
+	<link rel="stylesheet" href="images/style.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+	<form name="ITwizard" onSubmit="return checkForm()" {form_default}>
+	<table width="61%" border="0" cellspacing="0" cellpadding="1">
+	<tr valign="middle">
+		<td colspan="3" height="1" bgcolor="#000000"></td>
+	</tr>
+	<tr valign="middle" bgcolor="#DDDDCC">
+		<td colspan="3" height="20">보내질 내용을 테스트 해 보는 곳입니다...</td>
+	</tr>
+	<tr valign="middle">
+		<td colspan="3" height="1" bgcolor="#000000"></td>
+	</tr>
+	<tr valign="middle" bgcolor="#F1F1EB">
+		<td colspan="3">
+			<p style="margin-right:10pt; margin-left:10pt; line-height: 16pt;"><font color="#FF0000">사용법</font>
+			: <font color="#999999">테스트메일 주소에는 관리자(자신)의 메일 주소를 적구나서 적어두 3통이상을 보내야
+			제대로된 테스트가 이루어 집니다.<br>
+			즉, 3통이상이 각기 대치되는 문자로 보내지는지를 체크 할 수 있기 때문입니다. 이때 뽑아올려지는 메일의 주소는 메일링 리스트에
+			등록이 되어 있는 것중 임의로 1, 3, 5... 이상을 뽑아 보내어 집니다.</font></p>
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td colspan="3">&nbsp;</td>
+	</tr>
+	<tr valign="middle" bgcolor="#000000">
+		<td colspan="3" height="1"></td>
+	</tr>
+	<tr valign="middle" bgcolor="#DDDDCC">
+		<td colspan="3" height="8"></td>
+	</tr>
+	<tr valign="middle" bgcolor="#F1F1EB">
+		<td colspan="3" height="8"></td>
+	</tr>
+	<tr valign="middle" bgcolor="#F1F1EB">
+		<td width="20%">테스트메일주소</td>
+		<td width="49%">
+			<font size="2">
+			<input type="text" name="email" size="35" maxlength="45" class="input">
+			</font>
+		</td>
+		<td width="31%">
+			<div align="center">
+				<font size="2">
+				<select name="sendnum">
+				<option value="1" selected>1</option>
+				<option value="3">3</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
+				</select>
+				</font>통<font size="2">&nbsp;
+				<input type="submit" name="Submit" value=" 보내기 " class="submit">
+				</font> 
+			</div>
+		</td>
+	</tr>
+	<tr bgcolor="#F1F1EB" align="center">
+		<td colspan="3">
+			<font size="2">
+			<textarea name='comment' cols='75' rows='25' readonly class="textarea">{list.comment}</textarea>
+			</font>
+		</td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td colspan="3" align="center">
+			<input type="button" value="Back" onClick="history.back()" style="width:50%" class='submit'>
+		</td>
+	</tr>
+	<tr valign="middle">
+		<td colspan="3" height="9"></td>
+	</tr>
+	<tr valign="middle">
+		<td colspan="3" height="5" bgcolor="#DDDDCC"></td>
+	</tr>
+	<tr valign="middle">
+		<td colspan="3" height="1" bgcolor="#000000"></td>
+	</tr>
+	</table>
+	</form>
+</body>
+</html>

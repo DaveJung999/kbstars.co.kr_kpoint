@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>무제 문서</title>
+</head>
+
+<body>
+	<p>발행할 세금계산서 내역</p>
+	<TABLE cellSpacing=1 cellPadding=3 width=578 border=0>
+	<TBODY>
+	<TR>
+		<TD class=sub height=25>세금계산서 공급자 상세 내역</TD>
+	</TR>
+	</TBODY>
+	</TABLE>
+	<TABLE cellSpacing=1 cellPadding=3 width=578 bgColor=#cccccc border=0>
+	<TBODY>
+	<TR bgColor=#ffffff>
+		<TD class=sub noWrap width=80 bgColor=#f6f6f6>
+			<FONT
+			color=#000000>회사명</FONT>
+		</TD>
+		<TD class=sub>{to.c_name}</TD>
+		<TD class=sub width=90 bgColor=#f6f6f6><FONT color=#000000>등록번호</FONT></TD>
+		<TD class=sub>{to.c_num}</TD>
+		<TD class=sub width=60 bgColor=#f6f6f6><FONT color=#000000>대표자명</FONT></TD>
+		<TD class=sub>{to.c_owner}</TD>
+	</TR>
+	<TR bgColor=#ffffff>
+		<TD class=sub bgColor=#f6f6f6><FONT color=#000000>회사전화번호</FONT></TD>
+		<TD class=sub>{to.office_tel}</TD>
+		<TD class=sub bgColor=#f6f6f6><FONT color=#000000>사업장주소</FONT></TD>
+		<TD class=sub bgColor=#ffffff colSpan=3><FONT color=#000000>{to.c_address}</FONT></TD>
+	</TR>
+	<TR bgColor=#ffffff>
+		<TD class=sub bgColor=#f6f6f6><FONT color=#000000>담당자명</FONT></TD>
+		<TD class=sub>{to.tax_name}</TD>
+		<TD class=sub bgColor=#f6f6f6><FONT color=#000000>관리자 전화번호</FONT></TD>
+		<TD class=sub>{to.tax_tel}</TD>
+		<TD class=sub bgColor=#f6f6f6><FONT color=#000000>핸드폰</FONT></TD>
+		<TD class=sub>{to.tax_hp}</TD>
+	</TR>
+	<TR bgColor=#ffffff>
+		<TD class=sub bgColor=#f6f6f6><FONT color=#000000>e-mail</FONT></TD>
+		<TD class=sub colSpan=5>{to.tax_email}</TD>
+	</TR>
+	</TBODY>
+	</TABLE>
+	<BR>
+	<TABLE cellSpacing=1 cellPadding=3 width=578 border=0>
+	<TBODY>
+	<TR>
+		<TD class=sub height=25>
+			<p>세금계산서 발행정보</p>
+		</TD>
+	</TR>
+	</TBODY>
+	</TABLE>
+	<table width="500" border="1" cellspacing="0" cellpadding="0">
+	<tr>
+		<th nowrap>월일</th>
+		<th nowrap>품명</th>
+		<th nowrap>규격</th>
+		<th nowrap>수량</th>
+		<th nowrap><div align="right">공급가액</div></th>
+		<th nowrap>세액</th>
+	</tr>
+	<tr>
+		<td nowrap>{tax.date1}</td>
+		<td>{tax.item1}</td>
+		<td>{tax.standard1}</td>
+		<td nowrap><div align="center">{tax.quantity1}</div></td>
+		<td nowrap><div align="right">{tax.supply_money1}</div></td>
+		<td nowrap><div align="right">{tax.tax_money1}</div></td>
+	</tr>
+	<tr>
+		<td nowrap>{tax.date2}</td>
+		<td>{tax.item2}</td>
+		<td>{tax.standard2}</td>
+		<td nowrap><div align="center">{tax.quantity2}</div></td>
+		<td nowrap><div align="right">{tax.supply_money2}</div></td>
+		<td nowrap><div align="right">{tax.tax_money2}</div></td>
+	</tr>
+	<tr>
+		<td nowrap>{tax.date3}</td>
+		<td>{tax.item3}</td>
+		<td>{tax.standard3}</td>
+		<td nowrap><div align="center">{tax.quantity3}</div></td>
+		<td nowrap><div align="right">{tax.supply_money3}</div></td>
+		<td nowrap><div align="right">{tax.tax_money3}</div></td>
+	</tr>
+	<tr>
+		<td nowrap>{tax.date4}</td>
+		<td>{tax.item4}</td>
+		<td>{tax.standard4}</td>
+		<td nowrap><div align="center">{tax.quantity4}</div></td>
+		<td nowrap><div align="right">{tax.supply_money4}</div></td>
+		<td nowrap><div align="right">{tax.tax_money4}</div></td>
+	</tr>
+	<tr>
+		<td nowrap>{tax.date5}</td>
+		<td>{tax.item5}</td>
+		<td>{tax.standard5}</td>
+		<td nowrap><div align="center">{tax.quantity5}</div></td>
+		<td nowrap><div align="right">{tax.supply_money5}</div></td>
+		<td nowrap><div align="right">{tax.tax_money5}</div></td>
+	</tr>
+	<tr>
+		<th colspan="4" nowrap>합계</th>
+		<th nowrap><div align="right">{tax.total_money}</div></th>
+		<th nowrap><div align="right">{tax.total_tax}</div></th>
+	</tr>
+	</table>
+	<p><a href="{href.confirm}">세금계산서발행</a></p>
+</body>
+</html>

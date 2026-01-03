@@ -1,0 +1,210 @@
+
+
+<script>
+<!--
+function dreamkos_imgview(form, swf_uid)
+{
+	var img_pre = 'pre';
+	var swf = eval(swf_uid);
+	if(event.srcElement.value.match(/(.jpg|.jpeg|.gif|.png|.JPG |.GIF|.PNG|.JPEG)/)) {
+		form[img_pre].src = event.srcElement.value;
+		form[img_pre].style.display = '';
+		swf.innerHTML="";
+	}
+	else if(event.srcElement.value.match(/(.swf|.SWF)/)) {
+		swf.innerHTML="<object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://active.macromedia.com/flash4/cabs/swflash.cab#version=4,0,0,0' width='600' height='130'> <param name='movie' value='"+event.srcElement.value+"'>	<param name='play' value='true'>	<param name='loop' value='true'>	<param name='quality' value='high'>	<embed src='"+event.srcElement.value+"' play='true' loop='true' quality='high' pluginspage='http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash' width='890' height='195'></embed></object>";
+		form[img_pre].style.display = 'none';
+	}
+	else {
+		swf.innerHTML="";
+		form[img_pre].style.display = 'none';
+	}
+}
+function onCheck(form)
+{
+	if (form.title.value == ""){
+		alert("배너명을 입력하세요");
+		form.title.focus();
+		return false;
+	}
+
+	if (form.data2.value == ""){
+		alert("배너의 가로 크기를 입력하세요");
+		form.data2.focus();
+		return false;
+	}
+	if (form.data3.value == ""){
+		alert("배너의 세로 크기를 입력하세요");
+		form.data3.focus();
+		return false;
+	}
+	form.submit();
+	return true;
+}
+function onDelete(form)
+{
+	rtn = confirm('정말 삭제하시겠습니까?');
+	if(rtn == true){
+		form.mode.value='delete';
+		form.submit();
+		return true;
+	}
+	return false;
+}
+//-->
+</script>
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+<style type="text/css">
+<!--
+.style1 {color: #0000CC}
+-->
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td>
+		<table width="97%" align="center" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+			<td background="/images/admin/tbox_bg.gif"><strong><b>메인 플래시 관리</b></strong></td>
+			<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+		</tr>
+		</table>
+		<br>
+		<table width="97%" align="center"	border="0" cellpadding="3" cellspacing="1" bgcolor='#aaaaaa'>
+		<tr>
+			<td bgcolor="#F8F8EA">
+				{LIST} <block name="list">
+				<table width='100%' border='0' align="center" cellpadding='4' cellspacing='1' bgcolor='#aaaaaa'>
+				<form name="form{list.no}" method="post" enctype="multipart/form-data" action="./ok.php?goto=main.php">
+				<input type="hidden" name="mode" value="">
+				<input type="hidden" name="db" value="banner">
+				<input type="hidden" name="uid" value="{list.uid}">
+				<input type="hidden" name="content" value="main">
+				<tr height=25 bgcolor="#D2BF7E">
+					<td height="25" colspan="3" align="center"><strong>{list.title} 관리</strong></td>
+				</tr>
+				<tr height=25>
+					<td width=120 align="center" bgcolor="F0EBD6">플래시명</td>
+					<td bgcolor=#F8F8EA>
+						<input type="text" class="input01" name="title" value="{list.title}" style="width:95%">
+					</td>
+					<td rowspan=7 bgcolor=#F8F8EA align="center" valign=middle width=83>
+						<input name="edit" type="button" class="input02" value=" 수 정 " onClick="javascript:document.form{list.no}.mode.value='modify';return onCheck(this.form);">
+						<br>
+						<input name="delete" type="button" class="input02" value=" 삭 제 " onClick="onDelete(this.form);">
+					</td>
+				</tr>
+				<tr height=25>
+					<td bgcolor="F0EBD6" align="center">사용여부</td>
+					<td bgcolor=#F8F8EA>
+						<input type="radio" name="data1" value="1" {list.data1_1checked}>
+						사용함
+						<input type="radio" name="data1" value="0" {list.data1_2checked}>
+						사용안함
+					</td>
+				</tr>
+				<tr height=25>
+					<td bgcolor="F0EBD6" align="center">플래시</td>
+					<td bgcolor=#F8F8EA>{list.cur_banner} </td>
+				</tr>
+				<!--tr height=25>
+						<td height="25" bgcolor="F0EBD6" align="center">바꿀 이미지</td>
+						<td bgcolor=#F8F8EA><img id='pre' style='display:none;' border='0'><div id="swf_{list.uid}">&nbsp;</div></td>
+					</tr-->
+				<tr height=25>
+					<td align="center" bgcolor="F0EBD6">크기</td>
+					<td bgcolor=#F8F8EA>
+						<input type="text" class="input01" name="data2" size=5 value="{list.data2}">
+						x
+						<input type="text" class="input01" name="data3" size=5 value="{list.data3}">
+						(기본사이즈 : 890 X 195)&nbsp; <span class="style1">(0 X 0 : 원래이미지사이즈)</span> 
+					</td>
+				</tr>
+				<!--tr height=25>
+						<td bgcolor="F0EBD6" align="center">링크사용</td>
+						<td bgcolor=#F8F8EA>
+						<input type="text" class="input01" name="data4" value="{list.data4}" size=50>
+						/ Target :
+						<input type="text" class="input01" name="data5" value="{list.data5}" size=10>
+						</td>
+					</tr-->
+				<tr height=25>
+					<td bgcolor="F0EBD6" align="center">업로드</td>
+					<td bgcolor=#F8F8EA>
+						<input type="file" name="upfile" class="input01" value="" style="width:95%">
+					</td>
+				</tr>
+				</form>
+				</table>
+				<br>
+				</block name="list"><br>
+				<table width='100%' border='0' align="center" cellpadding='4' cellspacing='1' bgcolor='#aaaaaa'>
+				<form name="form_write" method="post" enctype="multipart/form-data" action="./ok.php?goto=main.php">
+				<input type="hidden" name="mode" value="write" style="width:95%">
+				<input type="hidden" name="db" value="banner" style="width:95%">
+				<input type="hidden" name="data1" value="1">
+				<input type="hidden" name="content" value="main">
+				<tr height=25 bgcolor="#F1D9B8">
+					<td height="25" colspan="3" align="center"><strong>메인 플래시 추가</strong></td>
+				</tr>
+				<tr height=25>
+					<td bgcolor="F0EBD6" align="center" width=120>배너명</td>
+					<td bgcolor=#F8F8EA>
+						<input type="text" class="input01" name="title" value="" style="width:95%">
+					</td>
+					<td rowspan=5 bgcolor=#F8F8EA align="center" valign=middle width=86>
+						<input name="edit" type="button" class="input02" value="추가하기" onClick="javascript: return onCheck(this.form);">
+					</td>
+				</tr>
+				<!--tr height=25>
+				<td height="25" bgcolor="F0EBD6" align="center">추가 할 이미지</td>
+				<td bgcolor=#F8F8EA><img id='pre' style='display:none;' border='0'><div id="swf_0">&nbsp;</div></td>
+				</tr-->
+				<tr height=25>
+					<td align="center" bgcolor="F0EBD6">크기</td>
+					<td bgcolor=#F8F8EA>
+						<input type="text" class="input01" name="data2" size=5 value="890">
+						x
+						<input type="text" class="input01" name="data3" size=5 value="195">
+						(기본사이즈 : 890 X 195)&nbsp; <span class="style1">(0 X 0 : 원래이미지사이즈)</span> 
+					</td>
+				</tr>
+				<!--tr height=25>
+				<td bgcolor="F0EBD6" align="center">링크사용</td>
+				<td bgcolor=#F8F8EA>
+					<input type="text" class="input01" name="data4" value="http://" size=40>
+	/ Target :
+	<input type="text" class="input01" name="data5" value="_blank" size=8>
+	<br>
+	('_blank': 새창띄우기)</td>
+				</tr-->
+				<tr height=25>
+					<td bgcolor="F0EBD6" align="center">업로드</td>
+					<td bgcolor=#F8F8EA>
+						<input type="file" name="upfile" class="input01" value="" style="width:95%"><!--input type="file" name="upfile" class="input01" value="" style="width:95%" onChange="dreamkos_imgview(this.form, 'swf_0')" -->
+					</td>
+				</tr>
+				</form>
+				</table>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>

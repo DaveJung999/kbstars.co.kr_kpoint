@@ -1,0 +1,704 @@
+
+<script language="JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) {
+	//v2.0
+	window.open(theURL,winName,features);
+}
+function setPriceNumTax() {
+	return;
+	var l_tot_c_mny = document.Tax.tfirm_paper_sumprice.value;
+	var l_tot_mny;
+	var l_tax_mny;
+	l_tot_mny	=	Math.round(l_tot_c_mny*10/11);
+	l_tax_mny	=	l_tot_c_mny - l_tot_mny;
+
+	document.Tax.tfirm_paper_supplyprice.value = l_tot_mny;
+	document.Tax.tfirm_paper_taxprice.value = l_tax_mny;
+	document.Tax.Ptfirm_paper_supplyprice1.value = l_tot_mny;
+	document.Tax.Ptfirm_paper_taxprice1.value = l_tax_mny;
+}
+function settfirm_paper_taxrate(tselect)
+{
+	return;
+	var	Ptfirm_paper_supplyprice1	,	Ptfirm_paper_taxprice1, Ptfirm_paper_supplyprice2,	Ptfirm_paper_taxprice2;
+	var	Ptfirm_paper_supplyprice3, Ptfirm_paper_taxprice3,	Ptfirm_paper_supplyprice4, Ptfirm_paper_taxprice4;
+	var	tfirm_paper_supplyprice, tfirm_paper_taxprice,	tfirm_paper_sumprice;
+	var	rate ;
+	rate = tselect[tselect.selectedIndex].value;
+	if (isDigitMinus(document.Tax.Ptfirm_paper_supplyprice1)){
+		Ptfirm_paper_supplyprice1	=	parseInt(document.Tax.Ptfirm_paper_supplyprice1.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice1	=	"";
+	}
+	if (isDigitMinus(document.Tax.Ptfirm_paper_supplyprice2)){
+		Ptfirm_paper_supplyprice2	=	parseInt(document.Tax.Ptfirm_paper_supplyprice2.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice2	=	"";
+	}
+	if (isDigitMinus(document.Tax.Ptfirm_paper_supplyprice3)){
+		Ptfirm_paper_supplyprice3	=	parseInt(document.Tax.Ptfirm_paper_supplyprice3.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice3	=	"";
+	}
+	if (isDigitMinus(document.Tax.Ptfirm_paper_supplyprice4)){
+		Ptfirm_paper_supplyprice4	=	parseInt(document.Tax.Ptfirm_paper_supplyprice4.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice4	=	"";
+	}
+	if (isDigitValue(Ptfirm_paper_supplyprice1)){
+		Ptfirm_paper_taxprice1	=	Math.round(Ptfirm_paper_supplyprice1*(rate/100));
+		document.Tax.Ptfirm_paper_taxprice1.value = Ptfirm_paper_taxprice1;
+	}
+	else{
+		Ptfirm_paper_supplyprice1	=	0;
+		Ptfirm_paper_taxprice1	=	0;
+	}
+	if (isDigitValue(Ptfirm_paper_supplyprice2)){
+		Ptfirm_paper_taxprice2	=	Math.round(Ptfirm_paper_supplyprice2*(rate/100));
+		document.Tax.Ptfirm_paper_taxprice2.value = Ptfirm_paper_taxprice2;
+	}
+	else{
+		Ptfirm_paper_supplyprice2	=	0;
+		Ptfirm_paper_taxprice2	=	0;
+	}
+	if (isDigitValue(Ptfirm_paper_supplyprice3)){
+		Ptfirm_paper_taxprice3	=	Math.round(Ptfirm_paper_supplyprice3*(rate/100));
+		document.Tax.Ptfirm_paper_taxprice3.value = Ptfirm_paper_taxprice3;
+	}
+	else{
+		Ptfirm_paper_supplyprice3	=	0;
+		Ptfirm_paper_taxprice3	=	0;
+	}
+	if (isDigitValue(Ptfirm_paper_supplyprice4)){
+		Ptfirm_paper_taxprice4	=	Math.round(Ptfirm_paper_supplyprice4*(rate/100));
+		document.Tax.Ptfirm_paper_taxprice4.value = Ptfirm_paper_taxprice4;
+	}
+	else{
+		Ptfirm_paper_supplyprice4	=	0;
+		Ptfirm_paper_taxprice4	=	0;
+	}
+	tfirm_paper_supplyprice	=	Ptfirm_paper_supplyprice1	+	Ptfirm_paper_supplyprice2	+	Ptfirm_paper_supplyprice3	+	Ptfirm_paper_supplyprice4;
+	tfirm_paper_taxprice		=	Ptfirm_paper_taxprice1	+	Ptfirm_paper_taxprice2	+	Ptfirm_paper_taxprice3	+	Ptfirm_paper_taxprice4;
+	tfirm_paper_sumprice	=	tfirm_paper_supplyprice	+	tfirm_paper_taxprice;
+	document.Tax.tfirm_paper_supplyprice.value = tfirm_paper_supplyprice;
+	document.Tax.tfirm_paper_taxprice.value = tfirm_paper_taxprice;
+	document.Tax.tfirm_paper_sumprice.value	=	tfirm_paper_sumprice;
+}
+function setPriceNum(num){
+	return;
+	var	Ptfirm_paper_supplyprice1, Ptfirm_paper_supplyprice2,	Ptfirm_paper_supplyprice3, Ptfirm_paper_supplyprice4;
+	var	Ptfirm_paper_taxprice1, Ptfirm_paper_taxprice2,	Ptfirm_paper_taxprice3, Ptfirm_paper_taxprice4;
+	var	tfirm_paper_supplyprice, tfirm_paper_taxprice,	tfirm_paper_sumprice;
+	var	rate;
+	if (isDigitMinus(document.Tax.Ptfirm_paper_supplyprice1)){
+		Ptfirm_paper_supplyprice1	=	parseInt(document.Tax.Ptfirm_paper_supplyprice1.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice1	=	"";
+	}
+	if (isDigitMinus(document.Tax.Ptfirm_paper_supplyprice2)){
+		Ptfirm_paper_supplyprice2	=	parseInt(document.Tax.Ptfirm_paper_supplyprice2.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice2	=	"";
+	}
+	if (isDigitMinus(document.Tax.Ptfirm_paper_supplyprice3)){
+		Ptfirm_paper_supplyprice3	=	parseInt(document.Tax.Ptfirm_paper_supplyprice3.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice3	=	"";
+	}
+	if (isDigitMinus(document.Tax.Ptfirm_paper_supplyprice4)){
+		Ptfirm_paper_supplyprice4	=	parseInt(document.Tax.Ptfirm_paper_supplyprice4.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice4	=	"";
+	}
+	if (num	== 1)
+	{
+		if ((isDigitMinus(document.Tax.PNum1))&&
+			(isDigitMinus(document.Tax.PPrice1))){
+			Ptfirm_paper_supplyprice1	=	parseInt(document.Tax.PNum1.value) * parseInt(document.Tax.PPrice1.value);
+		}
+		else{
+			if (!isDigitMinus(document.Tax.PNum1)){
+				document.Tax.PNum1.value = "";
+			}
+			if (!isDigitMinus(document.Tax.PPrice1)){
+				document.Tax.PPrice1.value = "";
+			}
+		}
+	}
+	if (num	== 2)
+	{
+		if ((isDigitMinus(document.Tax.PNum2))&&
+			(isDigitMinus(document.Tax.PPrice2))){
+			Ptfirm_paper_supplyprice2	=	parseInt(document.Tax.PNum2.value) * parseInt(document.Tax.PPrice2.value);
+		}
+		else{
+			if (!isDigitMinus(document.Tax.PNum2)){
+				document.Tax.PNum2.value = "";
+			}
+			if (!isDigitMinus(document.Tax.PPrice2)){
+				document.Tax.PPrice2.value = "";
+			}
+		}
+	}
+	if (num	== 3)
+	{
+		if ((isDigitMinus(document.Tax.PNum3))&&
+			(isDigitMinus(document.Tax.PPrice3))){
+			Ptfirm_paper_supplyprice3	=	parseInt(document.Tax.PNum3.value) * parseInt(document.Tax.PPrice3.value);
+		}
+		else{
+			if (!isDigitMinus(document.Tax.PNum3)){
+				document.Tax.PNum3.value = "";
+			}
+			if (!isDigitMinus(document.Tax.PPrice3)){
+				document.Tax.PPrice3.value = "";
+			}
+		}
+	}
+	if (num	== 4)
+	{
+		if ((isDigitMinus(document.Tax.PNum4))&&
+			(isDigitMinus(document.Tax.PPrice4))){
+			Ptfirm_paper_supplyprice4	=	parseInt(document.Tax.PNum4.value) * parseInt(document.Tax.PPrice4.value);
+		}
+		else{
+			if (!isDigitMinus(document.Tax.PNum4)){
+				document.Tax.PNum4.value = "";
+			}
+			if (!isDigitMinus(document.Tax.PPrice4)){
+				document.Tax.PPrice4.value = "";
+			}
+		}
+	}
+	rate = parseInt(document.Tax.tfirm_paper_taxrate.value);
+	if (isDigitValue(Ptfirm_paper_supplyprice1)){
+		Ptfirm_paper_taxprice1	=	Math.round(Ptfirm_paper_supplyprice1*(rate/100));
+		document.Tax.Ptfirm_paper_supplyprice1.value = Ptfirm_paper_supplyprice1;
+		document.Tax.Ptfirm_paper_taxprice1.value = Ptfirm_paper_taxprice1;
+	}
+	else{
+		Ptfirm_paper_supplyprice1	=	0;
+		Ptfirm_paper_taxprice1	=	0;
+	}
+	if (isDigitValue(Ptfirm_paper_supplyprice2)){
+		Ptfirm_paper_taxprice2	=	Math.round(Ptfirm_paper_supplyprice2*(rate/100));
+		document.Tax.Ptfirm_paper_supplyprice2.value = Ptfirm_paper_supplyprice2;
+		document.Tax.Ptfirm_paper_taxprice2.value = Ptfirm_paper_taxprice2;
+	}
+	else{
+		Ptfirm_paper_supplyprice2	=	0;
+		Ptfirm_paper_taxprice2	=	0;
+	}
+	if (isDigitValue(Ptfirm_paper_supplyprice3)){
+		Ptfirm_paper_taxprice3	=	Math.round(Ptfirm_paper_supplyprice3*(rate/100));
+		document.Tax.Ptfirm_paper_supplyprice3.value = Ptfirm_paper_supplyprice3;
+		document.Tax.Ptfirm_paper_taxprice3.value = Ptfirm_paper_taxprice3;
+	}
+	else{
+		Ptfirm_paper_supplyprice3	=	0;
+		Ptfirm_paper_taxprice3	=	0;
+	}
+	if (isDigitValue(Ptfirm_paper_supplyprice4)){
+		Ptfirm_paper_taxprice4	=	Math.round(Ptfirm_paper_supplyprice4*(rate/100));
+		document.Tax.Ptfirm_paper_supplyprice4.value = Ptfirm_paper_supplyprice4;
+		document.Tax.Ptfirm_paper_taxprice4.value = Ptfirm_paper_taxprice4;
+	}
+	else{
+		Ptfirm_paper_supplyprice4	=	0;
+		Ptfirm_paper_taxprice4	=	0;
+	}
+	tfirm_paper_supplyprice	=	Ptfirm_paper_supplyprice1	+	Ptfirm_paper_supplyprice2	+	Ptfirm_paper_supplyprice3	+	Ptfirm_paper_supplyprice4;
+	tfirm_paper_taxprice		=	Ptfirm_paper_taxprice1	+	Ptfirm_paper_taxprice2	+	Ptfirm_paper_taxprice3	+	Ptfirm_paper_taxprice4;
+	tfirm_paper_sumprice	=	tfirm_paper_supplyprice	+	tfirm_paper_taxprice;
+	document.Tax.tfirm_paper_supplyprice.value = tfirm_paper_supplyprice;
+	document.Tax.tfirm_paper_taxprice.value = tfirm_paper_taxprice;
+	document.Tax.tfirm_paper_sumprice.value	=	tfirm_paper_sumprice;
+}
+function setPriceTax(num){
+	return;
+	var	Ptfirm_paper_supplyprice1 =0;
+	var Ptfirm_paper_supplyprice2 =0;
+	var Ptfirm_paper_supplyprice3 =0;
+	var Ptfirm_paper_supplyprice4 =0;
+	var	Ptfirm_paper_taxprice1 =0;
+	var Ptfirm_paper_taxprice2 =0;
+	var	Ptfirm_paper_taxprice3 =0;
+	var Ptfirm_paper_taxprice4 =0;
+	var	tfirm_paper_supplyprice =0;
+	var tfirm_paper_taxprice =0;
+	var	tfirm_paper_sumprice =0;
+	if ((isDigitMinus(document.Tax.PNum1))&&
+		(isDigitMinus(document.Tax.PPrice1))){
+		Ptfirm_paper_supplyprice1	=	parseInt(document.Tax.PNum1.value) * parseInt(document.Tax.PPrice1.value);
+		Ptfirm_paper_taxprice1 = parseInt(document.Tax.Ptfirm_paper_taxprice1.value);
+	}
+	else{
+		document.Tax.PNum1.value = "";
+		document.Tax.PPrice1.value = "";
+		if ((isDigitMinus(document.Tax.Ptfirm_paper_supplyprice1)) &&
+			(isDigitMinus(document.Tax.Ptfirm_paper_taxprice1))){
+			Ptfirm_paper_supplyprice1 = parseInt(document.Tax.Ptfirm_paper_supplyprice1.value);
+			Ptfirm_paper_taxprice1 = parseInt(document.Tax.Ptfirm_paper_taxprice1.value);
+		}
+	}
+	if ((isDigit(document.Tax.PNum2))&&
+		(isDigit(document.Tax.PPrice2))){
+		Ptfirm_paper_supplyprice2	=	parseInt(document.Tax.PNum2.value) * parseInt(document.Tax.PPrice2.value);
+		Ptfirm_paper_taxprice2 = parseInt(document.Tax.Ptfirm_paper_taxprice2.value);
+	}
+	else{
+		document.Tax.PNum2.value = "";
+		document.Tax.PPrice2.value = "";
+		if ((isDigitMinus(document.Tax.Ptfirm_paper_supplyprice2)) &&
+			(isDigitMinus(document.Tax.Ptfirm_paper_taxprice2))){
+			Ptfirm_paper_supplyprice2 = parseInt(document.Tax.Ptfirm_paper_supplyprice2.value);
+			Ptfirm_paper_taxprice2 = parseInt(document.Tax.Ptfirm_paper_taxprice2.value);
+		}
+	}
+	if ((isDigit(document.Tax.PNum3))&&
+		(isDigit(document.Tax.PPrice3))){
+		Ptfirm_paper_supplyprice3	=	parseInt(document.Tax.PNum3.value) * parseInt(document.Tax.PPrice3.value);
+		Ptfirm_paper_taxprice3 = parseInt(document.Tax.Ptfirm_paper_taxprice3.value);
+	}
+	else{
+		document.Tax.PNum3.value = "";
+		document.Tax.PPrice3.value = "";
+		if ((isDigitMinus(document.Tax.Ptfirm_paper_supplyprice3)) &&
+			(isDigitMinus(document.Tax.Ptfirm_paper_taxprice3))){
+			Ptfirm_paper_supplyprice3 = parseInt(document.Tax.Ptfirm_paper_supplyprice3.value);
+			Ptfirm_paper_taxprice3 = parseInt(document.Tax.Ptfirm_paper_taxprice3.value);
+		}
+	}
+	if ((isDigit(document.Tax.PNum4))&&
+		(isDigit(document.Tax.PPrice4))){
+		Ptfirm_paper_supplyprice4	=	parseInt(document.Tax.PNum4.value) * parseInt(document.Tax.PPrice4.value);
+		Ptfirm_paper_taxprice4 = parseInt(document.Tax.Ptfirm_paper_taxprice4.value);
+	}
+	else{
+		document.Tax.PNum4.value = "";
+		document.Tax.PPrice4.value = "";
+		if ((isDigitMinus(document.Tax.Ptfirm_paper_supplyprice4)) &&
+			(isDigitMinus(document.Tax.Ptfirm_paper_taxprice4))){
+			Ptfirm_paper_supplyprice4 = parseInt(document.Tax.Ptfirm_paper_supplyprice4.value);
+			Ptfirm_paper_taxprice4 = parseInt(document.Tax.Ptfirm_paper_taxprice4.value);
+		}
+	}
+	tfirm_paper_supplyprice	=	Ptfirm_paper_supplyprice1	+	Ptfirm_paper_supplyprice2	+	Ptfirm_paper_supplyprice3	+	Ptfirm_paper_supplyprice4;
+	tfirm_paper_taxprice		=	Ptfirm_paper_taxprice1	+	Ptfirm_paper_taxprice2	+	Ptfirm_paper_taxprice3	+	Ptfirm_paper_taxprice4;
+	tfirm_paper_sumprice	=	tfirm_paper_supplyprice	+	tfirm_paper_taxprice;
+	document.Tax.tfirm_paper_supplyprice.value = tfirm_paper_supplyprice;
+	document.Tax.tfirm_paper_taxprice.value = tfirm_paper_taxprice;
+	document.Tax.tfirm_paper_sumprice.value	=	tfirm_paper_sumprice;
+}
+function setSupplier(tfirm_id){
+	return;
+/*
+	var	winopts	=	"width=520,height=270,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes";
+	var	url		=	"/ectax/publish/select_supplier.jsp?TfirmID="+tfirm_id;
+	var	popWindow	=	window.open(url,'setsupplier', winopts);
+	*/
+	var	winopts	=	"width=520,height=270,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes";
+	var	url		=	"/servlet/ebizpro.n_ectax.servlet.publishServlet?cmd=selectSupplier";
+	var	popWindow	=	window.open(url,'setsupplier', winopts);
+	//	document.Tax.action = "/ebizpro/ectax/publish/publishServlet?cmd='selectSupplier'";
+	//	window.location= "/ebizpro/ectax/publish/publishServlet?cmd=selectSupplier";
+}
+function setDemander(tfirm_id){
+	return;
+	var	winopts	=	"width=520,height=305,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes";
+	var	url		=	"/servlet/ebizpro.n_ectax.servlet.publishServlet?cmd=selectDemander&tfirm_id="+tfirm_id;
+	var	popWindow	=	window.open(url,'setdemander', winopts);
+}
+function goSubmit(){
+	return;
+	var result	=	true;
+	var Ptfirm_paper_supplyprice1,	Ptfirm_paper_supplyprice2, Ptfirm_paper_supplyprice3,	Ptfirm_paper_supplyprice4;
+	var tfirm_paper_sumprice;
+	if	(result){
+		if	(isDigit(document.Tax.tfirm_paper_supplierno)){
+			if	(document.Tax.tfirm_paper_supplierno.value.length	<	10){
+				ErrMsg(document.Tax.tfirm_paper_supplierno, "공급하는자 사업자등록번호를	바르게입력해주십시오.");
+				result	=	false;
+			}
+		}
+		else{
+			ErrMsg(document.Tax.tfirm_paper_supplierno, "공급하는자 사업자등록번호를	바르게 입력해주십시오.");
+			result	=	false;
+		}
+	}
+	if	(result){
+		if	(isEmpty(document.Tax.tfirm_paper_suppliercorpname)){
+			ErrMsg(document.Tax.tfirm_paper_suppliercorpname, "공급하는자 상호를	정의해 주십시오");
+			result	=	false;
+		}
+	}
+	if	(result){
+		if	(isEmpty(document.Tax.tfirm_paper_supplierownername)){
+			ErrMsg(document.Tax.tfirm_paper_supplierno, "공급하는자 대표자명을	정의해 주십시오");
+			result	=	false;
+		}
+	}
+	if	(result){
+		if	(isEmpty(document.Tax.tfirm_paper_supplieraddr)){
+			ErrMsg(document.Tax.tfirm_paper_supplieraddr, "공급하는자 주소를	정의해 주십시오");
+			result	=	false;
+		}
+	}
+	if	(result){
+		if	(isDigit(document.Tax.tfirm_partner_no)){
+			if	(document.Tax.tfirm_partner_no.value.length	== 13	|| document.Tax.tfirm_partner_no.value.length	== 10)
+			{
+			}
+			else{
+				ErrMsg(document.Tax.tfirm_partner_no, "공급받는자 사업자등록번호를	바르게입력해주십시오.");
+				result	=	false;
+			}
+		}
+		else{
+			ErrMsg(document.Tax.tfirm_partner_no, "공급받는자 사업자등록번호를	바르게 입력해주십시오.");
+			result	=	false;
+		}
+	}
+	if	(result){
+		if	(document.Tax.tfirm_partner_no.value.length	== 10){
+			if	(isEmpty(document.Tax.tfirm_paper_demandercorpname)){
+				ErrMsg(document.Tax.tfirm_paper_demandercorpname, "공급받는자 상호를	정의해 주십시오");
+				result	=	false;
+			}
+		}
+	}
+	if	(result){
+		if	(isEmpty(document.Tax.tfirm_paper_demanderownername)){
+			ErrMsg(document.Tax.tfirm_paper_demanderownername,	"공급받는자	대표자명을 정의해	주십시오");
+			result	=	false;
+		}
+	}
+	if	(result){
+		if	(isEmpty(document.Tax.tfirm_paper_demanderaddr)){
+			ErrMsg(document.Tax.tfirm_paper_demanderaddr, "공급받는자 주소를	정의해 주십시오");
+			result	=	false;
+		}
+	}
+	if	(result){
+		if	(!isDate(document.Tax.tfirm_paper_madedate.value)){
+			ErrMsg(document.Tax.tfirm_paper_madedate, "작성일자를 바르게	입력하여 주십시오.예)	20020124");
+			result	=	false;
+		}
+	}
+	if	(isDigit(document.Tax.Ptfirm_paper_supplyprice1)){
+		Ptfirm_paper_supplyprice1 = parseInt(document.Tax.Ptfirm_paper_supplyprice1.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice1 = 0;
+	}
+	if	(isDigit(document.Tax.Ptfirm_paper_supplyprice2)){
+		Ptfirm_paper_supplyprice2 = parseInt(document.Tax.Ptfirm_paper_supplyprice2.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice2 = 0;
+	}
+	if	(isDigit(document.Tax.Ptfirm_paper_supplyprice3)){
+		Ptfirm_paper_supplyprice3 = parseInt(document.Tax.Ptfirm_paper_supplyprice3.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice3 = 0;
+	}
+	if	(isDigit(document.Tax.Ptfirm_paper_supplyprice4)){
+		Ptfirm_paper_supplyprice4 = parseInt(document.Tax.Ptfirm_paper_supplyprice4.value);
+	}
+	else{
+		Ptfirm_paper_supplyprice4 = 0;
+	}
+	if	(isDigitMinus(document.Tax.tfirm_paper_sumprice)){
+		tfirm_paper_sumprice	=	parseInt(document.Tax.tfirm_paper_sumprice.value);
+	}
+	else{
+		tfirm_paper_sumprice	=	0;
+	}
+	if	(result){
+		if	(Ptfirm_paper_supplyprice1 !=0){
+			if (!isMonth(document.Tax.Month1.value)){
+				ErrMsg(document.Tax.Month1,	"해당월을	바르게 입력하여	주십시오.	예)	01~12");
+				result = false;
+			}
+			else
+				if (!checkDay(document.Tax.tfirm_paper_madedate.value.substring(0,4),document.Tax.Month1.value,document.Tax.Day1.value)){
+					ErrMsg(document.Tax.Day1,	"해당일을	바르게 입력하여	주십시오.	예)01~31");
+				result = false;
+			}
+			else
+				if (isEmpty(document.Tax.PName1)){
+					ErrMsg(document.Tax.PName1,	"품목을	입력하여 주십시오.");
+				result = false;
+			}
+		}
+	}
+	if	(result){
+		if	(Ptfirm_paper_supplyprice2 !=0){
+			if (!isMonth(document.Tax.Month2.value)){
+				ErrMsg(document.Tax.Month2,	"해당월을	바르게 입력하여	주십시오.	예)	01~12");
+				result = false;
+			}
+			else
+				if (!checkDay(document.Tax.tfirm_paper_madedate.value.substring(0,4),document.Tax.Month2.value,document.Tax.Day2.value)){
+					ErrMsg(document.Tax.Day2,	"해당일을	바르게 입력하여	주십시오.	예)01~31");
+				result = false;
+			}
+			else
+				if (isEmpty(document.Tax.PName2)){
+					ErrMsg(document.Tax.PName2,	"품목을	입력하여 주십시오.");
+				result = false;
+			}
+		}
+	}
+	if	(result){
+		if	(Ptfirm_paper_supplyprice3 != 0){
+			if (!isMonth(document.Tax.Month3.value)){
+				ErrMsg(document.Tax.Month3,	"해당월을	바르게 입력하여	주십시오.	예)	01~12");
+				result = false;
+			}
+			else
+				if (!checkDay(document.Tax.tfirm_paper_madedate.value.substring(0,4),document.Tax.Month3.value,document.Tax.Day3.value)){
+					ErrMsg(document.Tax.Day3,	"해당일을	바르게 입력하여	주십시오.	예)01~31");
+				result = false;
+			}
+			else
+				if (isEmpty(document.Tax.PName3)){
+					ErrMsg(document.Tax.PName3,	"품목을	입력하여 주십시오.");
+				result = false;
+			}
+		}
+	}
+	if	(result){
+		if	(Ptfirm_paper_supplyprice4 != 0){
+			if (!isMonth(document.Tax.Month4.value)){
+				ErrMsg(document.Tax.Month4,	"해당월을	바르게 입력하여	주십시오.	예)	01~12");
+				result = false;
+			}
+			else
+				if (!checkDay(document.Tax.tfirm_paper_madedate.value.substring(0,4),document.Tax.Month4.value,document.Tax.Day4.value)){
+					ErrMsg(document.Tax.Day4,	"해당일을	바르게 입력하여	주십시오.	예)01~31");
+				result = false;
+			}
+			else
+				if (isEmpty(document.Tax.PName4)){
+					ErrMsg(document.Tax.PName4,	"품목을	입력하여 주십시오.");
+				result = false;
+			}
+		}
+	}
+	if	(result){
+		if (document.Tax.tfirm_paper_cash.value.length > 0){
+			if (!isDigit(document.Tax.tfirm_paper_cash)){
+				ErrMsg(document.Tax.tfirm_paper_cash,	"현금항목을	숫자로 입력하여	주십시오.");
+				result = false;
+			}
+		}
+	}
+	if	(result){
+		if (document.Tax.tfirm_paper_check.value.length	>	0){
+			if (!isDigit(document.Tax.tfirm_paper_check)){
+				ErrMsg(document.Tax.tfirm_paper_check, "수표항목을 숫자로	입력하여 주십시오.");
+				result = false;
+			}
+		}
+	}
+	if	(result){
+		if (document.Tax.tfirm_paper_bill.value.length > 0){
+			if (!isDigit(document.Tax.tfirm_paper_bill)){
+				ErrMsg(document.Tax.tfirm_paper_bill,	"어음항목을	숫자로 입력하여	주십시오.");
+				result = false;
+			}
+		}
+	}
+	if	(result){
+		if (document.Tax.tfirm_paper_credit.value.length > 0){
+			if (!isDigit(document.Tax.tfirm_paper_credit)){
+				ErrMsg(document.Tax.tfirm_paper_credit,	"외상미수금항목을	숫자로 입력하여	주십시오.");
+				result = false;
+			}
+		}
+	}
+	if	(result){
+		if	(tfirm_paper_sumprice	!=	0){
+			document.Tax.submit();
+		}
+		else{
+			alert("계산서	합계금액이 0 입니다. 확인해보십시오.");
+		}
+	}
+}
+//-->
+</script>
+
+<a href="./">세금계산서관리</a> &gt; 매입세금계산서 조회
+<form name="taxwrite" {form_default}>
+<input type="hidden" name="from_cpid" value="{list.from_cpid}">
+<input type="hidden" name="to_cpid" value="{list.to_cpid}">
+<table width="550" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td>공급자번호</td>
+	<td>
+		<p>
+		<input name="from_c_num" type="text" id="from_c_num" value="{list.from_c_num}">
+		<input type="button" value="선택" onClick="javascript: window.open('compsearch.php?formname=taxwrite&inputprefix=from_', 'idcheck', 'width=470,height=400,resizable=1,scrollbars=1');">
+		<br>
+		상호
+		<input name="from_c_name" type="text" id="from_c_name" value="{list.from_c_name}">
+		<br>
+		성명
+		<input name="from_c_owner" type="text" id="from_c_owner" value="{list.from_c_owner}">
+		<br>
+		사업장주소
+		<input name="from_c_address" type="text" id="from_c_address" value="{list.from_c_address}">
+		<br>
+		업태
+		<input name="from_c_kind" type="text" id="from_c_kind" value="{list.from_c_kind}">
+		<br>
+		종목
+		<input name="from_c_detail" type="text" id="from_c_detail" value="{list.from_c_detail}">
+		</p>
+	</td>
+</tr>
+<tr>
+	<td>공급받는번호</td>
+	<td>
+		<input name="to_c_num" type="text" id="to_c_num" value="{list.to_c_num}">
+		<input type="button" value="선택" onClick="javascript: window.open('compsearch.php?formname=taxwrite&inputprefix=to_', 'idcheck', 'width=470,height=400,resizable=1,scrollbars=1');">
+		<br>
+		상호
+		<input name="to_c_name" type="text" id="to_c_name" value="{list.to_c_name}">
+		<br>
+		성명
+		<input name="to_c_owner" type="text" id="to_c_owner" value="{list.to_c_owner}">
+		<br>
+		사업장주소
+		<input name="to_c_address" type="text" id="to_c_address" value="{list.to_c_address}">
+		<br>
+		업태
+		<input name="to_c_kind" type="text" id="to_c_kind" value="{list.to_c_kind}">
+		<br>
+		종목
+		<input name="to_c_detail" type="text" id="to_c_detail" value="{list.to_c_detail}">
+	</td>
+</tr>
+<tr>
+	<td>작성일</td>
+	<td><input name="rdate" type="text" id="rdate" value="{list.rdate_date}"></td>
+</tr>
+<tr>
+	<td>비고</td>
+	<td><input name="total_etc" type="text" id="total_etc" value="{list.total_etc}"></td>
+</tr>
+<tr>
+	<td colspan="2">
+		<table width="100%" border="1" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>월/일</td>
+			<td>품목</td>
+			<td>규격</td>
+			<td>수량</td>
+			<td>단가</td>
+			<td>공급가액</td>
+			<td>세액</td>
+			<td>비고</td>
+		</tr>
+		<tr>
+			<td><input name="date1" type="text" id="date1" value="{list.date1}"	size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input type="text" name="item1" size="16" maxlength="12" value="{list.item1}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input type="text" name="standard1"	size="4" maxlength="4" value="{list.standard1}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="quantity1" type="text" id="quantity1" onBlur="JavsScript:setPriceNum(1);"	size="8" value="{list.quantity1}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="price1" type="text" id="price1"	onBlur="JavsScript:setPriceNum(1);"	value="{list.price1}" size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="supply_money1" type="text" id="supply_money1"	onBlur="JavsScript:setPriceNum(1);"	value="{list.supply_money1}" size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="tax_money1" type="text" id="tax_money1"	onBlur="JavsScript:setPriceTax(1);"	value="{list.tax_money1}"	size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="etc1" type="text" id="etc1" value="{list.etc1}" size="20" maxlength="20"></td>
+		</tr>
+		<tr>
+			<td><input name="date2" type="text" id="date2" value="{list.date2}"	size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input type="text" name="item2" size="16" maxlength="12" value="{list.item2}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input type="text" name="standard2"	size="4" maxlength="4" value="{list.standard2}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="quantity2" type="text" id="quantity2" onBlur="JavsScript:setPriceNum(1);"	size="8" value="{list.quantity2}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="price2" type="text" id="price2"	onBlur="JavsScript:setPriceNum(1);"	value="{list.price2}" size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="supply_money2" type="text" id="supply_money2"	onBlur="JavsScript:setPriceNum(1);"	value="{list.supply_money2}" size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="tax_money2" type="text" id="tax_money2"	onBlur="JavsScript:setPriceTax(1);"	value="{list.tax_money2}"	size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="etc2" type="text" id="etc2" value="{list.etc2}" size="20" maxlength="20"></td>
+		</tr>
+		<tr>
+			<td><input name="date3" type="text" id="date3" value="{list.date3}"	size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input type="text" name="item3" size="16" maxlength="12" value="{list.item3}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input type="text" name="standard3"	size="4" maxlength="4" value="{list.standard3}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="quantity3" type="text" id="quantity3" onBlur="JavsScript:setPriceNum(1);"	size="8" value="{list.quantity3}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="price3" type="text" id="price3"	onBlur="JavsScript:setPriceNum(1);"	value="{list.price3}" size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="supply_money3" type="text" id="supply_money3"	onBlur="JavsScript:setPriceNum(1);"	value="{list.supply_money3}" size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="tax_money3" type="text" id="tax_money3"	onBlur="JavsScript:setPriceTax(1);"	value="{list.tax_money3}"	size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="etc3" type="text" id="etc3" value="{list.etc3}" size="20" maxlength="20"></td>
+		</tr>
+		<tr>
+			<td><input name="date4" type="text" id="date4" value="{list.date4}"	size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input type="text" name="item4" size="16" maxlength="12" value="{list.item4}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input type="text" name="standard4"	size="4" maxlength="4" value="{list.standard4}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="quantity4" type="text" id="quantity4" onBlur="JavsScript:setPriceNum(1);"	size="8" value="{list.quantity4}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="price4" type="text" id="price4"	onBlur="JavsScript:setPriceNum(1);"	value="{list.price4}" size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="supply_money4" type="text" id="supply_money4"	onBlur="JavsScript:setPriceNum(1);"	value="{list.supply_money4}" size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="tax_money4" type="text" id="tax_money4"	onBlur="JavsScript:setPriceTax(1);"	value="{list.tax_money4}"	size="8"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="etc4" type="text" id="etc4" value="{list.etc4}" size="20" maxlength="20"></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<table width="100%" border="1" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>합계금액</td>
+			<td>현금</td>
+			<td>수표</td>
+			<td>어음</td>
+			<td>외상미수금</td>
+			<td>영수/청구</td>
+		</tr>
+		<tr>
+			<td align="center" bgcolor="#FFFFFF">
+				<input name="total_money" type="text" id="total_money" value="{list.total_money}" size="10">
+				&nbsp;<a href="javascript:setPriceNumTax();">반영</a>
+			</td>
+			<td align="center" bgcolor="#FFFFFF"><input name="total_cash" type="text"	id="total_cash" size="10" value="{list.total_cash}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input name="totla_check" type="text"	id="total_check" size="10" value="{list.total_check}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input type="text" name="total_bill" id="total_bill" size="10"	value="{list.total_bill}"></td>
+			<td align="center" bgcolor="#FFFFFF"><input type="text" name="total_credit" id="total_credit" size="10"	value="{list.total_credit}"></td>
+			<td>
+				<select name="total_gubun">
+				<option value=""></option>
+				<option value="청구">청구</option>
+				<option value="영수">영수</option>
+				</select>
+
+				<script language="JavaScript" type="text/JavaScript">
+				var form_select = document.taxwrite.total_gubun;
+				var form_value 				= '{list.total_gubun}';
+				for(var i=0;i<form_select.length;i++) {
+					if(form_select.options[i].value==form_value) {
+						form_select.options[i].selected = true;
+					}
+				}
+				</script>
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td><input type="submit" name="Submit" value=" 세금계산서발행 "></td>
+</tr>
+</table>
+</form>

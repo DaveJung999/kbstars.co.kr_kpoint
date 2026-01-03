@@ -1,0 +1,210 @@
+
+<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+<link href="/style.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+.style5 {color: #000000}
+-->
+</style>
+
+<table width="730" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td><img src="images/myorderlist_title_01.gif" width="730" height="41"></td>
+</tr>
+<tr>
+	<td height="10"></td>
+</tr>
+<tr>
+	<td>
+		<form style='border:0px;margin:0px;padding:0px' name=inquiry action="inquiry.php">
+		<table width="730" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+		<tr>
+			<td>
+				<table width="728" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+				<tr>
+					<td width="27" rowspan="2" align="left" valign="middle"></td>
+					<td width="701" height="38" align="left" valign="middle"><a href="inquiry.php?beforeday=15"><img src="images/myorderlist_15days_btn.gif" width="54" height="21" border="0" align="absmiddle"></a>&nbsp; <a href="inquiry.php?beforeday=30"><img src="images/myorderlist_1mon_btn.gif" width="54" height="21" border="0" align="absmiddle"></a>&nbsp; <a href="inquiry.php?beforeday=60"><img src="images/myorderlist_2mon_btn.gif" width="54" height="21" border="0" align="absmiddle"></a>&nbsp; <a href="inquiry.php?beforeday=90"><img src="images/myorderlist_3mon_btn.gif" width="54" height="21" border="0" align="absmiddle"></a>&nbsp; </td>
+				</tr>
+				<tr>
+					<td height="30" align="left" valign="top">
+						<span class="style5">
+						<input id="startdate" readonly="readOnly" size="11" onclick="Calendar(this);" value="{startdate}" name="startdate" />
+						</span>~<span class="style5">
+						<input id="enddate" readonly="readOnly" size="11" onclick="Calendar(this);" value="{enddate}" name="enddate" />
+						</span>&nbsp;
+						<select name="status">
+						<option value="">전체</option>
+						<option value=" 입금필요 ">입금필요</option>
+						<option value=" 입금완료 ">입금완료</option>
+						<option value=" 배송요청 ">배송요청</option>
+						<option value=" 재고준비 ">재고준비</option>
+						<option value=" 배송준비 ">배송준비</option>
+						<option value=" 배송중 ">배송중</option>
+						<option value=" 삭제접수 ">삭제접수</option>
+						<option value="반품교환">반품교환</option>
+						</select>
+						<script language="JavaScript" type="text/JavaScript">
+						var form_select = document.inquiry.status;
+						var form_value 				= '{get.status}';
+						for(var i=0;i<form_select.length;i++) {
+							if(form_select.options[i].value==form_value) {
+								form_select.options[i].selected = true;
+							}
+						}
+						</script>
+
+						<img src="images/myorderlist_find_btn.gif" width="88" height="22" border="0" align="absmiddle" style="cursor:hand" onClick="document.inquiry.submit();">&nbsp;&nbsp;&lt;- 날짜를 클릭하면 달력이 나타납니다. 
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</table>
+		</form>
+	</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>
+		<table width="730" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+		<tr align="center" valign="bottom">
+			<td width="730" height="3" colspan="2"></td>
+		</tr>
+		<tr align="center">
+			<td height="4" colspan="2" valign="middle">
+				<table width="730" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="1" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_left_righ.gif" width="1" height="32"></td>
+					<td width="89" align="center" valign="middle" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_menu_01.gif" width="48" height="31" align="absmiddle"></td>
+					<td width="2" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_bar.gif" width="2" height="31"></td>
+					<td width="88" align="center" valign="middle" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_menu_02.gif" width="47" height="31"></td>
+					<td width="2" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_bar.gif" width="2" height="31"></td>
+					<td align="center" valign="middle" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_menu_03.gif" width="34" height="31"></td>
+					<td width="2" align="center" valign="middle" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_bar.gif" width="2" height="31" /></td>
+					<td width="88" align="center" valign="middle" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_menu_06.gif" width="23" height="31" /></td>
+					<td width="2" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_bar.gif" width="2" height="31"></td>
+					<td width="98" align="center" valign="middle" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_menu_04.gif" width="45" height="31"></td>
+					<td width="2" align="center" valign="middle" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_bar.gif" width="2" height="31"></td>
+					<td width="87" align="center" valign="middle" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_menu_05.gif" width="46" height="31"></td>
+					<td width="1" align="center" valign="middle" background="images/myorderlist_title_bg.gif"><img src="images/myorderlist_title_left_righ.gif" width="1" height="32"></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="46" align="center" valign="middle">
+				{LIST}
+				<block name="list">
+				<table width="730" border="0" cellspacing="0" cellpadding="0">
+				<tr align="center">
+					<td width="181" valign="top">
+						<table width="181" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="91" height="30"><div align="center"><span class="base2">{list.rdate_date}</span></div></td>
+							<td width="90" height="30"><div align="center">{list.num}</div></td>
+						</tr>
+						</table>
+					</td>
+					<td width="549">
+						<table width="549" border="0" cellspacing="0" cellpadding="0">
+						{CELL}
+						</table>
+					</td>
+				</tr>
+
+
+				<tr align="center">
+					<td colspan="2"></td>
+				</tr>
+				<tr align="center">
+					<td height="60" colspan="2" bgcolor="f5f5f5">
+						<strong>총 결제 금액 : <font color="#FF3300">{list.totalprice}</font> 원</strong><br>
+						<a href="{href.inquirydetail}"><img src="images/myorderlist_detail_btn.gif" width="80" height="25" border="0" align="absmiddle"></a><opt name="href.delete">&nbsp;&nbsp;<a href="{href.delete}"><img src="images/myorderlist_del_btn.gif" width="76" height="21" border="0" align="absmiddle"></a></opt name="href.delete">
+					</td>
+				</tr>
+				<tr align="center">
+					<td height="5" colspan="2"></td>
+				</tr>
+				<tr align="center">
+					<td colspan="2">
+						<table width="730" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td height="1" bgcolor="#87B700"></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+				</block name="list">
+				<block name="nolist">
+				<table width="730" border="0" cellspacing="0" cellpadding="0">
+				<tr align="center">
+					<td width="730" height="60">주문내역이 없습니다. </td>
+				</tr>
+				<tr align="center">
+					<td>
+						<table width="730" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td height="1" bgcolor="#87B700"></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+				</block name="nolist">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table width="730" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+				<tr>
+					<td>
+						<table width="728" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+						<tr>
+							<td height="40" align="left" valign="middle">
+								<div align="center">
+									-	입금이 되지 않은 주문내역은 &quot;전체취소&quot; 버튼을 클릭하면, 주문이 취소됩니다. <br />
+									-
+									<strong>&quot;입금필요&quot;</strong> 를 클릭하면,	무통장 결제를 하실 수 있습니다. 
+								</div>
+							</td>
+						</tr>
+
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+
+		</table>
+	</td>
+</tr>
+</table>
+<block name="cell">
+<tr>
+	<td height="30"><div align="center">{list.title} (적립포인트 : {list.point} 점)</div></td>
+	<td width="90"><div align="center">{list.quantity} 개</div></td>
+	<td width="100" height="30"><div align="center">{list.price}</div></td>
+	<td width="90" height="30">
+		<div align="center">
+			<opt name="href.status"><a href="{href.status}">{list.status}</a></opt name="href.status">
+			<opt name="!href.status">{list.status}</opt name="!href.status">
+			<opt name="!href.status"><br />
+			</opt name="!href.status">
+		</div>
+	</td>
+</tr>
+</block name="cell">

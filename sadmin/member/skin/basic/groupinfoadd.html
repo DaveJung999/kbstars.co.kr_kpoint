@@ -1,0 +1,67 @@
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body>
+	<table width="570" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center"><input type="button"	onClick="document.location='gsearch.php';"	value=" 되돌아가기 "></td>
+	</tr>
+	</table>
+	<form name=groupinfoadd {form_default}>
+	<table width="500" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+	<tr>
+		<td colspan="2" bgcolor='#CCFFCC' lang="af"><strong>신규 그룹 추가</strong></td>
+	</tr>
+	<opt name="list.bid"></opt name="list.bid">
+	<opt name="!list.bid">
+	<tr >
+		<td bgcolor="#CCFFCC">그룹ID</td>
+		<td	bgcolor="#EDFEE9"><input name="groupid" type="text" id="groupid" size="20"></td>
+	</tr>
+	</opt name="!list.bid">
+	<tr >
+		<td bgcolor="#CCFFCC">그룹명</td>
+		<td	bgcolor="#EDFEE9"><input name="name" type="text" id="name" size="20"></td>
+	</tr>
+	<tr >
+		<td bgcolor="#CCFFCC">개설자아이디</td>
+		<td	bgcolor="#EDFEE9"><input name="userid" type="text" id="userid" size="10"></td>
+	</tr>
+	<tr >
+		<td bgcolor="#CCFFCC">신규회원레벨</td>
+		<td	bgcolor="#EDFEE9"><input name="default_level" type="text" id="default_level" size="5"></td>
+	</tr>
+	<tr >
+		<td bgcolor="#CCFFCC">그룹설명</td>
+		<td	bgcolor="#EDFEE9"><textarea name="content" cols="40" rows="5" id="content"></textarea></td>
+	</tr>
+	<tr >
+		<td width="88" bgcolor="#CCFFCC">&nbsp;</td>
+		<td width="244"	bgcolor="#EDFEE9"><input type="submit" name="Submit" value=" 전송 "></td>
+	</tr>
+	</table>
+	</form>
+	<table width="570" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center"><input type="button"	onClick="document.location='gsearch.php';"	value=" 되돌아가기 "></td>
+	</tr>
+	</table>

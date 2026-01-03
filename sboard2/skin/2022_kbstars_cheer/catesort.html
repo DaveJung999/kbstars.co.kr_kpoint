@@ -1,0 +1,45 @@
+<!--<? exit; ?>-->
+<html>
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:#F8F8EA;
+}
+.style1 {color: #FF0000}
+-->
+</style>
+
+<body topmargin="0" leftmargin="0">
+	<form name="form1"	style="margin:0px" {form_default}>
+	<table width="95%" height=100 border=0 align="center" cellpadding='3' cellspacing='1' bgcolor='#666'>
+	<tr>
+		<td height="25" bgcolor='#D2BF7E' ><b>카테고리 순서변경</b></td>
+	</tr>
+	<tr>
+		<td height="25" bgcolor='#F8F8EA'>현재 : {cateinfo.title} </td>
+	</tr>
+	<tr>
+		<td height="25" bgcolor='#F8F8EA'>
+			순서변경 :
+			<select name="dstuid">
+			{dstuid_options}
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td height="40" align="center" bgcolor='#F8F8EA'>
+			<input name="Submit" type="submit" class="CCbox04" value=" 변경 ">
+			<input name="Submit2" type="button" class="CCbox04" onClick="javascript:self.close();" value=" 닫기 ">
+		</td>
+	</tr>
+	</table>
+	</form>
+</body>
+</html>

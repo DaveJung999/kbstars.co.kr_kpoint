@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<style type="text/css">
+<!--
+body,td,th {
+	font-family:"굴림";
+	font-size:13px;
+	color:"#000000";
+	line-height:21px;
+}
+.color-red {color: #FF0000}
+-->
+</style>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/formatnum.js" type="Text/JavaScript"></script>
+
+	<link href="images/basic.css" rel="stylesheet" type="text/css">
+</head>
+
+<body >
+	<table width="600" border="0" cellpadding="0" cellspacing="0" style='border-collapse:collapse;'>
+	<tr>
+		<td width="1169391" colspan="8" class="base">
+			주문번호:{list.rdate} (<strong>{list.rdate_date}</strong>, <strong>합계:
+			{list.totalprice}</strong>) <br>
+			주문자 회원아이디:<a href="../member/search.php?mode=search&sc_column=logon.userid&sc_string={logon.userid}" target="userinfo">{logon.userid}</a>({logon.name},
+			HP:{logon.hp}) 
+		</td>
+	</tr>
+	<tr>
+		<td colspan="8">
+			<table cellpadding="3" cellspacing="1" bgcolor="#CCCCCC" style='border-collapse:collapse;'>
+			<form name="uidmodify" style="margin:0px;" {form_uidmodify}>
+			<opt name="!list.uid">
+			<tr>
+				<td nowrap bgcolor="#F3F3F3" class="base">신규입력</td>
+				<td bgcolor="#FFFFFF" class="base">
+					<span class="color-red">주문일자</span>
+					<input name="rdate_date" type="text" id="rdate_date" value="{list.rdate_date}" size="20">
+					<span class="color-red">주문년월</span>
+					<select name="year" id="year">
+					<option value="2003">2003</option>
+					<option value="2004">2004</option>
+					<option value="2005" selected>2005</option>
+					<option value="2006">2006</option>
+					</select>
+					<span class="color-red">년</span>
+					<select name="month" id="month">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					</select>
+					<span class="color-red">월</span>
+
+					<script language="JavaScript" type="text/JavaScript">
+					var form_select = document.uidmodify.year;
+						var form_value 				= '{list.year}';
+						if(!form_value) {
+							form_value = new Date();
+							form_value = form_value.getFullYear().toString();
+							}
+							for(var i=0;i<form_select.length;i++) {
+								if(form_select.options[i].value==form_value) {
+									form_select.options[i].selected = true;
+								}
+							}
+					</script>
+
+
+					<script language="JavaScript" type="text/JavaScript">
+							var form_select = document.uidmodify.month;
+								var form_value 				= '{list.month}';
+								if(!form_value) {
+									form_value = new Date();
+									form_value = form_value.getMonth()+1;
+									}
+									for(var i=0;i<form_select.length;i++) {
+										if(form_select.options[i].value==form_value) {
+											form_select.options[i].selected = true;
+										}
+									}
+					</script>
+
+					<br>
+					상품종류
+					<input name="ordertype" type="text" id="ordertype" size="10">
+					상품테이블
+					<input name="ordertable" type="text" id="ordertable" size="10">
+					상품고유번호
+					<input name="orderuid" type="text" id="orderuid" size="10">
+					<br>
+					<span class="color-red">상품(서비스)명</span>
+					<input name="title" type="text" id="title" size="40">
+				</td>
+			</tr>
+			</opt name="!list.uid"> <opt name="list.uid">
+			<tr>
+				<td width="88" nowrap bgcolor="#EFEFEF" class="base">주문정보</td>
+				<td width="496" bgcolor="#FFFFFF" class="base">
+					주문일자 <strong>{list.rdate_date}</strong> 주문년월
+					<select name="year" id="year">
+					<option value="2003">2003</option>
+					<option value="2004" selected>2004</option>
+					<option value="2005">2005</option>
+					<option value="2006">2006</option>
+					</select>
+					년
+					<select name="month" id="month">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					</select>
+					월
+
+					<script language="JavaScript" type="text/JavaScript">
+									var form_select = document.uidmodify.year;
+										var form_value 				= '{list.year}';
+										if(!form_value) {
+											form_value = new Date();
+											form_value = form_value.getFullYear().toString();
+											}
+											for(var i=0;i<form_select.length;i++) {
+												if(form_select.options[i].value==form_value) {
+													form_select.options[i].selected = true;
+												}
+											}
+					</script>
+
+
+					<script language="JavaScript" type="text/JavaScript">
+											var form_select = document.uidmodify.month;
+												var form_value 				= '{list.month}';
+												if(!form_value) {
+													form_value = new Date();
+													form_value = form_value.getMonth()+1;
+													}
+													for(var i=0;i<form_select.length;i++) {
+														if(form_select.options[i].value==form_value) {
+															form_select.options[i].selected = true;
+														}
+													}
+					</script>
+
+					<br>
+					상품종류
+					<input name="ordertype" type="text" id="ordertype" value="{list.ordertype}" size="10">
+					상품테이블
+					<input name="ordertable" type="text" id="ordertable" value="{list.ordertable}" size="10">
+					상품고유번호
+					<input name="orderuid" type="text" id="orderuid" value="{list.orderuid}" size="10">
+					<br>
+					상품(서비스)명
+					<input name="title" type="text" id="title" value="{list.title}" size="40">
+				</td>
+			</tr>
+			</opt name="list.uid">
+			<tr>
+				<td bgcolor="#EFEFEF" class="base">옵션</td>
+				<td bgcolor="#FFFFFF" class="base"><input type="text" name="options" value="{list.options}" size="40"></td>
+			</tr>
+			<tr>
+				<td bgcolor="#EFEFEF" class="base">가격/적립금</td>
+				<td bgcolor="#FFFFFF" class="base">
+					구매가
+					<input type="text" name="price" value="{list.price}" size="20">
+					적립금
+					<input type="text" name="point" value="{list.point}" size="20">
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#EFEFEF" class="base">수량/기간</td>
+				<td bgcolor="#FFFFFF" class="base">
+					주문수량
+					<input type="text" name="quantity" value="{list.quantity}" size="5">
+					이용기간
+					<input type="text" name="period" value="{list.period}" size="5">
+					월
+				</td>
+			</tr>
+			<opt name="mode_write">			</opt name="mode_write">			
+				<tr align="center" bgcolor="#FFFFFF">
+				<td colspan="2" class="style2">
+					<a href="javascript:void(history.back())">뒤로가기</a>
+					<input type="submit" name="submit" value=" 정보 수정 ">
+					([{list.orderdb}]{list.title})
+				</td>
+			</tr>
+			</form>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<br>
+	<a name="uidmodify">
+	<hr>
+	<center><input type='button' OnClick='javascript: self.close();' value=' 창 닫기 '></center>
+</body>
+</html>

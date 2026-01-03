@@ -1,0 +1,209 @@
+<!--<? exit; ?>-->
+
+<html>
+<head>
+	<title>대량메일 발송</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<script language="javascript">
+	<!--
+	function revcheck(theform) {
+		for( var i=0; i<document.ITwizard.elements.length; i++) {
+			var ele = document.ITwizard.elements[i];
+			if(ele.name == 'CHECKID')
+				ele.checked = !ele.checked;
+		}
+		return;
+	}
+	function allcheck(theform) {
+		for( var i=0; i<theform.elements.length; i++) {
+			var ele = theform.elements[i];
+			if(ele.name == 'CHECKID')
+				ele.checked = true;
+		}
+		return;
+	}
+	function discheck(theform) {
+		for( var i=0; i<document.ITwizard.elements.length; i++) {
+			var ele = document.ITwizard.elements[i];
+			if(ele.name == 'CHECKID')
+				ele.checked = false;
+		}
+		return;
+	}
+	function check_ckbox() {
+		var form_name = "ITwizard";
+		var checks="", i, form=document.forms[form_name].CHECKID;
+				for(i=0;i<form.length;i++) {
+					if(!form[i].checked) continue;
+					checks+=form[i].value+"_";
+		}
+		if(!checks) {
+			if(form.checked) {
+				checks = form.value + "_";
+			}
+			else {
+				alert('체크박스를 선택 하세요!!');
+				return false;
+			}
+		}
+		checks=checks.substr(0,checks.length-1);
+		return checks;
+	}
+	function select_del(form) {
+		var checks = "";
+		checks = check_ckbox();
+		if(checks) {
+			location.href = "ok.php?db={get.db}&mode=selectdel&uid=" + checks;
+		}
+		// form.del.selectedIndex=0;
+	}
+	function change_sendno(form) {
+		var checks = "";
+		checks = check_ckbox();
+		if(checks) {
+			location.href = "ok.php?db={get.db}&mode=change_sendno&uid=" + checks;
+		}
+		// form.sendno.selectedIndex=0;
+	}
+	function change_sendok(form) {
+		var checks = "";
+		checks = check_ckbox();
+		if(checks) {
+			location.href = "ok.php?db={get.db}&mode=change_sendok&uid=" + checks;
+		}
+		// form.sendok.selectedIndex=0;
+	}
+	function mv_data() {
+		var member_lev = document.ITwizard.member_lev.value;
+
+		location.href = "mv_data.php?db={get.db}&member_lev=" + member_lev;
+	}
+	//-->
+	</script>
+
+	<link rel="stylesheet" href="images/style.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+	총인원 [<font size=2 color=red>{count.total}</font>]명
+	<table width="650" border="0" cellspacing="0" cellpadding="1">
+	<tr bgcolor="#000000">
+		<td align="center" height="1" colspan="8"></td>
+	</tr>
+	<tr bgcolor="#DDDDCC">
+		<td align="center" height="20"><font size="2"><a href='javascript:revcheck(this.form)'><img src="images/select.gif" width="14" height="12" border="0" alt="전체선택 및 반전" valign="absmiddle"></a></font></td>
+		<td align="center" height="20"><b>메일</b></td>
+		<td align="center">emailcheck</td>
+		<td align="center" height="20"><table><tr><td></td>{FIELDNAME}</tr></table></td>
+		<td align="center" height="20"><b>읽은시간</b></td>
+		<td align="center" height="20"><b>발송여부</b></td>
+		<td colspan="2" align="center" height="20"><b>메뉴</b></td>
+	</tr>
+	<tr bgcolor="#000000">
+		<td align="center" valign="absmiddle" colspan="8" height="1"></td>
+	</tr>
+	<form name="ITwizard" method="post" action="" onSubmit="return mv_data()">
+	<input type="hidden" name="db" value="{get.db}">
+	<input type="hidden" name="uid" value="">
+	{LIST}
+	<block name="nosearch">
+	<tr>
+		<td colspan="8" bgcolor='#CCCCCC' height='30' ><div align='center'>{sc_string} 을(를) 찾을 수가 없습니다.</div></td>
+	</tr>
+	</block name="nosearch">
+	<block name="nolist">
+	<tr>
+		<td colspan="8" bgcolor='#fffaf0' height='30'><div align='center'><font color='red'>보낼 메일이 존재하지 않습니다.</font></div></td>
+	</tr>
+	</block name="nolist">
+	<block name="list">
+	<tr bgcolor="#fffaf0">
+		<td align="center" valign="absmiddle">
+			<font size="2">
+			<input type="checkbox" name="CHECKID" value="{list.uid}" onFocus='this.blur()'>
+			</font>
+		</td>
+		<td> {list.email} </td>
+		<td align="center">{list.emailcheck}</td>
+		<td align="center" height="20"><table><tr><td></td>{FIELDVALUE}</tr></table></td>
+		<td align="center"><font size="2" color="blue">{list.readtime} </font></td>
+		<td><div align="center"><font size="2" color="red"> {list.status} </font></div></td>
+		<td><div align="center"><a href="write.php?mode=modify&db={get.db}&uid={list.uid}">수정</a></div></td>
+		<td><div align="center"><a href="ok.php?mode=delete&db={get.db}&uid={list.uid}">삭제</a></div></td>
+	</tr>
+
+	</block name="list">
+	<tr bgcolor="#ffdab9">
+		<td colspan="13" height="1"></td>
+	</tr>
+	<tr align="left" bgcolor="#faf0e6">
+		<td height="13" colspan="13"><a href="#" onClick="select_del(this.form)"><u>선택된것삭제</u></a> - <a href="#" onClick="change_sendno(this.form)"><u>선택된것미발송으로전환</u></a> - <a href="#" onClick="change_sendok(this.form)"><u>선택된것발송으로전환</u></a></td>
+	</tr>
+	</form>
+	<tr bgcolor="#faf0e6">
+		<td colspan='13'>
+			<div align='center'>
+				{FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}
+
+			</div>
+		</td>
+	</tr>
+	<tr bgcolor="#faf0e6">
+		<td colspan="13"><div align="center"><font size="2"> <a href="./emailcheck.php?db={get.db}">메일체크</a> - <a href="{href.write}"><u>메일 추가</u></a> -<a href="listexcel.php?db={get.db}&sc_column={get.sc_column}&sc_string={get.sc_string}"><u>현재 검색결과 엑셀로 받기</u></a> - <a href="../list.php?db={get.db}"><u>상위목록으로</u></a></font></div></td>
+	</tr>
+	<tr bgcolor="#ffdab9">
+		<td align="center" height="1" colspan="10"></td>
+	</tr>
+	<tr bgcolor="#fffaf0">
+		<td colspan="13">&nbsp;</td>
+	</tr>
+	<tr bgcolor="#fffaf0">
+		<td colspan="13" align="center">
+			<form name="listsearch" style='margin : 0px' {form_search}>
+			검색
+			<select name="sc_column" class="input">
+			<option value='email'>email</option>
+			</select>
+			<input type="text" name="sc_string" size="15" class="input">
+			<input type="submit" name="Submit" value=" 검색 " class="submit">
+			<br>
+			(a만검색은 <font color="#FF0000">a</font>, a로 시작하는 단어<font color="#FF0000"> a%</font>, a로 끝나는 단어 <font color="#FF0000">%a</font>, a가 들어간 모든 단어 <font color="#FF0000">%a%</font>)
+			</form>
+
+
+			<script language="JavaScript" type="text/JavaScript">
+			var form_select = document.listsearch.sc_column;
+			var form_value 				= '{get.sc_column}';
+			for(var i=0;i<form_select.length;i++) {
+				if(form_select.options[i].value==form_value) {
+					form_select.options[i].selected = true;
+				}
+			}
+			</script>
+
+		</td>
+	</tr>
+
+	<tr bgcolor="#DDDDCC">
+		<td colspan="13" height="5"></td>
+	</tr>
+	<tr bgcolor="#000000">
+		<td colspan="13" height="1"></td>
+	</tr>
+	</table>
+</body>
+</html>
+<block name="fieldname"><td align="center" height="20"> <b>{field}</b></td></block name="fieldname">
+<block name="fieldvalue"><td><font size='2'>$value</font></td></block name="fieldvalue">
+<block name="firstpage"><a href="{href.firstpage}"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></a></block name="firstpage">
+<block name="nofirstpage"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></block name="nofirstpage">
+<block name="prevblock"><a href='{href.prevblock}'>◀</a>&nbsp;</block name="prevblock">
+<block name="noprevblock">◀&nbsp;</block name="noprevblock">
+<block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block">
+<block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock">
+<block name="nextblock"><a href='{href.nextblock}'>▶</a>&nbsp;</block name="nextblock">
+<block name="nonextblock">▶&nbsp;</block name="nonextblock">
+<block name="lastpage"><a href="{href.lastpage}"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></a></block name="lastpage">
+<block name="nolastpage"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></block name="nolastpage">
+<block name="write"><a href="{href.write}"><img src="images/bott_write.gif" width="45" height="25" border="0"></a></block name="write">

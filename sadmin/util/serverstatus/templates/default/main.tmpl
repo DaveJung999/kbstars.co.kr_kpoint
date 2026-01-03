@@ -1,0 +1,357 @@
+<!-- main template -->
+
+<CENTER>
+<A HREF='http://$TMPL[to_base]/'><FONT SIZE='3'><B>$TMPL[title]</B></FONT></A>
+</CENTER>
+
+<P>
+<B><FONT SIZE='2'>현재 시각 : $TMPL[curr_time]</FONT></B>
+
+<BR>
+<A NAME='os'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/os.gif' border='0'></TD>
+	<TD>&nbsp;운영체제</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='1' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='0' cellpadding='6' width='100%'>
+	  <TR><TD BGCOLOR='$TMPL[tdcolor]'>$TMPL[OS]&nbsp;</TD></TR>
+	</TABLE>
+  </TD></TR>
+</TABLE>
+
+<A NAME='uptime'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/uptime.gif' border='0'></TD>
+	<TD>&nbsp;구동시간(Uptime)</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='0' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='1' cellpadding='3' width='100%'>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' WIDTH='150' align='right' NOWRAP>시스템 Uptime</TD>
+	    <TD WIDTH='500'>$TMPL[sys_uptime]&nbsp;</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right' NOWRAP>웹서버 Uptime</TD>
+	    <TD>$TMPL[apache_uptime]&nbsp;</TD>
+	  </TR>
+	</TABLE>
+  </TD></TR>
+</TABLE>
+
+
+<A NAME='basic'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/basic.gif' border='0'></TD>
+	<TD>&nbsp;기본 하드웨어</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='0' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='1' cellpadding='3' width='100%'>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD WIDTH='150' BGCOLOR='$TMPL[tdcolor]' align='right' NOWRAP>Mother Board Chip</TD>
+	    <TD WIDTH='500'>$TMPL[basic_chip]&nbsp;</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>CPU</TD>
+	    <TD>$TMPL[basic_cpu]&nbsp;</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>Memory</TD>
+	    <TD>$TMPL[basic_mem]&nbsp;</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>VGA Card</TD>
+	    <TD>$TMPL[basic_vga]&nbsp;</TD>
+	  </TR>
+	  $TMPL[basic_agp]
+	  $TMPL[basic_scsi]
+	</TABLE>
+  </TD></TR>
+</TABLE>
+
+
+<A NAME='cpu'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/cpu.gif' border='0'></TD>
+	<TD>&nbsp;CPU 정보</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='0' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='1' cellpadding='3' width='100%'>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' WIDTH='150' align='right' NOWRAP>Vendor</TD>
+	    <TD WIDTH='500'>$TMPL[vendor]&nbsp;</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>Model Name</TD>
+	    <TD>$TMPL[name]&nbsp;</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>Speed</TD>
+	    <TD>$TMPL[mhz]&nbsp;</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>BogoMIPS</TD>
+	    <TD>$TMPL[bogomips]&nbsp;</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>L2 Cache</TD>
+	    <TD>$TMPL[cache]&nbsp;</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>CPU Total</TD>
+	    <TD>$TMPL[cpu_num] Processor(s)</TD>
+	  </TR>
+	</TABLE>
+  </TD></TR>
+</TABLE>
+
+
+<A NAME='memory'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/memory.gif' border='0'></TD>
+	<TD>&nbsp;Memory 정보</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='0' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='1' cellpadding='3' width='100%'>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>Used(Active)</TD>
+	    <TD ALIGN='center' NOWRAP><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/used.gif' border='0'
+		width='$TMPL[usedwidth]' height='9' alt=''><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/n.gif' border='0'
+		width='$TMPL[_usedwidth]' height='1' alt=''></CENTER></TD>
+	    <TD>$TMPL[used]($TMPL[usedpercent]%)</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>Free(Inactive)</TD>
+	    <TD ALIGN='center' NOWRAP><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/n.gif' border='0'
+		width='$TMPL[_freewidth]' height='1' alt=''><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/free.gif' border='0'
+		width='$TMPL[freewidth]' height='9' alt=''></TD>
+	    <TD>$TMPL[free]($TMPL[freepercent]%)</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>Buffered(Active)</TD>
+	    <TD ALIGN='center' NOWRAP><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/n.gif' border='0'
+		width='$TMPL[_bufferedwidth]' height='1' alt=''><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/free.gif' border='0'
+		width='$TMPL[bufferedwidth]' height='9' alt=''></TD>
+	    <TD>$TMPL[buffered]($TMPL[bufferedpercent]%)</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>Cached(Active)</TD>
+	    <TD ALIGN='center' NOWRAP><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/n.gif' border='0'
+		width='$TMPL[_cachedwidth]' height='1' alt=''><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/free.gif' border='0'
+		width='$TMPL[cachedwidth]' height='9' alt=''></TD>
+	    <TD>$TMPL[cached]($TMPL[cachedpercent]%)</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD WIDTH='150' BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>합계(Used/Free)</TD>
+	    <TD WIDTH='200' ALIGN='center' NOWRAP><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/tused.gif' border='0'
+		width='$TMPL[totalusedwidth]' height='9' alt=''><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/tfree.gif' border='0'
+		width='$TMPL[totalfreewidth]' height='9' alt=''></TD>
+	    <TD width='300'>
+		$TMPL[totalused]($TMPL[totalusedpercent]%)+$TMPL[totalfree]($TMPL[totalfreepercent]%)=$TMPL[total](100%)</TD>
+	  </TR>
+	</TABLE>
+  </TD></TR>
+</TABLE>
+
+
+<A NAME='swap'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/memory.gif' border='0'></TD>
+	<TD>&nbsp;Swap Memory 정보</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='0' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='1' cellpadding='3' width='100%'>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>Swap 사용량</TD>
+	    <TD ALIGN='center' NOWRAP><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/used.gif' border='0'
+		width='$TMPL[swapusedwidth]' height='9' alt=''><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/n.gif' border='0'
+		width='$TMPL[swapfreewidth]' height='1' alt=''></TD>
+	    <TD>$TMPL[swapused]($TMPL[swapusedpercent]%)</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>Swap 여분</TD>
+	    <TD ALIGN='center'><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/n.gif' border='0''
+		width='$TMPL[swapusedwidth]' height='1' alt=''><IMG
+		src='$_SERVER[_URI]/templates/$TMPL[config]/images/free.gif' border='0'
+		width='$TMPL[swapfreewidth]' height='9' alt=''></TD>
+	    <TD>$TMPL[swapfree]($TMPL[swapfreepercent]%)</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD WIDTH='150' BGCOLOR='$TMPL[tdcolor]' ALIGN='right'>합계(/dev/$TMPL[swap])</TD>
+	    <TD WIDTH='200' ALIGN='center' NOWRAP><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/tused.gif' border='0'
+	        width='$TMPL[swapusedwidth]' height='9' alt=''><IMG
+	        src='$_SERVER[_URI]/templates/$TMPL[config]/images/tfree.gif' border='0'
+	        width='$TMPL[swapfreewidth]' height='9' alt=''></TD>
+	    <TD WIDTH='300'>$TMPL[swaptotal](100%)</TD>
+	  </TR>
+	</TABLE>
+  </TD></TR>
+</TABLE>
+
+
+<A NAME='partitions'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/partitions.gif' border='0'></TD>
+	<TD>&nbsp;Partitions 정보(스왑 파티션 제외)</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='0' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='1' cellpadding='3' width='100%'>
+	  <TR BGCOLOR='$TMPL[tdcolor]'>
+	    <TD ALIGN='center' NOWRAP>파티션</TD>
+	    <TD ALIGN='center' NOWRAP>마운트</TD>
+	    <TD ALIGN='center' NOWRAP>FS</TD>
+	    <TD ALIGN='right' NOWRAP>크기</TD>
+	    <TD ALIGN='center' width='200' NOWRAP>사용량 / 여유</TD>
+	    <TD ALIGN='center' NOWRAP>사용량(%) / 여유(%)</TD>
+	  </TR>
+	$TMPL[part]
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD COLSPAN='2' align='center'>합계(파티션)</TD>
+	    <TD COLSPAN='2' align='right'>&nbsp;$TMPL[part_sum]</TD>
+	    <TD ALIGN='center' NOWRAP><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/tused.gif'
+		border='0' width='$TMPL[part_used_width]' height='9' alt='$TMPL[part_used]'><IMG
+		SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/tfree.gif'
+		border='0' width='$TMPL[part_free_width]' height='9' alt='$TMPL[part_free]'></TD>
+	    <TD ALIGN='center'>$TMPL[part_used]/$TMPL[part_free]</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD COLSPAN='6'>$TMPL[part_fix]</TD>
+	  </TR>
+	</TABLE>
+  </TD></TR>
+</TABLE>
+
+
+<A NAME='ethernet'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/network.gif' border='0'></TD>
+	<TD>&nbsp;Ehternet 정보</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='0' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='1' cellpadding='3' width='100%'>
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD BGCOLOR='$TMPL[tdcolor]' WIDTH='150' align='right'>Module Name</TD>
+	    <TD WIDTH='500'>$TMPL[modules]&nbsp;</TD>
+	  </TR>
+	  $TMPL[ethernet]
+	</TABLE>
+  </TD></TR>
+</TABLE>
+
+
+<A NAME='netstat'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/network.gif' border='0'></TD>
+	<TD>&nbsp;Network Devices 통계</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='0' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='1' cellpadding='3' width='100%'>
+	  <TR BGCOLOR='$TMPL[tdcolor]'>
+	    <TD ROWSPAN='2' align='center' valign='center' NOWRAP>Iface</TD>
+	    <TD COLSPAN='4' align='center'>RX(받는 패킷)</TD>
+	    <TD COLSPAN='5' align='center'>TX(보낸 패킷)</TD>
+	  </TR>
+	  <TR BGCOLOR='$TMPL[tdcolor]'>
+	    <TD ALIGN='right' NOWRAP>Size</TD>
+	    <TD ALIGN='right' NOWRAP>Packets</TD>
+	    <TD ALIGN='right' NOWRAP>Errors</TD>
+	    <TD ALIGN='right' NOWRAP>Drops</TD>
+	    <TD ALIGN='right' NOWRAP>Size</TD>
+	    <TD ALIGN='right' NOWRAP>Packets</TD>
+	    <TD ALIGN='right' NOWRAP>Errors</TD>
+	    <TD ALIGN='right' NOWRAP>Drops</TD>
+	    <TD ALIGN='right' NOWRAP>Colls</TD>
+	  </TR>
+	  $TMPL[netstat]
+	  <TR BGCOLOR='$TMPL[bgcolor]'>
+	    <TD COLSPAN='10'>$TMPL[netstat_fix]&nbsp;</TD>
+	  </TR>
+	</TABLE>
+  </TD></TR>
+</TABLE>
+
+
+<A NAME='scsi-hdd'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/hdd.gif' border='0'></TD>
+	<TD>&nbsp;SCSI-HDD 정보</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='0' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='1' cellpadding='3' width='100%'>
+	  <TR BGCOLOR='$TMPL[tdcolor]'>
+	    <TD ALIGN='center' width='180' NOWRAP>모델명 (major,minor)</TD>
+	    <TD ALIGN='center' width='15' NOWRAP>ID</TD>
+	    <TD ALIGN='center' width='100' NOWRAP>전송속도</TD>
+	    <TD ALIGN='center' width='65' NOWRAP>수용용량</TD>
+	    <TD ALIGN='center' width='240' NOWRAP>파티션</TD>
+	  </TR>
+	  $TMPL[sd]
+	</TABLE>
+  </TD></TR>
+</TABLE>
+
+
+<A NAME='eide-hdd'>&nbsp;</A><BR>
+<TABLE BORDER='0' cellspacint='0' cellpadding='0'>
+  <TR>
+	<TD><IMG SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/hdd.gif' border='0'></TD>
+	<TD>&nbsp;$TMPL[hdtitle] HDD 정보</TD>
+  </TR>
+</TABLE>
+<TABLE BORDER='0' cellspacing='0' cellpadding='0' width='100%' bgcolor='$TMPL[thcolor]'>
+  <TR><TD>
+	<TABLE BORDER='0' cellspacing='1' cellpadding='3' width='100%'>
+	  <TR BGCOLOR='$TMPL[tdcolor]'>
+	    <TD ALIGN='center' width='180'>모델명 (major,minor)</TD>
+	    <TD ALIGN='center' width='115'>버퍼(or device)</TD>
+	    <TD ALIGN='center' width='65'>수용용량</TD>
+	    <TD ALIGN='center' width='240'>파티션</TD>
+	  </TR>
+	  $TMPL[hd]
+	</TABLE>
+  </TD></TR>
+</TABLE>
+

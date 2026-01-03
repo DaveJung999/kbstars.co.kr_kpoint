@@ -1,0 +1,65 @@
+<?
+	
+	require_once("dropdownmenu.class.011.php");
+	
+	//Below you have several examples how to customize the active element - play with these things :)
+	//The results will be displayed on the first menu
+	
+	//$html_uppered = "<img src=uppered.gif>";
+	//$html_downed 	= "<img src=downed.gif>";
+	//$html_uppered = "<div OnMouseOver=\"this.style.cursor = 'hand'\" OnMouseOut=\"this.style.cursor = 'none'\">+</div>";
+	//$html_downed	= "<div OnMouseOver=\"this.style.cursor = 'hand'\" OnMouseOut=\"this.style.cursor = 'none'\">-</div>";
+	$html_uppered 	= "+";
+	$html_downed 	= "-";
+	
+	
+	echo "<h1>Two-level menu</h1>";
+	echo "<p>Click on \"+\" or \"-\" to drop down or up the menus.</p>";
+	$menu = new DropDownMenu($html_uppered,$html_downed,"OnClick",1, 0);
+	$menu->addElement("main1", "MainItem1");
+	$menu->addElement("sub11", "SubItem11", "main1");
+	$menu->addElement("sub12", "SubItem12", "main1");
+	$menu->addElement("sub13", "SubItem13", "main1");
+	$menu->addElement("main2", "MainItem2");
+	$menu->addElement("main3", "MainItem3");
+	$menu->addElement("sub31", "SubItem31", "main3");
+	$menu->addElement("sub32", "SubItem32", "main3");
+	echo $menu->generateScript();
+	echo $menu->generateHTML();
+	
+	echo "<h1>Multi-level menu</h1>";
+	echo "<p>Click on \"+\" or \"-\" to drop down or up the menus.</p>";
+	$main = new DropDownMenu("&nbsp;&nbsp;+","&nbsp;&nbsp;-","OnClick",2); 
+	$main->addElement("main1", "MainItem");
+	
+	$main->addElement("main2", "MainItem");
+	$main->addElement("sub21", "&nbsp;&nbsp;SubItem", "main2");
+	
+	$main->addElement("main3", "MainItem");
+	$mainsub1 = new DropDownMenu("&nbsp;&nbsp;+","&nbsp;&nbsp;-","OnClick",2);
+	$mainsub1->addElement("main1", "&nbsp;&nbsp;SubItem");
+	$mainsub1->addElement("main2", "&nbsp;&nbsp;SubItem");
+	$mainsub1->addElement("sub21", "&nbsp;&nbsp;&nbsp;&nbsp;SubSubItem", "main2");
+	$mainsub1->addElement("sub22", "&nbsp;&nbsp;&nbsp;&nbsp;SubSubItem", "main2");
+	$mainsub1->addElement("sub23", "&nbsp;&nbsp;&nbsp;&nbsp;SubSubItem", "main2");
+	$mainsub1->addElement("main3", "&nbsp;&nbsp;SubItem");
+	$mainsub2 = new DropDownMenu("&nbsp;&nbsp;+", "&nbsp;&nbsp;-", "OnClick", 2);
+	$mainsub2->addElement("main1", "&nbsp;&nbsp;SubSubItem");
+	$mainsub2->addElement("sub11", "&nbsp;&nbsp;&nbsp;&nbsp;SubSubSubItem", "main1");
+	$mainsub2->addElement("sub12", "&nbsp;&nbsp;&nbsp;&nbsp;SubSubSubItem", "main1");
+	$mainsub2->addElement("main2", "&nbsp;&nbsp;SubSubItem");
+	$mainsub2->addElement("sub21", "&nbsp;&nbsp;&nbsp;&nbsp;SubSubSubItem", "main2");
+	$mainsub2->addElement("sub22", "&nbsp;&nbsp;&nbsp;&nbsp;SubSubSubItem", "main2");
+	$mainsub2->addElement("sub23", "&nbsp;&nbsp;&nbsp;&nbsp;SubSubSubItem", "main2");
+	$mainsub2->addElement("main3", "&nbsp;&nbsp;SubSubItem");
+	$mainsub1->addElement("sub31", $mainsub2->generateHTML(), "main3");
+	$main->addElement("sub31", $mainsub1->generateHTML(), "main3");
+	
+	$main->addElement("main4", "MainItem");
+	$main->addElement("sub41", "&nbsp;&nbsp;SubItem", "main4");
+	
+	echo $main->generateScript();
+	echo $mainsub1->generateScript();
+	echo $mainsub2->generateScript();
+	echo $main->generateHTML();
+?>

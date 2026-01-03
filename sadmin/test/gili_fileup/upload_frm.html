@@ -1,0 +1,99 @@
+<?
+//파일명 : upload_frm.html
+//용도 : 다음과 같은 파일 업로드및 디비저장..
+//작성자 : 서 종 길
+//수정일 :
+if($doing == 'file_view')
+{
+	include "./db_conn.php";
+	$sql_show = "select file_name, file_size,src_file_name from temp_file_list where pid_time = $pid_time";
+	$result = mysql_query($sql_show, $conn);
+	echo "<br><br>당신이 올린파일 그럼입니다.<br><br><br>";
+	while( $row=mysql_fetch_row( $result ) )
+	{
+		echo "filename : $row[0] <br>";
+		echo "<img src=http://www.phpadvance.com/gili_fileup/user_file/$row[0] ><br>";
+	}
+}
+$pid_time = time();
+echo("
+
+<html>
+<head>
+	<title>기리 멀티파일 업로드</title>
+</head>
+
+<script language=JavaScript>
+function file_attach()
+{
+	document.upfile.action='hiddenadd.html?pid_time=$pid_time';
+	document.upfile.submit();
+	return ;
+}
+function file_delete() {
+	document.upfile.action='hiddendel.html?pid_time=$pid_time';
+	document.upfile.submit();
+	return ;
+}
+function file_view() {
+	document.test.action='$PHP_SELF?doing=file_view&pid_time=$pid_time';
+	document.test.submit();
+	return ;
+}
+</script>
+
+<body bgcolor='white' text='black' link='blue' vlink='purple' alink='red'>
+	<form name='upfile' target = 'noshowen' enctype='multipart/form-data' method=post action='hidden.html?pid_time=$pid_time'>
+	<table border='0' cellpadding='0' cellspacing='1' width='300' bgcolor='navy'>
+	<tr>
+		<td width='1092' bgcolor='white' align='center'><p><font color='red'>파일 업로드 하기..Demo</font></td>
+	</tr>
+	<tr>
+		<td width='1092' bgcolor='white'>
+			<p><input type='file' name='upload_file'
+			value='찾아보기' size='29' style='margin:1px; padding:1px; border-width:1px; border-color:silver; border-style:solid;'></td>
+		</tr>
+		<tr>
+			<td width='1092' bgcolor='white'>
+				<table border='0' cellpadding='0' cellspacing='0'>
+				<tr>
+					<td width='226'>
+						<p>
+						<select name='file_list' size='6'>
+						<option value='-1'>-------------업로드파일-------------</option>
+						<option> </option>
+						<option> </option>
+						<option> </option>
+						<option> </option>
+						<option> </option>
+						</select>
+					</td>
+					<td width='56' valign='top'>
+						<table border='0' cellpadding='0'
+						cellspacing='0'>
+						<tr>
+							<td width='46'><p><input type='button' onClick=file_attach(); value='첨부' style='margin:1px; padding:1px; border-width:1px; border-color:silver; border-style:solid;'></td>
+						</tr>
+						<tr>
+							<td width='46'><p><input type='button'	value='삭제' onClick=file_delete();	style='margin:1px; padding:1px; border-width:1px; border-color:silver; border-style:solid;'></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<form name=test method=post>
+			<td width='1092' bgcolor='white'>
+				<p><input type='button' name='final_upload' onclick=file_view();
+				value='끝이다. 올라간다...허~~~' style='margin:1px; padding:1px; border-width:1px; border-color:silver; border-style:solid;'></td>
+		</tr>
+		</form>
+		</table>
+
+");
+?>
+</body>
+</html>

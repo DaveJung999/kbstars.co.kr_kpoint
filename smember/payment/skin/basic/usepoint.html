@@ -1,0 +1,70 @@
+
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="/scommon/utitle.css" rel="stylesheet" type="text/css">
+
+<body onLoad="window.resizeTo(550,400);this.focus();">
+	<form style='margin : 0px' {form_default}>
+	<table width="460" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#0074E8">
+	<tr>
+		<td>
+			<table width="460" border="0" align="center" cellpadding="2" cellspacing="2">
+			<tr>
+				<td height="30" colspan="2" class="bblack">
+					&nbsp;<font color="#0000FF">▩</font>
+					<strong>포인트 결제</strong> <font color="#0000FF">▩</font>
+				</td>
+			</tr>
+			<tr>
+				<td height="3" colspan="2"	background="images/dot_b_red.gif"></td>
+			</tr>
+			<tr>
+				<td height="30" colspan="2" class="bred">&nbsp;사용포인트계좌</td>
+			</tr>
+			<tr>
+				<td height="30" colspan="2" class="base">
+					&nbsp;{html_option_accountno}
+				</td>
+			</tr>
+			<tr>
+				<td height="3" colspan="2"	background="images/dot_b_red.gif"></td>
+			</tr>
+			<tr>
+				<td height="30" colspan="2" class="bred">&nbsp;결제할내역</td>
+			</tr>
+			<tr>
+				<td height="30" colspan="2" class="base">
+					&nbsp;{html_option_payment}
+				</td>
+			</tr>
+			<tr>
+				<td height="3" colspan="2"	background="images/dot_b_red.gif"></td>
+			</tr>
+			<tr>
+				<td width="100" height="30" class="bred">&nbsp;사용포인트</td>
+				<td width="350" height="30" class="base">
+					<input type="text" name="to_money" value="{to_money}" size="10">
+					원 (계좌의 포인트 사용단위 확인바랍니다)<br>
+					* 결제할 금액보다 크게 입력하면 결제할금액만 결제됩니다
+				</td>
+			</tr>
+			<tr>
+				<td height="3" colspan="2"	background="images/dot_b_red.gif"></td>
+			</tr>
+			<tr>
+				<td height="30" class="base">&nbsp;</td>
+				<td height="30">
+					<input type=submit value="포인트결제"> &nbsp;
+					<input type="button" value="닫기(취소)" onClick="javascript: self.close();">
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<br>
+	</form>
+	<p class="base"> * 네트워크 사정등 다양한 이유로 결제과정에서 문제가 발생될 수 있습니다.<br>
+	* 비정상적으로 결제가 이루어졌다면 종합질문페이지에 문의 바랍니다.
+</body>
+</html>

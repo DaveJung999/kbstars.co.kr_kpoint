@@ -1,0 +1,520 @@
+
+<script src="/scommon/join_check.js"></script>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+<script language="JavaScript">
+<!--
+// 아이디 존재 여부 확인
+function certify_userid()
+{
+	userid = document.join.userid.value;
+	if (!check_userid(userid))
+	{
+		alert( "아이디는 2-10자까지 숫자, 영문자로만 조합만 가능합니다. 첫문자는 영문자여야 합니다.\n\n아이디를 올바른 형식으로 먼저 기입을 하셔야합니다." );
+		document.join.userid.focus();
+		return;
+	}
+	window.open( './certifyid.php?userid=' + userid, 'idcheck', 'width=350,height=220,resizable=1,scrollbars=0' );
+	return;
+}
+// 주소 검색 창
+function search_zip()
+{
+	window.open('./searchzip.php', 'idcheck', 'width=370,height=370,resizable=1,scrollbars=1' );
+	return;
+}
+// 추천인 아이디 찾기 창
+function certify_nameperuserid()
+{
+	userid = document.join.recommender.value;
+	if(!userid) {
+		alert('추천인 아이디를 입력해 주시기 바랍니다.');
+		document.join.recommender.focus();
+		return false;
+	}
+	url = "./certify_nameperuserid.php?userid=" + userid;
+	window.open(url, 'idcheck', 'width=370,height=250,resizable=1,scrollbars=1' );
+	return;
+}
+// 가입하기 클릭후 폼문을 제대로 입력했는지 체크
+function checkForm() {
+	var f= document.join;
+	// 입력값 공백 체크
+	if( isEmpty( f.userid.value )){
+		alert('ID를	입력하시기 바랍니다.');
+		f.userid.focus();
+		return false;
+	}
+	if( isEmpty( f.passwd.value )){
+		alert('비밀번호를	입력하시기 바랍니다.');
+		f.passwd.focus();
+		return false;
+	}
+	if( isEmpty( f.passwd_ok.value )){
+		alert('비밀번호확인을 입력하시기 바랍니다.');
+		f.passwd_ok.focus();
+		return false;
+	}
+	if( isEmpty( f.name.value )){
+		alert('이름을	입력하시기 바랍니다.');
+		f.name.focus();
+		return false;
+	}
+	if( isEmpty( f.email.value )){
+		alert('이메일을	입력하시기 바랍니다.');
+		f.email.focus();
+		return false;
+	}
+	if( isEmpty( f.idnum1.value )){
+		alert('주민등록번호를	입력하시기 바랍니다.');
+		f.idnum1.focus();
+		return false;
+	}
+	if( isEmpty( f.idnum2.value )){
+		alert('주민등록번호를	입력하시기 바랍니다.');
+		f.idnum2.focus();
+		return false;
+	}
+	if( isEmpty( f.zip1.value )){
+		alert('우편번호를	입력하시기 바랍니다.');
+		f.zip1.focus();
+		return false;
+	}
+	if( isEmpty( f.zip2.value )){
+		alert('우편번호를	입력하시기 바랍니다.');
+		f.zip2.focus();
+		return false;
+	}
+	if( isEmpty( f.address.value )){
+		alert('주소를	입력하시기 바랍니다.');
+		f.address.focus();
+		return false;
+	}
+	if( isEmpty( f.tel.value )){
+		alert('연락처를	입력하시기 바랍니다.');
+		f.tel.focus();
+		return false;
+	}
+
+	if( isEmpty( f.job.value )){
+		alert('직업을	입력하시기 바랍니다.');
+		f.job.focus();
+		return false;
+	}
+	// 아이디 체크
+	if( !check_userid(f.userid.value))
+	{
+		alert('아이디는 2-16자까지 숫자, 영문자, - 의 조합만 가능합니다. 첫문자는 영문자여야 합니다.');
+		f.userid.focus();
+		return false;
+	}
+	// 비밀번호 체크
+	if( !check_passwd(f.passwd.value, f.passwd_ok.value))
+	{
+		alert('비밀번호는 3자 이상이며, 비밀번호가 일치한지 확인하여 다시 입력하시기 바랍니다.');
+		f.passwd.focus();
+		return false;
+	}
+	// 이메일 체크
+	if( !check_email(f.email.value)) {
+		alert('이메일을 정확히 입력하시기 바랍니다.');
+		f.email.focus();
+		return false;
+	}
+	// 주민등록 체크
+	if( !check_idnum(f.idnum1.value, f.idnum2.value))
+	{
+		alert('주민 등록를 올바르게 입력하시기 바랍니다.');
+		f.idnum1.focus();
+		return false;
+	}
+	// 주소 체크
+	if(f.address.value.length < 10)
+	{
+		alert('주소를 정확히 입력하시기 바랍니다.');
+		f.address.focus();
+		return false;
+	}
+}
+//-->
+</script>
+
+<table width="686" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td><img src=images/pagetitle04.gif></td>
+</tr>
+</table>
+<table width=686 border=0 cellspacing=0 cellpadding=0>
+<tr>
+	<td>
+		<table width="660" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td height="30"><div align="center"><span class="table_contents">- 회원 정보를 수정하실 수 있습니다. </span></div></td>
+		</tr>
+		<tr>
+			<td height="1" bgcolor="c3c3c3"></td>
+		</tr>
+		<tr>
+			<td height="10"></td>
+		</tr>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="4" bgcolor="#c8d2d4"><img src="images/trans.gif" /></td>
+				</tr>
+				<tr>
+					<td width="686" height="1" bgcolor="aaaaaa"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<form name="changepasswd" id="changepasswd" style="margin:0px" {form_changepasswd}>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_password.gif" align="absmiddle" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="527" bgcolor="f7f7f7">&nbsp;&nbsp;<input class="inputclass" name="passwd_old" size="17" type="password" maxlength="16" /></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="686" height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_newpassword.gif" width="61" height="11" border="0" align="absmiddle" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="165" bgcolor="f7f7f7">&nbsp;&nbsp;<input class="inputclass" name="passwd" size="17" type="password" maxlength="16" /></td>
+					<td width="4" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="110" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_passwordrl.gif" align="middle" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="245" bgcolor="f7f7f7">&nbsp;&nbsp;<input class="inputclass" name="passwd_ok" size="17" type="password" maxlength="16" />&nbsp;&nbsp;<input type="image" src="images/btn_modifypassword.gif" width="73" height="16" border="0" align="absmiddle" /></td>
+				</tr>
+				<tr>
+					<td colspan="7" width="686" height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</form>
+		<form name="profilechange" id="profilechange" style="margin:0px;" {form_changeprofile}>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_wid.gif" width="29" height="11" align="absmiddle" /><font class="name_bold1"> *</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="527" bgcolor="f7f7f7">&nbsp;&nbsp;{logon.userid}</td>
+				</tr>
+				<tr>
+					<td colspan="3" width="686" height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_studentname.gif" align="absmiddle" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="175" bgcolor="#f7f7f7">&nbsp;&nbsp;{logon.name}</td>
+					<td width="4" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_regnumber.gif" align="middle" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="215" bgcolor="#f7f7f7">&nbsp;&nbsp;{logon.idnum}</td>
+				</tr>
+				<tr>
+					<td colspan="7" width="686" height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_email.gif" align="absmiddle" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="527" bgcolor="f7f7f7">&nbsp;&nbsp;<input class="inputclass" name="email" size="30" maxlength="40" value="{logon.email}" /></td>
+				</tr>
+				<tr>
+					<td colspan="3" width="686" height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		{ADDRESS}
+		<block name="noforeign">
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_haddress.gif" align="absmiddle" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="527" bgcolor="f7f7f7">
+						&nbsp;&nbsp;<input class="basic0" maxlength="3" name="zip1" size="4" value="{logon.zip.0}" /> - <input class="basic0" maxlength="3" name="zip2" size="4" value="{logon.zip.1}" />
+						&nbsp;<img src="images/upyunfind.gif" border="0" align="absmiddle" onclick="javascript: window.open('/sjoin/searchzip.php?formname=profilechange&amp;inputzip=zip&amp;inputaddress=address', 'idcheck', 'width=470,height=180,resizable=1,scrollbars=1');" style="cursor:hand" />&nbsp;&nbsp;
+						<input class="inputclass" name="address" size="35" maxlength="60" value="{logon.address}" />
+						(상세 주소입력)&nbsp;&nbsp; 
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" height="1" bgcolor="dddddd"></td>
+					<td height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		</block name="noforeign">
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_telnumber.gif" align="middle" /></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="175" bgcolor="f7f7f7">&nbsp;&nbsp;<input class="inputclass" maxlength="16" name="tel" size="14" value="{logon.tel}" /></td>
+					<td width="4" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_cellular.gif" align="middle" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="215" bgcolor="f7f7f7">&nbsp;&nbsp;<input class="inputclass" maxlength="16" name="hp" size="14" value="{logon.hp}" /></td>
+				</tr>
+				<tr>
+					<td colspan="7" width="686" height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_job.gif" width="19" height="11" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="527" bgcolor="f7f7f7">
+						&nbsp;&nbsp;
+						<select name="job">
+						<option	value="회사원">회사원</option>
+						<option	value="중/고등학생">중/고등학생</option>
+						<option	value="대학(원)생">대학(원)생</option>
+						<option	value="전업주부">전업주부</option>
+						<option	value="공무원">공무원 </option>
+						<option	value="교육업">교육업 </option>
+						<option	value="서비스업">서비스업 </option>
+						<option	value="예술">예술 </option>
+						<option	value="연예/스포츠">연예/스포츠 </option>
+						<option	value="언론/기자">언론/기자 </option>
+						<option	value="광고/마케팅/홍보">광고/마케팅/홍보 </option>
+						<option	value="컨설팅/MD">컨설팅/MD </option>
+						<option	value="사진/디자인">사진/디자인 </option>
+						<option	value="컴퓨터/인터넷">컴퓨터/인터넷 </option>
+						<option	value="프로그래머/기술">프로그래머/기술 </option>
+						<option	value="금융/증권/보험/회계">금융/증권/보험/회계 </option>
+						<option	value="경영간부">경영간부 </option>
+						<option	value="법조인">법조인 </option>
+						<option	value="의료">의료 </option>
+						<option	value="서비스업">서비스업 </option>
+						<option	value="유통/판매">유통/판매 </option>
+						<option value="자영업">자영업 </option>
+						<option value="농/수/임/광업">농/수/임/광업 </option>
+						<option value="제조업">제조업 </option>
+						<option value="무직">무직 </option>
+						<option value="기타">기타 </option>
+						</select>
+
+						<script language="JavaScript" type="text/JavaScript">
+						var form_select = document.profilechange.job;
+						var form_value 				= '{logon.job}';
+						for(var i=0;i<form_select.length;i++) {
+							if(form_select.options[i].value==form_value) {
+								form_select.options[i].selected = true;
+							}
+						}
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" width="686" height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_born.gif" width="39" height="11" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="527" bgcolor="f7f7f7">
+						&nbsp;&nbsp;<input type="text" name="birth_date" id="birth_date" onclick="Calendar(this);" value="{logon.birth_date}" size='10' readonly="readonly" />
+						<input name="birth_lunar" type="checkbox" id="birth_lunar" value="1" {logon.birth_lunar_c.1} />
+						음력
+						<input name="birth_hide" type="checkbox" id="birth_hide" value="1" onclick="if(this.checked) this.form.birth_date.value='';" />
+						입력안함
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" width="686" height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7">&nbsp; - &nbsp;<img src="images/chart_body_emailag.gif" align="absmiddle" /> <font class="name_bold1">*</font></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="527" bgcolor="f7f7f7">
+						&nbsp;&nbsp;<input name="yesmail" type="radio" value="1" {logon.yesmail_c.1} />
+						모든 메일을 수신하겠습니다
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" height="1" bgcolor="f7f7f7"></td>
+					<td height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td height="30" width="130" bgcolor="f7f7f7"></td>
+					<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+					<td width="527" bgcolor="f7f7f7">
+						&nbsp;&nbsp;<input type="radio" name="yesmail" value="0" {logon.yesmail_c.0} />
+						수신하지 않겠습니다.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" height="1" bgcolor="f7f7f7"></td>
+					<td height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="660" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="686" height="1" bgcolor="aaaaaa"><img src="images/trans.gif" /></td>
+				</tr>
+				<tr>
+					<td height="4" bgcolor="#c8d2d4"><img src="images/trans.gif" /></td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="20">
+				<table width="660" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td height="40"><div align="center"><font class="name_b1bold">* 추가 사항 입력하기</font></div></td>
+				</tr>
+				<tr>
+					<td height="1" bgcolor="c3c3c3"></td>
+				</tr>
+				<tr>
+					<td height="10"></td>
+				</tr>
+				<tr>
+					<td>
+						<table width="660" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td height="4" bgcolor="#c8d2d4"><img src="images/trans.gif" /></td>
+						</tr>
+						<tr>
+							<td width="686" height="1" bgcolor="aaaaaa"><img src="images/trans.gif" /></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table width="660" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="130" height="30" align="left" bgcolor="f7f7f7">&nbsp; - &nbsp;피부타입<font class="name_bold1">&nbsp; </font></td>
+							<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+							<td width="527" align="left" bgcolor="f7f7f7">
+								&nbsp;&nbsp;<input type="radio" name="skintype" value="지성" />
+								지성&nbsp;
+								<input type="radio" name="skintype" value="건성" />
+								건성&nbsp;
+								<input type="radio" name="skintype" value="복합성" />
+								복합성
+								<input type="radio" name="skintype" value="민간성" />
+								민감성
+
+								<script language="JavaScript" type="text/JavaScript">
+								var form_radio = document.profilechange.skintype;
+								var form_value 				= '{logon.skintype}';
+								if(form_value=='') form_value = 'rdate';
+									for(var i=0;i<form_radio.length;i++) {
+										if(form_radio[i].value==form_value) {
+											form_radio[i].checked = true;
+										}
+									}
+								</script>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" width="686" height="1" bgcolor="dddddd"><img src="images/trans.gif" /></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td height="10" bgcolor="#f7f7f7">&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<table width="660" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="130" height="30" align="left" bgcolor="f7f7f7">&nbsp; - &nbsp;피부특징</td>
+							<td width="3" bgcolor="f7f7f7"><img src="images/chart_body_div.gif" /></td>
+							<td width="527" align="left" bgcolor="f7f7f7">&nbsp;&nbsp;<textarea name="skinspecial" cols="60" rows="10" id="skinspecial">{logon.skinspecial}</textarea></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td height="10" bgcolor="#f7f7f7"></td>
+				</tr>
+				<tr>
+					<td>
+						<table width="660" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td width="686" height="1" bgcolor="aaaaaa"><img src="images/trans.gif" /></td>
+						</tr>
+						<tr>
+							<td height="4" bgcolor="#c8d2d4"><img src="images/trans.gif" /></td>
+						</tr>
+						</table>
+					</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="20"></td>
+		</tr>
+		<tr>
+			<td align="center">
+				<a href="/smember/joinout.php"><img src="images/btn_break.gif" width="82" height="26" border="0" /></a>&nbsp;&nbsp;&nbsp;
+				<input type="image" src="images/btn_modify.gif" width="82" height="26" border="0" />&nbsp;&nbsp;&nbsp;<a href="javascript:document.profilechange.reset()"><img src="images/btn_rewrite.gif" border="0" /></a>
+			</td>
+		</tr>
+		</form>
+		</table>
+	</td>
+</tr>
+</table>

@@ -1,0 +1,42 @@
+<style type="text/css">
+
+
+
+BODY, TABLE, TR, TD, INPUT, TEXTAREA
+{	font-family:verdana, 돋움, Seoul, Gulim;
+	font-size: 9pt;
+	color: #595959;}
+		
+/***강조서체***/
+	.red_soft0 {font-family:돋움, verdana, Tahoma; font-size: 9pt; font-weight: bold;color: #ED1C24}
+	.blue_soft0 {font-family:돋움, verdana, Tahoma; font-size: 9pt; font-weight: bold;color: #27aabf}
+	.gray_soft0 {font-family:돋움, verdana, Tahoma; font-size: 9pt; font-weight: bold;color: #666666}
+	.green_soft0 {font-family:돋움, verdana, Tahoma; font-size: 9pt; font-weight: bold;color: #00A463}
+	.olive_green {font-family:돋움, verdana, Tahoma; font-size: 9pt; font-weight: bold;color: #6FAA29}
+	.pink_soft0 {font-family:돋움, verdana, Tahoma; font-size: 9pt; font-weight: bold;color:  #ED145B}
+	.deepgreen_soft0 {font-family:돋움, verdana, Tahoma; font-size: 9pt; font-weight: bold;color:  #8A8654}
+	.orange_soft0{font-family:돋움, verdana, Tahoma; font-size: 9pt; color: #F26522}	
+	
+	 
+/***단락서체***/
+	.basic0{font-family:돋움, verdana, Tahoma; font-size: 9pt; line-height:130%; color: #4b4b4b}	
+
+/*** 링크 ***/
+
+	A:link {color:#666666;text-decoration:none;}
+	A:visited {color:#666666;text-decoration:none;}
+	A:active { text-decoration:none;}
+	A:hover {background: url(http://new21.com/images/link_dot_gray.gif) repeat-x bottom;}
+	
+	A.white0:link {color:#FFFFFF;text-decoration:none;}
+	A.white0:visited {color:#FFFFFF;text-decoration:none;}
+	A.white0:active {color:#FFECEC;text-decoration:none;}
+	A.white0:hover {color:#FFFFFF;text-decoration:none}
+
+/***sshop_skin***/	
+	.gray_large0{font-family:돋움, verdana, Tahoma; font-size: 11pt; font-weight: bold;color: #717171}
+	.violet_large0{font-family:돋움, verdana, Tahoma; font-size: 11pt; font-weight: bold;color: #840972}
+
+	
+	
+</style>

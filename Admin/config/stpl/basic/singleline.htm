@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<title>Admin Manager</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<script>
+/* 소스제작: http://www.script.ne.kr - Mlang */
+function Mlamg_ahrefview(ahrefview) {
+	Mlangwindow = window.open("", "Mlang_isao", "width=800, height=600, top=0, left=100, statusbar=no, resizable=yes, scrollbars=yes, toolbar=no");
+	Mlangwindow.document.open();
+	Mlangwindow.document.write("" + ahrefview + "");
+	Mlangwindow.document.close();
+
+}
+function onChangeVal(){
+	var f = document.form;
+	if (eval("f.default_content.checked") == true){
+		f.default_val.value = "1";
+	}
+	else{
+		f.default_val.value = "0";
+	}
+}
+</script>
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+<body>
+	<form name="form" method='post' action="./ok.php" enctype="multipart/form-data">
+	<input type="hidden" name="title" value="{list.title}">
+	<input type="hidden" name="db" value="content">
+	<input type="hidden" name="mode" value="modify">
+	<input type="hidden" name="uid" value="{list.uid}">
+	<!--input type="hidden" name="data5" value="{list.data5}">
+<input type="hidden" name="data6" value="{list.data6}">
+<input type="hidden" name="data7" value="{list.data7}">
+<input type="hidden" name="data8" value="{list.data8}"-->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+				<td background="/images/admin/tbox_bg.gif"><strong>{list.title}</strong></td>
+				<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+			</table>
+			<br>
+			<table width='97%' border='0' align="center" cellpadding='1' cellspacing='1' bgcolor='#aaaaaa'>
+			<tr height=25 bgcolor=#F8F8EA>
+				<td height="25" bgcolor="#D2BF7E" align="center">{list.title}</td>
+			</tr>
+			<tr bgcolor=#F8F8EA>
+				<td height="40" align="center" bgcolor="#F8F8EA"><textarea name="content" rows="3" class="CCbox" style="width:95%">{list.content}</textarea></td>
+			</tr>
+			<tr bgcolor=#F8F8EA>
+				<td width="97%" height="40" align="center" bgcolor="#F8F8EA">
+					▶ ▣ ◆ ♥ ♧ ♨ ☎	☜ ☞ ♩ ♬ <br>
+					<span class="bmails00104"><strong>(주의 : 엔터를 치시면 안됩니다.) </strong></span>
+				</td>
+			</tr>
+			<tr valign=middle>
+				<td height=50 align="center" bgcolor="#F0EBD6">
+					<input type="submit" class="input02" value=" 저장하기 ">
+					<input name="reset" type="reset" class="input02" value=" 취소하기 ">
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	</form>
+</body>
+</html>

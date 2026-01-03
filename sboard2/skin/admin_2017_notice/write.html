@@ -1,0 +1,198 @@
+
+<script type="text/javascript" src="/editor/ckeditor/ckeditor.js"></script>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/share/css/2016/boilerplate.css" />
+<link rel="stylesheet" type="text/css" href="/share/css/2016/sub.css" />
+<link rel="stylesheet" type="text/css" href="/share/css/2016/navigation.css"/>
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:#F8F8EA;
+}
+-->
+</style>
+
+<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+	<td background="/images/admin/tbox_bg.gif"><b>{dbinfo.title} 관리 </b></td>
+	<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+</tr>
+</table>
+<br>
+<form name="board_write" style='margin : 0px' onSubmit="return chkForm(this)" {form_default}>
+<table border="0" cellpadding="0" cellspacing="0" width="97%" align="center" class="">
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="2"></td>
+</tr>
+{USERINFO}
+<block name="userinfo">
+<tr class="b01">
+	<td width="15%" height="28" align="center" bgcolor="#F0EBD6" class="px11">이&nbsp;&nbsp; &nbsp; 름</td>
+	<td width="85%" class="b01">{list.userid} ({list.email}) </td>
+</tr>
+<tr>
+	<td height="1" colspan="2" align="center" bgcolor="#B5A978" class="b01"></td>
+</tr>
+</block name="userinfo">
+<block name="nouserinfo">
+<tr class="b01">
+	<td width="15%" height="28" align="center" bgcolor="#F0EBD6" class="px11">이&nbsp;&nbsp; &nbsp; 름</td>
+	<td width="85%"><input type="text" name="userid" size="20"	value="{list.userid}" class="ccbox" required hname="이름을 입력 해 주세요"></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" align="center" bgcolor="#B5A978" class="b01"></td>
+</tr>
+<tr class="b01">
+	<td height="28" align="center" bgcolor="#F0EBD6" class="px11">패스워드</td>
+	<td><input name="passwd" type="password" id="passwd" size="10" class="ccbox" required hname="패스워드를 입력 해 주세요"></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" align="center" bgcolor="#B5A978" class="b01"></td>
+</tr>
+<tr class="b01">
+	<td width="15%" height="28" align="center" bgcolor="#F0EBD6" class="px11">메&nbsp;&nbsp; &nbsp; 일</td>
+	<td width="85%"><input type="text" name="email" size="40"	value="{list.email}" class="ccbox" option="regMail" hname="이메일을 정확히 입력 해 주세요"></td>
+</tr>
+<tr>
+	<td height="1" colspan="2" align="center" bgcolor="#B5A978" class="b01"></td>
+</tr>
+</block name="nouserinfo">
+{CATELIST}
+<block name="catelist">
+<tr class="b01">
+	<td width="15%" height="28" align="center" nowrap bgcolor="#F0EBD6" class="px11">카테고리</td>
+	<td width="85%">
+		<SELECT NAME="catelist">{list.catelist}</SELECT>	
+	</tr>
+	<tr>
+		<td height="1" colspan="2" align="center" bgcolor="#B5A978" class="b01"></td>
+	</tr>
+	</block name="catelist">
+	<tr class="b01">
+		<td width="15%" height="28" align="center" bgcolor="#F0EBD6" class="px11">
+			제&nbsp;&nbsp;&nbsp;&nbsp;
+			목
+		</td>
+		<td width="85%" class="b01">
+			<input type="text" name="title" size="30"	value="{list.title}" style="width:70% " class="ccbox" required hname="제목을 입력 해 주세요">
+			<input type="checkbox" name="docu_type" value="html" {list.docu_type_checked}> HTML{IFWRITEINFO}
+			<block name="ifwriteinfo">
+			<input type="checkbox" name="writeinfo" value="info" {list.writeinfo_checked}> 공지
+			</block name="ifwriteinfo">
+			<input type="checkbox" name="priv_hidelevel" value="99" />
+			&nbsp;비밀글
+
+			<script language="JavaScript" type="text/javascript">
+			var form_checkbox = document.board_write.priv_hidelevel;
+			var form_value 				= '{list.priv_hidelevel}';
+			if(Number(form_value)) {
+				form_checkbox.checked= true;
+			}
+			</script>
+		</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="2" align="center" bgcolor="#B5A978" class="b01"></td>
+	</tr>
+	<tr class="b01">
+		<td width="15%" height="28" align="center" bgcolor="#F0EBD6" class="px11">본문용 이미지</td>
+		<td width="85%">
+			<input type="file" name="upfile" size="20" style="width:90%" />
+			&nbsp;&nbsp;
+			<opt name="list.upfiles.upfile.name">
+			<table width="95%"	border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="56%">&nbsp; <strong>파일명{list.upfiles.upfile.no}</strong> : {list.upfiles.upfile.name}</td>
+				<td width="44%">
+					<input name="del_{list.upfiles.upfile.key}" type="checkbox" id="del_{list.upfiles.upfile.key}" value="checkbox" />
+					삭제 
+				</td>
+			</tr>
+			</table>
+			</opt name="list.upfiles.upfile.name">
+		</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="2" align="center" bgcolor="#B5A978" class="b01"></td>
+	</tr>
+	<tr class="b01">
+		<td width="15%" height="28" align="center" bgcolor="#F0EBD6" class="px11">
+			메인용<br />
+			(223 x 155)
+		</td>
+		<td width="85%">
+			<input type="file" name="upfile_main" size="20" style="width:90%" />
+			&nbsp;&nbsp;
+			<opt name="list.upfiles.upfile_main.name">
+			<table width="95%"	border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="56%">&nbsp; <strong>파일명{list.upfiles.upfile_main.no}</strong> : {list.upfiles.upfile_main.name}</td>
+				<td width="44%">
+					<input name="del_{list.upfiles.upfile_main.key}" type="checkbox" id="del_{list.upfiles.upfile_main.key}" value="checkbox" />
+					삭제 
+				</td>
+			</tr>
+			</table>
+			</opt name="list.upfiles.upfile_main.name">
+		</td>
+	</tr>
+	<tr>
+		<td height="1" colspan="2" bgcolor="#B5A978" class="b01"></td>
+	</tr>
+	<tr>
+		<td width="15%" height="30" align="center" bgcolor="#F0EBD6" class="px11">내&nbsp; &nbsp;&nbsp; 용</td>
+		<td width="85%">
+			<textarea type="text" name="content" id="content" style="width:100%; height:250px;">{list.content}</textarea>
+		</td>
+	</tr>
+	<tr bgcolor="#B5A978">
+		<td height="1" colspan="2"></td>
+	</tr>
+	<tr class="b01">
+		<td width="15%" height="28" align="center" bgcolor="#F0EBD6" class="px11">기사원문보기 URL</td>
+		<td width="85%"><input type="text" name="data1" maxsize="255"	value="{list.data1}" class="ccbox" style="width:97%"></td>
+	</tr>
+	<tr>
+		<td height="1" colspan="2" align="center" bgcolor="#B5A978" class="b01"></td>
+	</tr>
+
+	{LEVEL}
+	<block name="level">
+	<tr class="b01">
+		<td width="15%" height="28" align="center" nowrap bgcolor="#F0EBD6" class="px11">읽기 레벨</td>
+		<td width="85%">
+			<input name=priv_level type=text id="priv_level" onChange="MM_validateForm('priv_level','','RinRange0:255');return document.MM_returnValue" value='{list.priv_level}' class="ccbox" size=4> * 숫자 레벨(0-255)	
+		</tr>
+		<tr bgcolor="#B5A978">
+			<td height="1" colspan="2"></td>
+		</tr>
+		</block name="level">
+		<tr>
+			<td>&nbsp;</td>
+			<td width="85%" height="40" align="right">
+				<input name="image" type=image src="images/board_button_save.gif" align="bottom" width="51" height="21" class="ccbox">&nbsp;
+				<a href="{href.list}"><img src="images/board_button_cancel.gif" width="51" height="21" border="0" align="top"></a>&nbsp; 
+			</td>
+		</tr>
+		</table>
+		<br>
+		<br>
+		</form>
+		<block name="highcate">&gt; <a href="{href.highcate}" class="b01"> {highcate.title}</a></block name="highcate">
+		<block name="samecate"><opt name="samecate.selected"><b>{samecate.title}</b></opt name="samecate.selected"><opt name="!samecate.selected"><b><a href="{PHP_SELF}?db={dbinfo.db}&cateuid={samecate.uid}">{samecate.title}</a></b></opt name="!samecate.selected">&nbsp;</block name="samecate">
+		<block name="subcate"><opt name="blockloop"> | </opt name="blockloop"><a href="{href.subcate}" class="b012"> {subcate.title}</a></block name="subcate">
+
+		<script>
+		LoadPage();
+		</script>
+

@@ -1,0 +1,149 @@
+
+
+<style type="text/css">
+<!--
+.schedule {	font-weight: bold;
+	color: #FFF;
+	font-size: 12px;
+	font-family: "돋움체";
+}
+.news_title {color: #006cb8;
+	font-weight: bold;
+	font-size: 12px;
+}
+.pink {
+	font-size: 12px;
+	color: #ff6567;
+}
+.font_notice {	font-weight: bold;
+}
+.gibon_font {	font-size: 12px;
+	color: #666;
+	font-weight: normal;
+}
+.board_title {
+	font-size: 12px;
+	color: #FFF;
+	font-weight: bold;
+}
+.point_pink {
+	color: #F24F81;
+}
+.gibon_pink {	color: #f34371;
+	font-weight: bold;
+}
+-->
+</style>
+
+<table width="95%" border=0 align="center" cellpadding=0 cellspacing=0>
+<tr>
+	<td colspan="3" align="center">
+		<table width=100% border=0 cellspacing=0 cellpadding=0>
+		<tr>
+			<td height=30>전체 : {count.total}&nbsp; 오늘 : {count.today} </td>
+		</tr>
+		<tr>
+			<td height=1 bgcolor=aaaaaa></td>
+		</tr>
+		<tr align="center" valign="middle">
+			<td height="30" bgcolor="#a7998d">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="8%" align="center" class="board_title">번호</td>
+					<td width="65%" align="center" class="board_title">제목</td>
+					<td width="13%" align="center" class="board_title">작성자</td>
+					<td width="14%" align="center" class="board_title">작성일</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr bgcolor="#aaaaaa">
+			<td height="1"></td>
+		</tr>
+		</table>
+		<table width=100% border=0 cellspacing=0 cellpadding=0>
+		{INFO} <block name="info">
+		<tr>
+			<td width="8%" height=30 align="center"><img src="images/icon_notice.jpg" width="36" height="18" /></td>
+			<td width="65%" align="left">&nbsp;<a href="{list.href.read}"><strong>{list.cut_title}</strong></a> </td>
+			<td width="13%" align="center">{list.userid}</td>
+			<td width="14%" align="center">{list.rdate_date}</td>
+		</tr>
+		<tr bgcolor="#eeeeee">
+			<td height=1 colspan="4"></td>
+		</tr>
+		</block name="info">
+		{LIST}
+		<block name="list">
+		<tr bgcolor="{list.bgcolor}">
+			<td width="8%" height=30 align="center">{list.no}</td>
+			<td width="65%" align="left">&nbsp;<opt name="list.enable_sec"><img src='/images/board/ico_sec.gif' width=12 height=13 align='absmiddle' border=0 /> </opt name="list.enable_sec"><a href="{list.href.read}">{list.cut_title}</a> <opt name="list.enable_newicon"><img src="images/board_title_new.gif" width="13" height="11" border="0" align="absmiddle"></opt name="list.enable_newicon"></td>
+			<td width="13%" align="center">{list.userid}</td>
+			<td width="14%" align="center">{list.rdate_date}</td>
+		</tr>
+		<tr bgcolor="#eeeeee">
+			<td height=1 colspan="4"></td>
+		</tr>
+		</block name="list"> <block name="nolist">
+		<tr>
+			<td height=60 colspan="5" align="center" bgcolor="#f6f6f6">등록된 게시물이 없습니다. </td>
+		</tr>
+		<tr bgcolor="#eeeeee">
+			<td height=1 colspan="4"></td>
+		</tr>
+		</block name="nolist"> <block name="nosearch">
+		<tr>
+			<td height=60 colspan="5" align="center" bgcolor="#f6f6f6">'<span class="gibon_pink">{sc_string}</span>'가 포함된 게시물을 찾을 수가 없습니다.</td>
+		</tr>
+		<tr bgcolor="#d5d5d5">
+			<td height=1 colspan="4"></td>
+		</tr>
+		</block name="nosearch">
+		</table>
+	</td>
+</tr>
+<tr>
+	<td height="10" colspan="3" align="center"></td>
+</tr>
+<tr>
+	<td width="100" align="center">&nbsp;</td>
+	<td width="486" align="center" valign="middle">{FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</td>
+	<td width="100" height="26" align="left">{WRITE}</td>
+</tr>
+<tr>
+	<td align="center" colspan="3">
+		<form name="board2search" id="board2search" style='margin : 0px' {form_search}>
+		<select name="sc_column"	style='height:23;'>
+		<option value='title'>제목</option>
+		<option value='content'>내용</option>
+		<option value='userid'>작성자</option>
+		</select>
+		<input type="text" name="sc_string" size="20" style='height:22;' value="{get.sc_string}" />
+		<input type="image" src="images/board_btn_search.jpg"	align="middle" />
+		</form>
+	</td>
+</tr>
+<tr>
+	<td colspan="3" align="center">&nbsp;</td>
+</tr>
+<tr>
+	<td height="100" colspan="3" align="center"><img src="/images/2021/0914/board_private_bg.jpg" /></td>
+</tr>
+</table>
+<block name="firstpage"><a href="{href.firstpage}"><img src="images/board_btn_first_on.jpg" width="15" height="11" border="0" align="top"></a>&nbsp;</block name="firstpage">
+<block name="nofirstpage"><img src="images/board_btn_first.jpg" width="15" height="11" align="top">&nbsp;</block name="nofirstpage">
+<block name="prevblock"><a href='{href.prevblock}'><img src="images/board_btn_prev_on.jpg" width="14" height="11" border="0" align="top"></a>&nbsp;</block name="prevblock">
+<block name="noprevblock"><img src="images/board_btn_prev.jpg" width="14" height="11" align="top">&nbsp;</block name="noprevblock">
+<block name="block"><a href='{href.blockcount}'>[{blockcount}]</a>&nbsp;</block name="block">
+<block name="noblock"><b class="point_pink">[{blockcount}]</b>&nbsp;</block name="noblock">
+<block name="nextblock"><a href='{href.nextblock}'><img src="images/board_btn_next_on.jpg" width="14" height="11" border="0" align="top"></a>&nbsp;</block name="nextblock">
+<block name="nonextblock"><img src="images/board_btn_next.jpg" width="14" height="11" border="0" align="top">&nbsp;</block name="nonextblock">
+<block name="lastpage"><a href="{href.lastpage}"><img src="images/board_btn_end_on.jpg" width="15" height="11" border="0" align="top"></a></block name="lastpage">
+<block name="nolastpage"><img src="images/board_btn_end.jpg" width="15" height="11" border="0" align="top"></block name="nolastpage">
+<block name="write"><a href="{href.write}"><img src="images/board_btn_write.jpg" width="56" height="24" border="0" align="top"></a></block name="write">
+<block name="highcate"> &gt; <a href="{href.highcate}" class="nevy_gcyan"> {highcate.title}</a> </block name="highcate">
+<block name="subcate"><opt name="blockloop">
+| </opt name="blockloop"><a href="{href.subcate}" class="base2"> {subcate.title}</a></block name="subcate">
+<block name="samecate">
+<option value="{samecate.uid}" {samecate.selected}>{samecate.title}</option>
+</block name="samecate">

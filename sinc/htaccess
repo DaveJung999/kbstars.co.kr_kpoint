@@ -1,0 +1,6 @@
+AuthType Basic
+AuthName "sitePHPbasic Template"
+<Limit GET POST>
+order deny,allow
+deny from all
+</Limit>

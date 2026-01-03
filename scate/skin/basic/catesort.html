@@ -1,0 +1,45 @@
+<!--<? exit; ?>-->
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none; }
+A:hover {font-size:10pt ; text-decoration:underline; }
+body, table, tr, td, select
+{
+	color:#666666;
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	border-color:#999999;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<html>
+
+<body topmargin="0" leftmargin="0">
+	<form name="form1"	style="margin:0px" {form_default}>
+	<table width=95% height=100 border=0 align="center" cellpadding='3' cellspacing='1' bgcolor='#999999'>
+	<tr>
+		<td height="23" bgcolor='#FFFFFF' ><b>메뉴순서변경</b></td>
+	</tr>
+	<tr>
+		<td height="23" bgcolor='#FFFFFF'>현재 {cateinfo.title} 메뉴입니다.</td>
+	</tr>
+	<tr>
+		<td height="23" bgcolor='#FFFFFF'>
+			<select name="dstuid">
+			{dstuid_options}
+			</select>
+			<input type="submit" name="Submit" value="::    변경    ::">
+		</td>
+	</tr>
+	</table>
+	</form>
+</body>
+</html>

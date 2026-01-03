@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>Admin Manager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+<script>
+function golist(val){
+	location.href='klist.php?s_id=' + val;
+}
+</script>
+<body onLoad="">
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+		
+		<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+		  <tr valign="top">
+			<td width="97%" align="right">
+		<form name="ListForm" method="post" action="">
+		<br>
+			  <table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor='#aaaaaa'>
+				<tr height=22 bgcolor="#F0EBD6" align="center">
+				  <td width="4%"><strong>번호</strong></td>
+				  <td width="8%" bgcolor="#F0EBD6"><strong>이름</strong></td>
+				  <td width="16%"><strong>카드번호</strong></td>
+				  <td width="12%"><strong>총 포인트</strong></td>
+				  <td width="12%" ><strong>등록일</strong></td>
+				  <td width="17%" ><strong>전화번호</strong></td>
+				  <td width="15%" ><strong>핸드폰 번호</strong></td>
+				  <td width="16%" ><strong>서포터즈 구분</strong></td>
+			    </tr>
+				{LIST}
+				<block name="list">
+				  <tr bgcolor="#F8F8EA" align="center" onMouseOver="this.style.backgroundColor='#F5F5F5'" onMouseOut="this.style.backgroundColor=''">
+					<td>{list.no}</td>
+					<td>{list.name}</td>
+					<td>{list.accountno}</td>
+					<td>{list.balance}</td>
+					<td>{list.rdate_date}</td>
+					<td>{list.tel}</td>
+					<td>{list.hp}</td>
+					<td>{list.spts_cate}</td>
+				  </tr>
+				</block name="list">
+				<block name="nolist">
+				  <tr bgcolor="#F8F8EA" align="center" onMouseOver="this.style.backgroundColor='#F5F5F5'" onMouseOut="this.style.backgroundColor=''">
+					<td height="50" colspan="8" bgcolor="#F8F8EA">회원 정보가 없습니다.</td>
+				  </tr>
+				</block name="nolist">
+			  </table>
+				<br>
+		</form>
+			</td>
+		  </tr>
+	  </table>
+
+    
+    
+</table> 
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td>
+		<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+			<td background="/images/admin/tbox_bg.gif"><strong>게시판 정보관리 </strong></td>
+			<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+		</tr>
+		</table>
+		<br>	
+		<table width="97%" border="0" align="center" cellpadding="2" cellspacing="1" bordercolordark="white" bgcolor="#666666">
+		<tr bgcolor="#F0EBD6">
+			<td height="25"	colspan="7" align="right">
+				<button onclick="location.href='write.php'" class='CCbox04' style='cursor:pointer;' ><strong>게시판 생성</strong></button>
+			</td>
+		</tr>
+		<tr	bgcolor="#D2BF7E">
+			<td width="7%" height="25" align="center" bgcolor="#D2BF7E">번호</td>
+			<td width="17%" height="25" align="center">게시판 ID</td>
+			<td width="30%" height="25" align="center">게시판 제목</td>
+			<td width="12%" height="25" align="center">오늘/전체</td>
+			<td width="13%" height="25" align="center">카테고리</td>
+			<td width="10%" height="25" align="center">설정</td>
+			<td width="10%" height="25" align="center">삭제</td>
+		</tr>
+		{LIST} <block name="list">
+		<tr align="center" bgcolor="#F8F8EA" onMouseOver="this.style.backgroundColor='#C6E2F9'" onMouseOut="this.style.backgroundColor=''">
+			<td height="25" align="center">{list.ad_num}</td>
+			<td height="25">{list.db}</td>
+			<td height="25"><strong>{list.go}</strong></td>
+			<td height="25" align="center">{list.count_yesterday_table}/{list.count_table} 개</td>
+			<td height="25" align="center"><strong>{list.s_menu}</strong></td>
+			<td height="25" align="center"><strong>{list.up_menu}</strong></td>
+			<td height="25" align="center"><strong>{list.del_menu}</strong></td>
+		</tr>
+		</block name="list">
+		<tr bgcolor="#F0EBD6">
+			<td height="25"	colspan="7" align="right">
+				<button onclick="location.href='write.php'" class='CCbox04' style='cursor:pointer;' ><strong>게시판 생성</strong></button>
+			</td>
+		</tr>
+		</table>
+		<p>&nbsp;</p>
+	</td>
+</tr>
+</table>

@@ -1,0 +1,148 @@
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td>
+		<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+			<td background="/images/admin/tbox_bg.gif"><strong>게시판 정보관리 </strong></td>
+			<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+		</tr>
+		</table>
+		<br>
+		<table width="97%" border="1" align="center" cellspacing="0"	bordercolor="#666666" bordercolordark="white">
+		<tr>
+			<td height="25">
+				<p><span style="font-size:9pt;">&nbsp;&nbsp;<a href="setup.php?db={list.table_name}&in_mode=basic">기본설정</a> | 글읽기설정 | 글쓰기설정 | 스킨설정 | 카테고리설정 | 등급설정 |
+				고급설정 | </span></p>
+			</td>
+		</tr>
+		</table>
+		<br>
+		<form name="ok_setup" method='post' action='ok_setup.php?mode=basic'>
+		<table width="97%" border="1" align="center" cellspacing="0" bordercolor="#666666" bordercolordark="white">
+		<tr bgcolor="#F0EBD6">
+			<td width="978" height="25" colspan="2" align="center">
+				<p><span style="font-size:9pt;">&nbsp;▒ 기본설정 ▒</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<p><span style="font-size:9pt;">&nbsp;&nbsp;게시판
+				제목</span></p>
+			</td>
+			<td width="80%" bgcolor="white">
+				<p><span style="font-size:9pt;">&nbsp;
+				<input name="title" type="text" class="input01" value="{list.title}">
+				<input name="uid" type="hidden" value="{list.uid}">
+				</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<p><span style="font-size:9pt;">&nbsp;&nbsp;Head,
+				Tail 삽입설정</span></p>
+			</td>
+			<td width="80%" bgcolor="white">
+				<p><span style="font-size:9pt;">&nbsp;
+				<input name="html_headpattern" type="radio" value="no" {list.html_head_select1}>
+				Head, Tail 없음 &nbsp;
+				<input name="html_headpattern" type="radio" value="h" {list.html_head_select2}>
+				Head 만 삽입
+				<input name="html_headpattern" type="radio" value="t" {list.html_head_select3}>
+				Tail&nbsp;만 삽입
+				<input name="html_headpattern" type="radio" value="ht" {list.html_head_select4}>
+				Head, Tail 둘다 삽입</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E"><p><span style="font-size:9pt;">&nbsp;&nbsp;Head, Tail 기본스킨</span></p></td>
+			<td bgcolor="white">&nbsp; <input name="html_headtpl" type="text" class="input01" value="{list.html_headtpl}"></td>
+		</tr>
+		<tr>
+			<td width="20%" bgcolor="#D2BF7E">
+				<p><span style="font-size:9pt;">&nbsp;&nbsp;Head
+				Text</span></p>
+			</td>
+			<td width="80%" bgcolor="white">
+				<textarea name="html_head" cols="50" rows="10" style="width:100%; height:150px;">{list.html_head}</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" bgcolor="#D2BF7E">
+				<p><span style="font-size:9pt;">&nbsp;&nbsp;Tail
+				Text</span></p>
+			</td>
+			<td width="80%" bgcolor="white">
+				<textarea name="html_tail" cols="50" rows="10" style="width:100%; height:150px;">{list.html_tail}</textarea>
+			</td>
+		</tr>
+		</table>
+		<br>
+		<table width="97%" border="1" align="center" cellspacing="0" bordercolor="#666666" bordercolordark="white"">
+		<tr>
+			<td width="978" height="25" align="center" colspan="2" bgcolor="#F0EBD6">
+				<p><span style="font-size:9pt;">&nbsp;▒ 목록설정 ▒</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<p><span style="font-size:9pt;">&nbsp;&nbsp;게시물 수 설정</span></p>
+			</td>
+			<td width="80%" bgcolor="white">
+				<p><span style="font-size:9pt;">&nbsp;일반 게시물 수 &nbsp;<input name="pern" type="text" class="input01" value="{list.pern}" size="5">
+				개 </span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<p><span style="font-size:9pt;">&nbsp;&nbsp;게시물 제목 자르기</span></p>
+			</td>
+			<td width="80%" bgcolor="white">
+				<p><span style="font-size:9pt;">&nbsp;제목 자르기 <input name="cut_length" type="text" class="input01" value="{list.cut_length}" size="5">
+				자 </span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<p><span style="font-size:9pt;">&nbsp;&nbsp;페이지 설정</span></p>
+			</td>
+			<td width="80%" bgcolor="white">
+				<p><span style="font-size:9pt;">&nbsp;페이지 나누기&nbsp;<input name="page_pern" type="text" class="input01" value="{list.page_pern}" size="5">
+				개</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" height="25" bgcolor="#D2BF7E">
+				<p><span style="font-size:9pt;">&nbsp;&nbsp;공지 설정</span></p>
+			</td>
+			<td width="80%" bgcolor="white">
+				<p><span style="font-size:9pt;">&nbsp;공지사용 &nbsp;<input name="enable_writeinfo" type="radio" value="Y" {list.enable_writeinfo1}>사용함
+				<input name="enable_writeinfo" type="radio" value="N" {list.enable_writeinfo2}>사용안함</span></p>
+			</td>
+		</tr>
+		</table>
+		<div align="center">
+			<span style="font-size:9pt;"><br>
+			<input name=" OK " type="submit" value=" 저장 ">
+			</span>
+		</div>
+		</form>
+	</td>
+</tr>
+</table>

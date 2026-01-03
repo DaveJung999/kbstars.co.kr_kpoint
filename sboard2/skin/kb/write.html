@@ -1,0 +1,169 @@
+<link href="/style.css" rel="stylesheet" type="text/css">
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="images/board_listtable_top.gif" width="600" height="7"></td>
+  </tr>
+  <tr>
+    <td height="10"> </td>
+  </tr>
+</table>
+<form name="board2write" style='margin : 0px' onSubmit="return chkForm(this)" {form_default}>
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+<opt name="session.seUserid">
+<tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr>
+  <tr>
+    <td width="104" height="26" align="center" bgcolor="#F9F9F9"><img src="images/write_img1.gif" width="83" height="11"></td>
+    <td>&nbsp;&nbsp;{list.userid} ({list.email})</td>
+  </tr>
+  <tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr>
+</opt name="session.seUserid">
+<opt name="!session.seUserid">
+<tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr>
+  <tr>
+    <td width="104" height="26" align="center" bgcolor="#F9F9F9"><img src="images/write_img1.gif" width="83" height="11"></td>
+    <td>&nbsp;&nbsp;<input type="text" name="userid" size="20"  value="{list.userid}" hname="이름을 입력하여주세요" required></td>
+  </tr>
+  <tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr> 
+  <tr>
+    <td width="104" height="26" align="center" bgcolor="#F9F9F9">패스워드</td>
+    <td>&nbsp;&nbsp;<input name="passwd" type="password" id="passwd" size="10" hname="패스워드를 입력하여주세요" required></td>
+  </tr>
+  <tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr>
+</opt name="!session.seUserid">
+<opt name="!cateinfo.uid">	
+{CATELIST}
+</opt name="!cateinfo.uid">	
+  <block name="catelist">
+  <tr>
+    <td width="104" height="26" align="center" bgcolor="#F9F9F9">카테고리</td>
+    <td>&nbsp;&nbsp;<SELECT NAME="catelist">
+        
+          {list.catelist}
+        
+      </SELECT></td>
+  </tr>
+  <tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr>
+</block name="catelist">
+  <tr>
+    <td width="104" height="26" align="center" bgcolor="#F9F9F9"><img src="images/write_img2.gif" width="83" height="11"></td>
+    <td>&nbsp;&nbsp;<input type="text" name="email" size="40"  value="{list.email}" option="regMail"></td>
+  </tr>
+  <tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr>
+  <tr>
+    <td width="104" height="26" align="center" bgcolor="#F9F9F9"><img src="images/write_img4.gif" width="83" height="11"></td>
+    <td>&nbsp;&nbsp;<input type="text" name="title" size="45"  value="{list.title}" hname="제목을 입력하여주세요" required></td>
+  </tr>
+  <tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr>
+  <tr>
+    <td width="104" height="26" align="center" bgcolor="#F9F9F9"><img src="images/write_img5.gif" width="83" height="11"></td>
+    <td><table width="496" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="7">&nbsp;</td>
+        <td><textarea rows="13" name="content" cols="58">{list.content}</textarea></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr>
+  <tr>
+    <td width="104" height="26" align="center" bgcolor="#F9F9F9"><img src="images/write_img6.gif" width="83" height="11"></td>
+    <td>&nbsp;&nbsp;<input type="checkbox" name="docu_type" value="html" {list.docu_type_checked}>&nbsp;HTML&nbsp;{IFWRITEINFO}
+        <block name="ifwriteinfo"><input type="checkbox" name="writeinfo" value="info" {list.writeinfo_checked}>&nbsp;공지</block name="ifwriteinfo">&nbsp;<input type="checkbox" name="priv_hidelevel" value="99">&nbsp;비밀글
+<script language="JavaScript" type="text/JavaScript">
+	var form_checkbox = document.board2write.priv_hidelevel;
+	var form_value 				= '{list.priv_hidelevel}';
+	if(Number(form_value)) {
+		form_checkbox.checked= true;
+	}
+</script></td>
+  </tr>
+  <tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr>
+  {UPLOAD}
+  <block name="upload">
+  <tr>
+    <td width="104" height="26" align="center" bgcolor="#F9F9F9"><img src="images/write_img7.gif" width="83" height="11"></td>
+    <td>&nbsp;&nbsp;<input type="file" name="upfile" size="20" style="width:90%">&nbsp;&nbsp;
+       <opt name="upfile.name">
+       <table width="500"  border="0" cellspacing="0" cellpadding="0">
+         <tr>
+           <td width="56%"> &nbsp; <strong>파일명{upfile.no}</strong> : {upfile.name}</td>
+           <td width="44%">
+             <input name="del_{upfile.key}" type="checkbox" id="del_{upfile.key}" value="checkbox">
+            삭제  </td>
+         </tr>
+       </table>
+       </opt name="upfile.name">
+	</td>
+  </tr>
+  <tr>
+    <td height="1" colspan="2" background="images/dot_line.gif"></td>
+  </tr>
+  </block name="upload">
+</table>
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="10" colspan="3"></td>
+  </tr>
+  <tr>
+    <td width="61" background="images/board_listbottom_bg.gif"><img src="images/board_listbottom_1.gif" width="49" height="40"></td>
+    <td align="center" background="images/board_listbottom_bg.gif"><input type="image" src="images/write_btn_write.gif" width="50" height="40" border="0"><a href="javascript:void(history.back())"><img src="images/write_btn_back.gif" width="50" height="40" border="0"></a><a href="{href.list}"><img src="images/write_btn_list.gif" width="51" height="40" border="0"></a></td>
+    <td width="61" background="images/board_listbottom_bg.gif"><img src="images/board_listbottom_2.gif" width="61" height="40"></td>
+  </tr>
+  <tr>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+</table>
+</form>
+
+
+<script language="Javascript1.2"><!-- // load htmlarea
+function request(str){
+	QueryString=location.search.split("?");
+	Query=QueryString[1].split("&")
+	for(i=0;i<=Query.length-1;i++){
+		if(Query[i].indexOf(str)==0){
+			GetQuery=Query[i].split("=")
+			return GetQuery[1];
+		}
+	}
+}
+_editor_url = "/scommon/js/htmlarea203/"; // URL to htmlarea files
+var win_ie_ver = parseFloat(navigator.appVersion.split("MSIE")[1]);
+if (navigator.userAgent.indexOf('Mac')        >= 0) { win_ie_ver = 0; }
+if (navigator.userAgent.indexOf('Windows CE') >= 0) { win_ie_ver = 0; }
+if (navigator.userAgent.indexOf('Opera')      >= 0) { win_ie_ver = 0; }
+if (win_ie_ver >= 5.5) {
+ document.write('<scr' + 'ipt src="' +_editor_url+ 'editor.js"');
+ document.write(' language="Javascript1.2"></scr' + 'ipt>');  
+ //if(request('mode')!="modify") document.getElementById('docu_type').checked = 'true'; // by Sunmin Park
+} else { document.write('<scr'+'ipt>function editor_generate() { return false; }</scr'+'ipt>'); }
+// --></script>
+<script language="JavaScript1.2" defer>
+if(document.getElementById('docu_type').checked) editor_generate('content');
+</script>
+<block name="highcate"> &gt; <a href="{href.highcate}" class="nevy_gcyan"> {highcate.title}</a> </block name="highcate">
+<block name="subcate"><opt name="blockloop"> 
+| </opt name="blockloop"><a href="{href.subcate}" class="base2"> {subcate.title}</a></block name="subcate">
+<block name="samecate">
+<option value="{samecate.uid}" {samecate.selected}>{samecate.title}</option>
+</block name="samecate">

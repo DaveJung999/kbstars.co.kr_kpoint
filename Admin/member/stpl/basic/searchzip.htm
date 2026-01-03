@@ -1,0 +1,119 @@
+<!--
+PHP : /ModifyForm/searchzip.php : 우편번호검색페이지
+매크로
+	SITE_HEAD	: 사이트 기본 해더 HTML
+	SITE_TAIL	: 사이트 기본 테일 HTML
+	PHP_SELF	: php의 $PHP_SELF 즉 자기 자신 파일
+	ZIP1		: 우편번호 앞자리
+	ZIP2		: 우편번호 뒤자리
+	ADD1		: 주소 도/특별시
+	ADD2		: 주소 시/군/면
+	ADD3		: 주소 나머지 세부 주소
+구문
+	resultzip	: 검색결과 우편번호가 있을 경우
+	nozip		: 검색결과 우편번호가 없을 경우
+<form>
+	action	= PHP_SELF
+	mode	= "check"
+	region	: 서치할 지역명
+-->
+
+<html>
+<head>
+	<title>우편번호 검색</title>
+
+	<script language="JavaScript">
+	<!--
+	function setid(zip1, zip2, address, which)
+	{
+
+		if (which == 'member'){
+			opener.document.ModifyForm.zip1.value = zip1;
+			opener.document.ModifyForm.zip2.value = zip2;
+			opener.document.ModifyForm.address.value = address + " ";
+			opener.document.ModifyForm.address1.focus();
+			self.close();
+		}
+		else if (which == 'pharm')
+		{
+			opener.document.ModifyForm.c_zip1.value = zip1;
+			opener.document.ModifyForm.c_zip2.value = zip2;
+			opener.document.ModifyForm.c_address.value = address + " ";
+			opener.document.ModifyForm.c_address1.focus();
+			self.close();
+		}
+		else if (which == 'company'){
+			opener.document.ModifyForm.zip1.value = zip1;
+			opener.document.ModifyForm.zip2.value = zip2;
+			opener.document.ModifyForm.address.value = address + " ";
+			opener.document.ModifyForm.address1.focus();
+			self.close();
+		}
+	}
+	//-->
+	</script>
+
+	<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+	<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body onLoad="javascript:document.all.region.focus();">
+	<table width="100%"	border="0" cellpadding="2" cellspacing="1" bgcolor='#aaaaaa'>
+	<form action='{PHP_SELF}' method='post'>
+	<tr>
+		<td bgcolor="#E2E2E2">
+			<table width="100%"	border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="10%"></td>
+				<td>
+					<input type='hidden' name='mode' value='check'>
+					<font size="2">[읍/면/동]을 입력하십시오!</font><br>
+					<input name="region" type="text" class="input01" style="ime-mode:active">
+					<input name="Submit2" type="submit" value=" 검색 ">
+					<font size="2"><br>
+					(예) 신사동 </font> 
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</form>
+	</table>
+	<hr>
+	<strong>&nbsp; ▶ 검색결과</strong>
+	<hr>
+	<table width="100%"	border="0" cellpadding="2" cellspacing="1" bgcolor='#aaaaaa'>
+	{result}
+	</table>
+	<table width="100%"	border="0" cellpadding="2" cellspacing="1" bgcolor='#aaaaaa'>
+	<block name="resultzip">
+	<tr bgcolor="#F8F8EA">
+		<td width="86%" height="25"><font size="2">{ZIP1}-{ZIP2} : {ADD1} {ADD2} {ADD3}</font></td>
+		<td width="14%" align="center"><input name='Submit23' type='button' onClick="setid('{ZIP1}', '{ZIP2}', '{ADD1} {ADD2}', '{which}')" value='	입력	'></td>
+	</tr>
+	</block name="resultzip">
+	</table>
+	<br>
+	<table width="100%"	border="0" cellpadding="2" cellspacing="1" bgcolor='#aaaaaa'>
+	<block name="nozip">
+	<tr bgcolor="#F8F8EA">
+		<td width="100%" height="25"><font size="2">해당 지역이 없습니다<br>다시 검색하시기 바랍니다.</font></td>
+	</tr>
+	</block name="nozip">
+	</table>
+</body>
+</html>

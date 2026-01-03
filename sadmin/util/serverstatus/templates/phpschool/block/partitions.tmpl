@@ -1,0 +1,13 @@
+  <TR BGCOLOR='$TMPL[bgcolor]'>
+    <TD NOWRAP>$DEV</TD>
+    <TD NOWRAP>$MOUNT</TD>
+    <TD ALIGN='center' NOWRAP>$FS</TD>
+    <TD ALIGN='right' NOWRAP>&nbsp;$SIZE</TD>
+    <TD ALIGN='center' NOWRAP><IMG
+	SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/used.gif' border='0'
+	width='$USED_W' height='9' alt='$USED_S($USED_P%)'><IMG
+	SRC='$_SERVER[_URI]/templates/$TMPL[config]/images/free.gif' border='0'
+	width='$FREE_W' height='9' alt='$FREE_S($FREE_P%)'></TD>
+    <TD ALIGN='center' NOWRAP>$USED_S($USED_P%)/$FREE_S($FREE_P%)</TD>
+  </TR>
+

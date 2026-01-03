@@ -1,0 +1,267 @@
+<table width="730" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td><img src="images/myorderlist_title_01.gif" width="730" height="41"></td>
+</tr>
+<tr>
+	<td height="10"></td>
+</tr>
+<tr>
+	<td height="25">{list.rdate_date} 주문(청구) 내용입니다.&nbsp;</td>
+</tr>
+<tr>
+	<td>
+		<table width="730" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="340" height="30" bgcolor="#D6B58C"><div align="center"><strong>상품명</strong></div></td>
+			<td width="130" bgcolor="#E2DACF"><div align="center"><strong>수량</strong></div></td>
+			<td width="130" bgcolor="#E2DACF"><div align="center"><strong>가격</strong></div></td>
+			<td width="130" bgcolor="#D6B58C"><div align="center"><strong>비고</strong></div></td>
+		</tr>
+		{CELL}<block name="cell">
+		<tr>
+			<td width="340" height="29">
+				<div align="center">
+					<opt name="href.shop"><a href='{href.shop}' target="_blank">{list.title}</a></opt name="href.shop">
+					<opt name="!href.shop">{list.title}</opt name="!href.shop">
+					(적립포인트 : {list.point} 점)
+				</div>
+			</td>
+			<td width="130" height="29"><div align="center">{list.quantity} 개</div></td>
+			<td><div align="center">{list.price}</div></td>
+			<td>
+				<div align="center">
+					<opt name="href.status"><a href="{href.status}">{list.status}</a></opt name="href.status">
+					<opt name="!href.status">{list.status}</opt name="!href.status">
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td height="1" colspan="4" bgcolor="#EEB165"></td>
+		</tr>
+		</block name="cell">
+		</table>
+	</td>
+</tr>
+<tr>
+	<td height="25"><div align="right"><strong>총 결제 금액 : <font color="#FF3300">{list.totalprice}</font> 원</strong></div></td>
+</tr>
+
+<tr>
+	<td height="10"></td>
+</tr>
+<tr>
+	<td><img src="images/bsjb.gif" width="95" height="22"></td>
+</tr>
+<tr>
+	<td height="10"></td>
+</tr>
+<tr>
+	<td height="2" bgcolor="#9A9A9A"></td>
+</tr>
+<tr>
+	<td valign="top">
+		<table width="730"	border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="155" height="40" align="right" bgcolor="#FBFBFB">이름&nbsp;</td>
+			<td width="10" height="10">&nbsp;</td>
+			<td width="565">{dlist.re_name}</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td width="155" height="40" align="right" bgcolor="#FBFBFB">전화번호&nbsp;</td>
+			<td width="10" height="10">&nbsp;</td>
+			<td width="565">{dlist.re_tel}</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB">주소&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td>{dlist.re_address}</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB"><span class="base2">연락메일주소</span>&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td>{dlist.re_email}</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB">메모&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td>{dlist.re_memo}</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB">주문번호&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td>{dlist.num}</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<!-- 배송추적시작
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB">배송추적&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td><form name=inv_submit action=http://www.doortodoor.co.kr/servlets/cmnChnnel method=post style="margin:0px; " target=_blank>
+				<input type="hidden" name="tc" value="dtd.cmn.command.c03condiCrg01Cmd">
+				<input type="hidden" name="cust_id" value="">
+				운송장번호
+				<INPUT maxLength=10 size=10 name=invc_no value="{dlist.re_invoice}">
+				&nbsp;<a href="#" onClick="document.inv_submit.submit();"><img src="images/bscj_btn.gif" width="76" height="21" border="0" align="absmiddle"></a> (대한통운)
+			</form></td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		배송추적끝-->
+		</table>
+	</td>
+</tr>
+<tr>
+	<td height="10"></td>
+</tr>
+<tr>
+	<td><img src="images/gjjb.gif" width="95" height="22"></td>
+</tr>
+<tr>
+	<td height="10"></td>
+</tr>
+<tr>
+	<td height="2" bgcolor="#9A9A9A"></td>
+</tr>
+<tr>
+	<td valign="top">
+		<table width="730"	border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="155" height="40" align="right" bgcolor="#FBFBFB">결제여부&nbsp;</td>
+			<td width="10" height="10">&nbsp;</td>
+			<td width="565">{dlist.paid}</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td width="155" height="40" align="right" bgcolor="#FBFBFB">결제날짜&nbsp;</td>
+			<td width="10" height="10">&nbsp;</td>
+			<td width="565">{dlist.idate_date}</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB">결제방법&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td>{dlist.bank}</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB"><span class="base2">결제정보</span>&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td>{dlist.receiptor}</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<opt name="dlist.taxcash_status">
+<form name='taxcash' style="margin:0px;" {form_taxcash}>
+<table width="730" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td height="10"></td>
+</tr>
+<tr>
+	<td><img src="images/hgysj.gif" width="238" height="22"></td>
+</tr>
+<tr>
+	<td height="10"></td>
+</tr>
+<tr>
+	<td height="2" bgcolor="#9A9A9A"></td>
+</tr>
+<tr>
+	<td valign="top">
+		<table width="730"	border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="155" height="40" align="right" bgcolor="#FBFBFB">발행상태&nbsp;</td>
+			<td width="10" height="10">&nbsp;</td>
+			<td width="565">{dlist.taxcash_status}	- <a href="http://www.taxsave.go.kr" target="_blank">사이트이동: 국세청 현금영수증.kr</a></td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td width="155" height="40" align="right" bgcolor="#FBFBFB">이름(상호)&nbsp;</td>
+			<td width="10" height="10">&nbsp;</td>
+			<td width="565"><input name="taxcash_name" type="text" id="taxcash_name" value="{dlist.taxcash_name}" size="13" /></td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB">발행정보&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td>
+				<input name="taxcash_num" type="text" id="taxcash_num" value="{dlist.taxcash_num}" size="13" />
+				주민등록번호 혹은 사업자등록번호
+			</td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB"><span class="base2">연락처</span>&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td><input name="taxcash_hp" type="text" id="taxcash_hp" value="{dlist.taxcash_hp}" size="14" /></td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB">메일&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td><input name="taxcash_email" type="text" id="taxcash_email" value="{dlist.taxcash_email}" size="25" /></td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		<tr>
+			<td height="40" align="right" bgcolor="#FBFBFB">&nbsp;</td>
+			<td height="10">&nbsp;</td>
+			<td><input type="image" src="images/modify_btn01.gif" width="76" height="21" align="absmiddle" /></td>
+		</tr>
+		<tr bgcolor="#E6E6E6">
+			<td colspan="3" bgcolor="#E6E6E6"></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</form>
+</opt name="dlist.taxcash_status">
+<table width="730" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td height="10"></td>
+</tr>
+<tr>
+	<td><div align="center"><a href="javascript:void(history.back())"><img src="images/back_btn.gif" width="76" height="21" border="0" /></a></div></td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+</table>

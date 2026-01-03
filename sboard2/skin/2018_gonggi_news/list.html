@@ -1,0 +1,29 @@
+{LIST}
+<block name="list">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr> {CELL} </tr>
+</table>
+</block name="list">
+<block name="nolist">
+<div id="photo_txt_1" class="clearfix">
+	<p id="photo_txt_notice">
+	게시물이 하나도 없습니다.
+	</p>
+</div>
+</block name="nolist">
+<block name="cell">
+<td>
+	<div id="photo_1" class="clearfix">
+		<a href="{list.href.list}&getinfo=cont&html_skin=2018_d04&mNum=0402&skin=2017_kbstars_notice" title="{list.title}"><img src="{list.href.download}&upfile=upfile_main&mode=image&notfound=any" width="223" height="155"	border="0" title="{list.title}" /></a>
+	</div>
+	<div id="photo_txt_1" class="clearfix" style="text-align:justify">
+		<p id="photo_txt_notice">
+		<strong>{list.title}</strong>
+		</p>
+		<br>
+		<p id="photo_txt_content">
+		{list.cut_main_content_100}
+		</p>
+	</div>
+</td>
+</block name="cell">

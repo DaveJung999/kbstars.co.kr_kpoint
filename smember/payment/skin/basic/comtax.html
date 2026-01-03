@@ -1,0 +1,605 @@
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>무제 문서</title>
+<style>
+.ss {	font-family: "Verdana", "Arial", "Helvetica", "sans-serif"; font-size: 9px; font-weight: normal; font-variant: normal}
+.sub {font-size:12px; font-family:"굴림", "돋움", "Seoul", "arial", "helvetica"; text-decoration: none; color: #393939;; line-height: 16px}
+.stylefont1 {	font-family: "굴림"; font-size: 9pt; text-decoration: none; color="000000"}
+.stylefont2 { font-family: "굴림"; font-size: 9pt ; line-height: 15px; text-decoration: none; color="000000" }
+.stylefont3 { font-family: "굴림"; font-size: 9pt ; line-height: 18px; text-decoration: none; color="000000"}
+.stylefont4 { font-family: "굴림"; font-size: 9pt ; line-height: 22px; text-decoration: none; color="000000"}
+a:visited {	color: #000000; text-decoration: none}
+a:link {	text-decoration: none; color: #000000}
+a:hover {	text-decoration: underline}
+.bdr_top0 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; color="000000"}
+.bdr_topleft0 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 0px; color="000000"}
+.bdr_topleftbottom0 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 0px; color="000000"}
+.bdr_topbottom0 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border-top-width: 0px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px; color="000000"}
+.bdr_left0 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 0px; color="000000"}
+.bdr_leftright0 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border-top-width: 1px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px; color="000000"}
+.bdr_leftrightbottom0 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border-top-width: 1px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; color="000000"}
+.bdr_leftbottom0 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 0px; color="000000"}
+.bdr_bottom0 {	font-family: "굴림"; font-size: 9pt; text-decoration: none; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px; color="000000"}
+.bdr_bottom018 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px ; line-height: 18px; color="000000"}
+.stylefont1pad-top3left2 { font-family: "굴림"; font-size: 9pt; text-decoration: none ; padding-top: 3px ; padding-left: 2px; color="000000"}
+.stylefont1pad-top3left4 { font-family: "굴림"; font-size: 9pt; text-decoration: none ; padding-top: 3px ; padding-left: 4px; color="000000"}
+.stylefont1pad-left4top1 { font-family: "굴림"; font-size: 9pt; text-decoration: none ; padding-left: 4px ; padding-top: 1px; color="000000"}
+.stylefont1pad-top1 { font-family: "굴림"; font-size: 9pt; text-decoration: none ; padding-top: 1px; color="000000"}
+.stylefont5 { font-family: "굴림"; font-size: 8pt; text-decoration: none; color="000000"}
+.stylefont22 { font-family: "굴림"; line-height: 22px; text-decoration: none; color="000000"}
+.lineheight {	line-height: 8px; color="000000"}
+.tdbd_blue_all1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:1px #0006FF solid; color="000000"}
+.tdbd_blue_all2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:2px #0006FF solid}.tdbd_blue_top2left1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 2px 0px 0px 1px; color="000000"}
+.tdbd_blue_top1left1bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 1px 0px 2px 1px; color="000000"}
+.tdbd_blue_top1left1right2bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 1px 2px 2px 1px; color="000000"}
+.tdbd_blue_top2left2bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 2px 0px 2px 2px; color="000000"}
+.tdbd_blue_top2left1right2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 2px 2px 0px 1px; color="000000"}
+.tdbd_blue_top2left2bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 2px 0px 1px 2px; color="000000"}
+.tdbd_blue_top1left1bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 1px 0px 1px 1px; color="000000"}
+.tdbd_blue_top1left1right2bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 1px 2px 1px 1px; color="000000"}
+.tdbd_blue_top1left2bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 1px 0px 1px 2px; color="000000"}
+.tdbd_blue_top1left1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 1px 0px 0px 1px; color="000000"}
+.tdbd_blue_top1left1right2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 1px 2px 0px 1px; color="000000"}
+.tdbd_blue_top1left2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 1px 0px 0px 2px; color="000000"}
+.tdbd_blue_top1left2bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#0006FF solid; border-width: 1px 0px 2px 2px; color="000000"}
+.tdbd_olive_all1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:1px #969C72 solid; color="000000"}
+.tdbd_olive_all2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:2px #969C72 solid; color="000000"}
+.tdbd_olive_top2left1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 2px 0px 0px 1px; color="000000"}
+.tdbd_olive_top1left1bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 1px 0px 2px 1px; color="000000"}
+.tdbd_olive_top1left1right2bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 1px 2px 2px 1px; color="000000"}
+.tdbd_olive_top2left2bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 2px 0px 2px 2px; color="000000"}
+.tdbd_olive_top2left1right2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 2px 2px 0px 1px; color="000000"}
+.tdbd_olive_top2left2bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 2px 0px 1px 2px; color="000000"}
+.tdbd_olive_top1left1bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 1px 0px 1px 1px; color="000000"}
+.tdbd_olive_top1left1right2bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 1px 2px 1px 1px; color="000000"}
+.tdbd_olive_top1left2bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 1px 0px 1px 2px; color="000000"}
+.tdbd_olive_top1left1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 1px 0px 0px 1px; color="000000"}
+.tdbd_olive_top1left1right2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 1px 2px 0px 1px; color="000000"}
+.tdbd_olive_top1left2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 1px 0px 0px 2px; color="000000"}
+.tdbd_olive_top1left2bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 1px 0px 2px 2px}.tdbd_olive_top1left1right1bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:1px #969C72 solid; color="000000"}
+.tdbd_olive_top1left1right1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#969C72 solid; border-width: 1px 1px 0px; color="000000"}
+.tdbd_red_all1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:1px #AC0000 solid; color="000000"}
+.tdbd_red_all2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:2px #AC0000 solid; color="000000"}
+.tdbd_red_top2left1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 2px 0px 0px 1px; color="000000"}
+.tdbd_red_top1left1bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 1px 0px 2px 1px; color="000000"}
+.tdbd_red_top1left1right2bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 1px 2px 2px 1px; color="000000"}
+.tdbd_red_top2left2bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 2px 0px 2px 2px; color="000000"}
+.tdbd_red_top2left1right2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 2px 2px 0px 1px; color="000000"}
+.tdbd_red_top2left2bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 2px 0px 1px 2px; color="000000"}
+.tdbd_red_top1left1bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 1px 0px 1px 1px; color="000000"}
+.tdbd_red_top1left1right2bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 1px 2px 1px 1px; color="000000"}
+.tdbd_red_top1left2bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 1px 0px 1px 2px; color="000000"}
+.tdbd_red_top1left1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 1px 0px 0px 1px; color="000000"}
+.tdbd_red_top1left1right2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 1px 2px 0px 1px; color="000000"}
+.tdbd_red_top1left2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 1px 0px 0px 2px; color="000000"}
+.tdbd_red_top1left2bottom2 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 1px 0px 2px 2px}.tdbd_olive_top1left1right1bottom1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:1px #969C72 solid; color="000000"}
+.tdbd_red_top1left1right1 { font-family: "굴림"; font-size: 9pt; text-decoration: none; border:#AC0000 solid; border-width: 1px 1px 0px; color="000000"}
+</style>
+
+</head>
+
+<body>
+	{FROM}
+	<block name="from">
+	<!--세금계산서 적색 양식-->
+	<!--적색종이 도장 -->
+	<div id="Layer6" style="position:relative; left:270px; top:70px; width:58px; height:56px; z-index:1">
+		<table width="55" border="0" cellspacing="0" cellpadding="0" height="55" bordercolor="#FF0000" style="border:2 solid #C81642;font-family:굴림체;font-size:12pt;color:#C81642;padding-top:2px;line-height:16px;">
+		<tr>
+			<td align="center"><img src="{href.fromstamp}" width="55" height="55"></td>
+		</tr>
+		</table>
+	</div>
+	<table width="614" border="0" cellspacing="0" cellpadding="0" style="margin-top:-70px; ">
+	<tr>
+		<td colspan="4" height="4"></td>
+	</tr>
+	<tr>
+		<td width="1" height="2">&nbsp;</td>
+		<td height="2" width="310" class="stylefont1" valign="bottom"><font color="B50000">[별지 제11호 서식]</font></td>
+		<td height="2" width="310" class="stylefont1" align="right" valign="bottom"><font color="#AC0000">[적색]</font></td>
+		<td width="5" height="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="1" height="2">&nbsp;</td>
+		<td height="2" colspan="2" class="stylefont5">
+			<table width="605" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td rowspan="2" class="tdbd_red_top2left2bottom1">
+					<table width="497" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td rowspan="2" align="center" width="447"><font style="font-size:11pt"><b><font color="#AC0000" size="5">세금계산서</font></b></font> <font color="#AC0000"><span class="stylefont1">(공급자보관용)</span></font> </td>
+						<td width="50" class="stylefont1" align="center" height="18" valign="bottom"><font color="#AC0000">책&nbsp;번 호</font></td>
+					</tr>
+					<tr>
+						<td width="50" class="stylefont1" align="center" height="18" valign="bottom"><font color="#AC0000">일련번호</font></td>
+					</tr>
+					</table>
+				</td>
+				<td	colspan="3" height="20" align="right" valign="bottom" class="tdbd_red_top2left1"><font color="#AC0000">권</font></td>
+				<td colspan="4" class="tdbd_red_top2left1right2" height="20" align="right" valign="bottom"><font color="#AC0000">호</font></td>
+			</tr>
+			<tr>
+				<td height="20" width="140" align="center" colspan="7" class="tdbd_red_top1left1right2bottom1">{list.uid}</td>
+			</tr>
+			</table>
+			<table width="605" border="0" cellspacing="0" cellpadding="1">
+			<tr>
+				<td class="tdbd_red_top1left2bottom1" rowspan="4" align="center" height="25" width="15">
+					<font color="#AC0000">공<br>
+					<br>
+					급<br>
+					<br>
+					자</font> 
+				</td>
+				<td class="tdbd_red_top1left1" height="32" align="center" width="50"><font color="#AC0000">등록번호</font></td>
+				<td class="tdbd_red_top1left1" colspan="3" height="32" align="center"><b><font size=3>&nbsp;{list.from_c_num}</font></b>&nbsp;</td>
+				<td class="tdbd_red_top1left1bottom1" rowspan="4" height="32" align="center" width="15">
+					<font color="#AC0000">공<br>
+					급<br>
+					받<br>
+					는<br>
+					자</font> 
+				</td>
+				<td class="tdbd_red_top1left1" height="32" align="center" width="50"><font color="#AC0000">등록번호</font></td>
+				<td class="tdbd_red_top1left1right2" colspan="3" align="center" height="32"><b><font size=3>&nbsp;{list.to_c_num}</font></b>&nbsp;</td>
+			</tr>
+			<!--공급하는자 공급받는자 정보 찍기 -->
+			<tr>
+				<td class="tdbd_red_top1left1" height="32" align="center" width="50">
+					<font color="#AC0000">상&nbsp;&nbsp;호<br>
+					(법인명)</font> 
+				</td>
+				<td class="tdbd_red_top1left1" height="32" width="87">&nbsp;{list.from_c_name}</td>
+				<td class="tdbd_red_top1left1" height="32" align="center" width="50">
+					<font color="#AC0000">성명<br>
+					(대표자)</font> 
+				</td>
+				<td class="tdbd_red_top1left1" height="32" width="87" align="left">&nbsp; {list.from_c_owner}<font color="#AC0000"> (인)</font></td>
+				<td class="tdbd_red_top1left1" height="32" align="center" width="50">
+					<font color="#AC0000">상&nbsp;&nbsp;호<br>
+					(법인명)</font> 
+				</td>
+				<td class="tdbd_red_top1left1" height="32" width="87">&nbsp;{list.to_c_name}&nbsp;</td>
+				<td class="tdbd_red_top1left1" height="32" align="center" width="50">
+					<font color="#AC0000">성&nbsp;&nbsp;명<br>
+					(대표자)</font> 
+				</td>
+				<td class="tdbd_red_top1left1right2" height="32" width="87" align="center">&nbsp;{list.to_c_owner}<font color="#AC0000">(인)</font> </td>
+			</tr>
+			<tr>
+				<td class="tdbd_red_top1left1" height="32" align="center" width="50">
+					<font color="#AC0000">사업장<br>
+					주 &nbsp;&nbsp;소</font> 
+				</td>
+				<td class="tdbd_red_top1left1" colspan="3" height="32" width="238"> {list.from_c_address}</td>
+				<td class="tdbd_red_top1left1" height="32" align="center" width="50">
+					<font color="#AC0000">사업장<br>
+					주 &nbsp;&nbsp;소</font> 
+				</td>
+				<td class="tdbd_red_top1left1right2" colspan="3" height="32" width="237"> {list.to_c_address}</td>
+			</tr>
+			<tr>
+				<td class="tdbd_red_top1left1bottom1" height="32" align="center" width="50"><font color="#AC0000">업&nbsp;&nbsp;태</font> </td>
+				<td class="tdbd_red_top1left1bottom1" height="32" width="87">&nbsp;{list.from_c_kind}</td>
+				<td class="tdbd_red_top1left1bottom1" height="32" align="center" width="50"><font color="#AC0000">종목</font> </td>
+				<td class="tdbd_red_top1left1bottom1" height="32" width="87">&nbsp;{list.from_c_detail}</td>
+				<td class="tdbd_red_top1left1bottom1" height="32" align="center" width="50"><font color="#AC0000">업&nbsp;&nbsp;태</font> </td>
+				<td class="tdbd_red_top1left1bottom1" height="32" width="87">&nbsp;{list.to_c_kind}</td>
+				<td class="tdbd_red_top1left1bottom1" height="32" align="center" width="50"><font color="#AC0000">종목</font> </td>
+				<td class="tdbd_red_top1left1right2bottom1" height="32" width="87"> {list.to_c_detail}</td>
+			</tr>
+			</table>
+			<!--작성일, 공급가액, 세액, 비고 찍기 -->
+			<table width="605" border="0" cellspacing="0" cellpadding="1">
+			<tr align="center" valign="bottom">
+				<td colspan="3" class="tdbd_red_top1left2" height="20"><font color="#AC0000">작&nbsp;&nbsp;성</font></td>
+				<td colspan="12" class="tdbd_red_top1left1" height="20"><font color="#AC0000">공&nbsp;급 &nbsp;가 &nbsp;액</font> </td>
+				<td colspan="10" class="tdbd_red_top1left1" height="20"><font color="#AC0000">세&nbsp;&nbsp;액</font> </td>
+				<td class="tdbd_red_top1left1right2" height="20" width="125"><font color="#AC0000">비&nbsp;고</font></td>
+			</tr>
+			<tr>
+				<td width="40" class="tdbd_red_top1left2" align="center" valign="bottom"><font color="#AC0000">년</font></td>
+				<td class="tdbd_red_top1left1" align="center" width="20" valign="bottom"><font color="#AC0000">월</font></td>
+				<td class="tdbd_red_top1left1" width="20" align="center" valign="bottom"><font color="#AC0000">일</font></td>
+				<td class="tdbd_red_top1left1" width="36" align="center" valign="bottom"><font color="#AC0000">공란수</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">백</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">십</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">억</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">천</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">백</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">십</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">만</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">천</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">백</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">십</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">일</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">십</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">억</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">천</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">백</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">십</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">만</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">천</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">백</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">십</font></td>
+				<td class="tdbd_red_top1left1" width="13" align="center" valign="bottom"><font color="#AC0000">일</font></td>
+				<td rowspan="2" class="tdbd_red_top1left1right2bottom1">&nbsp;{list.total_etc}</td>
+			</tr>
+			<tr>
+				<td height="30" width="80" colspan="3" align="center" class="tdbd_red_top1left2bottom1">&nbsp;{list.total_date}</td>
+				<td width="36" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_space}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply11}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply10}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply9}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply8}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply7}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply6}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply5}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply4}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply3}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply2}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply1}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax10}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax9}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax8}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax7}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax6}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax5}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax4}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax3}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax2}</td>
+				<td width="13" class="tdbd_red_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax1}</td>
+			</tr>
+			</table>
+			<table width="605" border="0" cellspacing="0" cellpadding="1">
+			<tr align="center" valign="bottom">
+				<td class="tdbd_red_top1left2" height="25" width="20"><font color="#AC0000">월</font></td>
+				<td class="tdbd_red_top1left1" height="25" width="20"><font color="#AC0000">일</font></td>
+				<td class="tdbd_red_top1left1" height="25" width="123"><font color="#AC0000">품 목</font></td>
+				<td class="tdbd_red_top1left1" height="25" width="70"><font color="#AC0000">규 격</font></td>
+				<td class="tdbd_red_top1left1" height="25" width="30" nowrap><font color="#AC0000">수 량</font></td>
+				<td class="tdbd_red_top1left1" height="25" width="75"><font color="#AC0000">단 가</font></td>
+				<td class="tdbd_red_top1left1" height="25" width="101"><font color="#AC0000">공급가액</font></td>
+				<td class="tdbd_red_top1left1" height="25" width="95"><font color="#AC0000">세 액</font></td>
+				<td class="tdbd_red_top1left1right2" height="25" width="109"><font color="#AC0000">비 고</font></td>
+			</tr>
+			<!--품목,규격,수량,단가,공급가액,세액 찍기 -->
+			<tr>
+				<td height=25 width="40" colspan="2" align=center class=tdbd_red_top1left2>&nbsp;{list.date1}</td>
+				<td class=tdbd_red_top1left1 height=25 width=123>&nbsp;{list.item1}</td>
+				<td class=tdbd_red_top1left1 height=25 width=70>&nbsp;{list.standard1}</td>
+				<td class=tdbd_red_top1left1 height=25 width=30 align=center>&nbsp;{list.quantity1}</td>
+				<td class=tdbd_red_top1left1 height=25 width=75 align=right>&nbsp;{list.price1}</td>
+				<td class=tdbd_red_top1left1 height=25 width=101 align=right>&nbsp;{list.supply_money1}</td>
+				<td class=tdbd_red_top1left1 height=25 width=95 align=right>&nbsp;{list.tax_money1}</td>
+				<td class=tdbd_red_top1left1right2 height=25 width=109>&nbsp;{list.etc1}</td>
+			</tr>
+			<tr>
+				<td height=25 width="40" colspan="2" align=center class=tdbd_red_top1left2>&nbsp;{list.date2}</td>
+				<td class=tdbd_red_top1left1 height=25 width=123>&nbsp;{list.item2}</td>
+				<td class=tdbd_red_top1left1 height=25 width=70>&nbsp;{list.standard2}</td>
+				<td class=tdbd_red_top1left1 height=25 width=30 align=center>&nbsp;{list.quantity2}</td>
+				<td class=tdbd_red_top1left1 height=25 width=75 align=right>&nbsp;{list.price2}</td>
+				<td class=tdbd_red_top1left1 height=25 width=101 align=right>&nbsp;{list.supply_money2}</td>
+				<td class=tdbd_red_top1left1 height=25 width=95 align=right>&nbsp;{list.tax_money2}</td>
+				<td class=tdbd_red_top1left1right2 height=25 width=109>&nbsp;{list.etc2}</td>
+			</tr>
+			<tr>
+				<td height=25 width="40" colspan="2" align=center class=tdbd_red_top1left2>&nbsp;{list.date3}</td>
+				<td class=tdbd_red_top1left1 height=25 width=123>&nbsp;{list.item3}</td>
+				<td class=tdbd_red_top1left1 height=25 width=70>&nbsp;{list.standard3}</td>
+				<td class=tdbd_red_top1left1 height=25 width=30 align=center>&nbsp;{list.quantity3}</td>
+				<td class=tdbd_red_top1left1 height=25 width=75 align=right>&nbsp;{list.price3}</td>
+				<td class=tdbd_red_top1left1 height=25 width=101 align=right>&nbsp;{list.supply_money3}</td>
+				<td class=tdbd_red_top1left1 height=25 width=95 align=right>&nbsp;{list.tax_money3}</td>
+				<td class=tdbd_red_top1left1right2 height=25 width=109>&nbsp;{list.etc3}</td>
+			</tr>
+			<tr>
+				<td height=25 width="40" colspan="2" align=center class=tdbd_red_top1left2>&nbsp;{list.date4}</td>
+				<td class=tdbd_red_top1left1 height=25 width=123>&nbsp;{list.item4}</td>
+				<td class=tdbd_red_top1left1 height=25 width=70>&nbsp;{list.standard4}</td>
+				<td class=tdbd_red_top1left1 height=25 width=30 align=center>&nbsp;{list.quantity4}</td>
+				<td class=tdbd_red_top1left1 height=25 width=75 align=right>&nbsp;{list.price4}</td>
+				<td class=tdbd_red_top1left1 height=25 width=101 align=right>&nbsp;{list.supply_money4}</td>
+				<td class=tdbd_red_top1left1 height=25 width=95 align=right>&nbsp;{list.tax_money4}</td>
+				<td class=tdbd_red_top1left1right2 height=25 width=109>&nbsp;{list.etc4}</td>
+			</tr>
+			</table>
+			<table width="605" border="0" cellspacing="0" cellpadding="1">
+			<tr align="center">
+				<td class="tdbd_red_top1left2" width="124" valign="bottom" height="20"><font color="#AC0000">합 계 금 액</font></td>
+				<td class="tdbd_red_top1left1" width="90" valign="bottom" height="20"><font color="#AC0000">현 금</font></td>
+				<td class="tdbd_red_top1left1" width="90" valign="bottom" height="20"><font color="#AC0000">수 표</font></td>
+				<td class="tdbd_red_top1left1" width="90" valign="bottom" height="20"><font color="#AC0000">어 음</font></td>
+				<td class="tdbd_red_top1left1" width="90" valign="bottom" height="20"><font color="#AC0000">외상미수금</font></td>
+				<td class="tdbd_red_top1left1right2bottom2" rowspan="2" valign="middle" width="109"><font color="#AC0000">위 금액을 {list.total_gubun}함.</font> </td>
+			</tr>
+			<tr>
+				<td class="tdbd_red_top1left2bottom2" width="124" height="30" align="right">&nbsp;{list.total_money}</td>
+				<td class="tdbd_red_top1left1bottom2" width="90" height="30" align="right">&nbsp;{list.total_cash}</td>
+				<td class="tdbd_red_top1left1bottom2" width="90" height="30" align="right">&nbsp;{list.total_check}</td>
+				<td class="tdbd_red_top1left1bottom2" width="90" height="30" align="right">&nbsp;{list.total_bill}</td>
+				<td class="tdbd_red_top1left1bottom2" width="90" height="30" align="right">&nbsp;{list.total_credit}</td>
+			</tr>
+			</table>
+		</td>
+		<td width="5" height="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td height="2" width="1">&nbsp;</td>
+		<td class="stylefont5" height="2"><font color="#AC0000">22226-28131일 '96.2.27.개정</font></td>
+		<td class="stylefont5" height="2" align="right"><font color="#AC0000">182mmx128mm 인쇄용지(특급)</font></td>
+		<td height="2">&nbsp;</td>
+	</tr>
+	</table>
+	<table width="614" border="0" cellspacing="0" cellpadding="0" height="50">
+	<tr>
+		<td width="1">&nbsp;</td>
+		<td>
+			<hr width="612" size="1" noshade style=" page-break-after:always">
+		</td>
+	</tr>
+	</table>
+	</block name="from">
+	{TO}
+	<block name="to">
+	<!--청색 세금계산서 -->
+	<!--청색 세금계산서 도장 -->
+	<div id="Layer7" style="position:relative; left:270px; top:70px; width:58px; height:56px; z-index:1">
+		<table width="55" border="0" cellspacing="0" cellpadding="0" height="55" bordercolor="#FF0000" style="border:2 solid #C81642;font-family:굴림체;font-size:12pt;color:#C81642;padding-top:2px;line-height:16px;">
+		<tr>
+			<td align="center"><img src="{href.fromstamp}" width="55" height="55"></td>
+		</tr>
+		</table>
+	</div>
+	<table width="614" border="0" cellspacing="0" cellpadding="0" style="margin-top:-70px; ">
+	<tr>
+		<td colspan="4" height="4"></td>
+	</tr>
+	<tr>
+		<td width="1" height="2">&nbsp;</td>
+		<td height="2" width="310" class="stylefont1" valign="bottom"><font color="#0006FF">[별지 제11호 서식]</font></td>
+		<td height="2" width="310" class="stylefont1" align="right" valign="bottom"><font color="#0006FF">[청색]</font></td>
+		<td width="5" height="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="1" height="2">&nbsp;</td>
+		<td height="2" colspan="2" class="stylefont5">
+			<table width="605" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td rowspan="2" class="tdbd_blue_top2left2bottom1">
+					<table width="497" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td rowspan="2" align="center" width="447"><font style="font-size:11pt"><b><font color="#0006FF" size="5">세금계산서</font></b></font> <font color="#0006FF"><span class="stylefont1">(공급받는자용)</span></font> </td>
+						<td width="50" class="stylefont1" align="center" height="18" valign="bottom"><font color="#0006FF">책&nbsp;번 호</font></td>
+					</tr>
+					<tr>
+						<td width="50" class="stylefont1" align="center" height="18" valign="bottom"><font color="#0006FF">일련번호</font></td>
+					</tr>
+					</table>
+				</td>
+				<td	colspan="3" height="20" align="right" valign="bottom" class="tdbd_blue_top2left1"><font color="#0006FF">권</font></td>
+				<td colspan="4" class="tdbd_blue_top2left1right2" height="20" align="right" valign="bottom"><font color="#0006FF">호</font></td>
+			</tr>
+			<tr>
+				<td height="20" width="140" align="center" colspan="7" class="tdbd_blue_top1left1right2bottom1">{list.uid}</td>
+			</tr>
+			</table>
+			<table width="605" border="0" cellspacing="0" cellpadding="1">
+			<tr>
+				<td class="tdbd_blue_top1left2bottom1" rowspan="4" align="center" height="25" width="15">
+					<font color="#0006FF">공<br>
+					<br>
+					급<br>
+					<br>
+					자</font> 
+				</td>
+				<td class="tdbd_blue_top1left1" height="32" align="center" width="50"><font color="#0006FF">등록번호</font></td>
+				<td class="tdbd_blue_top1left1" colspan="3" height="32" align="center"><b><font size=3>&nbsp;{list.from_c_num}</font></b>&nbsp;</td>
+				<td class="tdbd_blue_top1left1bottom1" rowspan="4" height="32" align="center" width="15">
+					<font color="#0006FF">공<br>
+					급<br>
+					받<br>
+					는<br>
+					자</font> 
+				</td>
+				<td class="tdbd_blue_top1left1" height="32" align="center" width="50"><font color="#0006FF">등록번호</font></td>
+				<td class="tdbd_blue_top1left1right2" colspan="3" align="center" height="32"><b><font size=3>&nbsp;{list.to_c_num}</font></b>&nbsp;</td>
+			</tr>
+			<!--공급하는자 공급받는자 정보 찍기 -->
+			<tr>
+				<td class="tdbd_blue_top1left1" height="32" align="center" width="50">
+					<font color="#0006FF">상&nbsp;&nbsp;호<br>
+					(법인명)</font> 
+				</td>
+				<td class="tdbd_blue_top1left1" height="32" width="87">&nbsp;{list.from_c_name}</td>
+				<td class="tdbd_blue_top1left1" height="32" align="center" width="50">
+					<font color="#0006FF">성명<br>
+					(대표자)</font> 
+				</td>
+				<td class="tdbd_blue_top1left1" height="32" width="87" align="left">&nbsp; {list.from_c_owner}<font color="#0006FF"> (인)</font></td>
+				<td class="tdbd_blue_top1left1" height="32" align="center" width="50">
+					<font color="#0006FF">상&nbsp;&nbsp;호<br>
+					(법인명)</font> 
+				</td>
+				<td class="tdbd_blue_top1left1" height="32" width="87">&nbsp;{list.to_c_name}&nbsp;</td>
+				<td class="tdbd_blue_top1left1" height="32" align="center" width="50">
+					<font color="#0006FF">성&nbsp;&nbsp;명<br>
+					(대표자)</font> 
+				</td>
+				<td class="tdbd_blue_top1left1right2" height="32" width="87" align="center">&nbsp;{list.to_c_owner}<font color="#0006FF">(인)</font> </td>
+			</tr>
+			<tr>
+				<td class="tdbd_blue_top1left1" height="32" align="center" width="50">
+					<font color="#0006FF">사업장<br>
+					주 &nbsp;&nbsp;소</font> 
+				</td>
+				<td class="tdbd_blue_top1left1" colspan="3" height="32" width="238"> {list.from_c_address}</td>
+				<td class="tdbd_blue_top1left1" height="32" align="center" width="50">
+					<font color="#0006FF">사업장<br>
+					주 &nbsp;&nbsp;소</font> 
+				</td>
+				<td class="tdbd_blue_top1left1right2" colspan="3" height="32" width="237"> {list.to_c_address}</td>
+			</tr>
+			<tr>
+				<td class="tdbd_blue_top1left1bottom1" height="32" align="center" width="50"><font color="#0006FF">업&nbsp;&nbsp;태</font> </td>
+				<td class="tdbd_blue_top1left1bottom1" height="32" width="87">&nbsp;{list.from_c_kind}</td>
+				<td class="tdbd_blue_top1left1bottom1" height="32" align="center" width="50"><font color="#0006FF">종목</font> </td>
+				<td class="tdbd_blue_top1left1bottom1" height="32" width="87">&nbsp;{list.from_c_detail}</td>
+				<td class="tdbd_blue_top1left1bottom1" height="32" align="center" width="50"><font color="#0006FF">업&nbsp;&nbsp;태</font> </td>
+				<td class="tdbd_blue_top1left1bottom1" height="32" width="87">&nbsp;{list.to_c_kind}</td>
+				<td class="tdbd_blue_top1left1bottom1" height="32" align="center" width="50"><font color="#0006FF">종목</font> </td>
+				<td class="tdbd_blue_top1left1right2bottom1" height="32" width="87"> {list.to_c_detail}</td>
+			</tr>
+			</table>
+			<!--작성일, 공급가액, 세액, 비고 찍기 -->
+			<table width="605" border="0" cellspacing="0" cellpadding="1">
+			<tr align="center" valign="bottom">
+				<td colspan="3" class="tdbd_blue_top1left2" height="20"><font color="#0006FF">작&nbsp;&nbsp;성</font></td>
+				<td colspan="12" class="tdbd_blue_top1left1" height="20"><font color="#0006FF">공&nbsp;급 &nbsp;가 &nbsp;액</font> </td>
+				<td colspan="10" class="tdbd_blue_top1left1" height="20"><font color="#0006FF">세&nbsp;&nbsp;액</font> </td>
+				<td class="tdbd_blue_top1left1right2" height="20" width="125"><font color="#0006FF">비&nbsp;고</font></td>
+			</tr>
+			<tr>
+				<td width="40" class="tdbd_blue_top1left2" align="center" valign="bottom"><font color="#0006FF">년</font></td>
+				<td class="tdbd_blue_top1left1" align="center" width="20" valign="bottom"><font color="#0006FF">월</font></td>
+				<td class="tdbd_blue_top1left1" width="20" align="center" valign="bottom"><font color="#0006FF">일</font></td>
+				<td class="tdbd_blue_top1left1" width="36" align="center" valign="bottom"><font color="#0006FF">공란수</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">백</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">십</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">억</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">천</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">백</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">십</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">만</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">천</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">백</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">십</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">일</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">십</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">억</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">천</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">백</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">십</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">만</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">천</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">백</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">십</font></td>
+				<td class="tdbd_blue_top1left1" width="13" align="center" valign="bottom"><font color="#0006FF">일</font></td>
+				<td rowspan="2" class="tdbd_blue_top1left1right2bottom1">&nbsp;{list.total_etc}</td>
+			</tr>
+			<tr>
+				<td height="30" width="80" colspan="3" align="center" class="tdbd_blue_top1left2bottom1">&nbsp;{list.total_date}</td>
+				<td width="36" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_space}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply11}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply10}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply9}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply8}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply7}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply6}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply5}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply4}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply3}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply2}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_supply1}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax10}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax9}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax8}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax7}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax6}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax5}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax4}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax3}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax2}</td>
+				<td width="13" class="tdbd_blue_top1left1bottom1" align="center" height="30">&nbsp;{list.total_tax1}</td>
+			</tr>
+			</table>
+			<table width="605" border="0" cellspacing="0" cellpadding="1">
+			<tr align="center" valign="bottom">
+				<td class="tdbd_blue_top1left2" height="25" width="20"><font color="#0006FF">월</font></td>
+				<td class="tdbd_blue_top1left1" height="25" width="20"><font color="#0006FF">일</font></td>
+				<td class="tdbd_blue_top1left1" height="25" width="123"><font color="#0006FF">품 목</font></td>
+				<td class="tdbd_blue_top1left1" height="25" width="70"><font color="#0006FF">규 격</font></td>
+				<td class="tdbd_blue_top1left1" height="25" width="30" nowrap><font color="#0006FF">수 량</font></td>
+				<td class="tdbd_blue_top1left1" height="25" width="75"><font color="#0006FF">단 가</font></td>
+				<td class="tdbd_blue_top1left1" height="25" width="101"><font color="#0006FF">공급가액</font></td>
+				<td class="tdbd_blue_top1left1" height="25" width="95"><font color="#0006FF">세 액</font></td>
+				<td class="tdbd_blue_top1left1right2" height="25" width="109"><font color="#0006FF">비 고</font></td>
+			</tr>
+			<!--품목,규격,수량,단가,공급가액,세액 찍기 -->
+			<tr>
+				<td height=25 width="40" colspan="2" align=center class=tdbd_blue_top1left2>&nbsp;{list.date1}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=123>&nbsp;{list.item1}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=70>&nbsp;{list.standard1}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=30 align=center>&nbsp;{list.quantity1}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=75 align=right>&nbsp;{list.price1}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=101 align=right>&nbsp;{list.supply_money1}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=95 align=right>&nbsp;{list.tax_money1}</td>
+				<td class=tdbd_blue_top1left1right2 height=25 width=109>&nbsp;{list.etc1}</td>
+			</tr>
+			<tr>
+				<td height=25 width="40" colspan="2" align=center class=tdbd_blue_top1left2>&nbsp;{list.date2}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=123>&nbsp;{list.item2}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=70>&nbsp;{list.standard2}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=30 align=center>&nbsp;{list.quantity2}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=75 align=right>&nbsp;{list.price2}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=101 align=right>&nbsp;{list.supply_money2}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=95 align=right>&nbsp;{list.tax_money2}</td>
+				<td class=tdbd_blue_top1left1right2 height=25 width=109>&nbsp;{list.etc2}</td>
+			</tr>
+			<tr>
+				<td height=25 width="40" colspan="2" align=center class=tdbd_blue_top1left2>&nbsp;{list.date3}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=123>&nbsp;{list.item3}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=70>&nbsp;{list.standard3}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=30 align=center>&nbsp;{list.quantity3}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=75 align=right>&nbsp;{list.price3}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=101 align=right>&nbsp;{list.supply_money3}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=95 align=right>&nbsp;{list.tax_money3}</td>
+				<td class=tdbd_blue_top1left1right2 height=25 width=109>&nbsp;{list.etc3}</td>
+			</tr>
+			<tr>
+				<td height=25 width="40" colspan="2" align=center class=tdbd_blue_top1left2>&nbsp;{list.date4}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=123>&nbsp;{list.item4}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=70>&nbsp;{list.standard4}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=30 align=center>&nbsp;{list.quantity4}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=75 align=right>&nbsp;{list.price4}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=101 align=right>&nbsp;{list.supply_money4}</td>
+				<td class=tdbd_blue_top1left1 height=25 width=95 align=right>&nbsp;{list.tax_money4}</td>
+				<td class=tdbd_blue_top1left1right2 height=25 width=109>&nbsp;{list.etc4}</td>
+			</tr>
+			</table>
+			<table width="605" border="0" cellspacing="0" cellpadding="1">
+			<tr align="center">
+				<td class="tdbd_blue_top1left2" width="124" valign="bottom" height="20"><font color="#0006FF">합 계 금 액</font></td>
+				<td class="tdbd_blue_top1left1" width="90" valign="bottom" height="20"><font color="#0006FF">현 금</font></td>
+				<td class="tdbd_blue_top1left1" width="90" valign="bottom" height="20"><font color="#0006FF">수 표</font></td>
+				<td class="tdbd_blue_top1left1" width="90" valign="bottom" height="20"><font color="#0006FF">어 음</font></td>
+				<td class="tdbd_blue_top1left1" width="90" valign="bottom" height="20"><font color="#0006FF">외상미수금</font></td>
+				<td class="tdbd_blue_top1left1right2bottom2" rowspan="2" valign="middle" width="109"><font color="#0006FF">위 금액을 {list.total_gubun}함.</font> </td>
+			</tr>
+			<tr>
+				<td class="tdbd_blue_top1left2bottom2" width="124" height="30" align="right">&nbsp;{list.total_money}</td>
+				<td class="tdbd_blue_top1left1bottom2" width="90" height="30" align="right">&nbsp;{list.total_cash}</td>
+				<td class="tdbd_blue_top1left1bottom2" width="90" height="30" align="right">&nbsp;{list.total_check}</td>
+				<td class="tdbd_blue_top1left1bottom2" width="90" height="30" align="right">&nbsp;{list.total_bill}</td>
+				<td class="tdbd_blue_top1left1bottom2" width="90" height="30" align="right">&nbsp;{list.total_credit}</td>
+			</tr>
+			</table>
+		</td>
+		<td width="5" height="2">&nbsp;</td>
+	</tr>
+	<tr>
+		<td height="2" width="1">&nbsp;</td>
+		<td class="stylefont5" height="2"><font color="#0006FF">22226-28131일 '96.2.27.개정</font></td>
+		<td class="stylefont5" height="2" align="right"><font color="#0006FF">182mmx128mm 인쇄용지(특급)</font></td>
+		<td height="2">&nbsp;</td>
+	</tr>
+	</table>
+	</block name="to">
+	<!-- 세금계산서 용지 끝 -->
+	<input type="button" value="인쇄하기" onClick="window.print();">
+</body>
+</html>

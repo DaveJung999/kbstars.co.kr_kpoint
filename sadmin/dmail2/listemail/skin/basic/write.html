@@ -1,0 +1,60 @@
+<!--<? exit; ?>-->
+
+<html>
+<head>
+	<title>대량메일발송</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="images/style.css" type="text/css">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+	<form name="ITwizard" {form_default}>
+	<table width="500" border="0" cellspacing="0" cellpadding="1">
+	<tr bgcolor="#000000">
+		<td colspan="2" height="1"></td>
+	</tr>
+	<tr bgcolor="#DDDDCC">
+		<td width="81" height="20"> 필드이름</td>
+		<td width="513" height="20">
+			<div align="center">내용</div>
+		</td>
+	</tr>
+	<tr bgcolor="#000000">
+		<td colspan="2" height="1"></td>
+	</tr>
+	<tr bgcolor="#F1F1EB">
+		<td width="81">E-mail</td>
+		<td width="513" bgcolor="#F1F1EB">
+			<font size="2">
+			<input type="text" name="email" maxlength="50" size="30" value='{list.email}' class="input">
+			</font>
+		</td>
+	</tr>
+	{FIELD}
+	<block name="field">
+	<tr bgcolor='#F1F1EB'>
+		<td width='81'>{fieldname}</td>
+		<td width='513'><input type='text' name='{fieldname}' value='{fieldvalue}' class='input'></td>
+	</tr>
+	</block name="field">
+	<tr bgcolor="#F1F1EB">
+		<td width='81'></td>
+		<td width='513'>
+			<font size="2"></font><font size="2">
+			<input type="submit" name="Submit" value=' 전송 ' class="submit">
+			<input type="button" value='Back' onClick="history.back()" class="submit" >
+			</font>
+		</td>
+	</tr>
+	<tr bgcolor="#DDDDCC">
+		<td colspan="2" height="5"></td>
+	</tr>
+	<tr bgcolor="#000000">
+		<td colspan="2" height="1"></td>
+	</tr>
+	</table>
+	<p>&nbsp;</p>
+	</form>
+	<a href="write_textarea.php?db={get.db}">일괄메일추가</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="write_fromuserdb.php?db={get.db}">회원DB에서 가져오기</a>
+</body>
+</html>

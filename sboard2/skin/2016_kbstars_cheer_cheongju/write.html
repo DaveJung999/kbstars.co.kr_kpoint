@@ -1,0 +1,176 @@
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<script language="javascript">
+function setEnabled(){
+	if(document.board2write.agree.checked == true){
+		document.board2write.data1.disabled = false;
+		document.board2write.data1.focus();
+	}
+	else
+		document.board2write.data1.disabled = true;
+}
+</script>
+
+<style type="text/css">
+<!--
+.board_cont {font-size: 12px;
+	font-weight: bold;
+}
+.board_title {	font-size: 12px;
+	color: #FFF;
+	font-weight: bold;
+}
+.style_cheer {	color: #0000FF;
+	font-weight: bold;
+}
+-->
+</style>
+
+<form name="board2write" style='margin : 0px' onSubmit="return chkForm(this)" {form_default}>
+<input type="hidden" name="goto" id="goto" value="{href.list}"	/>
+<input type="hidden" name="content" id="content" value="원정응원신청" />
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td width="104" height="30" align="center" bgcolor="#a7998d"><span class="board_title">제&nbsp;&nbsp;&nbsp; 목</span></td>
+	<td bgcolor="#a7998d">
+		<input type="text" name="title" size="45"	value="{list.title}" style="width:65%" hname="제목을 입력 해 주세요" required />
+		&nbsp; <input type="checkbox" name="docu_type" value="html" {list.docu_type_checked} />
+		&nbsp;HTML&nbsp;{IFWRITEINFO}
+		<block name="ifwriteinfo">
+		<input type="checkbox" name="writeinfo" value="info" {list.writeinfo_checked} />
+		&nbsp;공지</block name="ifwriteinfo">
+		<!--&nbsp;
+<input type="checkbox" name="priv_hidelevel" value="99" />
+&nbsp;비밀글
+
+<script language="JavaScript" type="text/javascript">
+	var form_checkbox = document.board2write.priv_hidelevel;
+	var form_value 				= '{list.priv_hidelevel}';
+	if(Number(form_value)) {
+		form_checkbox.checked= true;
+	}
+	</script>
+-->	</td>
+</tr>
+<opt name="session.seUserid">
+<tr>
+	<td width="104" height="30" align="center" bgcolor="#f3f3f3"><strong>작 성 자</strong></td>
+	<td bgcolor="#f3f3f3">{list.userid} ({list.email})</td>
+</tr>
+</opt name="session.seUserid">
+<opt name="!session.seUserid">
+<tr>
+	<th height="30" bgcolor="#f3f3f3" scope="col"><label for="userid">작 성 자</label></th>
+	<td bgcolor="#f3f3f3" scope="col">
+		<input name="userid" type="text" id="userid" style="width:130px" title="이름입력"	value="{list.userid}" size="15" maxlength="10" required hname="작성자를 입력 해 주세요." />
+	</td>
+</tr>
+<!--<tr>
+			<th height="30" bgcolor="#f3f3f3" scope="col"><label for="userid">이메일</label></th>
+			<td bgcolor="#f3f3f3" scope="col"><input type="text" name="email" id="email" size="40"	value="{list.email}" option="regMail" title="이메일 입력" hname="이메일을 정확히 입력 해 주세요" />
+			</td>-->
+</tr>
+<tr>
+<th height="30" scope="col"><label for="userid">패스워드</label></th>
+<td scope="col">
+	<input type="password" name="passwd" id="passwd2" size="10" required title="패스워드 입력" hname="패스워드를 입력 해 주세요" />
+</td>
+</tr>
+<tr>
+<th height="30" bgcolor="#f3f3f3" scope="col"><label for="userid">인&nbsp;&nbsp;&nbsp; 증</label></th>
+<td bgcolor="#f3f3f3" scope="col">
+	<input type="text" name="captcha" id="captcha" size="10" required title="자동글쓰기방지 입력" hname="자동글쓰기방지 인증 값을 입력 해 주세요" />
+	&nbsp; {captcha}
+</td>
+</tr>
+</opt name="!session.seUserid">
+<tr>
+<td height="30" align="center"><strong>개인정보<br/>활용동의</strong></td>
+<td>
+	<input type="checkbox" id="agree" name="agree" onclick="javascript:setEnabled();" />
+	(원정응원 신청과 관련하여 개인정보가 사용되며, 연락처를 남기지 않으면 원정응원 신청이 되지 않습니다.)
+</td>
+</tr>
+<tr>
+<td height="30" align="center" bgcolor="#f3f3f3"><strong>연락처</strong></td>
+<td bgcolor="#f3f3f3">
+	<input type="text" name="data1" size="15" maxlength="13"	value="{list.data1}" hname="연락처를 입력하여주세요" required disabled />
+	(010-1234-5678)
+</td>
+</tr>
+<tr>
+<td height="26" align="center">
+	<strong>원정경기 응원<br/>
+	희망 인원 </strong>
+</td>
+<td>
+	<input name="data2" type="text" id="data2"	value="{list.data2}" size="5" maxlength="2" hname="버스탑승희망인원을 입력하여주세요" required />
+	&nbsp;명 <span style="font-size:8pt">(본인포함)</span>
+</td>
+</tr>
+{CATELIST}
+<block name="catelist">
+<tr>
+<td width="159" height="30" align="center" bgcolor="#f3f3f3"><strong>원정작성일</strong></td>
+<td bgcolor="#f3f3f3">
+	<select name="catelist" hname="원정 작성일을 선택하여주세요" required>
+	{list.catelist}
+	</select>
+</td>
+</tr>
+</block name="catelist">
+<!--<tr>
+		<td width="159" height="26" align="center"><strong>차량탑승장소</strong></td>
+		<td>청주 체육관 앞</td>
+	</tr>
+	<tr>
+		<td height="30" align="center"><strong>운행조건</strong></td>
+		<td><span class="style_cheer">단, 신청자가 20명 미만일 경우 운행이 불가능 합니다.</span></td>
+	</tr>-->
+<!--	{ UPLOAD}-->
+<block name=" Upload ">
+<tr>
+<td width="159" height="26" align="center" bgcolor="#f3f3f3"><strong>첨부파일</strong></td>
+<td bgcolor="#f3f3f3">
+	<input type="file" name="upfile" size="20" style="width:90%" />
+	&nbsp;&nbsp;
+	<opt name="upfile.name">
+	<table width="500"	border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="56%">&nbsp; <strong>파일명{upfile.no}</strong> : {upfile.name}</td>
+		<td width="44%">
+			<input name="del_{upfile.key}" type="checkbox" id="del_{upfile.key}" value="checkbox" />
+			삭제 
+		</td>
+	</tr>
+	</table>
+	</opt name="upfile.name">
+</td>
+</tr>
+</block name=" Upload ">
+</table>
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td height="1" align="center" bgcolor="#D1C0B1"></td>
+</tr>
+<tr>
+<td height="40" align="center">
+	<input type="image" src="images/board_btn_ok.jpg" border="0" style="cursor:pointer" >&nbsp;
+	<a href="javascript:void(history.back())"><img src="images/board_btn_cancel.jpg" width="56" height="24" border="0"></a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td height="100" align="center"><img src="/images/2021/0914/board_private_bg.jpg" /></td>
+</tr>
+</table>
+</form>
+<block name="highcate"> &gt; <a href="{href.highcate}" class="nevy_gcyan"> {highcate.title}</a> </block name="highcate">
+<block name="subcate"><opt name="blockloop">
+| </opt name="blockloop"><a href="{href.subcate}" class="base2"> {subcate.title}</a></block name="subcate">
+<block name="samecate">
+<option value="{samecate.uid}" {samecate.selected}>{samecate.title}</option>
+</block name="samecate">

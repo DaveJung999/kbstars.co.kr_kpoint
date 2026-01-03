@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
+
+<style type = "text/css">
+<!--
+	BODY, TABLE, TR, TD, INPUT, TEXTAREA
+	{	font-family:verdana, 굴림, Seoul, Gulim;
+		font-size: 10pt;
+		color: #595959;
+	}
+	A:link {font: 굴림,Arial; font-size: 9pt;	color: "#363688";}
+	A:visited {font: 굴림,Arial; font-size: 9pt;	color: "#363688";}
+	A:hover{font: 굴림,Arial; font-size: 9pt;	color: "black";}
+-->
+</style>
+
+	<script LANGUAGE="JavaScript">
+	<!--
+	function formatNum(str){
+		var tmpStr = ""+str;
+		var vReturn = "";
+		// 숫자가 아니라면 그냥 리턴
+		var regNum =/[0-9]+$/;
+		if(!regNum.test(str)){
+			return str;
+		}
+		while(1){
+			if(tmpStr.length < 4){
+				vReturn = vReturn + tmpStr;
+				break;
+			}
+			else{
+				if(tmpStr.length%3 == 0){
+					vReturn = vReturn + tmpStr.substring(0,3) + ",";
+					tmpStr = tmpStr.substring(3,tmpStr.length);
+				}
+				else{
+					vReturn = vReturn + tmpStr.substring(0,tmpStr.length%3) + ",";
+					tmpStr = tmpStr.substring(tmpStr.length%3,tmpStr.length);
+				}
+			}
+		}
+		return vReturn;
+	}
+	//-->
+	</script>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<body>
+		<form name='inquiry' {form_default}>
+		<table width="500" border="1" cellpadding="0" cellspacing="0" bordercolor="cccccc" style="border-collapse:collapse;" >
+		<tr>
+			<th colspan="2" bgcolor="EEE5FF">구매총액에 따른 회원리스트 </th>
+		</tr>
+		<tr>
+			<td bgcolor="EEE5FF">조회기간선택 </td>
+			<td align="center">
+				<INPUT TYPE=text name="startdate" id="startdate" ONCLICK="Calendar(this);" VALUE="{startdate}" size='10' readonly>
+				~
+				<INPUT TYPE=text name="enddate" id="enddate" ONCLICK="Calendar(this);" VALUE="{enddate}" size='10' readonly>
+				&nbsp;상태
+				<select name="status" id="status">
+				<option value="">(전체)</option>
+				<option value=" 입금필요 " {status_s.입금필요} >입금필요</option>
+				<option value=" 입금완료 " {status_s.입금완료} >입금완료</option>
+				<option value=" 배송중 " {status_s.배송중}>배송중</option>
+				<option value=" OK " {status_s.OK}>OK</option>
+				</select>
+				&nbsp; <input name="submit" type="submit" id="submit" value=" 조회 ">
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor="EEE5FF">SQL문</td>
+			<td>{sql}</td>
+		</tr>
+		</table>
+		</form>
+		<br>
+		<table width="160" border="1" cellpadding="0" cellspacing="0"	style="border-collapse:collapse;">
+		<tr>
+			<td width="100" align="center" nowrap bgcolor="EEE5FF">아이디</td>
+			<td width="60" align="center" nowrap bgcolor="EEE5FF">구매총액</td>
+		</tr>
+		{LIST}
+		<block name="list">
+		<tr>
+			<td width="100" nowrap><a href="../member/search.php?mode=search&sc_column=logon.userid&sc_string={list.userid}" target="userinfo">{list.userid}</a></td>
+			<td width="60" align="right" nowrap>
+				<script LANGUAGE="JavaScript">document.write(formatNum('{list.sum}'));</script>
+			</td>
+		</tr>
+		</block name="list">
+		</table>
+		<br>
+		<br>
+	</body>
+	</html>

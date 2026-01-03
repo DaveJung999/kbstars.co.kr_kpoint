@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>진환운수 - TXT 파일 업로드</title>
+</head>
+<link href="/css/basic.css" rel="stylesheet" type="text/css">
+
+<body>
+<form name="uf" action="./csv_process_2013.php" method='post' ENCTYPE='multipart/form-data' onsubmit="javascript:return confirm('파일을 업로드 하시겠습니까?');">
+<table width="600" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#cacaca">
+  <tr>
+    <td align="center" bgcolor="#efefef"><strong>엑셀파일(TXT) 업로드<br />
+      </strong><font color="#0000FF">(반드시 <strong>탭 구분자</strong> 파일로 처리)</font></td>
+  </tr>
+  <tr>
+    <td height="65" align="center" bgcolor="#FFFFFF"><p>
+      <input type="file" name="upfile" id="upfile" size="30" style="width:95%;">
+      <br />
+      <strong><br />
+      <font color="#FF0000">주의 : CSV 파일은 업로드 불가</font></strong>
+     &nbsp; 
+     <strong><a href="/spb3/sboard3/download.php?mode=download&amp;db=upload&amp;uid=2&amp;upfile=upfile" target="_blank"><font color="black">[※샘플파일다운로드]</font></a></strong>
+      <table width="100%" align="right"  cellpadding="0" cellspacing="1" bgcolor="#aeaeae">
+        <tr>
+          <td width="19%" height="80" align="center" bgcolor="#CCCCCC"><strong>공지사항</strong></td>
+          <td width="81%" colspan="2" align="center" bgcolor="#FFFFFF"><strong>
+            <textarea name="data85" rows="7" id="data85" style="width:98%" type="text"  size="10" ></textarea>
+          </strong></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="#FFFFFF"><input type="submit" value="TXT 파일 업로드"/>
+      &nbsp; <input type="button" value="  닫기  " onclick="javascript:self.close();"/>
+      &nbsp;</td>
+  </tr>
+</table>
+</form>
+
+
+     
+
+
+
+</body>
+</html>

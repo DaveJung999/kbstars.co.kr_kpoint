@@ -1,0 +1,63 @@
+<!--<? exit; ?>-->
+<html>
+<!-- #CBF8D5-->
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body>
+	<table width="600" border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+	<tr align="center" bgcolor='#CCFFCC'>
+		<td colspan="11"><b>{dbinfo.title}</b></td>
+	</tr>
+	<tr align="center" bgcolor='#CCFFCC'>
+		<td nowrap>고유번호</td>
+		<td nowrap>회원아이디</td>
+		<td nowrap>권한</td>
+		<td nowrap>레벨</td>
+		<td nowrap>이름</td>
+		<td nowrap>닉네임</td>
+		<td nowrap>전화</td>
+		<td nowrap>휴대폰</td>
+		<td nowrap>가입일자</td>
+		<td nowrap>마지막접속시간</td>
+		<td nowrap>
+			yesmail<br>
+			/emailcheck
+		</td>
+	</tr>
+	{LIST}
+	<block name="list">
+	<tr bgcolor='#EDFEE9' onMouseOver="this.style.backgroundColor='#CCFFCC'"	onMouseOut="this.style.backgroundColor='#EDFEE9'">
+		<td nowrap>{list.uid}</td>
+		<td nowrap><a href="../member/msearch.php?userid={list.userid}"><strong>{list.userid}</strong></a></td>
+		<td nowrap>{list.priv}</td>
+		<td align="center" nowrap>{list.level}</td>
+		<td nowrap>{list.name}</td>
+		<td nowrap>{list.nickname}</td>
+		<td nowrap>{list.tel}</td>
+		<td nowrap><a href="javascript: void(0);" onClick="javascript: window.open('/ssms/sms.php?mode=uids&uids={list.uid}' , 'new21sms' , 'toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=1,scrollbars=1,width=300,height=400');">{list.hp}</a></td>
+		<td nowrap>{list.rdate_date}</td>
+		<td nowrap>{list.lastlog_date}</td>
+		<td nowrap>{list.yesmail}/{list.emailcheck}</td>
+	</tr>
+	</block name="list">
+	</table>

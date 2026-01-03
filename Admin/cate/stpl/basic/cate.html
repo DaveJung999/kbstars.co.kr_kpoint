@@ -1,0 +1,96 @@
+<!--<? exit; ?>-->
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+.style1 {color: #FF0000}
+-->
+</style>
+
+<body>
+	<form name="form1"	onSubmit="return chkForm(this)" {form_catewrite}>
+	<input name="skin" type="hidden" value="iin_board">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+				<td background="/images/admin/tbox_bg.gif"><strong>{dbinfo.title} 카테고리 관리 </strong></td>
+				<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+			</table>
+			<br>
+			<table width="97%" border=0 align="center" cellpadding='4' cellspacing='1' bgcolor='#aaaaaa'>
+			<tr align="center" bgcolor="#D2BF7E">
+				<td colspan=2><strong>카테고리 <opt name="is_modify"></opt name="is_modify"><opt name="!is_modify">추가/수정</opt name="!is_modify"></strong><opt name="!is_modify"></opt name="!is_modify"></td>
+			</tr>
+			<tr>
+				<td width="16%" align="center" bgcolor='#F0EBD6'>카테고리 이름</td>
+				<td width="84%" bgcolor='#F8F8EA' class="b01">
+					{cate_nevi}
+					<input name="title" type="text" class="ccbox" value="{list.title}" size="30" required hname="카테고리 이름을 입력 해 주세요.">
+				</td>
+			</tr>
+			<!--tr>
+				<td bgcolor='#F0EBD6'>skin</td>
+				<td bgcolor='#F8F8EA'><select name="skin" id="select" class="ccbox">
+					<option value=""></option>
+
+			{list.skinlist}
+
+				</select>
+				</td>
+			</tr-->
+			<tr align="center" bgcolor="#F0EBD6">
+				<td colspan="2">
+					<input type="submit" name="Submit" class="input02" value=' 카테고리 <opt name="is_modify">수정</opt name="is_modify"><opt name="!is_modify">추가</opt name="!is_modify"> '> 
+					<input type="button" name="close" value=" 닫기 " onClick="window.close();">
+				</td>
+			</tr>
+			</table>
+			<p>&nbsp;</p>
+			<table width="97%"	border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td align="right">&nbsp;</td>
+			</tr>
+			</table>
+			<table width="97%" border=0 align="center" cellpadding='2' cellspacing='1' bgcolor='#aaaaaa'>
+			<tr align="center" bgcolor="#D2BF7E">
+				<td colspan=7><b> <? echo $title; ?> 카테고리 현황</b></td>
+			</tr>
+			<tr bgcolor='#F0EBD6'>
+				<td width="6%" ><div align="center">cateuid=?</div></td>
+				<td width="7%" ><div align="center">num</div></td>
+				<td width="51%" bgcolor="#F0EBD6" ><div align="center">카테고리 제목</div>				<div align="center"></div></td>
+				<td	colspan=4 nowrap bgcolor="#F0EBD6"><div align="center">메뉴</div></td>
+			</tr>
+			{LIST} <block name="list">
+			<tr bgcolor="#F8F8EA" onMouseOver="this.style.backgroundColor='#FFFAE2'" onMouseOut="this.style.backgroundColor=''">
+				<TD align="center" nowrap class="b01"> {list.uid} </TD>
+				<TD nowrap class="b01"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{list.num}{list.re} </TD>
+				<TD nowrap class="b01"> {list.title} </TD>
+				<td width="10%" nowrap><div align="center"><strong><a href="javascript: window.open('{href.catesort}','_blank','toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,resizable=no,width=400,height=160,top=30 left=30'); void(0);">순서변경</a></strong></div></td>
+				<td width="10%" align="center" nowrap><a href="{href.catereply}"><strong>서브추가</strong></a></td>
+				<td width="8%" align="center" nowrap><a href="{href.catemodify}"><strong>수정</strong></a> </td>
+				<td width="8%" align=center nowrap><a href="{href.catedelete}" onclick="return confirm('서브카테고리있다면 서비카테고리까지 삭제됩니다.\n정말 삭제 하시겠습니까?')"><strong>삭제</strong></a></td>
+			</tr>
+			</block name="list">
+			</table>
+		</td>
+	</tr>
+	</table>
+	</form>
+</body>
+

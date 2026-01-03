@@ -1,0 +1,378 @@
+
+
+<html>
+<head>
+	<title>Admin Manager</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<script language='JavaScript'>
+	function on_view(uid)
+	{
+		var Form=document.MailForm;
+		location.href="mailmessage.php?db=mailmessage&uid="+uid;
+	}
+	function on_submit()
+	{
+		var Form=document.MailForm;
+		Form.action="ok.php?mode='mail_message'";
+		Form.submit();
+	}
+	//-->
+	</script>
+
+</head>
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+<body bgcolor="#F8F8EA" text="#000000">
+	<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<table border="0" cellspacing="0" cellpadding="0" width="97%">
+			<form name="MailForm" method="post" action="" enctype="multipart/form-data">
+			<input name="uid" type="hidden" value="{list.uid}">
+			<input name="mode" type="hidden" value="mail_message">
+			<tr>
+				<td valign="top" width="97%">
+					<tr>
+						<td width="22%" valign="top">
+							<table width="159" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="10"><img src="/images/admin/smt_01.gif" width="10" height="19"></td>
+								<td width="100%" background="/images/admin/smt_02.gif">&nbsp;</td>
+								<td width="10" align="right"><img src="/images/admin/smt_03.gif" width="10" height="19"></td>
+							</tr>
+							</table>
+							<table width="159" border="0" cellspacing="1" cellpadding="2" bgcolor="#F5F5F5">
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(1);">가입축하메일</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(2);">회원정보 수정/확인</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(3);">비밀번호 찾기(인증코드)</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(14);">비밀번호 찾기(실패)</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(15);">비밀번호 설정 완료</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(16);">인증코드 불일치 </a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(4);">회원 탈퇴처리</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(5);">상품구매 확인 </a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(17);">공급사 최종 확정</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(6);">카드결제 확인</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(12);">가상계좌결제 확인</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(13);">무통장결제 확인</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(7);">무통장 입금확인</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(8);">발송완료</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(9);">반송확인</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(11);">주문취소</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							<tr>
+								<td width="159">&nbsp;<img src="/images/admin/bul01.gif" width="10" height="10" align="absmiddle"> <a href="#" onClick="on_view(10);">회원등급 조정</a></td>
+							</tr>
+							<tr>
+								<td width="159" background="/images/admin/line2.gif" height="1"></td>
+							</tr>
+							</table>
+						</td>
+						<td width="78%" align="center">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+								<td background="/images/admin/tbox_bg.gif"><b>메일메세지 > {list.title} </b></td>
+								<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+							</tr>
+							</table>
+							<br>
+							<table border='0' cellpadding='0' cellspacing='0' bgcolor='#F8F8EA' align='center' width=100%>
+							<tr bgcolor='#F8F8EA'>
+								<td bgcolor='#F8F8EA' width="100%">
+									<table border='0' cellpadding='2' cellspacing='1' width='100%' bgcolor='#aaaaaa'>
+									<!--tr height=25 bgcolor="#D2BF7E">
+							<td bgcolor="#F0EBD6" width=27% align="center">사용</td>
+							<td bgcolor=#F8F8EA width="73%"><input type=checkbox name="data1" value="1" checked>해당 경우 메일을 발송합니다. </td>
+						</tr-->
+									<tr>
+										<td bgcolor="#F0EBD6" width=27% align="center">보내는이 이름</td>
+										<td bgcolor=#F8F8EA width="73%">
+											<input type="text" class="input01"	value="{list.data2}" name='data2' size=30 onBlur=this.className='out' onFocus=this.className='in' >
+										</td>
+									</tr>
+									<tr>
+										<td bgcolor="#F0EBD6" width=27% align="center">보내는이 E-Mail</td>
+										<td bgcolor=#F8F8EA width="73%">
+											<input type="text" class="input01" value="{list.data3}" name='data3' size=30 onBlur=this.className='out' onFocus=this.className='in' >
+										</td>
+									</tr>
+									<tr >
+										<td bgcolor="#F0EBD6" width=27% align="center">메일 제목</td>
+										<td bgcolor=#F8F8EA width="73%">
+											<input name='data4' type="text" class="input01" id="data4" style="width:100%" value="{list.data4}" size=60 >
+										</td>
+									</tr>
+									<tr >
+										<td colspan="2" align="center" bgcolor="#F0EBD6">내&nbsp;&nbsp;&nbsp;&nbsp; 용	</td>
+									</tr>
+									<tr align="center">
+										<td bgcolor=#F8F8EA colspan=2>
+											<textarea rows=12 cols=60 class="styletextarea" style="width:100%" name='content'>{list.content}</textarea>
+										</td>
+									</tr>
+									<tr >
+										<td colspan="2" align="center" bgcolor="#F0EBD6">기타 (이벤트,상품소개,광고)</td>
+									</tr>
+									<tr align="center">
+										<td bgcolor=#F8F8EA colspan=2>
+											<textarea rows=6 cols=80 class="styletextarea" style="width:100%" name='data5'>{list.data5}</textarea>
+										</td>
+									</tr>
+									<tr align="center">
+										<td height="55" colspan=2 bgcolor=#F8F8EA><input name="button" type="button" class="input02" onClick="javascript:on_submit();" value=" 설 정 완 료 "></td>
+									</tr>
+									<tr bgcolor="#F8F8EA">
+										<td colspan=2>
+											<table border='0' cellpadding='4' cellspacing='1' width='100%' bgcolor='#aaaaaa'>
+											<tr height=25 bgcolor="#D2BF7E">
+												<td height="25" align="center">	* <strong>{ }</strong> 의 구분자를 제목/내용에 쓰시면 메일을 발송시에 해당 인자와 대치됩니다 *</td>
+											</tr>
+											<tr>
+												<td align="center" bgcolor="#F0EBD6">공통 적용</td>
+											</tr>
+											<tr>
+												<td bgcolor=#F8F8EA style="line-height:1.4 ">
+													<table width="100%"	border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td width="5%" height="15">&nbsp;</td>
+														<td width="19%"><strong>{userid<img width="0" height="0">}</strong></td>
+														<td width="26%">아이디</td>
+														<td width="3%">&nbsp;</td>
+														<td width="19%"><strong>{level<img width="0" height="0">}</strong></td>
+														<td width="28%">등급</td>
+													</tr>
+													<tr>
+														<td height="15">&nbsp;</td>
+														<td><strong>{name<img width="0" height="0">}</strong></td>
+														<td>이름</td>
+														<td>&nbsp;</td>
+														<td><strong>{point<img width="0" height="0">} </strong></td>
+														<td>포인트</td>
+													</tr>
+													<tr>
+														<td height="15">&nbsp;</td>
+														<td><strong>{today<img width="0" height="0">}</strong> </td>
+														<td>오늘날짜</td>
+														<td>&nbsp;</td>
+														<td><strong>{ip_address<img width="0" height="0">} </strong></td>
+														<td>해당 고객의 IP 어드레스 </td>
+													</tr>
+													<!--tr>
+									<td height="15">&nbsp;</td>
+									<td><strong>{shop_name<img width="0" height="0">}</strong> </td>
+									<td>Admin Manager</td>
+									</tr>
+									<tr>
+									<td height="15">&nbsp;</td>
+									<td><strong>{c_name<img width="0" height="0">}</strong> </td>
+									<td>(주)호원약품</td>
+									</tr>
+									<tr>
+									<td height="15">&nbsp;</td>
+									<td><strong>{c_tel<img width="0" height="0">}</strong> </td>
+									<td>062-383-5883</td>
+									</tr>
+									<tr>
+									<td height="15">&nbsp;</td>
+									<td><strong>{c_fax<img width="0" height="0">}</strong> </td>
+									<td>062-383-5884</td>
+									</tr-->
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td align="center" bgcolor="#F0EBD6">상품구입 / 입금확인 / 발송완료 / 반송확인</td>
+											</tr>
+											<tr>
+												<td bgcolor=#F8F8EA style="line-height:1.4 ">
+													<table width="100%"	border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td height="15">&nbsp;</td>
+														<td><strong>{price<img width="0" height="0">}</strong></td>
+														<td>주문액</td>
+														<td>&nbsp;</td>
+														<td><strong>{cd_na<img width="0" height="0">}</strong></td>
+														<td>카드/가상계좌 결제 지불인 </td>
+													</tr>
+													<tr>
+														<td height="15">&nbsp;</td>
+														<td><strong>{price_tot<img width="0" height="0">}</strong></td>
+														<td>확인액</td>
+														<td>&nbsp;</td>
+														<td><strong>{cd_ok<img width="0" height="0">}</strong></td>
+														<td>카드/가상계좌 결제 상태 </td>
+													</tr>
+													<tr>
+														<td width="5%" height="15">&nbsp;</td>
+														<td width="19%"><strong>{price_input<img width="0" height="0">}</strong></td>
+														<td width="26%">입금액</td>
+														<td width="3%">&nbsp;</td>
+														<td width="19%"><strong>{cd_ha<img width="0" height="0">}</strong></td>
+														<td width="28%">카드/가상계좌 결제 할부 </td>
+													</tr>
+													<tr>
+														<td height="15">&nbsp;</td>
+														<td><strong>{rdate<img width="0" height="0">}</strong></td>
+														<td>주문번호</td>
+														<td>&nbsp;</td>
+														<td><strong>{cd_au<img width="0" height="0">}</strong></td>
+														<td>카드/가상계좌 결제 승인번호 </td>
+													</tr>
+													<tr>
+														<td height="15">&nbsp;</td>
+														<td><strong>{bank<img width="0" height="0">}</strong></td>
+														<td>결제은행</td>
+														<td>&nbsp;</td>
+														<td><strong>{cd_ca<img width="0" height="0">}</strong></td>
+														<td>카드/가상계좌 결제 카드 </td>
+													</tr>
+													<tr>
+														<td height="15">&nbsp;</td>
+														<td><strong>{bank_account<img width="0" height="0">}</strong></td>
+														<td>결제은행 계좌번호 </td>
+														<td>&nbsp;</td>
+														<td><strong>{re_invoice<img width="0" height="0">}</strong></td>
+														<td>배송 송장번호</td>
+													</tr>
+													<tr>
+														<td height="15">&nbsp;</td>
+														<td><strong>{receiptor<img width="0" height="0">}</strong></td>
+														<td>송금인</td>
+														<td>&nbsp;</td>
+														<td>&nbsp;</td>
+														<td>&nbsp;</td>
+													</tr>
+													</table>
+												</td>
+											</tr>
+											<tr>
+												<td align="center" bgcolor="#F0EBD6">회원등급 조정 / 비밀번호 변경 </td>
+											</tr>
+											<tr>
+												<td bgcolor=#F8F8EA style="line-height:1.4 ">
+													<table width="100%"	border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td width="5%" height="15">&nbsp;</td>
+														<td width="19%"><strong>{new_level<img width="0" height="0">}</strong></td>
+														<td width="26%">변경 등급</td>
+														<td width="3%">&nbsp;</td>
+														<td width="19%"><strong>{certifycode<img width="0" height="0">}</strong></td>
+														<td width="28%">비밀번호 변경 인증코드</td>
+													</tr>
+													</table>
+												</td>
+											</tr>
+											</table>
+										</td>
+									</tr>
+									</table>
+									<p align="center">&nbsp;					</p>
+								</td>
+							</tr>
+							</table>
+						</td>
+					</tr>
+					</form>
+					</table>
+				</td>
+			</tr>
+			</table>
+			<br>
+		</body>
+		</html>

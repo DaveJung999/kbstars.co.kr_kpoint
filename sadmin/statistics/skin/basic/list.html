@@ -1,0 +1,26 @@
+<!--<? exit; ?>-->
+<link href="images/basic.css" rel="stylesheet" type="text/css">
+<table width="550" border="0" cellpadding="0" cellspacing="0" align="center">
+<tr>
+	<td width="550" height="25" colspan="2" class="nevy_violet"><p class="bbl">제목 : {dbinfo.title}</td>
+</tr>
+</table>
+<table width="550" border="1" cellspacing="0" cellpadding="0">
+<tr>
+	<td>adfadfadfad</td>
+	{X_BAR_LIST}
+	<block name="x_bar_list">
+	<td>{x_bar_list.year}</td>
+	</block name="x_bar_list">
+</tr>
+{LIST}
+<block name="list">
+<tr>
+	<td>{y_bar_list.month}</td>
+	{CELL}
+</tr>
+</block name="list">
+</table>
+<block name="cell">
+<td>{list.member_count}</td>
+</block name="cell">

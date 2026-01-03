@@ -1,0 +1,135 @@
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<table border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+<tr>
+	<td bgcolor='#CCFFCC'><b>예약 관리 (read) </b></td>
+</tr>
+<tr>
+	<td	bgcolor='#EDFEE9' nowrap>
+		<table border=0 cellpadding='3' cellspacing='1' bgcolor='black'>
+		<tr>
+			<td width="100" bgcolor='#CCFFCC'>예약상태</td>
+			<td width="400" bgcolor='#EDFEE9' >{list.status}</td>
+		</tr>
+		<td width="100" bgcolor='#CCFFCC'>아이디</td>
+		<td width="400" bgcolor='#EDFEE9' >{list.userid}</td>
+	</tr>
+	<tr>
+		<td width="100" bgcolor='#CCFFCC'>이름</td>
+		<td width="400" bgcolor='#EDFEE9' >{list.name}</td>
+	</tr>
+	<tr>
+		<td width="100" bgcolor='#CCFFCC'>이메일</td>
+		<td width="400" bgcolor='#EDFEE9' >{list.email}</td>
+	</tr>
+	<tr>
+		<td width="100" bgcolor='#CCFFCC'>연락처</td>
+		<td width="400" bgcolor='#EDFEE9' >{list.tel}</td>
+	</tr>
+	<tr>
+		<td width="100" bgcolor='#CCFFCC'>예약시간</td>
+		<td width="400" bgcolor='#EDFEE9' >{list.rsv_date}&nbsp;{list.rsv_hour}&nbsp;{list.rsv_min}</td>
+	</tr>
+
+	<tr>
+		<td width="100" bgcolor='#CCFFCC'>제목</td>
+		<td width="400" bgcolor='#EDFEE9' >{list.title}</td>
+	</tr>
+	<tr>
+		<td width="100" bgcolor='#CCFFCC'>상담내용</td>
+		<td width="400" height="100" valign="top" bgcolor='#EDFEE9' >{list.content}</td>
+	</tr>
+	<tr>
+		<td width="100" bgcolor='#CCFFCC'>스킨케어</td>
+		<td valign="top" bgcolor='#EDFEE9' >
+			&nbsp;&nbsp;
+			<input name="careskin1" type="checkbox" id="careskin1" value="checkbox" {list.careskin1_checked} />
+			스피드 관리
+			<input type="checkbox" name="careskin2" id="careskin2" value="checkbox" {list.careskin2_checked} />
+			케어 관리
+			<input type="checkbox" name="careskin3" id="careskin3" value="checkbox" {list.careskin3_checked} />
+			일반 관리
+			<input type="checkbox" name="careskin4" id="careskin4" value="checkbox" {list.careskin4_checked} />
+			5주케어 관리<br>
+			&nbsp;&nbsp;
+			<input type="checkbox" name="careskin5" id="careskin5" value="checkbox" {list.careskin5_checked} />
+			특수 관리
+			&nbsp;&nbsp;
+			<input type="checkbox" name="careskin6" id="careskin6" value="checkbox" {list.careskin6_checked} />
+			필링
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="checkbox" name="careskin7" id="careskin7" value="checkbox" {list.careskin7_checked} />
+			아이 관리
+			<input type="checkbox" name="careskin8" id="careskin8" value="checkbox" {list.careskin1_checked} />
+			코 피지 관리
+		</td>
+	</tr>
+	<tr>
+		<td width="100" bgcolor='#CCFFCC'>스페샬케어</td>
+		<td valign="top" bgcolor='#EDFEE9' >
+			&nbsp;&nbsp;
+			<input name="skinspecial1" type="checkbox" id="skinspecial1" value="checkbox" {list.skinspecial1_checked} />
+			남성 관리
+			<input name="skinspecial2" type="checkbox" id="skinspecial2" value="checkbox" {list.skinspecial2_checked} />
+			웨딩 케어
+			<input name="skinspecial3" type="checkbox" id="skinspecial3" value="checkbox" {list.skinspecial3_checked} />
+			학생특별 관리
+		</td>
+	</tr>
+	<tr>
+		<td width="100" bgcolor='#CCFFCC'>보디슬림케어</td>
+		<td valign="top" bgcolor='#EDFEE9' >
+			&nbsp;&nbsp;
+			<input name="skinbody1" type="checkbox" id="skinbody1" value="checkbox" {list.skinbody1_checked} />
+			등 관리
+			<input name="skinbody2" type="checkbox" id="skinbody2" value="checkbox" {list.skinbody2_checked} />
+			복부 관리
+			<input name="skinbody3" type="checkbox" id="skinbody3" value="checkbox" {list.skinbody3_checked} />
+			가슴 관리
+			<input name="skinbody4" type="checkbox" id="skinbody4" value="checkbox" {list.skinbody4_checked} />
+			하체 관리
+			<input name="skinbody5" type="checkbox" id="skinbody5" value="checkbox" {list.skinbody5_checked} />
+			상체 관리<br>
+			&nbsp;&nbsp;
+			<input name="skinbody6" type="checkbox" id="skinbody6" value="checkbox" {list.skinbody6_checked} />
+			팔 관리
+			<input name="skinbody7" type="checkbox" id="skinbody7" value="checkbox" {list.skinbody7_checked} />
+			전신 관리
+			<input name="skinbody8" type="checkbox" id="skinbody8" value="checkbox" {list.skinbody8_checked} />
+			닭살 관리
+			<input name="skinbody9" type="checkbox" id="skinbody9" value="checkbox" {list.skinbody9_checked} />
+			썬텐&nbsp;
+			<input name="skinbody10" type="checkbox" id="skinbody10" value="checkbox" {list.skinbody10_checked} />
+			제모&nbsp;
+			<input name="skinbody11" type="checkbox" id="skinbody11" value="checkbox" {list.skinbody11_checked} />
+			튼살 관리 
+		</td>
+	</tr>
+	<tr>
+		<td width="100" bgcolor='#CCFFCC'>&nbsp;</td>
+		<td width="400" bgcolor='#EDFEE9' ><input type="button" name="Submit" value=" 수정하기 " onclick="location.href='{href.modify}'">&nbsp;<input type="button" name="Submit" value=" 뒤로 " onclick="javascript:void(history.back())"></td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>

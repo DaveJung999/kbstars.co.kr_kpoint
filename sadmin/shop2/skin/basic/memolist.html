@@ -1,0 +1,174 @@
+<!--<? exit; ?>-->
+
+<style type="text/css">
+<!--
+.title {
+	font-family: Verdana ,"돋움체";
+	font-size: 9pt;
+	font-weight: bold;
+	color: #000000;
+}
+.list {
+	font-size: 9pt;
+	font-family: Tahoma, Verdana, "돋움";
+	color: #000000;
+}
+.content {
+	font-family: "돋움", Tahoma, Verdana;
+	font-size: 9pt;
+	line-height: 140%;
+	color: #000000;
+}
+-->
+</style>
+
+<script LANGUAGE="JavaScript" src="/scommon/js/chkform_multicheck.js" type="Text/JavaScript"></script>
+
+<script language="javascript">
+function showhide(what){
+	if (what.style.display=='none'){
+		what.style.display='block';
+	}
+	else{
+		what.style.display='none';
+	}
+}
+function submitCheck(theform,elementName,mode) {
+	var uids = "";
+	var sUrl = "";
+	for( var i=0; i<theform.elements.length; i++) {
+		var ele = theform.elements[i];
+		if(ele.name == elementName) {
+			if(ele.checked) {
+				uids += ele.value + ",";
+			}
+		}
+	}
+	if(uids=="") {
+		alert("먼저 체크하세요");
+		return false;
+	}
+	//sUrl = "/ssms/sms.php?mode=uids&uids="+uids;
+	//window.open(sUrl , "new21sms" , "width=300,height=400,resizable=1,scrollbars=1,toolbar=no,location=no,directories=no,status=no,menubar=no");
+	//theform.action=sUrl;
+	theform.mode.value=mode;
+	theform.submit();
+}
+</script>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" class="base">
+<tr>
+	<td height="25"><p class="title"><img src="images/icon_bluejum.gif" width="10" height="10" border="0">전체:{count.total} <img src="images/icon_bluejum.gif" width="10" height="10" border="0">오늘:{count.today} </td>
+</tr>
+<tr>
+	<td>
+		<form method=post action="memook.php" style="margin: 0px" name=boardlist>
+		<input type=hidden name=db value="{get.db}">
+		<input type=hidden name=mode value="">
+		<table width="600" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				체크한것=>
+				<input type=button value='삭제' onClick="javascript: submitCheck(this.form,'uids[]','memodeletes');void(0)">
+				<input type=button value='공개' onClick="javascript: submitCheck(this.form,'uids[]','memolevel_zero');void(0)">
+				<input type=button value='비공개' onClick="javascript: submitCheck(this.form,'uids[]','memolevel_high');void(0)">
+			</td>
+		</tr>
+		</table>
+		<table border="0" cellpadding="5" cellspacing="0" class="base">
+		<tr align="center" bgcolor="#91B993" class="title" height="24">
+			<td align="center"><input type=checkbox name=allcheck onClick="javascript: CheckRevAll(this.form,'uids[]')"></td>
+			<td height="23" align="center">NO</td>
+			<td align="center">레벨</td>
+			<td height="23" align="center">상품명</td>
+			<td height="23">제목</td>
+			<td height="23" align="center">작성자</td>
+			<td height="23" align="center">날짜</td>
+			<td height="23" align="center">VOTE</td>
+			<td height="23" align="center">&nbsp;</td>
+		</tr>
+		{INFO} <block name="info">
+		<tr height="1">
+			<td colspan="9" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="info"> {LIST} <block name="list">
+		<tr class="list" height="20">
+			<td align="center" bgcolor="#F0F8F0" class="list"><input type=checkbox name=uids[]	value='{list.uid}'></td>
+			<td height="23" align="center" bgcolor="#F0F8F0" class="list">{list.no}</td>
+			<td align="center" bgcolor="#F0F8F0" class="list">{list.priv_hidelevel}</td>
+			<td height="23" align="left" nowrap bgcolor="#F0F8F0"><a href="{list.href.p_link}" target="_blank">{list.p_name}</a> </td>
+			<td height="23" align="left" bgcolor="#F0F8F0"><span	onClick="showhide(menu{list.uid}outline)" style="cursor:hand;">{list.cut_title}</span></td>
+			<td height="23" align="center" bgcolor="#F0F8F0"><p>{list.userid}</td>
+			<td width="51" height="23" align="center" bgcolor="#F0F8F0"><p>{list.rdate_date}</td>
+			<td height="23" align="center" bgcolor="#F0F8F0">{list.vote}</td>
+			<td height="23" align="center" bgcolor="#F0F8F0">&nbsp;</td>
+		</tr>
+		<tr height="20" id="menu{list.uid}outline" style="display:'none'" >
+			<td height="11" colspan="9" class="list">
+				<table width="700" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="content">{list.content}</td>
+				</tr>
+				</table>
+			</td>
+		</tr>
+		<tr height="1">
+			<td colspan="9" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="list"> <block name="nolist">
+		<tr height="20">
+			<td height="11" colspan="9">게시물이 하나도 없습니다</td>
+		</tr>
+		<tr height="1">
+			<td colspan="9" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="nolist"> <block name="nosearch">
+		<tr height="20">
+			<td align="center" colspan="9"><p>'&nbsp;{sc_string}'가 포함된 게시물을 찾을 수가 없습니다.</td>
+		</tr>
+		<tr height="1">
+			<td colspan="9" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="nosearch">
+		<tr height="3"	bgcolor="#87AD85">
+			<td colspan="9"></td>
+		</tr>
+		</table>
+		</form>
+	</td>
+</tr>
+<tr>
+	<td align="center">
+		<table border="0" cellpadding="0" cellspacing="0" width="459" class="base">
+		<tr>
+			<td width="459" height="35" align="center"> {FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<form name="listsearch" style='margin : 0px' {form_search}>
+				<select name="sc_column">
+				<option value='title'>제목</option>
+				<option value='content'>내용</option>
+				<option value='userid'>아이디</option>
+				</select>
+				<input type="text" name="sc_string" size="10" style='height:21;' value="{get.sc_string}">
+				<input type="image" src="images/but_submit_find.gif" width="45" height="20" align="absmiddle">
+				</form>
+
+				<script language="JavaScript" type="text/JavaScript">
+				var form_select = document.listsearch.sc_column;
+				var form_value 				= '{get.sc_column}';
+				for(var i=0;i<form_select.length;i++) {
+					if(form_select.options[i].value==form_value) {
+						form_select.options[i].selected = true;
+					}
+				}
+				</script>
+
+			</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<block name="firstpage"><a href="{href.firstpage}"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></a></block name="firstpage"> <block name="nofirstpage"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></block name="nofirstpage"> <block name="prevblock"><a href='{href.prevblock}'>◀</a>&nbsp;</block name="prevblock"> <block name="noprevblock">◀&nbsp;</block name="noprevblock"> <block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block"> <block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock"> <block name="nextblock"><a href='{href.nextblock}'>▶</a>&nbsp;</block name="nextblock"> <block name="nonextblock">▶&nbsp;</block name="nonextblock"> <block name="lastpage"><a href="{href.lastpage}"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></a></block name="lastpage"> <block name="nolastpage"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></block name="nolastpage"> <block name="write"><a href="{href.write}"><img src="images/bott_write.gif" width="45" height="25" border="0"></a></block name="write">

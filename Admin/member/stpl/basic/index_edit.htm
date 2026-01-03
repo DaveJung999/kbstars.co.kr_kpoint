@@ -1,0 +1,342 @@
+
+<html>
+<head>
+	<title>Admin Manager</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<script LANGUAGE="JavaScript" src="/scommon/join_check.js" type="Text/JavaScript"></script>
+
+	<script LANGUAGE="JavaScript" src="/scommon/js/chkform.js" type="Text/JavaScript"></script>
+
+	<script langauge="javascript">
+	<!--
+	var ud_item_num = 0;
+	function on_list_back(){
+		location.href = "index_detail.php?priv=" + document.ModifyForm.priv.value + "&userid=" + document.ModifyForm.userid.value;
+	}
+	function on_list(){
+		location.href = "index.php?priv=" + document.ModifyForm.priv.value;
+	}
+	function on_view(){
+		location.href = "admin.cgi?priv=" + document.ModifyForm.priv.value + "&act=MemberList&code=91&page=";
+	}
+	// 주소 검색 창
+	function search_zip(inputzip, inputaddress){
+		window.open('/sjoin_/searchzip.php?formname=ModifyForm&inputzip=' + inputzip + '&inputaddress=' + inputaddress, 'idcheck', 'width=470,height=350,resizable=1,scrollbars=1' );
+		return;
+	}
+	/*
+	function movefocus (size, prev_obj, this_obj, next_obj)
+	{
+		var theKey;
+		theKey = window.event.keyCode;
+		//위쪽 화살표를 누르면 이전 항목으로 이동
+		if(theKey == 38){
+			prev_obj.focus();
+			prev_obj.value = prev_obj.value;
+		}
+
+		//키길이가 입력된 size와 동일할 경우 다음항목으로 넘어감.
+		else if(this_obj.value.length == size)
+			next_obj.focus();
+		//아래쪽 화살표를 누르면 다음 항목으로 이동
+		else if(theKey == 40){
+			next_obj.focus();
+
+		}
+		//엔터키칠경우 다음항목으로 넘어감
+		else if (theKey == 13) {
+			next_obj.focus();
+		}
+		//스페이스치면 다음항목으로 넘어감 : 다음항목넘어가서 스페이스 생성되므로 사용안함.
+		//else if (theKey == 32) {
+		//	next_obj.focus();
+		//}
+	}*/
+	function chkTotal(f){
+		// 비밀번호 체크
+		if( !check_passwd(f.passwd.value, f.passwd_ok.value) && (f.passwd.value != '') && (f.passwd_ok.value != '') ){
+			alert('비밀번호는 6자 이상이며, 비밀번호가 일치한지 확인하여 다시 입력하시기 바랍니다.');
+			f.passwd.focus();
+			return false;
+		}
+/*	// 이메일 체크
+	if( !check_email(f.email.value)) {
+		alert('이메일을 정확히 입력하시기 바랍니다.');
+		f.email.focus();
+		return false;
+	}
+	// 주민등록 체크
+	if( !check_idnum(f.idnum1.value, f.idnum2.value))
+	{
+		alert('주민 등록를 올바르게 입력하시기 바랍니다.');
+		f.idnum1.focus();
+		return false;
+	}
+	// 주소 체크
+	if(f.address.value.length < 10)
+	{
+		alert('주소를 정확히 입력하시기 바랍니다.');
+		f.address.focus();
+		return false;
+	}
+		*/
+		return true;
+	}
+	//-->
+	</script>
+
+</head>
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:F8F8EA;
+}
+-->
+</style>
+
+<body>
+	<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td align="center">
+			<form name="ModifyForm" method="post"	onSubmit="return chkForm(this);" action="ok.php?priv={priv}" enctype="multipart/form-data">
+				<input type="hidden" name="mode" value="modify">
+				<input type="hidden" name="uid" value="{list.uid}">
+				<input type="hidden" name="userid" value="{list.userid}">
+				<input type="hidden" name="priv" value="{priv}">
+			<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+				<td background="/images/admin/tbox_bg.gif"><strong>회원 정보변경</strong></td>
+				<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+			</table>
+			<br>
+
+			<table border=0 cellpadding=1 cellspacing=1 width='97%' bgcolor='#aaaaaa'>
+			<tr>
+				<td height="25" colspan=2 align="center" bgcolor="#D2BF7E"><b>회원 정보변경</b></td>
+			</tr>
+
+			<tr bgcolor="#F0EBD6">
+				<td width="22%" height="25">&nbsp; 아이디</td>
+				<td width="78%" bgcolor="#F8F8EA">&nbsp; 						{list.userid} </td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 이름</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					<input type="text" class="input01"	name="name"	id="name"	value="{list.name}" hname="이름을 입력하세요." required>
+				</td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 닉네임</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					<input type="text" class="input01"	name="nickname"	id="nickname"	value="{list.nickname}">
+				</td>
+			</tr>
+
+			<tr bgcolor="#F0EBD6">
+				<td width="22%" height="25">&nbsp; 패스워드 </td>
+				<td bgcolor="#F8F8EA">
+					&nbsp; <input type="password" class="input01"	name="passwd"	id="passwd">
+					(변경을 원하실 때 입력바랍니다.)	
+				</td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td width="22%" height="25">&nbsp; 패스워드 확인</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp; <input type="password" class="input01"	name="passwd_ok"	id="passwd_ok">
+					(변경을 원하실 때 입력바랍니다.) 
+				</td>
+			</tr>
+			<!--<tr bgcolor="#F0EBD6">
+				<td width="22%" height="25">&nbsp; 주민번</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp; <input type="text" class="input01" name=idnum1	onkeyup="movefocus(6, this, this, document.all.idnum2)" value="{list.idnum_temp.0}" size=6 maxlength="6"	option="regNum">
+					-
+					<input type="text" class="input01" name=idnum2	onkeyup="movefocus(7, document.all.idnum1, this, document.all.email);inputbirth()" value="{list.idnum_temp.1}" size=7 maxlength=7	option="regNum">
+				</td>
+			</tr>-->
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 생년월일 </td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					<select name="birth_lunar" id="birth_lunar">
+					<option value="+" {list.birth_lunar_c.0}>양력</option>
+					<option value="-"{list.birth_lunar_c.1}>음력</option>
+					</select>
+					<input name="birth1" type="text" class="input01" id="birth1" value="{list.birth_yyyy}" size="5" maxlength="4" />
+					년
+					<input name="birth2" type="text" class="input01" id="birth2" value="{list.birth_mm}" size="3" maxlength="2" />
+					월
+					<input name="birth3" type="text" class="input01" id="birth3" value="{list.birth_dd}" size="3" maxlength="2" />
+					일 (2000년 01월 01일)
+				</td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 이메일주소</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					<input type="text" class="input01"	name="email"	id="email"	value="{list.email}" style="width:50%" >
+				</td>
+			</tr>
+
+			<tr bgcolor="#F0EBD6">
+				<td width="22%" height="25">&nbsp;</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					<input name="yesmail" type="checkbox" value="1" id="yesmail" {list.yesmail_c.1} />
+					KB STARS 메일링 서비스를 받으시겠습니까?
+				</td>
+			</tr>
+			</table>
+			<br>
+			<table border=0 cellpadding=1 cellspacing=1 width='97%' bgcolor='#aaaaaa'>
+			<tr>
+				<td height="25" colspan=2 align="center" bgcolor="#D2BF7E"><b> 정보</b></td>
+			</tr>
+			<opt name="list.junior">
+			<tr bgcolor="#F0EBD6">
+				<td width="22%" height="25">&nbsp; 부모님 성명	</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					{list.p_name}
+				</td>
+			</tr>
+			</opt name="list.junior">
+			<tr bgcolor="#F0EBD6">
+				<td width="22%">&nbsp;	주소</td>
+				<td width="78%" bgcolor="#F8F8EA">
+					&nbsp;
+					<input type="text" class="input01"	name=zip1 style="background-color:#EEEEEE" value="{list.zip.0}" size=4 maxlength=3 readonly >
+					-
+					<input type="text" class="input01"	name=zip2 style="background-color:#EEEEEE" value="{list.zip.1}" size=4 maxlength=3 readonly >
+					<input name=" 검색 " type="button" id=" 검색 " onClick="search_zip('zip', 'address'); return false;" value=" 검색 "> <br>
+					<span class="space">&nbsp;</span>
+					<input name="address" class="input01" value="{list.address}" size=60 maxlength="60" >
+				</td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 일반전화번호</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					<input	name="tel" type="text" class="input01"	id="tel"	value="{list.tel}">
+				</td>
+			</tr>
+
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 휴대전화번호</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					<input	name="hp" type="text" class="input01"	id="hp"	value="{list.hp}" >
+				</td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; (SMS서비스)</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					<input name="yessms" type="checkbox" id="yessms" value="1" checked="{list.yessms_c.1}"  />
+					KB STARS SMS 문자서비스를 받으시겠습니까?
+				</td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 학교 </td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					<input	name="school" type="text" class="input01"	id="school"	value="{list.school}" >
+				</td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 학교명 </td>
+				<td bgcolor="#F8F8EA">
+					&nbsp;
+					<input	name="school_name" type="text" class="input01"	id="school_name"	value="{list.school_name}" >
+				</td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 좋아하는선수 </td>
+				<td bgcolor="#F8F8EA">&nbsp; <input	name="fav_player" type="text" class="input01"	id="fav_player"	value="{list.fav_player}" ></td>
+			</tr>
+			<!--<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 관심스포츠분야 </td>
+				<td bgcolor="#F8F8EA">&nbsp;
+					<input name="concern[]" type="checkbox" value="축구" {list.concern_c.축구} />
+					축구
+					<input name="concern[]" type="checkbox" value="야구"	{list.concern_c.야구}/>
+야구
+<input name="concern[]" type="checkbox" value="농구"	{list.concern_c.농구}/>
+농구
+<br />
+&nbsp; <input name="concern[]" type="checkbox" value="골프"	{list.concern_c.골프}/>
+골프
+<input name="concern[]" type="checkbox" value="기타종목"	{list.concern_c.기타종목}/>
+기타종목</td>
+				</tr>-->
+			</table>
+			<br>
+			<table border=0 cellpadding=1 cellspacing=1 width='97%' bgcolor='#aaaaaa'>
+			<tr bgcolor="#D2BF7E">
+				<td height="25" colspan=2 align="center"><b>시스템 정보</b></td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td height="25">&nbsp; 회원구분</td>
+				<td width="78%" bgcolor="#F8F8EA">
+					&nbsp; {list.priv}<br>
+					&nbsp;				
+					<select name="priv[]" size="13" multiple>
+					<option value="비회원" {selected_priv_비회원}>비회원</option>
+					<option value="회원" {selected_priv_회원}>회원</option>
+					<option value="서포터즈" {selected_priv_서포터즈}>서포터즈</option>
+					<option value="홍보대사" {selected_priv_홍보대사}>홍보대사</option>
+					<option value="뉴스관리자" {selected_priv_뉴스관리자}>뉴스관리자</option>
+					<option value="경기관리자" {selected_priv_경기관리자}>경기관리자</option>
+					<option value="주니어관리자" {selected_priv_주니어관리자}>주니어관리자</option>
+					<option value="사진관리자" {selected_priv_사진관리자}>사진관리자</option>
+					<option value="이벤트관리자" {selected_priv_이벤트관리자}>이벤트관리자</option>
+					<option value="포인트관리자" {selected_priv_포인트관리자}>포인트관리자</option>
+					<option value="자원봉사관리" {selected_priv_자원봉사관리}>자원봉사관리</option>
+					<option value="운영자" {selected_priv_운영자}>운영자</option>
+					<option value="root" {selected_priv_root}>root</option>
+					</select>
+					(컨트롤 키와 함께 다중선택 가능)
+				</td>
+			</tr>
+			<tr bgcolor="#F0EBD6">
+				<td width="22%" height="25">&nbsp; 회원등급</td>
+				<td bgcolor="#F8F8EA">
+					&nbsp; <input	name="level" type="text" class="input01"	id="level"	value="{list.level}" size="3" >
+					(1-99사이 입력)				
+				</td>
+			</tr>
+			<!--tr bgcolor="#F0EBD6">
+				<td width="150" height="25">&nbsp; 포인트</td>
+				<td bgcolor="#F8F8EA">&nbsp; <input	name="point" type="text" class="input01"	id="point"	value="{list.point}" ></td>
+				</tr-->
+			</table>
+			<br>
+			<table border=0 cellpadding=1 cellspacing=1 width='97%' bgcolor='#F8F8EA'>
+			<tr>
+				<td align="center">
+					<input name="button" type="submit" class="input02" value=" 수정 " onClick="javascript: return chkTotal(this.form);">
+					<input name="button2" type="button" class="input02" onClick="javascript:on_list_back();" value=" 돌아가기 ">
+					<input name="button3" type="button" class="input02"	onClick="javascript:on_list();" value=" 목록가기 ">
+				</td>
+			</tr>
+			</table>
+			</form>
+			<br>
+		</td>
+	</tr>
+	</table>
+
+</body>
+</html>

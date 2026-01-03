@@ -1,0 +1,66 @@
+<!--<? exit; ?>-->
+<html>
+<head>
+<title>아이디 확인</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script language="JavaScript">
+<!--
+function delete_id() 
+{
+	opener.document.join.userid.value = "";
+	self.close();
+}
+function ok_id() 
+{
+	self.close();
+}
+//-->
+</script>
+<script language='javascript'>
+<!--
+window.resizeTo(400,300);
+-->
+</script>
+</head>
+<body topmargin="0" leftmargin="0">
+{RESULT}
+<block name="userid_use">
+<table width="350" border="0" cellpadding="0" cellspacing="0" bgcolor="#fdfdfd">
+  <tr>
+    <td height="10"></td>
+  </tr>
+  <tr> 
+    <td height="26"><img src="images/s_certifyid_title.gif" width="370" height="23"></td>
+  </tr>
+  <tr> 
+    <td height="120" align="center"><img src="images/s_certifyid_message_fail.gif" width="250" height="33"></td>
+  </tr>
+  <tr> 
+    <td align="center"><input type="image" src="images/s_ok_btn.gif" OnClick="delete_id()"></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</block name="userid_use">
+<block name="userid_nouse">
+<table width="350" border="0" cellpadding="0" cellspacing="0" bgcolor="#fdfdfd">
+  <tr>
+    <td height="10"></td>
+  </tr>
+  <tr> 
+    <td height="26"><img src="images/s_certifyid_title.gif" width="370" height="23"></td>
+  </tr>
+  <tr> 
+    <td height="120" align="center"><img src="images/s_certifyid_message_success.gif" width="206" height="33"></td>
+  </tr>
+  <tr> 
+    <td align="center"><input type="image" src="images/s_ok_btn.gif" OnClick="ok_id()"></td>
+  </tr>
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</block name="userid_nouse">
+</body>
+</html>

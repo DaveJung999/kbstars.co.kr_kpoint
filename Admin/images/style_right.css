@@ -1,0 +1,17 @@
+tr				{font-size: 9pt; line-height: 150%;}
+
+.tableTitle		{ font-size:10pt;  color:#5C5030; background-color:#EFECE3; text-align:center; font-weight: bold;}
+.tableTitle a:link		{text-decoration:underline; color:#5C5030;}
+.tableTitle a:visited	{text-decoration:underline; color:#5C5030;} 
+.tableTitle a:active	{text-decoration:underline; color:#5C5030;} 
+.tableTitle a:hover		{text-decoration:underline; color:#5C5030;}
+
+.tableContents	{color:#5F5A4D; background-color:#F7F7F7;}
+.tableContents a:link		{text-decoration:none; color:#0000FF;}
+.tableContents a:visited	{text-decoration:none; color:#0000FF;} 
+.tableContents a:active		{text-decoration:none; color:#0000FF;} 
+.tableContents a:hover		{text-decoration:underline; color:#5F5A4D;}
+
+.font_01_dbrown { font-size:10pt; line-height: 1.6; color: #7D3D00;	}
+.font_02_orange { font-size:10pt; line-height: 1.6; color: #E25500; font-weight: bold;   }
+.font_03_write { font-size:10pt; line-height: 1.6; color: #F8F8EA;	}

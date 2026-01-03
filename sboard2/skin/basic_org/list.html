@@ -1,0 +1,146 @@
+<!--<? exit; ?>-->
+<link href="images/basic.css" rel="stylesheet" type="text/css">
+<table width="550" border="0" cellpadding="0" cellspacing="0" align="center">
+<tr>
+	<td height="25" colspan="2" class="nevy_violet">
+		<p class="bbl">게시판 제목 : <a href="list.php?db={dbinfo.db}">{dbinfo.title}</a> {HIGHCATE}<opt name="SAMECATE"> &gt;
+		<SELECT NAME="chagecate" onChange="javascript: window.location='list.php?db={dbinfo.db}&cateuid='+this.value;">
+		{SAMECATE}
+		</SELECT>
+		</opt name="SAMECATE"> </p>
+	</td>
+</tr>
+<opt name="SUBCATE">
+<tr>
+	<td width="134" height="25" align="center" bgcolor="#91B993"	class="nevy_violet"><a href="{href.list}" class="nevy_violet">{cateinfo.title}</a></td><td width="416" height="25">&nbsp;&nbsp; {SUBCATE}</td>
+</tr>
+</opt name="SUBCATE">
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="550" align="center" class="base">
+<tr>
+	<td width="363"><p><img src="images/icon_bluejum.gif" width="10" height="10" border="0">전체:{count.total} <img src="images/icon_bluejum.gif" width="10" height="10" border="0">오늘:{count.today} </p></td>
+	<td width="363" align="right">
+		<opt name="cateinfo.catelist">
+		<form style='border:0px;margin:0px;padding:0px' method="get">
+		<SELECT NAME="chagecate" onChange="javascript: window.location='{PHP_SELF}?db={dbinfo.db}&cateuid='+this.value;">
+		{cateinfo.catelist}
+		</SELECT>
+		</form>
+		</opt name="cateinfo.catelist"> 
+	</td>
+</tr>
+<tr>
+	<td width="726" colspan="2">
+		<table border="0" cellpadding="0" cellspacing="0" width="550" class="base">
+		<tr bgcolor="#91B993" class="bw" height="24">
+			<td width="51" height="25"><p align="center">No</p></td>
+			<td width="67" align="center">카테고리</td>
+			<td width="201" height="25"><p align="center">제목</p></td>
+			<td width="79" height="25"><p align="center">작성자</p></td>
+			<td width="101" height="25"><p align="center">날짜</p></td>
+			<td width="51" height="25"><p align="center">조회</p></td>
+		</tr>
+		{INFO}
+		<block name="info">
+		<tr height="20">
+			<td width="51" align="center" bgcolor="#F0F8F0"><p>알림</p></td>
+			<td width="67" align="center" nowrap bgcolor="#F0F8F0">{list.catetitle}</td>
+			<td width="201" align="left" nowrap bgcolor="#F0F8F0"><p><a href="{list.href.read}">{list.cut_title}</a></p></td>
+			<td width="79" align="center" bgcolor="#F0F8F0"><p>{list.userid}</p></td>
+			<td width="101" align="center" bgcolor="#F0F8F0"><p>{list.rdate_date}</p></td>
+			<td width="51" align="center" bgcolor="#F0F8F0"><p>{list.hit}</p></td>
+		</tr>
+		<tr height="1">
+			<td colspan="6" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="info">
+		{LIST}
+		<block name="list">
+		<tr height="20">
+			<td width="51" align="center" bgcolor="#F0F8F0"><p>{list.no}</p></td>
+			<td width="67" align="center" nowrap bgcolor="#F0F8F0">{list.catetitle}</td>
+			<td width="201" align="left" nowrap bgcolor="#F0F8F0"><p><a href="{list.href.read}">{list.cut_title}</a></p></td>
+			<td width="79" align="center" bgcolor="#F0F8F0"><p>{list.userid}</p></td>
+			<td width="101" align="center" bgcolor="#F0F8F0"><p>{list.rdate_date}</p></td>
+			<td width="51" align="center" bgcolor="#F0F8F0"><p>{list.hit}</p></td>
+		</tr>
+		<tr height="1">
+			<td colspan="6" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="list">
+		<block name="nolist">
+		<tr height="20">
+			<td height="11" colspan="6"><p align="center">게시물이 하나도 없습니다</p></td>
+		</tr>
+		<tr height="1">
+			<td colspan="6" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="nolist">
+		<block name="nosearch">
+		<tr height="20">
+			<td align="center" colspan="6"><p>'&nbsp;{sc_string}'가 포함된 게시물을 찾을 수가 없습니다.</p></td>
+		</tr>
+		<tr height="1">
+			<td colspan="6" background="images/line_jumjumjum.gif"></td>
+		</tr>
+		</block name="nosearch">
+		<tr height="3"	bgcolor="#87AD85">
+			<td colspan="6"></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td width="726" colspan="2">
+		<table border="0" cellpadding="0" cellspacing="0" width="550" class="base">
+		<tr>
+			<td width="33" rowspan="2"></td>
+			<td width="459" height="35"><p align="center"> {FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</p></td>
+			<td width="58"> {WRITE} </td>
+		</tr>
+		<tr>
+			<td align="center">
+				<form name="board2search" style='margin : 0px' {form_search}>
+				<select name="sc_column">
+				<option value='title'>제목</option>
+				<option value='content'>내용</option>
+				<option value='userid'>아이디</option>
+				</select>
+				<input type="text" name="sc_string" size="10" style='height:21;' value="{get.sc_string}">
+				<input type="image" src="images/but_submit_find.gif" width="45" height="20" align="absmiddle">
+				</form>
+
+				<script language="JavaScript" type="text/JavaScript">
+				var form_select = document.board2search.sc_column;
+				var form_value 				= '{get.sc_column}';
+				for(var i=0;i<form_select.length;i++) {
+					if(form_select.options[i].value==form_value) {
+						form_select.options[i].selected = true;
+					}
+				}
+				</script>
+
+			</td>
+			<td width="58">&nbsp;</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<block name="firstpage"><a href="{href.firstpage}"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></a></block name="firstpage">
+<block name="nofirstpage"><img src="images/link_firstpage.gif" width="42" height="12" border="0" alt="link_firstpage.gif"></block name="nofirstpage">
+<block name="prevblock"><a href='{href.prevblock}'>◀</a>&nbsp;</block name="prevblock">
+<block name="noprevblock">◀&nbsp;</block name="noprevblock">
+<block name="block"><a href='{href.blockcount}' class="base">[{blockcount}]</a>&nbsp;</block name="block">
+<block name="noblock"><b class="base">[{blockcount}]</b>&nbsp;</block name="noblock">
+<block name="nextblock"><a href='{href.nextblock}'>▶</a>&nbsp;</block name="nextblock">
+<block name="nonextblock">▶&nbsp;</block name="nonextblock">
+<block name="lastpage"><a href="{href.lastpage}"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></a></block name="lastpage">
+<block name="nolastpage"><img src="images/link_lastpage.gif" width="33" height="12" border="0" alt="link_lastpage.gif"></block name="nolastpage">
+<block name="write"><a href="{href.write}"><img src="images/bott_write.gif" width="45" height="25" border="0"></a></block name="write">
+<block name="highcate"> &gt; <a href="{href.highcate}" class="nevy_gcyan"> {highcate.title}</a> </block name="highcate">
+<block name="subcate"><opt name="blockloop">
+| </opt name="blockloop"><a href="{href.subcate}" class="base2"> {subcate.title}</a></block name="subcate">
+<block name="samecate">
+<option value="{samecate.uid}" {samecate.selected}>{samecate.title}</option>
+</block name="samecate">

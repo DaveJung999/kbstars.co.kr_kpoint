@@ -1,0 +1,148 @@
+<!--<? exit; ?>-->
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-underline:none;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #ffffff;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1px;
+}
+.style_red {color: #FF0000}
+-->
+</style>
+
+<form name="form1" {form_catewrite}>
+<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'>
+<tr>
+	<td bgcolor='#F6F6F6' colspan=2>메뉴 <opt name="is_modify">수정</opt name="is_modify"><opt name="!is_modify">추가</opt name="!is_modify"></td>
+</tr>
+<tr>
+	<td bgcolor='#F6F6F6'>수정할uid</td>
+	<td bgcolor='#FFFFFF'>
+		<input name="modify_uid" type="text" value="{list.modify_uid}" size="5" maxlength="5">
+		(원래uid : {list.uid})<span class="style_red"> (주의:선수카테고리 정보를 맞출때만 사용하세요)</span> 
+	</td>
+</tr>
+<tr>
+	<td bgcolor='#F6F6F6'>메뉴 이름</td>
+	<td bgcolor='#FFFFFF'>
+		{cate_nevi}
+		<input type="text" name="title" value="{list.title}">
+	</td>
+</tr>
+<tr>
+	<td bgcolor='#F6F6F6'>skin</td>
+	<td bgcolor='#FFFFFF'>
+		<select name="skin" id="skin">
+		<option value=""></option>
+		{list.skin_option}
+		</select>
+	</td>
+</tr>
+<tr>
+	<td bgcolor='#F6F6F6'>cut_length</td>
+	<td bgcolor='#FFFFFF'><input type="text" name="cut_length" value="{list.cut_length}"></td>
+</tr>
+<tr>
+	<td bgcolor='#F6F6F6'>리스트방법</td>
+	<td bgcolor='#FFFFFF'>
+		페이지당게시물수
+		<input name="pern" type="text" id="pern" value="{list.pern}" size="4">
+		, 한줄에게시물수
+		<input name="row_pern" type="text" id="row_pern" value="{list.row_pern}" size="4">
+		,페이지불럭수
+		<input name="page_pern" type="text" id="page_pern" value="{list.page_pern}" size="4">
+	</td>
+</tr>
+<tr>
+	<td bgcolor='#F6F6F6'>
+		<LABEL
+		onclick="javascript: return (document.getElementById('checkbox_row_20') ? false : true)"
+		for=checkbox_row_20>보이기/감추기</LABEL>
+	</td>
+	<td bgcolor='#FFFFFF'>
+		<input name="comment" type="radio" id="comment" value="보이기" {comment_보이기_checked}>
+		홈피에 보이기&nbsp; <input name="comment" type="radio" id="comment" value="감추기" {comment_감추기_checked}>
+		홈피에 감추기 
+	</td>
+</tr>
+<tr>
+	<td bgcolor='#F6F6F6'>사이트스킨</td>
+	<td bgcolor='#FFFFFF'>
+		<select name="html_type"><option value=""></option>{list.html_type_option}</select>
+		스킨명:	<select name="html_skin"><option value=""></option>{list.html_skin_option}</select>
+	</td>
+</tr>
+<tr>
+	<td bgcolor='#F6F6F6'>게시판해더</td>
+	<td bgcolor='#FFFFFF'><textarea name="html_head" cols="60" rows="8" id="html_head">{list.html_head}</textarea></td>
+</tr>
+<tr>
+	<td bgcolor='#F6F6F6'>게시판테일</td>
+	<td bgcolor='#FFFFFF'><textarea name="html_tail" cols="50" rows="3" id="html_tail">{list.html_tail}</textarea></td>
+</tr>
+<tr>
+	<td bgcolor='#F6F6F6'>&nbsp;</td>
+	<td bgcolor='#FFFFFF'>
+		<input type="submit" name="Submit" value=' 메뉴 <opt name="mode_catemodify">수정</opt name="mode_catemodify"><opt name="mode_catewrite">추가</opt name="mode_catewrite"> '>
+	</td>
+</tr>
+</table>
+<br>
+</form>
+<table border=0 cellspacing='1' cellpadding='3' bgcolor='black'>
+<tr>
+	<td bgcolor='#F6F6F6' colspan=12>
+		<b> {dbinfo.title}</b>
+		메뉴 현황
+	</td>
+</tr>
+<tr bgcolor='#F6F6F6'>
+	<td width="53" align="center" nowrap >cateuid</td>
+	<td width="61" align="center" nowrap >num</td>
+	<td width="125" align="center" nowrap >카테고리 제목</td>
+	<td width="58" align="center" nowrap >skin</td>
+	<td width="58" align="center" nowrap >siteskin</td>
+	<td width="78" align="center" nowrap >보이기/감추기</td>
+	<td width="58" align="center" nowrap >
+		pern/<br />
+		row/<br />
+		page
+	</td>
+	<td width="58" align="center" nowrap >DB수	</td>
+	<td	colspan=4 align="center" nowrap>메뉴</td>
+</tr>
+{LIST}
+<block name="list">
+<tr bgcolor='#FFFFFF'>
+	<TD align="center" nowrap >
+		{list.uid}
+	</td>
+	<TD align="center" nowrap >
+		{list.num}
+	</td>
+	<TD nowrap>
+		<a href="{href.list}">{list.title}</a>
+	</td>
+	<TD nowrap>{list.skin}</TD>
+	<TD nowrap><opt name="list.html_type">{list.html_type}-{list.html_skin}</opt name="list.html_type"></TD>
+	<TD align="center" nowrap>{list.comment}</TD>
+	<TD align="center" nowrap>{list.pern}/{list.row_pern}/{list.page_pern}</TD>
+	<TD align="center" nowrap>{list.dbcount}</TD>
+	<td width="52" nowrap> <div align="center"><a href="javascript: window.open('{href.catesort}','_blank','toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,resizable=no,width=350,height=100,top=30 left=30'); void(0);">순서변경</a></div></td>
+	<td width="52" align="center" nowrap><a href="{href.catereply}">서브추가</a></td>
+	<td width="30" align="center" nowrap> <a href="{href.catemodify}">수정</a> </td>
+	<td width="30" align=center nowrap> <a href="{href.catedelete}" onclick="return confirm('서브카테고리있다면 서비카테고리까지 삭제됩니다.\n정말 삭제 하시겠습니까?')">삭제</a></td>
+</tr>
+</block name="list">
+</table>

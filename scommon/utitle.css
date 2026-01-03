@@ -1,0 +1,109 @@
+.base {
+	font: normal 10pt/normal "굴림", "돋움체", "바탕체";
+	color: #000000;
+	text-decoration: none;
+
+}
+a:link {
+	font-family: "굴림", "돋움체", "바탕체";
+	color: #3366FF;
+	text-decoration: none;
+}
+a:hover {
+	color: #3366FF;
+	text-decoration: underline;
+}
+a:visited {
+	font-family: "굴림", "돋움체", "바탕체";
+	color: #3366FF;
+	text-decoration: none;
+
+
+}
+a:active {
+	color: #CC33FF;
+	text-decoration: underline;
+}
+
+.line {
+	line-height: 150%;
+	color: #333333;
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+
+}
+.bg {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10px;
+	font-style: normal;
+	line-height: normal;
+	color: #000000;
+	background-color: #FFFFFF;
+}
+.br {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+	line-height: 150%;
+	color: #A65300;
+}
+.bold {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+	line-height: normal;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.double {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+	line-height: 300%;
+	font-weight: bold;
+	color: #000033;
+}
+.bb {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+	font-weight: bold;
+	color: #003366;
+}
+.wbl {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+	font-style: normal;
+	line-height: 130%;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.wn {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+	font-style: normal;
+	line-height: normal;
+	color: #FFFFFF;
+}
+.bred {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	font-variant: normal;
+	color: #CC0000;
+}
+.pp {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+	font-style: normal;
+	font-weight: normal;
+	color: #BA5FC7;
+}
+.gg {
+	font-family: "굴림", "돋움체", "바탕체";
+	font-size: 10pt;
+	color: #666666;
+}
+a.u:link {
+	font-family: "Geneva", "Arial", "Helvetica", "sans-serif";
+	font-size: 10pt;
+	color: #CCCCCC;
+}

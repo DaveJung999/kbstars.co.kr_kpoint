@@ -1,0 +1,195 @@
+
+<!--
+<opt name="SAMECATE">
+<table cellpadding="0" cellspacing="0" width="634" height="66" border="0" align="center">
+	<tr>
+	<td background="images/cat_bg.gif">
+		<table cellpadding="0" cellspacing="0" width="97%" border="0">
+		<tr>
+			<td width="22%" align=center><font color="#00A651" size="2"><b>{cateinfo.title}</b></font></td>
+			<td width="78%">
+			<table cellpadding="0" cellspacing="0" width=95% height=100% border=0 align=right>
+				<tr>
+				<td>{SAMECATE}</td>
+				<td>&nbsp;</td>
+				</tr>
+			</table></td>
+		</tr>
+	</table></td>
+	</tr>
+</table>
+</opt name="SAMECATE">-->
+
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function MM_preloadImages() {
+	//v3.0
+	var d=document;
+	if(d.images){
+		if(!d.MM_p) d.MM_p=new Array();
+		var i,j=d.MM_p.length,a=MM_preloadImages.arguments;
+		for(i=0; i<a.length; i++)
+			if (a[i].indexOf("#")!=0){
+				d.MM_p[j]=new Image;
+			d.MM_p[j++].src=a[i];
+		}
+	}
+}
+//-->
+</script>
+
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:#F8F8EA;
+}
+-->
+</style>
+
+<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+	<td background="/images/admin/tbox_bg.gif"><b>{dbinfo.title} 관리 </b></td>
+	<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+</tr>
+</table>
+<table width="97%" border="0" align="center" cellpadding="2" cellspacing="3">
+<tr>
+	<td align="right"	class="nevy_violet" height="8">
+		{CATELIST}
+		<block name="catelist">
+		<form style='border:0px;margin:0px;padding:0px' method="get">
+		<SELECT NAME="chagecate" onChange="javascript: window.location='{PHP_SELF}?db={dbinfo.db}&cateuid='+this.value;">
+		{cateinfo.catelist}
+		</SELECT>
+		</form>
+		</block name="catelist">
+	</td>
+</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="97%" align="center">
+<tr>
+	<td width="100%">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td colspan="9" bgcolor="B5A978" height="1"></td>
+		</tr>
+		<tr valign="middle"	bgcolor="#F0EBD6">
+			<td width="7%" height="23" align="center" class="px11">No</td>
+			<td width="1%" align="right"><img src="images/board_title_line.gif" width="1" height="29"></td>
+			<td width="60%" align="center" class="px11">제&nbsp;&nbsp;&nbsp; 목 </td>
+			<td width="1%" align="right"><img src="images/board_title_line.gif" width="1" height="29"></td>
+			<td width="10%" align="center" class="px11">작성자</td>
+			<td width="1%" align="right"><img src="images/board_title_line.gif" width="1" height="29"></td>
+			<td width="10%" align="center" class="px11">등록일</td>
+			<td width="1%" align="right"><img src="images/board_title_line.gif" width="1" height="29"></td>
+			<td width="9%" align="center" class="px11">조회</td>
+		</tr>
+		<tr bgcolor="#B5A978">
+			<td colspan="9" height="1"></td>
+		</tr>
+		{INFO}
+		<block name="info">
+		<tr onMouseover="this.style.backgroundColor='#e2e9ff'" onMouseout="this.style.backgroundColor=''">
+			<td height="25" colspan="2" align="center"><font color="#FF0000">알림</font></td>
+			<td colspan="2" align="left" style="padding-top:3px; padding-bottom:3px;">
+				<opt name="list.enable_sec"><img src='/images/board/ico_sec.gif' width=12 height=13 align='absmiddle' border=0 /> </opt name="list.enable_sec">
+				<a href="{list.href.read}">{list.catetitle} : {list.cut_title}</a>
+				<opt name="list.enable_newicon"><img src="images/board_title_new.gif" width="27" height="11" border="0" align="absmiddle"></opt name="list.enable_newicon">
+			</td>
+			<td colspan="2" align="center">{list.userid}</td>
+			<td colspan="2" align="center">{list.rdate_date}</td>
+			<td align="center">{list.hit}</td>
+		</tr>
+		<tr>
+			<td colspan="9" bgcolor="#ECE6CF" height="1"></td>
+		</tr>
+		</block name="info">
+		{LIST}
+		<block name="list">
+		<tr onMouseover="this.style.backgroundColor='#e2e9ff'" onMouseout="this.style.backgroundColor=''">
+			<td height="25" colspan="2" align="center"> {list.no}</td>
+			<td colspan="2" align="left" style="padding-top:3px; padding-bottom:3px;">
+				<opt name="list.enable_sec"><img src='/images/board/ico_sec.gif' width=12 height=13 align='absmiddle' border=0 /> </opt name="list.enable_sec">
+				<a href="{list.href.read}">{list.catetitle} : {list.cut_title}</a>
+				<opt name="list.enable_newicon"><img src="images/board_title_new.gif" width="27" height="11" border="0" align="absmiddle"></opt name="list.enable_newicon">
+			</td>
+			<td colspan="2" align="center"> {list.userid}</td>
+			<td colspan="2" align="center"> {list.rdate_date}</td>
+			<td align="center"> {list.hit}</td>
+		</tr>
+		<tr>
+			<td colspan="9" bgcolor="#ECE6CF" height="1"></td>
+		</tr>
+		</block name="list">
+		<block name="nolist">
+		<tr align="center" >
+			<td height="40" colspan="9"> 게시물이 하나도 없습니다</td>
+		</tr>
+		<tr>
+			<td colspan="9" bgcolor="#B5A978" height="1"></td>
+		</tr>
+		</block name="nolist">
+		<block name="nosearch">
+		<tr >
+			<td height="40" colspan="9" align="center"> '&nbsp;{sc_string}'가 포함된 게시물을 찾을 수가 없습니다.</td>
+		</tr>
+		<tr>
+			<td colspan="9" bgcolor="#B5A978" height="1"></td>
+		</tr>
+		</block name="nosearch">
+		</table>
+	</td>
+</tr>
+<tr bgcolor="#B5A978">
+	<td colspan="9" height="1"></td>
+</tr>
+<tr>
+	<td>
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td width="6%" rowspan="2"></td>
+			<td width="83%" height="35" align="center"> <p align="center"> {FIRSTPAGE} {PREVBLOCK} {BLOCK} {NEXTBLOCK} {LASTPAGE}</td>
+			<td width="11%" align="center">{WRITE}</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<form style='margin : 0px' {form_search}>
+				<select name="sc_column">
+				<option value='title'>제목</option>
+				<option value='content'>내용</option>
+				<option value='userid'>아이디</option>
+				</select>
+				<input type="text" name="sc_string" size="25" style='height:21;' value="{sc_string}" class="ccbox">
+				<input type="image" src="images/board_button_search.gif" width="41" height="21" align="absmiddle" border="0">
+
+				</form>
+			</td>
+			<td width="11%">&nbsp;</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<br>
+<block name="firstpage"><a href="{href.firstpage}"><img src="images/board_button_first.gif"	width="18" height="9" border="0" align="absmiddle"></a></block name="firstpage">
+<block name="nofirstpage"><img src="images/board_button_first_disabled.gif" width="18" height="9" border="0" align="absmiddle"></block name="nofirstpage">
+<block name="prevblock"><a href='{href.prevblock}'><img src="images/board_button_prev.gif" border="0" align="absmiddle"></a>&nbsp;</block name="prevblock">
+<block name="noprevblock"> <span><img src="images/board_button_prev_disabled.gif" width="9" height="9" border="0" align="absmiddle"></span>&nbsp;</block name="noprevblock">
+<block name="block"><a href='{href.blockcount}'>[{blockcount}]</a>&nbsp;</block name="block">
+<block name="noblock"><b>[{blockcount}]</b>&nbsp;</block name="noblock">
+<block name="nextblock"><a href='{href.nextblock}'><img src="images/board_button_next.gif" border="0" align="absmiddle"></a>&nbsp;</block name="nextblock">
+<block name="nonextblock"> <span><img src="images/board_button_next_disabled.gif" border="0" align="absmiddle"></span></block name="nonextblock">
+<block name="lastpage"><a href="{href.lastpage}"><img src="images/board_button_end.gif" width="18" height="9" border="0" align="absmiddle"></a></block name="lastpage">
+<block name="nolastpage"><img src="images/board_button_end_disabled.gif" width="18" height="9" border="0" align="absmiddle"></block name="nolastpage">
+<block name="write"><a href="{href.write}"><img src="images/board_button_write.gif" width="51" height="21" border="0"></a></block name="write">
+<block name="highcate">&gt; <a href="{href.highcate}"> {highcate.title}</a></block name="highcate">
+<block name="samecate"><opt name="samecate.selected"> | <b>{samecate.title}</b></opt name="samecate.selected"><opt name="!samecate.selected"> | <b><a href="{PHP_SELF}?db={dbinfo.db}&cateuid={samecate.uid}">{samecate.title}</a></b></opt name="!samecate.selected"></block name="samecate">
+<block name="subcate"><opt name="blockloop"> | </opt name="blockloop"><a href="{href.subcate}"> {subcate.title}</a></block name="subcate">

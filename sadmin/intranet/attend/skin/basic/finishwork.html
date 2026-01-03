@@ -1,0 +1,105 @@
+
+<html>
+
+<style TYPE='text/css'>
+<!--
+A:link {font-size:10pt ; text-decoration:none; color:#000000;}
+A:visited {font-size:10pt ; text-decoration:none; color:#000000;}
+A:active {font-size:10pt ; text-decoration:none;}
+A:hover {font-size:10pt ; text-decoration:underline;}
+body, table, tr, td, select
+{
+	font-family: '굴림', '굴림체', 'seoul', 'arial',;
+	font-size: 9pt;
+}
+input, textarea, select
+{
+	background-color: #E0F2F3;
+	color: #29686B;
+	border-style: solid;
+	border-width: 1;
+}
+-->
+</style>
+
+<body bgcolor="white" background="">
+	<form method=post {form_default}>
+	<table width="500" border=0 cellpadding='3' cellspacing='1' bgcolor='#666666'>
+	<tr>
+		<td bgcolor='#CFD8E9'>
+			<b>
+			{site.company}		퇴근하기 (직원명: {session.seName})</b>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#F0F0F0'>
+			<table width="450" border=0 align="center" cellpadding='3' cellspacing='1' bgcolor='#666666'>
+			<tr>
+				<td bgcolor='#B2CCE5'>&nbsp;근무상태</td>
+				<td colspan="3" align="center" bgcolor='#F0F0F0'>
+					<select name="status">
+					{list.status_option}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td width="85" bgcolor='#B2CCE5'><b>&nbsp;출근시간</b></td>
+				<td width="315" colspan="3" align="center" bgcolor='#F0F0F0'>
+					<strong>
+					{list.begintime_date}</strong>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor='#B2CCE5'><b>&nbsp;퇴근시간</b></td>
+				<td colspan="3" align="center" bgcolor='#F0F0F0'><input type="text" name="finishtime" value="{list.finishtime_date}"></td>
+			</tr>
+
+			<tr>
+				<td colspan="4" align="center" bgcolor='#B2CCE5'><strong>업무보고</strong> (최대 {list.maxworkhours}시간) </td>
+			</tr>
+			<tr>
+				<td align="center" bgcolor='#F0F0F0'>
+					표준근로<br>
+					<input name="dayhours" id="dayhours" onChange="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i>{list.maxworkhours}){alert('^_^;;\n출근후 지난시간({list.maxworkhours}시간)보다 더 적으셨습니다.'); this.value=0;}" value={list.dayhours} size=3>
+					시간<br>
+				</td>
+				<td colspan="3" bgcolor='#F0F0F0'><textarea name="memo_day" cols="50" rows="6" id="memo_day">{list.memo_day}</textarea></td>
+			</tr>
+			<tr>
+				<td align="center" bgcolor='#F0F0F0'>
+					시간외근무<br>
+					<input name="overhours" id="overhours" onChange="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i>{list.maxworkhours}){alert('^_^;;\n출근후 지난시간({list.maxworkhours}시간)보다 더 적으셨습니다.'); this.value=0;}" value="{list.overhours}" size=3>
+					시간<br>
+				</td>
+				<td colspan="3" bgcolor='#F0F0F0'><textarea name="memo_over" cols="50" rows="6" id="memo_over">{list.memo_over}</textarea></td>
+			</tr>
+			<tr>
+				<td align="center" bgcolor='#F0F0F0'>
+					야근<br>
+					<input name="nighthours" id="nighthours" onChange="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i>{list.maxworkhours}){alert('^_^;;\n출근후 지난시간({list.maxworkhours}시간)보다 더 적으셨습니다.'); this.value=0;}" value="{list.nighthours}" size=3>
+					시간<br>
+				</td>
+				<td colspan="3" bgcolor='#F0F0F0'><textarea name="memo_night" cols="50" rows="6" id="memo_night">{list.memo_night}</textarea></td>
+			</tr>
+			<tr>
+				<td colspan="4" align="center" bgcolor='#B2CCE5'><strong>오늘의 보람된 업무 및 개선점 건의 </strong></td>
+			</tr>
+			<tr align="center">
+				<td colspan="4" bgcolor='#F0F0F0'><textarea name="memo_finish" cols="50" rows="6" id="memo_finish">{list.memo_finish}</textarea></td>
+			</tr>
+			<tr>
+				<td colspan="4" align="center" bgcolor='#B2CCE5'><strong>사장님께 제안</strong></td>
+			</tr>
+			<tr align="center">
+				<td colspan="4" bgcolor='#F0F0F0'><textarea name="memo_ceo" cols="50" rows="6" id="memo_ceo">{list.memo_ceo}</textarea></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor='#F0F0F0' align="center"><input name="submit" type="submit" id="submit" value=" 퇴근합니다. " onMouseOver="javascript: var i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i>{list.maxworkhours}){alert('^_^;;\n출근후 지난시간({list.maxworkhours}시간)보다 더 적으셨습니다.'); return false;}"></td>
+	</tr>
+	</table>
+	</form>
+</body>
+</html>

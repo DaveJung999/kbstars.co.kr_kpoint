@@ -1,0 +1,179 @@
+<link href="/css/basic_text.css" rel="stylesheet" type="text/css">
+<link href="/css/link01.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/share/css/2016/boilerplate.css" />
+<link rel="stylesheet" type="text/css" href="/share/css/2016/sub.css" />
+<link rel="stylesheet" type="text/css" href="/share/css/2016/navigation.css"/>
+
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color:#F8F8EA;
+}
+-->
+</style>
+
+<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+	<td background="/images/admin/tbox_bg.gif"><b>{dbinfo.title} 관리 </b></td>
+	<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+</tr>
+</table>
+<br>
+<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="4"></td>
+</tr>
+<tr>
+	<td width="15%" height="28" align="center" bgcolor="#F0EBD6"><strong>보호자 이름</strong></td>
+	<td width="35%" height="28" align="center"><span><b> {list.name}</b></span></td>
+	<td width="15%" bgcolor="#F0EBD6"	align="center"><strong>보호자 주민등록번호</strong></td>
+	<td width="35%" align="center"><b>&nbsp;{list.jumin}</b></td>
+</tr>
+<tr>
+	<td colspan="4" bgcolor="#B5A978" height="1"></td>
+</tr>
+<tr>
+	<td colspan=4>
+
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="15%" height="28" bgcolor="#F0EBD6" align="center">&nbsp;</td>
+			<td width="35%" align="center">&nbsp;</td>
+			<td width="15%" bgcolor="#F0EBD6"	align="center">자택 전화</td>
+			<td width="35%" align="center"><font size="2"><span>{list.tel}</span></font></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="4"></td>
+</tr>
+<tr>
+	<td colspan=4>
+
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="15%" height="28" bgcolor="#F0EBD6" align="center">E-mail</td>
+			<td width="35%" align="center"><span>{list.mail}</span></td>
+			<td width="15%" bgcolor="#F0EBD6"	align="center">핸드폰</td>
+			<td width="35%" align="center"><font size="2"><span>{list.hp}</span></font></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="4"></td>
+</tr>
+<tr>
+	<td colspan=4>
+
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="15%" height="28" bgcolor="#F0EBD6" align="center">주소</td>
+			<td align="center"><span>{list.address}</span><font size="2"><span></span></font></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="4"></td>
+</tr>
+<tr>
+	<td colspan=4>
+
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="15%" height="28" bgcolor="#F0EBD6" align="center"><strong>참가자 이름</strong></td>
+			<td width="35%" align="center"><span><strong>{list.title}</strong></span></td>
+			<td width="15%" bgcolor="#F0EBD6"	align="center"><strong>참가자 주민등록번호</strong></td>
+			<td width="35%" align="center"><font size="2"><span><strong>{list.content}</strong></span></font></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="4"></td>
+</tr>
+<tr>
+	<td colspan=4>
+
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="15%" height="28" bgcolor="#F0EBD6" align="center">학교명</td>
+			<td width="35%" align="center"><span>{list.school}</span></td>
+			<td width="15%" bgcolor="#F0EBD6"	align="center">학년</td>
+			<td width="35%" align="center"><font size="2"><span>{list.grade}</span></font></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="4"></td>
+</tr>
+<tr>
+	<td colspan=4>
+
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="15%" height="28" bgcolor="#F0EBD6" align="center">티셔츠 사이즈</td>
+			<td width="35%" align="center"><span>{list.tsize}</span></td>
+			<td width="15%" bgcolor="#F0EBD6"	align="center">건강상태</td>
+			<td width="35%" align="center"><font size="2"><span>{list.health}</span></font></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="4"></td>
+</tr>
+<tr>
+	<td colspan=4>
+
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="15%" height="28" bgcolor="#F0EBD6" align="center">입소방법</td>
+			<td width="35%" align="center"><span>{list.enter}</span></td>
+			<td width="15%" bgcolor="#F0EBD6"	align="center">퇴소방법</td>
+			<td width="35%" align="center"><font size="2"><span>{list.graduate}</span></font></td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="4"></td>
+</tr>
+<tr>
+	<td colspan=4>
+
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="15%" height="28" bgcolor="#F0EBD6" align="center">특이사항</td>
+			<td align="center">&nbsp;{list.note}</td>
+		</tr>
+		</table>
+	</td>
+</tr>
+<tr bgcolor="#B5A978">
+	<td height="1" colspan="4"></td>
+</tr>
+<tr>
+	<td colspan="4" height="50" class="pagecolortext" style="text-align:right;">작성자 아이피 : {list.ip}</td>
+</tr>
+<tr>
+	<td height="40" colspan="4" align="right"><a href="{href.list}"><img src="images/board_button_list.gif" width="51" height="21" border="0" align="absmiddle"></a>&nbsp;&nbsp; </td>
+</tr>
+</table>
+<br>
+<p><block name="highcate">&gt; <a href="{href.highcate}"> {highcate.title}</a></block name="highcate"></p>
+<block name="samecate"><opt name="samecate.selected"><b>{samecate.title}</b></opt name="samecate.selected"><opt name="!samecate.selected"><b><a href="{PHP_SELF}?db={dbinfo.db}&cateuid={samecate.uid}">{samecate.title}</a></b></opt name="!samecate.selected">&nbsp;</block name="samecate">
+<block name="subcate"><opt name="blockloop"> | </opt name="blockloop"><a href="{href.subcate}"> {subcate.title}</a></block name="subcate">
+<block name="upfile"><a href="{upfile.href}&mode=download"><b>{upfile.name}</b></a> (크기: {upfile.size} bytes)<br></block name="upfile">
+<block name="write"><a href="{href.write}"><img src="images/board_button_write.gif" width="51" height="21" border="0" align="absmiddle"></a></block name="write">
+<block name="reply"><a href="{href.reply}"><img src="images/board_button_reply.gif" width="51" height="21" border=0 align="absmiddle"></a></block name="reply">
+<block name="modify"><a href="{href.modify}"><img src="images/board_button_modify.gif" width="51" height="21" border="0" align="absmiddle"></a></block name="modify">
+<block name="delete"><a href="{href.delete}" onclick="javascript: return confirm('답변이 있다면 답변글까지 모두 삭제됩니다.\n정말 삭제하시겠습니다.');"><img src="images/board_button_delete.gif" width="51" height="21" border="0" align="absmiddle"></a> </block name="delete">
