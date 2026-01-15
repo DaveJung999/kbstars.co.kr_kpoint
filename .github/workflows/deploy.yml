@@ -20,3 +20,4 @@ jobs:
           script: |
             cd /home/kbstars/kbstars.co.kr_kpoint
             git pull origin main
+ 
