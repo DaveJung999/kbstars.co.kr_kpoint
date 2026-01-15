@@ -1,4 +1,4 @@
-name: Deploy www
+name: Deploy to Server
 
 on:
   push:
@@ -8,16 +8,20 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
     steps:
-      - name: Deploy to server
+      - name: Execute Remote SSH Commands
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          script: |
-            cd /home/kbstars/kbstars.co.kr_kpoint
-            git pull origin main
- 
+         host: ${{ secrets.SERVER_HOST }}
+         username: ${{ secrets.SERVER_USER }}
+         key: ${{ secrets.SERVER_SSH_KEY }}
+         script: |
+           echo "🚀 배포 시작"
+           # 1. 해당 디렉토리로 이동
+           cd /home/kbstars/kbstars.co.kr_kpoint
+          
+           # 2. 서버의 로컬 변경사항 무시하고 강제 동기화 (가장 확실한 방법)
+           git fetch origin main
+           git reset --hard origin/main
+          
+           echo "✅ 배포 완료"
