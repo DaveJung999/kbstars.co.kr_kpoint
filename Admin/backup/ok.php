@@ -82,7 +82,7 @@ function db_backup_ok(){
 		// mysqldump 명령어 생성.
 		// --default-character-set=euckr 은 이전 DB 환경에 맞춘 설정입니다.
 		// 새로운 서버 환경이 UTF-8(utf8mb4) 기반이라면 --default-character-set=utf8mb4 로 변경하는 것을 권장합니다.
-		$cmd = $mysqldump_path . ' -u' . escapeshellarg($SECURITY['db_user']) . ' -p' . escapeshellarg($SECURITY['db_pass']) . ' ' . escapeshellarg($SECURITY['db_name']) . ' --default-character-set=euckr > ' . escapeshellarg($file);
+		$cmd = $mysqldump_path . ' -u' . escapeshellarg($SECURITY['db_user']) . ' -p' . escapeshellarg($SECURITY['db_pass']) . ' ' . escapeshellarg($SECURITY['db_name']) . ' --default-character-set=utf8mb4 > ' . escapeshellarg($file);
 
 		// exec 함수는 보안상 위험할 수 있으므로, 실행 권한과 경로를 신중하게 관리해야 합니다.
 		exec($cmd, $output, $return_var);

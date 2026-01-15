@@ -108,100 +108,100 @@ function chkPoint(f){
 
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr valign="top">
-        <td width="97%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr>
-              <td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
-              <td background="/images/admin/tbox_bg.gif"><b>경품 지급 등록/수정</b></td>
-              <td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
-            </tr>
-          </table>
-            <br>
-            <table width="100%" border=0 cellpadding='3' cellspacing='1' bgcolor='#aaaaaa'>
-              <form  name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
-                <input type="hidden" name="present_val" value="구단양말">
-                <input name="point" type="hidden" id="point" value="{kpresent_list.point}" >
-                <tr>
-                  <td bgcolor='#D2BF7E'><b>경품 지급 등록/수정</b></td>
-                </tr>
-                <tr>
-                  <td  bgcolor='#F8F8EA' nowrap><table width="100%" border=0 cellpadding='3' cellspacing='1' bgcolor='#aaaaaa'>
-                      <tr>
-                        <td bgcolor='#F0EBD6'>경품지급일(<span><span class="style1">*</span>)</span></td>
-                        <td bgcolor='#F8F8EA' ><input name="pdate" type="text" id="pdate" value="{kpresent_list.pdate}" onClick="Calendar(this);" size="12" hname="경품 지급일을 입력하세요" required>
-                          (현재포인트 : {kpresent_list.point}) </td>
-                      </tr>
-                      <tr>
-                        <td width="20%" bgcolor='#F0EBD6'>경품명(<span><span class="style1">*</span>)</span></td>
-                        <td width="80%" bgcolor='#F8F8EA' ><table border="0" cellspacing="2" cellpadding="2">
-                            <tr>
-                              <td><label>
-                                  <label></label>
-                                  <input name="present" type="radio" id="present" value="KBSAVERS수첩" {present_checked_KBSAVERS수첩} onClick="set_present_val(this.form, this.value)">
-                                KB SAVERS 수첩 </td>
-                              <td><input name="present" type="radio" id="present" value="KBSAVERS양말" {present_checked_KBSAVERS양말} onClick="set_present_val(this.form, this.value)">
-                                KB SAVERS 양말</td>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="KBSAVERS사인볼" {present_checked_KBSAVERS사인볼} onClick="set_present_val(this.form, this.value)">
-                                KB SAVERS 사인볼</label></td>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="레스모아운동화" {present_checked_레스모아운동화} onClick="set_present_val(this.form, this.value)">
-                                레스모아 운동화</label></td>
-                              <td><label></label></td>
-                            </tr>
-                            <tr>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="리홈밥솥" {present_checked_리홈밥솥} onClick="set_present_val(this.form, this.value)">
-                                리홈 밥솥</label></td>
-                              <td><input name="present" type="radio" id="present" value="김치냉장고" {present_checked_김치냉장고} onClick="set_present_val(this.form, this.value)">
-                                김치냉장고</td>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="드럼세탁기" {present_checked_드럼세탁기} onClick="set_present_val(this.form, this.value)">
-                                드럼세탁기</label></td>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="42인치PDP" {present_checked_42인치PDP} onClick="set_present_val(this.form, this.value)">
-                                42인치 PDP</label></td>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="자동차" {present_checked_자동차} onClick="set_present_val(this.form, this.value)">
-                                자동차</label></td>
-                            </tr>
-                        </table></td>
-                      </tr>
-                      <tr>
-                        <td bgcolor='#F0EBD6'>메모</td>
-                        <td bgcolor='#F8F8EA' ><input name="memo" type="text" id="memo" value="{kpresent_list.memo}" size="60">
-                            <br>
-                          (
-                          <label>
-                            <input name="memo_sample" type="radio" id="memo_sample" value="현장지급" {memo_checked_현장지급} onClick="set_memo(this.form, this.value);">
-                            현장지급</label>
-                          <label>
-                            <input name="memo_sample" type="radio" id="memo_sample" value="택배발송" {memo_checked_택배발송} onClick="set_memo(this.form, this.value);">
-                            택배발송</label>
-                          <label>
-                            <input name="memo_sample" type="radio" id="memo_sample" value="추첨당첨" {memo_checked_추첨당첨} onClick="set_memo(this.form, this.value);">
-                            추첨당첨 )</label>
-                        </td>
-                      </tr>
-                      <!--<tr>
-                        <td bgcolor='#F0EBD6'>현재 포인트 </td>
-                        <td bgcolor='#F8F8EA' ><input name="point" type="text" id="point" value="{kpresent_list.point}" size="5" readonly="true"></td>
-                      </tr>-->
-                    </table>
-                      <br>
-                      <table width="100%" border=0 cellpadding='3' cellspacing='0'>
-                        <tr>
-                          <td align="center"><input type="submit" name="Submit" value=" 등  록 " onClick="return chkPoint(this.form);">
-                            &nbsp;
-                            <input type="button" name="Submit2" value="목록보기" onClick="javascript:history.go(-1);"></td>
-                        </tr>
-                    </table></td>
-                </tr>
-              </form>
-            </table></td>
-      </tr>
-    </table></td>
+	<td><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+	  <tr valign="top">
+		<td width="97%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			  <td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+			  <td background="/images/admin/tbox_bg.gif"><b>경품 지급 등록/수정</b></td>
+			  <td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+		  </table>
+			<br>
+			<table width="100%" border=0 cellpadding='3' cellspacing='1' bgcolor='#aaaaaa'>
+			  <form  name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
+				<input type="hidden" name="present_val" value="구단양말">
+				<input name="point" type="hidden" id="point" value="{kpresent_list.point}" >
+				<tr>
+				  <td bgcolor='#D2BF7E'><b>경품 지급 등록/수정</b></td>
+				</tr>
+				<tr>
+				  <td  bgcolor='#F8F8EA' nowrap><table width="100%" border=0 cellpadding='3' cellspacing='1' bgcolor='#aaaaaa'>
+					  <tr>
+						<td bgcolor='#F0EBD6'>경품지급일(<span><span class="style1">*</span>)</span></td>
+						<td bgcolor='#F8F8EA' ><input name="pdate" type="text" id="pdate" value="{kpresent_list.pdate}" onClick="Calendar(this);" size="12" hname="경품 지급일을 입력하세요" required>
+						  (현재포인트 : {kpresent_list.point}) </td>
+					  </tr>
+					  <tr>
+						<td width="20%" bgcolor='#F0EBD6'>경품명(<span><span class="style1">*</span>)</span></td>
+						<td width="80%" bgcolor='#F8F8EA' ><table border="0" cellspacing="2" cellpadding="2">
+							<tr>
+							  <td><label>
+								  <label></label>
+								  <input name="present" type="radio" id="present" value="KBSAVERS수첩" {present_checked_KBSAVERS수첩} onClick="set_present_val(this.form, this.value)">
+								KB SAVERS 수첩 </td>
+							  <td><input name="present" type="radio" id="present" value="KBSAVERS양말" {present_checked_KBSAVERS양말} onClick="set_present_val(this.form, this.value)">
+								KB SAVERS 양말</td>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="KBSAVERS사인볼" {present_checked_KBSAVERS사인볼} onClick="set_present_val(this.form, this.value)">
+								KB SAVERS 사인볼</label></td>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="레스모아운동화" {present_checked_레스모아운동화} onClick="set_present_val(this.form, this.value)">
+								레스모아 운동화</label></td>
+							  <td><label></label></td>
+							</tr>
+							<tr>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="리홈밥솥" {present_checked_리홈밥솥} onClick="set_present_val(this.form, this.value)">
+								리홈 밥솥</label></td>
+							  <td><input name="present" type="radio" id="present" value="김치냉장고" {present_checked_김치냉장고} onClick="set_present_val(this.form, this.value)">
+								김치냉장고</td>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="드럼세탁기" {present_checked_드럼세탁기} onClick="set_present_val(this.form, this.value)">
+								드럼세탁기</label></td>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="42인치PDP" {present_checked_42인치PDP} onClick="set_present_val(this.form, this.value)">
+								42인치 PDP</label></td>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="자동차" {present_checked_자동차} onClick="set_present_val(this.form, this.value)">
+								자동차</label></td>
+							</tr>
+						</table></td>
+					  </tr>
+					  <tr>
+						<td bgcolor='#F0EBD6'>메모</td>
+						<td bgcolor='#F8F8EA' ><input name="memo" type="text" id="memo" value="{kpresent_list.memo}" size="60">
+							<br>
+						  (
+						  <label>
+							<input name="memo_sample" type="radio" id="memo_sample" value="현장지급" {memo_checked_현장지급} onClick="set_memo(this.form, this.value);">
+							현장지급</label>
+						  <label>
+							<input name="memo_sample" type="radio" id="memo_sample" value="택배발송" {memo_checked_택배발송} onClick="set_memo(this.form, this.value);">
+							택배발송</label>
+						  <label>
+							<input name="memo_sample" type="radio" id="memo_sample" value="추첨당첨" {memo_checked_추첨당첨} onClick="set_memo(this.form, this.value);">
+							추첨당첨 )</label>
+						</td>
+					  </tr>
+					  <!--<tr>
+						<td bgcolor='#F0EBD6'>현재 포인트 </td>
+						<td bgcolor='#F8F8EA' ><input name="point" type="text" id="point" value="{kpresent_list.point}" size="5" readonly="true"></td>
+					  </tr>-->
+					</table>
+					  <br>
+					  <table width="100%" border=0 cellpadding='3' cellspacing='0'>
+						<tr>
+						  <td align="center"><input type="submit" name="Submit" value=" 등  록 " onClick="return chkPoint(this.form);">
+							&nbsp;
+							<input type="button" name="Submit2" value="목록보기" onClick="javascript:history.go(-1);"></td>
+						</tr>
+					</table></td>
+				</tr>
+			  </form>
+			</table></td>
+	  </tr>
+	</table></td>
   </tr>
 </table> 
 </body>

@@ -10,10 +10,10 @@
 opener = window.dialogArguments;
 
 var _editor_url = opener._editor_url;
-var objname     = location.search.substring(1,location.search.length);
-var config      = opener.document.all[objname].config;
+var objname	 = location.search.substring(1,location.search.length);
+var config	  = opener.document.all[objname].config;
 var editor_obj  = opener.document.all["_" +objname+  "_editor"];
-var editdoc     = editor_obj.contentWindow.document;
+var editdoc	 = editor_obj.contentWindow.document;
 
 function _CloseOnEsc() {
   if (event.keyCode == 27) { window.close(); return; }
@@ -45,42 +45,42 @@ function btnOKClick() {
   // error checking
   var checkList = ['rows','cols','border','cellspacing','cellpadding'];
   for (var idx in checkList) {
-    var fieldname = checkList[idx];
-    if (document.all[fieldname].value == "") {
-      alert("You must specify a value for the '" +fieldname+ "' field!");
-      document.all[fieldname].focus();
-      return;
-    }
-    else if (!_isValidNumber(document.all[fieldname].value)) {
-      alert("You must specify a number between 0 and 9999 for '" +fieldname+ "'!");
-      document.all[fieldname].focus();
-      return;
-    }
+	var fieldname = checkList[idx];
+	if (document.all[fieldname].value == "") {
+	  alert("You must specify a value for the '" +fieldname+ "' field!");
+	  document.all[fieldname].focus();
+	  return;
+	}
+	else if (!_isValidNumber(document.all[fieldname].value)) {
+	  alert("You must specify a number between 0 and 9999 for '" +fieldname+ "'!");
+	  document.all[fieldname].focus();
+	  return;
+	}
   }
 
   // delete selected content (if applicable)
   if (editdoc.selection.type == "Control" || curRange.htmlText) {
 
-    if (!confirm("Overwrite selected content?")) { return; }
+	if (!confirm("Overwrite selected content?")) { return; }
 
-    curRange.execCommand('Delete');
-    curRange = editdoc.selection.createRange();
+	curRange.execCommand('Delete');
+	curRange = editdoc.selection.createRange();
   }
 
 
   // create table
   var table = '<table border="' +document.all.border.value+ '"'
-            + ' cellspacing="' +document.all.cellspacing.value+ '"'
-            + ' cellpadding="' +document.all.cellpadding.value+ '"'
-            + ' width="' +document.all.width.value + document.all.widthExt.value+ '"'
-            + ' align="' +document.all.alignment.value+ '">\n';
+			+ ' cellspacing="' +document.all.cellspacing.value+ '"'
+			+ ' cellpadding="' +document.all.cellpadding.value+ '"'
+			+ ' width="' +document.all.width.value + document.all.widthExt.value+ '"'
+			+ ' align="' +document.all.alignment.value+ '">\n';
 
   for (var x=0; x<document.all.rows.value; x++) {
-    table += " <tr>\n";
-    for (var y=0; y<document.all.cols.value; y++) {
-      table += "  <td></td>\n";
-    }
-    table += " </tr>\n";
+	table += " <tr>\n";
+	for (var y=0; y<document.all.cols.value; y++) {
+	  table += "  <td></td>\n";
+	}
+	table += " </tr>\n";
   }
   table += "</table>\n";
 
@@ -108,8 +108,8 @@ function btnOKClick() {
   <td>
    <input type="text" name="width" value="100" style="width: 50px" maxlength=4>
    <select name="widthExt">
-    <option value="">Pixels</option>
-    <option value="%" selected>Percent</option>
+	<option value="">Pixels</option>
+	<option value="%" selected>Percent</option>
    </select>
   </td>
  </tr>

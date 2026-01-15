@@ -37,206 +37,206 @@ function on_ExcelExport()
 
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr valign="top">
-        <td width="97%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr>
-              <td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
-              <td background="/images/admin/tbox_bg.gif"><b>K-Point 회원정보 </b></td>
-              <td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
-            </tr>
-          </table>
-            <br>
-            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-              <tr>
-                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td height="25"><strong>포인트 조회 </strong></td>
-                      <td align="right"><input name="button3" type="button" class="input02"  onclick="javascript:location.href='{href.klist}';" value="목록보기" />
-                          <input name="button" type="button"  onClick="location.href='{href.season}'" value="시즌정보등록"/>
-                        &nbsp; </td>
-                    </tr>
-                </table></td>
-              </tr>
-              <tr>
-                <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#aaaaaa">
-                    <tr>
-                      <td width="16%" height="25" align="center" valign="middle" bgcolor="#D2BF7E">시즌</td>
-                      <td width="19%" align="center" valign="middle" bgcolor="#D2BF7E">카드번호</td>
-                      <td width="16%" align="center" valign="middle" bgcolor="#D2BF7E">총 포인트 </td>
-                      <td width="13%" align="center" valign="middle" bgcolor="#D2BF7E">상태</td>
-                      <td width="15%" align="center" valign="middle" bgcolor="#D2BF7E">조회</td>
-                      <td width="21%" align="center" valign="middle" bgcolor="#D2BF7E">수정 / 삭제</td>
-                    </tr>
-                  {LIST}
-                  <block name="list">
-                    <tr>
-                      <td height="25" align="center" bgcolor="#F0EBD6">{list.s_name}</td>
-                      <td align="center" bgcolor="#F0EBD6">{list.accountno}</td>
-                      <td align="center" bgcolor="#F0EBD6">{list.balance}</td>
-                      <td align="center" bgcolor="#F0EBD6">{list.state}</td>
-                      <td align="center" bgcolor="#F0EBD6"><a href="{href.inquiry}">조회</a></td>
-                      <td align="center" bgcolor="#F0EBD6"><a href="{href.s_modify}">수정</a> / <a href="{href.s_delete}" onClick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
-                    </tr>
-                  </block name="list">
-                  <block name="nolist">
-                    <tr>
-                      <td height="40" colspan="6" align="center" bgcolor="#F0EBD6">해당 시즌의 포인트 정보가 없습니다. </td>
-                    </tr>
-                  </block name="nolist">
-                </table></td>
-              </tr>
-              <tr>
-                <td height="10"></td>
-              </tr>
-              <tr>
-                <td height="25"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td><strong>포인트 상세보기</strong></td>
-                      <td align="right">&nbsp;</td>
-                    </tr>
-                </table></td>
-              </tr>
-              <tr>
-                <td>{INQUIRY}</td>
-              </tr>
-              <tr>
-                <td height="10"></td>
-              </tr>
-            </table>
-          <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-              <block name="noinquiry">
-                <tr>
-                  <td height="35" align="center"><table width="100%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#aaaaaa">
-                      <tr bgcolor="#F5F5F5">
-                        <td height="40" align="center" bgcolor="#F0EBD6">해당 시즌의 포인트 정보가 없습니다. <br>
-                          위 포인트 조회 중 해당 시즌 <span class="bmails00104"><strong>조회</strong></span> 버튼을 클릭하세요. </td>
-                      </tr>
-                  </table></td>
-                </tr>
-              </block name="noinquiry">
-              <block name="inquiry">
-                <tr>
-                  <td height="10"></td>
-                </tr>
-                <tr>
-                  <td><table width="100%" border="0" align="center" cellpadding="8" cellspacing="1" bgcolor="#aaaaaa">
-                      <tr bgcolor="#F5F5F5">
-                        <td width="17%" height="50" align="center" bgcolor="#F0EBD6"><span class="style4"><strong>회원명</strong></span></td>
-                        <td width="32%" bgcolor="#FFFFFF">&nbsp;<span class="style4"><strong>{kpointinfo.name}</strong></span></td>
-                        <td width="17%" align="center" bgcolor="#F0EBD6"><span class="style4"><strong>총 포인트 </strong></span></td>
-                        <td width="34%" bgcolor="#FFFFFF">&nbsp;<span class="style4"><strong>{kpointinfo.balance}</strong></span></td>
-                      </tr>
-                      <tr bgcolor="#F5F5F5">
-                        <td width="17%" height="50" align="center" bgcolor="#F0EBD6"><span class="style4"><strong>시즌</strong></span></td>
-                        <td width="32%" bgcolor="#FFFFFF">&nbsp;<span class="style4"><span class="style5">{kpointinfo.s_name}</span></span></td>
-                        <td width="17%" align="center" bgcolor="#F0EBD6"><span class="style4"><strong>카드번호</strong></span></td>
-                        <td width="34%" bgcolor="#FFFFFF">&nbsp;&nbsp;<span class="style4"><strong>{kpointinfo.accountno}</strong></span></td>
-                      </tr>
-                      <tr bgcolor="#F5F5F5">
-                        <td width="17%" height="25" align="center" bgcolor="#F0EBD6"><span class="point">등록일자</span></td>
-                        <td width="32%" bgcolor="#FFFFFF">{kpointinfo.rdate}</td>
-                        <td width="17%" align="center" bgcolor="#F0EBD6"><span class="point">상태</span></td>
-                        <td width="34%" bgcolor="#FFFFFF">&nbsp;{kpointinfo.state}</td>
-                      </tr>
-                  </table></td>
-                </tr>
-                <tr>
-                  <td height="10"></td>
-                </tr>
-                <tr>
-                  <td height="25"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td><strong>포인트적립 내역 </strong></td>
-                        <td align="right"><table width="100%" border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                              <td align="right"><input name="button32" type="button" class="input02"  onclick="on_ExcelExport()" value="Excel 다운" />
-                                  <input name="button223" type="button" class="input02"  onclick="javascript:location.href='{href.win}';" value="승리포인트일괄등록" />
-                                  <input name="button2232" type="button" class="input02"  onclick="javascript:location.href='{href.windelete}';" value="승리포인트일괄삭제" />
-                                  <input name="button22" type="button" class="input02"  onclick="javascript:location.href='{href.write}';" value=" 포인트등록 " />
-                                &nbsp; </td>
-                            </tr>
-                        </table></td>
-                      </tr>
-                  </table></td>
-                </tr>
-                <tr>
-                  <td><table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#aaaaaa">
-                      <tr align="center" bgcolor="#EBF9FA" height="25">
-                        <td width="14%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><strong>포인트 적립일 </strong></td>
-                        <td width="12%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><strong>카드번호</strong></td>
-                        <td width="17%" bgcolor="#D2BF7E" class="blue_soft0"><span class="point"><strong>적요</strong></span></td>
-                        <td width="30%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><span class="point"><strong>내용</strong></span></td>
-                        <td width="10%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><span class="point"><strong>포인트</strong></span></td>
-                        <td width="17%" bgcolor="#D2BF7E" class="blue_soft0"><strong>수정/삭제</strong></td>
-                      </tr>
-                    {KPOINT_LIST}
-                    <tr align="center" bgcolor="#EBF9FA" height="25">
-                      <td height="15" colspan="4" bgcolor="#ECEEA7" class="blue_soft0"><strong>합계</strong></td>
-                      <td height="15" align="right" bgcolor="#ECEEA7" class="blue_soft0"><strong>{kpointinfo.balance}</strong></td>
-                      <td width="17%" bgcolor="#ECEEA7" class="blue_soft0">&nbsp;</td>
-                    </tr>
-                  </table></td>
-                </tr>
-              </block name="inquiry">
-            </table>
-          <table width="100%" align="center">
-              <block name="kpoint_list">
-                <tr bgcolor='#ffffff' height="25" align="center">
-                  <td>{kpoint_list.rdate}</td>
-                  <td align="center">{kpoint_list.accountno}</td>
-                  <td align="center">{kpoint_list.type}</td>
-                  <td align="center">{kpoint_list.remark}</td>
-                  <td align="right">{kpoint_list.deposit}</td>
-                  <td align="center"><a href="{href.pl_modify}">수정</a> / <a href="{href.pl_delete}" onClick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
-                </tr>
-              </block name="kpoint_list">
-              <block name="nokpoint_list">
-                <tr bgcolor='#ffffff'>
-                  <td colspan='8' height="50" align="center">포인트 적립 내역이 없습니다.</td>
-                </tr>
-              </block name="nokpoint_list">
-            </table></td>
-      </tr>
-      <tr>
-        <td height="10"></td>
-      </tr>
-      <tr>
-        <td height="25"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><strong>경품 지급</strong></td>
-              <td align="right"><input name="button222" type="button" class="input02"  onclick="javascript:location.href='{href.p_write}';" value="경품지급등록" />
-                &nbsp; </td>
-            </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td height="10"><table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#aaaaaa">
-            <tr align="center" bgcolor="#EBF9FA" height="25">
-              <td width="17%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><strong>경품 지급일 </strong></td>
-              <td width="32%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><span class="point"><strong>경품명</strong></span></td>
-              <td width="34%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><span class="point"><strong>메모</strong></span></td>
-              <td width="17%" bgcolor="#D2BF7E" class="blue_soft0"><strong>수정/삭제</strong></td>
-            </tr>
-          {KPRESENT}
-              <block name="kpresent">
-                <tr bgcolor='#ffffff' height="25" align="center">
-                  <td>{kpresent_list.pdate}</td>
-                  <td align="center">{kpresent_list.present}</td>
-                  <td align="center">{kpresent_list.memo}</td>
-                  <td align="center"><a href="{href.p_modify}">수정</a> / <a href="{href.p_delete}" onClick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
-                </tr>
-              </block name="kpresent">
-              <block name="nokpresent">
-                <tr bgcolor='#ffffff'>
-                  <td colspan='8' height="50" align="center">지급 된 경품이 없습니다.</td>
-                </tr>
-              </block name="nokpresent">
-        </table></td>
-      </tr>
-    </table>
-    <br>
-    <br></td>
+	<td><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+	  <tr valign="top">
+		<td width="97%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			  <td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+			  <td background="/images/admin/tbox_bg.gif"><b>K-Point 회원정보 </b></td>
+			  <td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+		  </table>
+			<br>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+			  <tr>
+				<td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+					  <td height="25"><strong>포인트 조회 </strong></td>
+					  <td align="right"><input name="button3" type="button" class="input02"  onclick="javascript:location.href='{href.klist}';" value="목록보기" />
+						  <input name="button" type="button"  onClick="location.href='{href.season}'" value="시즌정보등록"/>
+						&nbsp; </td>
+					</tr>
+				</table></td>
+			  </tr>
+			  <tr>
+				<td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#aaaaaa">
+					<tr>
+					  <td width="16%" height="25" align="center" valign="middle" bgcolor="#D2BF7E">시즌</td>
+					  <td width="19%" align="center" valign="middle" bgcolor="#D2BF7E">카드번호</td>
+					  <td width="16%" align="center" valign="middle" bgcolor="#D2BF7E">총 포인트 </td>
+					  <td width="13%" align="center" valign="middle" bgcolor="#D2BF7E">상태</td>
+					  <td width="15%" align="center" valign="middle" bgcolor="#D2BF7E">조회</td>
+					  <td width="21%" align="center" valign="middle" bgcolor="#D2BF7E">수정 / 삭제</td>
+					</tr>
+				  {LIST}
+				  <block name="list">
+					<tr>
+					  <td height="25" align="center" bgcolor="#F0EBD6">{list.s_name}</td>
+					  <td align="center" bgcolor="#F0EBD6">{list.accountno}</td>
+					  <td align="center" bgcolor="#F0EBD6">{list.balance}</td>
+					  <td align="center" bgcolor="#F0EBD6">{list.state}</td>
+					  <td align="center" bgcolor="#F0EBD6"><a href="{href.inquiry}">조회</a></td>
+					  <td align="center" bgcolor="#F0EBD6"><a href="{href.s_modify}">수정</a> / <a href="{href.s_delete}" onClick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
+					</tr>
+				  </block name="list">
+				  <block name="nolist">
+					<tr>
+					  <td height="40" colspan="6" align="center" bgcolor="#F0EBD6">해당 시즌의 포인트 정보가 없습니다. </td>
+					</tr>
+				  </block name="nolist">
+				</table></td>
+			  </tr>
+			  <tr>
+				<td height="10"></td>
+			  </tr>
+			  <tr>
+				<td height="25"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+					  <td><strong>포인트 상세보기</strong></td>
+					  <td align="right">&nbsp;</td>
+					</tr>
+				</table></td>
+			  </tr>
+			  <tr>
+				<td>{INQUIRY}</td>
+			  </tr>
+			  <tr>
+				<td height="10"></td>
+			  </tr>
+			</table>
+		  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+			  <block name="noinquiry">
+				<tr>
+				  <td height="35" align="center"><table width="100%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#aaaaaa">
+					  <tr bgcolor="#F5F5F5">
+						<td height="40" align="center" bgcolor="#F0EBD6">해당 시즌의 포인트 정보가 없습니다. <br>
+						  위 포인트 조회 중 해당 시즌 <span class="bmails00104"><strong>조회</strong></span> 버튼을 클릭하세요. </td>
+					  </tr>
+				  </table></td>
+				</tr>
+			  </block name="noinquiry">
+			  <block name="inquiry">
+				<tr>
+				  <td height="10"></td>
+				</tr>
+				<tr>
+				  <td><table width="100%" border="0" align="center" cellpadding="8" cellspacing="1" bgcolor="#aaaaaa">
+					  <tr bgcolor="#F5F5F5">
+						<td width="17%" height="50" align="center" bgcolor="#F0EBD6"><span class="style4"><strong>회원명</strong></span></td>
+						<td width="32%" bgcolor="#FFFFFF">&nbsp;<span class="style4"><strong>{kpointinfo.name}</strong></span></td>
+						<td width="17%" align="center" bgcolor="#F0EBD6"><span class="style4"><strong>총 포인트 </strong></span></td>
+						<td width="34%" bgcolor="#FFFFFF">&nbsp;<span class="style4"><strong>{kpointinfo.balance}</strong></span></td>
+					  </tr>
+					  <tr bgcolor="#F5F5F5">
+						<td width="17%" height="50" align="center" bgcolor="#F0EBD6"><span class="style4"><strong>시즌</strong></span></td>
+						<td width="32%" bgcolor="#FFFFFF">&nbsp;<span class="style4"><span class="style5">{kpointinfo.s_name}</span></span></td>
+						<td width="17%" align="center" bgcolor="#F0EBD6"><span class="style4"><strong>카드번호</strong></span></td>
+						<td width="34%" bgcolor="#FFFFFF">&nbsp;&nbsp;<span class="style4"><strong>{kpointinfo.accountno}</strong></span></td>
+					  </tr>
+					  <tr bgcolor="#F5F5F5">
+						<td width="17%" height="25" align="center" bgcolor="#F0EBD6"><span class="point">등록일자</span></td>
+						<td width="32%" bgcolor="#FFFFFF">{kpointinfo.rdate}</td>
+						<td width="17%" align="center" bgcolor="#F0EBD6"><span class="point">상태</span></td>
+						<td width="34%" bgcolor="#FFFFFF">&nbsp;{kpointinfo.state}</td>
+					  </tr>
+				  </table></td>
+				</tr>
+				<tr>
+				  <td height="10"></td>
+				</tr>
+				<tr>
+				  <td height="25"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+					  <tr>
+						<td><strong>포인트적립 내역 </strong></td>
+						<td align="right"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+							  <td align="right"><input name="button32" type="button" class="input02"  onclick="on_ExcelExport()" value="Excel 다운" />
+								  <input name="button223" type="button" class="input02"  onclick="javascript:location.href='{href.win}';" value="승리포인트일괄등록" />
+								  <input name="button2232" type="button" class="input02"  onclick="javascript:location.href='{href.windelete}';" value="승리포인트일괄삭제" />
+								  <input name="button22" type="button" class="input02"  onclick="javascript:location.href='{href.write}';" value=" 포인트등록 " />
+								&nbsp; </td>
+							</tr>
+						</table></td>
+					  </tr>
+				  </table></td>
+				</tr>
+				<tr>
+				  <td><table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#aaaaaa">
+					  <tr align="center" bgcolor="#EBF9FA" height="25">
+						<td width="14%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><strong>포인트 적립일 </strong></td>
+						<td width="12%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><strong>카드번호</strong></td>
+						<td width="17%" bgcolor="#D2BF7E" class="blue_soft0"><span class="point"><strong>적요</strong></span></td>
+						<td width="30%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><span class="point"><strong>내용</strong></span></td>
+						<td width="10%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><span class="point"><strong>포인트</strong></span></td>
+						<td width="17%" bgcolor="#D2BF7E" class="blue_soft0"><strong>수정/삭제</strong></td>
+					  </tr>
+					{KPOINT_LIST}
+					<tr align="center" bgcolor="#EBF9FA" height="25">
+					  <td height="15" colspan="4" bgcolor="#ECEEA7" class="blue_soft0"><strong>합계</strong></td>
+					  <td height="15" align="right" bgcolor="#ECEEA7" class="blue_soft0"><strong>{kpointinfo.balance}</strong></td>
+					  <td width="17%" bgcolor="#ECEEA7" class="blue_soft0">&nbsp;</td>
+					</tr>
+				  </table></td>
+				</tr>
+			  </block name="inquiry">
+			</table>
+		  <table width="100%" align="center">
+			  <block name="kpoint_list">
+				<tr bgcolor='#ffffff' height="25" align="center">
+				  <td>{kpoint_list.rdate}</td>
+				  <td align="center">{kpoint_list.accountno}</td>
+				  <td align="center">{kpoint_list.type}</td>
+				  <td align="center">{kpoint_list.remark}</td>
+				  <td align="right">{kpoint_list.deposit}</td>
+				  <td align="center"><a href="{href.pl_modify}">수정</a> / <a href="{href.pl_delete}" onClick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
+				</tr>
+			  </block name="kpoint_list">
+			  <block name="nokpoint_list">
+				<tr bgcolor='#ffffff'>
+				  <td colspan='8' height="50" align="center">포인트 적립 내역이 없습니다.</td>
+				</tr>
+			  </block name="nokpoint_list">
+			</table></td>
+	  </tr>
+	  <tr>
+		<td height="10"></td>
+	  </tr>
+	  <tr>
+		<td height="25"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td><strong>경품 지급</strong></td>
+			  <td align="right"><input name="button222" type="button" class="input02"  onclick="javascript:location.href='{href.p_write}';" value="경품지급등록" />
+				&nbsp; </td>
+			</tr>
+		</table></td>
+	  </tr>
+	  <tr>
+		<td height="10"><table width="100%" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#aaaaaa">
+			<tr align="center" bgcolor="#EBF9FA" height="25">
+			  <td width="17%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><strong>경품 지급일 </strong></td>
+			  <td width="32%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><span class="point"><strong>경품명</strong></span></td>
+			  <td width="34%" height="15" bgcolor="#D2BF7E" class="blue_soft0"><span class="point"><strong>메모</strong></span></td>
+			  <td width="17%" bgcolor="#D2BF7E" class="blue_soft0"><strong>수정/삭제</strong></td>
+			</tr>
+		  {KPRESENT}
+			  <block name="kpresent">
+				<tr bgcolor='#ffffff' height="25" align="center">
+				  <td>{kpresent_list.pdate}</td>
+				  <td align="center">{kpresent_list.present}</td>
+				  <td align="center">{kpresent_list.memo}</td>
+				  <td align="center"><a href="{href.p_modify}">수정</a> / <a href="{href.p_delete}" onClick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
+				</tr>
+			  </block name="kpresent">
+			  <block name="nokpresent">
+				<tr bgcolor='#ffffff'>
+				  <td colspan='8' height="50" align="center">지급 된 경품이 없습니다.</td>
+				</tr>
+			  </block name="nokpresent">
+		</table></td>
+	  </tr>
+	</table>
+	<br>
+	<br></td>
   </tr>
 </table> 
 </body>

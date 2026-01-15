@@ -201,212 +201,212 @@ function checkForm() {
 <input type=hidden name=country value=kr style="margin:0px ">
 <table width="760" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td height="52"><table width="760" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="370"><img src="/images/2011/image/sub_title_12_1.jpg" width="420" height="42" /></td>
-        <td>&nbsp;</td>
-        <td align="right" class="sitemap"> KB STARS 회원 &gt; 회원가입</td>
-      </tr>
-    </table></td>
+	<td height="52"><table width="760" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+		<td width="370"><img src="/images/2011/image/sub_title_12_1.jpg" width="420" height="42" /></td>
+		<td>&nbsp;</td>
+		<td align="right" class="sitemap"> KB STARS 회원 &gt; 회원가입</td>
+	  </tr>
+	</table></td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
+	<td>&nbsp;</td>
   </tr>
   <tr>
-    <td align="center"><table width="680" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td><table width="680" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td height="1" bgcolor="#38342f"></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35"  bgcolor="#f6f6f6">&nbsp;이름(<span class="style1">*</span>)&nbsp;&nbsp;</td>
-                <td width="550" bgcolor="#f6f6f6"><input name="name" type="text" id="name" size="15" value="{session.join_name}"  hname="이름을 입력해 주세요." required readonly=""/>                  &nbsp;</td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" >&nbsp;주민등록번호(<span class="style1">*</span>)&nbsp;</td>
-                <td width="550"><input name="idnum1" type="text" id="idnum1" size="8" value="{session.join_jumin1}"   hname="주민등록번호를 입력해 주세요." required  readonly=""/>                  &nbsp;-&nbsp;
-                  <input name="idnum2" type="password" id="idnum2" size="8" value="{session.join_jumin2}"   hname="주민등록번호를 입력해 주세요." required readonly=""/>                  &nbsp;(주민등록번호를&nbsp;도용하면&nbsp;회원자격이 상실될 수 있습니다.)</td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;생년월일(<span class="style1">*</span>)&nbsp;</td>
-                <td width="550" bgcolor="#f6f6f6"><select name="birth_lunar" id="birth_lunar">
-                  <option value="+" selected="selected">양력</option>
-                  <option value="-">음력</option>
-                </select>
-                  <input name="birth1" type="text" id="birth1" value="{logon.birth1}" size="5" maxlength="4" hname="생년월일을 입력 해 주세요." required="required" />
-                  년
-                  <input name="birth2" type="text" id="birth2" value="{logon.birth2}" size="3" maxlength="2" hname="생년월일을 입력 해 주세요." required="required" />
-                  월
-                  <input name="birth3" type="text" id="birth3" value="{logon.birth3}" size="3" maxlength="2" hname="생년월일을 입력 해 주세요." required="required" />
-                  일 (2000년 01월 01일)</td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" >&nbsp;아이디(<span class="style1">*</span>)</td>
-                <td width="550"><input name="userid" type="text" id="userid" size="15" hname="아이디를 입력해 주세요." required />                  &nbsp;<a href="#" onclick="certify_userid(); return false;"><img src="/images/2011/image/board_btn_retake.jpg" width="56" height="24" border="0" align="absmiddle" /></a>&nbsp;(아이디는 5자리 이상 -&nbsp;15자 이내)</td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;비밀번호(<span class="style1">*</span>)&nbsp;</td>
-                <td width="550" bgcolor="#f6f6f6"><input name="passwd" type="password" id="passwd" size="20" maxlength="20" hname="비밀번호를 입력해 주세요." required />                  &nbsp;&nbsp; (6 ~20자 이내 영문, 숫자로 등록 가능합니다.)</td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" >&nbsp;비밀번호확인(<span class="style1">*</span>)</td>
-                <td width="550"><input name="passwd_ok" type="password" id="passwd_ok" size="20" maxlength="20" hname="비밀번호를 입력해 주세요." required /></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;주소(<span class="style1">*</span>)</td>
-                <td width="550" bgcolor="#f6f6f6"><input name="zip1" type="text" id="zip1" size="4" maxlength="3" readonly=""  hname="우편번호를 입력해 주세요." required />                  &nbsp;-&nbsp;
-                  <input name="zip2" type="text" id="zip2" size="4"  readonly="" hname="우편번호를 입력해 주세요." required />                  &nbsp;<a href="#"  onClick="search_zip();return false;"><img src="/images/2011/image/board_btn_add.jpg" width="56" height="24" border="0" align="absmiddle" /></a></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35">&nbsp;</td>
-                <td width="120" height="45" bgcolor="#F6F6F6" >&nbsp;</td>
-                <td width="550" bgcolor="#F6F6F6"><input name="address" type="text" id="address" size="40" readonly="" hname="주소를 입력해 주세요." required />
-                  <br />
-                  상세주소:
-                  <input name="address2" type="text" id="address2" size="33" hname="상세 주소를 입력해 주세요." required /></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" >&nbsp;이메일(<span class="style1">*</span>)</td>
-                <td width="550"><input name="email" type="text" id="email" size="30" hname="이메일을 입력해 주세요." required /></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35">&nbsp;</td>
-                <td width="120" height="35" >&nbsp;</td>
-                <td width="550"><input name="yesmail" type="checkbox" value="1" id="yesmail" checked="checked" />
-                  KB STARS 메일링 서비스를 받으시겠습니까?</td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;전화번호</td>
-                <td width="550" bgcolor="#f6f6f6"><input name="tel1" class="inputclass" id="tel1" onkeyup="focus_move_tel2()" size="4" maxlength="3" />                  &nbsp;-&nbsp;
-                  <input name="tel2" class="inputclass" id="tel2" onkeyup="focus_move_tel3()" size="5" maxlength="4" />                  &nbsp;-&nbsp;
-                  <input name="tel3" class="inputclass" id="tel3" size="5" maxlength="4" /></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" >&nbsp;휴대폰</td>
-                <td width="550"><select name="hp1">
-                  <option selected="selected">010</option>
-                  <option>011</option>
-                  <option>016</option>
-                  <option>017</option>
-                  <option>018</option>
-                  <option>019</option>
-                </select>                  &nbsp;-&nbsp;
-                <input name="hp2" class="inputclass" id="hp2" onkeyup="focus_move_hp3()" size="5" maxlength="4" />                &nbsp;-&nbsp;
-                <input name="hp3" class="inputclass" id="hp3" size="5" maxlength="4" /></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35">&nbsp;</td>
-                <td width="120" height="35" >&nbsp;</td>
-                <td width="550"><input name="yessms" type="checkbox" value="1" id="yessms" checked="checked" />
+	<td align="center"><table width="680" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+		<td><table width="680" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+			<td height="1" bgcolor="#38342f"></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35"  bgcolor="#f6f6f6">&nbsp;이름(<span class="style1">*</span>)&nbsp;&nbsp;</td>
+				<td width="550" bgcolor="#f6f6f6"><input name="name" type="text" id="name" size="15" value="{session.join_name}"  hname="이름을 입력해 주세요." required readonly=""/>				  &nbsp;</td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" >&nbsp;주민등록번호(<span class="style1">*</span>)&nbsp;</td>
+				<td width="550"><input name="idnum1" type="text" id="idnum1" size="8" value="{session.join_jumin1}"   hname="주민등록번호를 입력해 주세요." required  readonly=""/>				  &nbsp;-&nbsp;
+				  <input name="idnum2" type="password" id="idnum2" size="8" value="{session.join_jumin2}"   hname="주민등록번호를 입력해 주세요." required readonly=""/>				  &nbsp;(주민등록번호를&nbsp;도용하면&nbsp;회원자격이 상실될 수 있습니다.)</td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;생년월일(<span class="style1">*</span>)&nbsp;</td>
+				<td width="550" bgcolor="#f6f6f6"><select name="birth_lunar" id="birth_lunar">
+				  <option value="+" selected="selected">양력</option>
+				  <option value="-">음력</option>
+				</select>
+				  <input name="birth1" type="text" id="birth1" value="{logon.birth1}" size="5" maxlength="4" hname="생년월일을 입력 해 주세요." required="required" />
+				  년
+				  <input name="birth2" type="text" id="birth2" value="{logon.birth2}" size="3" maxlength="2" hname="생년월일을 입력 해 주세요." required="required" />
+				  월
+				  <input name="birth3" type="text" id="birth3" value="{logon.birth3}" size="3" maxlength="2" hname="생년월일을 입력 해 주세요." required="required" />
+				  일 (2000년 01월 01일)</td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" >&nbsp;아이디(<span class="style1">*</span>)</td>
+				<td width="550"><input name="userid" type="text" id="userid" size="15" hname="아이디를 입력해 주세요." required />				  &nbsp;<a href="#" onclick="certify_userid(); return false;"><img src="/images/2011/image/board_btn_retake.jpg" width="56" height="24" border="0" align="absmiddle" /></a>&nbsp;(아이디는 5자리 이상 -&nbsp;15자 이내)</td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;비밀번호(<span class="style1">*</span>)&nbsp;</td>
+				<td width="550" bgcolor="#f6f6f6"><input name="passwd" type="password" id="passwd" size="20" maxlength="20" hname="비밀번호를 입력해 주세요." required />				  &nbsp;&nbsp; (6 ~20자 이내 영문, 숫자로 등록 가능합니다.)</td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" >&nbsp;비밀번호확인(<span class="style1">*</span>)</td>
+				<td width="550"><input name="passwd_ok" type="password" id="passwd_ok" size="20" maxlength="20" hname="비밀번호를 입력해 주세요." required /></td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;주소(<span class="style1">*</span>)</td>
+				<td width="550" bgcolor="#f6f6f6"><input name="zip1" type="text" id="zip1" size="4" maxlength="3" readonly=""  hname="우편번호를 입력해 주세요." required />				  &nbsp;-&nbsp;
+				  <input name="zip2" type="text" id="zip2" size="4"  readonly="" hname="우편번호를 입력해 주세요." required />				  &nbsp;<a href="#"  onClick="search_zip();return false;"><img src="/images/2011/image/board_btn_add.jpg" width="56" height="24" border="0" align="absmiddle" /></a></td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35">&nbsp;</td>
+				<td width="120" height="45" bgcolor="#F6F6F6" >&nbsp;</td>
+				<td width="550" bgcolor="#F6F6F6"><input name="address" type="text" id="address" size="40" readonly="" hname="주소를 입력해 주세요." required />
+				  <br />
+				  상세주소:
+				  <input name="address2" type="text" id="address2" size="33" hname="상세 주소를 입력해 주세요." required /></td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" >&nbsp;이메일(<span class="style1">*</span>)</td>
+				<td width="550"><input name="email" type="text" id="email" size="30" hname="이메일을 입력해 주세요." required /></td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35">&nbsp;</td>
+				<td width="120" height="35" >&nbsp;</td>
+				<td width="550"><input name="yesmail" type="checkbox" value="1" id="yesmail" checked="checked" />
+				  KB STARS 메일링 서비스를 받으시겠습니까?</td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;전화번호</td>
+				<td width="550" bgcolor="#f6f6f6"><input name="tel1" class="inputclass" id="tel1" onkeyup="focus_move_tel2()" size="4" maxlength="3" />				  &nbsp;-&nbsp;
+				  <input name="tel2" class="inputclass" id="tel2" onkeyup="focus_move_tel3()" size="5" maxlength="4" />				  &nbsp;-&nbsp;
+				  <input name="tel3" class="inputclass" id="tel3" size="5" maxlength="4" /></td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" >&nbsp;휴대폰</td>
+				<td width="550"><select name="hp1">
+				  <option selected="selected">010</option>
+				  <option>011</option>
+				  <option>016</option>
+				  <option>017</option>
+				  <option>018</option>
+				  <option>019</option>
+				</select>				  &nbsp;-&nbsp;
+				<input name="hp2" class="inputclass" id="hp2" onkeyup="focus_move_hp3()" size="5" maxlength="4" />				&nbsp;-&nbsp;
+				<input name="hp3" class="inputclass" id="hp3" size="5" maxlength="4" /></td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35">&nbsp;</td>
+				<td width="120" height="35" >&nbsp;</td>
+				<td width="550"><input name="yessms" type="checkbox" value="1" id="yessms" checked="checked" />
    KB STARS SMS 문자서비스를 받으시겠습니까?</td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;학력</td>
-                <td width="550" bgcolor="#f6f6f6" class="gibon_font"><input type="text" name="school" id="school" /></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" >&nbsp;재학중인 학교명</td>
-                <td width="551"><span class="gibon_font">
-                  <input type="text" name="school_name" id="school_name" />
-                  &nbsp;<img src="http://webdev.kdblifewinnus.com/images/dot_2.gif" width="12" height="7" border="0" />&nbsp;청주 중.고등학교에  재학중 이신분만 기재</span></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
-                <td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;좋아하는 선수</td>
-                <td width="550" bgcolor="#f6f6f6"><input name="fav_player" type="text" id="fav_player" /></td>
-              </tr>
-            </table></td>
-          </tr>
-          <tr>
-            <td height="1" bgcolor="#38342f"></td>
-          </tr>
-        </table></td>
-      </tr>
-      <tr>
-        <td height="100" align="center"><table width="300" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td><input type="image" src="/images/2011/image/btn_join_end.jpg" width="95" height="31" /></td>
-            <td>&nbsp;</td>
-            <td><a href="javascript:document.join.reset()"><img src="/images/2011/image/no_join.jpg" width="95" height="31" border="0" align="absmiddle" /></a></td>
-          </tr>
-        </table></td>
-      </tr>
-    </table></td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;학력</td>
+				<td width="550" bgcolor="#f6f6f6" class="gibon_font"><input type="text" name="school" id="school" /></td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" >&nbsp;재학중인 학교명</td>
+				<td width="551"><span class="gibon_font">
+				  <input type="text" name="school_name" id="school_name" />
+				  &nbsp;<img src="http://webdev.kdblifewinnus.com/images/dot_2.gif" width="12" height="7" border="0" />&nbsp;청주 중.고등학교에  재학중 이신분만 기재</span></td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="35"><table width="680" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="10" height="35"><img src="/images/2011/image/player_pink_dot2.jpg" width="10" height="35" /></td>
+				<td width="120" height="35" bgcolor="#f6f6f6" >&nbsp;좋아하는 선수</td>
+				<td width="550" bgcolor="#f6f6f6"><input name="fav_player" type="text" id="fav_player" /></td>
+			  </tr>
+			</table></td>
+		  </tr>
+		  <tr>
+			<td height="1" bgcolor="#38342f"></td>
+		  </tr>
+		</table></td>
+	  </tr>
+	  <tr>
+		<td height="100" align="center"><table width="300" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+			<td><input type="image" src="/images/2011/image/btn_join_end.jpg" width="95" height="31" /></td>
+			<td>&nbsp;</td>
+			<td><a href="javascript:document.join.reset()"><img src="/images/2011/image/no_join.jpg" width="95" height="31" border="0" align="absmiddle" /></a></td>
+		  </tr>
+		</table></td>
+	  </tr>
+	</table></td>
   </tr>
 </table>
 </form>

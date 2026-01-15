@@ -7,42 +7,42 @@ function _CloseOnEsc() {
   if (event.keyCode == 27) { window.close(); return; }
 }
 
-function Init() {                                                       // run on page load
+function Init() {													   // run on page load
   document.body.onkeypress = _CloseOnEsc;
 
   color = window.dialogArguments;
   color = ValidateColor(color) || '000000';
-  View(color);                                                          // set default color
+  View(color);														  // set default color
 }
 
-function View(color) {                  // preview color
+function View(color) {				  // preview color
   document.all.ColorPreview.style.backgroundColor = '#' + color;
   document.all.ColorHex.value = '#' + color;
 }
 
-function Set(string) {                   // select color
+function Set(string) {				   // select color
   color = ValidateColor(string);
-  if (color == null) { alert("Invalid color code: " + string); }        // invalid color
-  else {                                                                // valid color
-    View(color);                          // show selected color
-    window.returnValue = color;           // set return value
-    window.close();                       // close dialog
+  if (color == null) { alert("Invalid color code: " + string); }		// invalid color
+  else {																// valid color
+	View(color);						  // show selected color
+	window.returnValue = color;		   // set return value
+	window.close();					   // close dialog
   }
 }
 
-function ValidateColor(string) {                // return valid color code
+function ValidateColor(string) {				// return valid color code
   string = string || '';
   string = string + "";
   string = string.toUpperCase();
   chars = '0123456789ABCDEF';
   out   = '';
 
-  for (i=0; i<string.length; i++) {             // remove invalid color chars
-    schar = string.charAt(i);
-    if (chars.indexOf(schar) != -1) { out += schar; }
+  for (i=0; i<string.length; i++) {			 // remove invalid color chars
+	schar = string.charAt(i);
+	if (chars.indexOf(schar) != -1) { out += schar; }
   }
-    
-  if (out.length != 6) { return null; }            // check length
+	
+  if (out.length != 6) { return null; }			// check length
   return out;
 } 
 

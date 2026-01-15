@@ -18,19 +18,19 @@ function setid(zip1, zip2, address)
 </style>
 <table width="450" height="81" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr align="center">
-    <td height="15" valign="top"> </td>
+	<td height="15" valign="top"> </td>
   </tr>
   <tr align="center">
-    <td width="482" height="26" align="left" valign="top"><img src="images/s_join_searchzip_title.gif" width="430" height="23"></td>
+	<td width="482" height="26" align="left" valign="top"><img src="images/s_join_searchzip_title.gif" width="430" height="23"></td>
   </tr>
   <tr align="center">
-    <td height="50" valign="bottom">찾고자 하는 주소의 동/읍/면 이름을 입력하세요.<br>
-    (예:대치동,곡성읍,오곡면)</td>
+	<td height="50" valign="bottom">찾고자 하는 주소의 동/읍/면 이름을 입력하세요.<br>
+	(예:대치동,곡성읍,오곡면)</td>
   </tr>
   <tr align="center">
-    <td height="60"><form {form_default}>
-     <table><tr><td valign="middle"><input name="region" type="text" size="30"></td>
-<td>&nbsp;<input type="image" src="images/s_join_searchzip_search_btn.gif" width="53" height="25"></td></table>    </form></td>
+	<td height="60"><form {form_default}>
+	 <table><tr><td valign="middle"><input name="region" type="text" size="30"></td>
+<td>&nbsp;<input type="image" src="images/s_join_searchzip_search_btn.gif" width="53" height="25"></td></table>	</form></td>
   </tr>
 </table>
 <opt name="RESULT">
@@ -41,26 +41,26 @@ window.resizeTo(560,580);
 </script>
 <table width="450" height="81" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr align="center">
-    <td width="482" valign="top"><table width="94%"  border="1" cellpadding="7" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
-      <tr>
-        <td bgcolor="#FFFFFF"><table width="100%"  border="0" cellspacing="0" cellpadding="5">
+	<td width="482" valign="top"><table width="94%"  border="1" cellpadding="7" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
+	  <tr>
+		<td bgcolor="#FFFFFF"><table width="100%"  border="0" cellspacing="0" cellpadding="5">
 		{RESULT}<block name="resultzip">
-          <tr>
-            <td width="76%" bgcolor="#FBFBFB">{zip1}-{zip2} {add1} {add2} {add3}</td>
-            <td width="24%" bgcolor="#FBFBFB"><img src="images/s_ok_btn.gif" width="53" height="25"  OnClick="setid('{zip1}', '{zip2}', '{add1} {add2}')" style="cursor:pointer"></td>
-          </tr>
+		  <tr>
+			<td width="76%" bgcolor="#FBFBFB">{zip1}-{zip2} {add1} {add2} {add3}</td>
+			<td width="24%" bgcolor="#FBFBFB"><img src="images/s_ok_btn.gif" width="53" height="25"  OnClick="setid('{zip1}', '{zip2}', '{add1} {add2}')" style="cursor:pointer"></td>
+		  </tr>
 		  </block name="resultzip">
 		  <block name="nozip">
 		  <tr>
-            <td colspan="2" bgcolor="#FBFBFB"><div align="center">찾으시는 주소가 없습니다. </div></td>
-            </tr>
+			<td colspan="2" bgcolor="#FBFBFB"><div align="center">찾으시는 주소가 없습니다. </div></td>
+			</tr>
 		  </block name="nozip">
-        </table></td>
-      </tr>
-    </table></td>
+		</table></td>
+	  </tr>
+	</table></td>
   </tr>
   <tr align="center">
-    <td height="10"></td>
+	<td height="10"></td>
   </tr>
 </table>
 </opt name="RESULT">

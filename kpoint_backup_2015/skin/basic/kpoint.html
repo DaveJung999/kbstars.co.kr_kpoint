@@ -50,7 +50,7 @@ function set_change_sname(f, val){
 
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td>
+	<td>
 		
 		<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
 		  <tr valign="top">
@@ -68,77 +68,77 @@ function set_change_sname(f, val){
 			  <table width="100%" border=0 cellpadding='3' cellspacing='1' bgcolor='#aaaaaa'>
 <form  name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
 <input type="hidden" name="s_name" value="{s_name}">
-                <tr>
-                  <td bgcolor='#D2BF7E'><b>K-Point {kpoint.subtitle}</b></td>
-                </tr>
-                <tr>
-                  <td  bgcolor='#F8F8EA' nowrap><table width="100%" border=0 cellpadding='8' cellspacing='1' bgcolor='#aaaaaa'>
-                  	<opt name="list_logon.uid">
-                    <tr>
-                      <td width="16%" height="50" align="center" bgcolor='#F0EBD6'><strong><span class="style4">회원명</span></strong></td>
-                      <td width="34%" bgcolor='#FFFFFF' ><strong><span class="style4">{list_logon.name}</span></strong></td>
-                      <td width="16%" height="50" align="center" bgcolor='#F0EBD6'><strong><span class="style4">총 포인트</span></strong></td>
-                      <td width="34%" bgcolor='#FFFFFF' ><strong><span class="style4">{list_logon.balance}</span></strong></td>
-                    </tr>
-                    <tr>
-                      <td height="50" align="center" bgcolor='#F0EBD6' class="style4"><strong>시즌</strong></td>
-                      <td bgcolor='#FFFFFF' class="style4" ><strong><font color="#FF0000">{s_name}</font></strong></td>
-                      <td height="50" align="center" bgcolor='#F0EBD6'><strong><span class="style4">카드번호</span></strong></td>
-                      <td bgcolor='#FFFFFF' ><strong><span class="style4">{list_logon.accountno}</span></strong></td>
-                    </tr>
-                    <tr>
-                      <td height="50" align="center" bgcolor='#F0EBD6' class="style4"><strong>서포터즈 구분</strong></td>
-                      <td bgcolor='#FFFFFF' class="style4" ><strong>{list_logon.spts_cate}</strong></td>
-                      <td height="50" align="center" bgcolor='#F0EBD6'>&nbsp;</td>
-                      <td bgcolor='#FFFFFF' >&nbsp;</td>
-                    </tr>
-                    </opt name="list_logon.uid">
-                    <tr>
-                      <td bgcolor='#F0EBD6'>시즌(<span><span class="style1">*</span>)</span></td>
-                      <td colspan="3" bgcolor='#F8F8EA' >
-                        <select name="s_id" onChange="set_change_sname(this.form, this.options[this.selectedIndex].text)">{sselect}
-                        </select>
-                        </td>
-                    </tr>
+				<tr>
+				  <td bgcolor='#D2BF7E'><b>K-Point {kpoint.subtitle}</b></td>
+				</tr>
+				<tr>
+				  <td  bgcolor='#F8F8EA' nowrap><table width="100%" border=0 cellpadding='8' cellspacing='1' bgcolor='#aaaaaa'>
+				  	<opt name="list_logon.uid">
+					<tr>
+					  <td width="16%" height="50" align="center" bgcolor='#F0EBD6'><strong><span class="style4">회원명</span></strong></td>
+					  <td width="34%" bgcolor='#FFFFFF' ><strong><span class="style4">{list_logon.name}</span></strong></td>
+					  <td width="16%" height="50" align="center" bgcolor='#F0EBD6'><strong><span class="style4">총 포인트</span></strong></td>
+					  <td width="34%" bgcolor='#FFFFFF' ><strong><span class="style4">{list_logon.balance}</span></strong></td>
+					</tr>
+					<tr>
+					  <td height="50" align="center" bgcolor='#F0EBD6' class="style4"><strong>시즌</strong></td>
+					  <td bgcolor='#FFFFFF' class="style4" ><strong><font color="#FF0000">{s_name}</font></strong></td>
+					  <td height="50" align="center" bgcolor='#F0EBD6'><strong><span class="style4">카드번호</span></strong></td>
+					  <td bgcolor='#FFFFFF' ><strong><span class="style4">{list_logon.accountno}</span></strong></td>
+					</tr>
+					<tr>
+					  <td height="50" align="center" bgcolor='#F0EBD6' class="style4"><strong>서포터즈 구분</strong></td>
+					  <td bgcolor='#FFFFFF' class="style4" ><strong>{list_logon.spts_cate}</strong></td>
+					  <td height="50" align="center" bgcolor='#F0EBD6'>&nbsp;</td>
+					  <td bgcolor='#FFFFFF' >&nbsp;</td>
+					</tr>
+					</opt name="list_logon.uid">
+					<tr>
+					  <td bgcolor='#F0EBD6'>시즌(<span><span class="style1">*</span>)</span></td>
+					  <td colspan="3" bgcolor='#F8F8EA' >
+						<select name="s_id" onChange="set_change_sname(this.form, this.options[this.selectedIndex].text)">{sselect}
+						</select>
+						</td>
+					</tr>
 
-                      <tr>
-                        <td bgcolor='#F0EBD6'>포인트적립일(<span><span class="style1">*</span>)</span></td>
-                        <td colspan="3" bgcolor='#F8F8EA' ><input name="rdate_date" type="text" id="rdate_date" value="{kpoint.rdate_date}" onClick="Calendar(this);" size="12" hname="포인트적립일을 입력하세요" required></td>
-                      </tr>
-                      <tr>
-                        <td bgcolor='#F0EBD6'>적요(<span class="style1">*</span>)</td>
-                        <td colspan="3" bgcolor='#F8F8EA' ><input name="type" type="radio" id="type" size="40" value="홈경기(주중)"  {type_checked_홈경기(주중)} onClick="set_remark(this.form, 1);">
-                        홈경기(주중)<input name="type" type="radio" id="type" size="40" value="홈경기(주말)"  {type_checked_홈경기(주말)} onClick="set_remark(this.form, 2);">
-                        홈경기(주말)
-                        <input name="type" type="radio" id="type" size="40" value="어웨이경기"  {type_checked_어웨이경기} onClick="set_remark(this.form, 3);">
-                        어웨이경기
-                          <input name="type" type="radio" id="radio" size="40" value="이벤트"  {type_checked_이벤트} onClick="set_remark(this.form, 4);">
+					  <tr>
+						<td bgcolor='#F0EBD6'>포인트적립일(<span><span class="style1">*</span>)</span></td>
+						<td colspan="3" bgcolor='#F8F8EA' ><input name="rdate_date" type="text" id="rdate_date" value="{kpoint.rdate_date}" onClick="Calendar(this);" size="12" hname="포인트적립일을 입력하세요" required></td>
+					  </tr>
+					  <tr>
+						<td bgcolor='#F0EBD6'>적요(<span class="style1">*</span>)</td>
+						<td colspan="3" bgcolor='#F8F8EA' ><input name="type" type="radio" id="type" size="40" value="홈경기(주중)"  {type_checked_홈경기(주중)} onClick="set_remark(this.form, 1);">
+						홈경기(주중)<input name="type" type="radio" id="type" size="40" value="홈경기(주말)"  {type_checked_홈경기(주말)} onClick="set_remark(this.form, 2);">
+						홈경기(주말)
+						<input name="type" type="radio" id="type" size="40" value="어웨이경기"  {type_checked_어웨이경기} onClick="set_remark(this.form, 3);">
+						어웨이경기
+						  <input name="type" type="radio" id="radio" size="40" value="이벤트"  {type_checked_이벤트} onClick="set_remark(this.form, 4);">
 이벤트
 <input name="type" type="radio" id="radio2" size="40" value="승리"  {type_checked_승리} onClick="set_remark(this.form, 5);"> 
 승리</td>
-                      </tr>
-                      <tr>
-                        <td bgcolor='#F0EBD6'>내용</td>
-                        <td colspan="3" bgcolor='#F8F8EA' ><input name="remark" type="text" id="remark" value="{kpoint.remark}" size="40"></td>
-                      </tr>
-                      <tr>
-                        <td bgcolor='#F0EBD6'>포인트(<span class="style1">*</span>)</td>
-                        <td colspan="3" bgcolor='#F8F8EA' ><input name="deposit" type="text" id="deposit" value="{kpoint.deposit}" size="6"></td>
-                      </tr>
-                    </table>
-              <br>
-                      <table width="100%" border=0 cellpadding='3' cellspacing='0'>
+					  </tr>
+					  <tr>
+						<td bgcolor='#F0EBD6'>내용</td>
+						<td colspan="3" bgcolor='#F8F8EA' ><input name="remark" type="text" id="remark" value="{kpoint.remark}" size="40"></td>
+					  </tr>
+					  <tr>
+						<td bgcolor='#F0EBD6'>포인트(<span class="style1">*</span>)</td>
+						<td colspan="3" bgcolor='#F8F8EA' ><input name="deposit" type="text" id="deposit" value="{kpoint.deposit}" size="6"></td>
+					  </tr>
+					</table>
+			  <br>
+					  <table width="100%" border=0 cellpadding='3' cellspacing='0'>
 
-                        <tr>
-                          <td align="center"><input type="submit" name="Submit" value=" 등  록 " onClick="return confirm('자료를 등록/수정합니다.');">
-                          &nbsp;  <input type="button" name="Submit2" value="목록보기" onClick="javascript:location.href='{href.inquiry}';"></td> 
-                        </tr>
-                  </table></td>
-                </tr></form>
-              </table></td>
+						<tr>
+						  <td align="center"><input type="submit" name="Submit" value=" 등  록 " onClick="return confirm('자료를 등록/수정합니다.');">
+						  &nbsp;  <input type="button" name="Submit2" value="목록보기" onClick="javascript:location.href='{href.inquiry}';"></td> 
+						</tr>
+				  </table></td>
+				</tr></form>
+			  </table></td>
 		  </tr>
 	  </table>
-    </td>
+	</td>
   </tr>
 </table> 
 </body>

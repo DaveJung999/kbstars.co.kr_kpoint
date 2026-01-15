@@ -19,8 +19,9 @@ require($_SERVER['DOCUMENT_ROOT'].'/sinc/header.php');
 
 $thisPath	= dirname(__FILE__) .'/'; // 마지막이 '/'으로 끝나야함
 
-setlocale(LC_CTYPE, 'ko_KR.eucKR'); //CSV데이타 추출시 한글깨짐방지
-//ECHO ('<meta http-equiv="content-type" content="text/html; charset=utf-8">');
+setlocale(LC_CTYPE, 'ko_KR.utf8');
+//setlocale(LC_CTYPE, 'ko_KR.eucKR'); //CSV데이타 추출시 한글깨짐방지
+ECHO ('<meta http-equiv="content-type" content="text/html; charset=utf-8">');
 
 
 $upfile_name = $_FILES['upfile']['name'];

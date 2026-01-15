@@ -7,109 +7,109 @@
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
   
   <tr>
-    <td width="434" height="25" class="nevy_violet">전체:{count.total} 오늘:{count.today} </td>
-    <td width="166" height="25" align="right" class="nevy_violet"><!--opt name="cateinfo.catelist">
-      <form style='border:0px;margin:0px;padding:0px' method="get">
-        <SELECT NAME="chagecate" onChange="javascript: window.location='list.php?db={dbinfo.db}&cateuid='+this.value;">
+	<td width="434" height="25" class="nevy_violet">전체:{count.total} 오늘:{count.today} </td>
+	<td width="166" height="25" align="right" class="nevy_violet"><!--opt name="cateinfo.catelist">
+	  <form style='border:0px;margin:0px;padding:0px' method="get">
+		<SELECT NAME="chagecate" onChange="javascript: window.location='list.php?db={dbinfo.db}&cateuid='+this.value;">
 			{cateinfo.catelist}
-        </SELECT>
-      </form>
+		</SELECT>
+	  </form>
 </opt name="cateinfo.catelist"--></td>
   </tr>
 </table>
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
   
   <tr>
-    <td colspan="5"><img src="images/board_listtable_top.gif" width="600" height="7"></td>
+	<td colspan="5"><img src="images/board_listtable_top.gif" width="600" height="7"></td>
   </tr>
   <tr>
-    <td width="50" height="30" align="center"><img src="images/board_listtable_1.gif" width="18" height="10"></td>
-    <td width="380" align="center"><img src="images/board_listtable_2.gif" width="19" height="10"></td>
-    <td width="70" align="center"><img src="images/board_listtable_3.gif" width="29" height="10"></td>
-    <td width="60" align="center"><img src="images/board_listtable_4.gif" width="28" height="10"></td>
-    <td width="40" align="center"><img src="images/board_listtable_5.gif" width="19" height="10"></td>
+	<td width="50" height="30" align="center"><img src="images/board_listtable_1.gif" width="18" height="10"></td>
+	<td width="380" align="center"><img src="images/board_listtable_2.gif" width="19" height="10"></td>
+	<td width="70" align="center"><img src="images/board_listtable_3.gif" width="29" height="10"></td>
+	<td width="60" align="center"><img src="images/board_listtable_4.gif" width="28" height="10"></td>
+	<td width="40" align="center"><img src="images/board_listtable_5.gif" width="19" height="10"></td>
   </tr>
   <tr>
-    <td colspan="5"><img src="images/board_listtable_bottom.gif" width="600" height="5"></td>
+	<td colspan="5"><img src="images/board_listtable_bottom.gif" width="600" height="5"></td>
   </tr>
   <tr>
-    <td height="5" colspan="5"></td>
+	<td height="5" colspan="5"></td>
   </tr>
 </table>
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
 {INFO}
 <block name="info">
   <tr>
-    <td width="50" height="30" align="center"><span class="style_board_kb">&lt;알림&gt;</span></td>
-    <td width="380" height="30">&nbsp;<a href="{list.href.read}"><strong><font color="#EF8E26">{list.cut_title}</font></strong></a></td>
-    <td width="70" height="30" align="center">{list.userid}</td>
-    <td width="60" height="30" align="center">{list.rdate_date}</td>
-    <td width="40" height="30" align="center">{list.hit}</td>
+	<td width="50" height="30" align="center"><span class="style_board_kb">&lt;알림&gt;</span></td>
+	<td width="380" height="30">&nbsp;<a href="{list.href.read}"><strong><font color="#EF8E26">{list.cut_title}</font></strong></a></td>
+	<td width="70" height="30" align="center">{list.userid}</td>
+	<td width="60" height="30" align="center">{list.rdate_date}</td>
+	<td width="40" height="30" align="center">{list.hit}</td>
   </tr>
   <tr>
-    <td height="1" colspan="5" bgcolor="#EEEEEE"></td>
+	<td height="1" colspan="5" bgcolor="#EEEEEE"></td>
   </tr>
 </block name="info">
 {LIST}
 <block name="list">
 
   <tr>
-    <td height="1" colspan="5" bgcolor="#EEEEEE"></td>
+	<td height="1" colspan="5" bgcolor="#EEEEEE"></td>
   </tr>
   <tr>
-    <td width="50" height="30" align="center">{list.no}</td>
-    <td width="380" height="30">&nbsp;<a href="{list.href.read}">{list.cut_title}</a></td>
-    <td width="70" height="30" align="center">{list.userid}</td>
-    <td width="60" height="30" align="center">{list.rdate_date}</td>
-    <td width="40" height="30" align="center">{list.hit}</td>
+	<td width="50" height="30" align="center">{list.no}</td>
+	<td width="380" height="30">&nbsp;<a href="{list.href.read}">{list.cut_title}</a></td>
+	<td width="70" height="30" align="center">{list.userid}</td>
+	<td width="60" height="30" align="center">{list.rdate_date}</td>
+	<td width="40" height="30" align="center">{list.hit}</td>
   </tr>
 </block name="list">
 <block name="nolist">
 <tr>
-    <td height="70" colspan="5" align="center">게시물이 하나도 없습니다. </td>
+	<td height="70" colspan="5" align="center">게시물이 하나도 없습니다. </td>
   </tr>
   <tr>
-    <td height="1" colspan="5" bgcolor="#EEEEEE"></td>
+	<td height="1" colspan="5" bgcolor="#EEEEEE"></td>
   </tr>
 </block name="nolist">
 <block name="nosearch">
 <tr>
-    <td height="70" colspan="5" align="center">'{sc_string}'가 포함된 게시물을 찾을 수가 없습니다.</td>
+	<td height="70" colspan="5" align="center">'{sc_string}'가 포함된 게시물을 찾을 수가 없습니다.</td>
   </tr>
   <tr>
-    <td height="1" colspan="5" bgcolor="#EEEEEE"></td>
+	<td height="1" colspan="5" bgcolor="#EEEEEE"></td>
   </tr>
 </block name="nosearch">
 </table>
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td height="10" colspan="3"> </td>
+	<td height="10" colspan="3"> </td>
   </tr>
   <tr>
-    <td width="49"><img src="images/board_listbottom_1.gif" width="49" height="40"></td>
-    <td align="center" background="images/board_listbottom_bg.gif"><a href="{href.write}"><img src="images/board_list_writebtn.gif" width="50" height="40" border="0"></a></td>
-    <td width="61"><img src="images/board_listbottom_2.gif" width="61" height="40"></td>
+	<td width="49"><img src="images/board_listbottom_1.gif" width="49" height="40"></td>
+	<td align="center" background="images/board_listbottom_bg.gif"><a href="{href.write}"><img src="images/board_list_writebtn.gif" width="50" height="40" border="0"></a></td>
+	<td width="61"><img src="images/board_listbottom_2.gif" width="61" height="40"></td>
   </tr>
 </table>
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
   
   <tr>
-    <td height="50" align="center">{FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</td>
+	<td height="50" align="center">{FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}</td>
   </tr>
   <tr>
-    <td align="center"><form name="board2search" style='margin : 0px' {form_search}>
-      <select name="sc_column">
-        <option value='title'>제목</option>
-        <option value='content'>내용</option>
-        <option value='userid'>작성자</option>
-      </select>
-      <input type="text" name="sc_string" size="20" style='height:21;' value="{get.sc_string}">
-      <input name="image" type="image" src="images/btn_search.gif" align="absmiddle" width="29" height="19">
-    </form></td>
+	<td align="center"><form name="board2search" style='margin : 0px' {form_search}>
+	  <select name="sc_column">
+		<option value='title'>제목</option>
+		<option value='content'>내용</option>
+		<option value='userid'>작성자</option>
+	  </select>
+	  <input type="text" name="sc_string" size="20" style='height:21;' value="{get.sc_string}">
+	  <input name="image" type="image" src="images/btn_search.gif" align="absmiddle" width="29" height="19">
+	</form></td>
   </tr
 >
   <tr>
-    <td align="center">&nbsp;</td>
+	<td align="center">&nbsp;</td>
   </tr
 >
 </table>

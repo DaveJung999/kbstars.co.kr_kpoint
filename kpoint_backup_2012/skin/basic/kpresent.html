@@ -110,111 +110,111 @@ function chkPoint(f){
 
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr valign="top">
-        <td width="97%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
-            <tr>
-              <td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
-              <td background="/images/admin/tbox_bg.gif"><b>경품 지급 등록/수정</b></td>
-              <td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
-            </tr>
-          </table>
-            <br>
-            <table width="100%" border=0 cellpadding='3' cellspacing='1' bgcolor='#aaaaaa'>
-              <form  name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
-                <input type="hidden" name="present_val" value="구단로고발목양말">
-                <input name="point" type="hidden" id="point" value="{klogon_list.balance}" >
-                <tr>
-                  <td bgcolor='#D2BF7E'><b>경품 지급 등록/수정</b></td>
-                </tr>
-                <tr>
-                  <td  bgcolor='#F8F8EA' nowrap><table width="100%" border=0 cellpadding='8' cellspacing='1' bgcolor='#aaaaaa'>
-                    <tr>
-                      <td height="50" align="center" bgcolor='#F0EBD6'><span class="style4"><strong>회원명</strong></span></td>
-                      <td width="34%" bgcolor='#FFFFFF' ><span class="style4"><strong>{klogon_list.name}</strong></span></td>
-                      <td height="50" align="center" bgcolor='#F0EBD6'><span class="style4"><strong>총 포인트</strong></span></td>
-                      <td bgcolor='#FFFFFF' ><span class="style4"><strong>{klogon_list.balance}</strong></span></td>
-                      </tr>
-                    <tr>
-                      <td height="50" align="center" bgcolor='#F0EBD6' class="style4"><strong>시즌</strong></td>
-                      <td bgcolor='#FFFFFF' class="style4" ><strong><font color="#FF0000">{kseason_list.s_name}</font></strong></td>
-                      <td height="50" align="center" bgcolor='#F0EBD6'><span class="style4"><strong>카드번호</strong></span></td>
-                      <td bgcolor='#FFFFFF' ><span class="style4"><strong>{klogon_list.accountno}</strong></span></td>
-                      </tr>
-                      <tr>
-                        <td align="center" bgcolor='#F0EBD6'>경품지급일(<span><span class="style1">*</span>)</span></td>
-                        <td colspan="3" bgcolor='#F8F8EA' ><input name="pdate" type="text" id="pdate" value="{kpresent_list.pdate}" onClick="Calendar(this);" size="12" hname="경품 지급일을 입력하세요" required></td>
-                      </tr>
-                      <tr>
-                        <td width="19%" align="center" bgcolor='#F0EBD6'>경품명(<span><span class="style1">*</span>)</span></td>
-                        <td colspan="3" bgcolor='#F8F8EA' ><table border="0" cellspacing="2" cellpadding="2">
-                            <tr>
-                              <td><label>
-                                  <label></label>
-                                  <input name="present" type="radio" id="present" value="구단로고발목양말" {present_checked_구단로고발목양말} onClick="set_present_val(this.form, this.value)">
-                                구단로고발목양말 </td>
-                              <td><input name="present" type="radio" id="present" value="KBSTARS싸인볼" {present_checked_KBSTARS싸인볼} onClick="set_present_val(this.form, this.value)">
-                              KB 스타즈 싸인볼</td>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="KB스타즈시계" {present_checked_KB스타즈시계} onClick="set_present_val(this.form, this.value)">
-                              KB 스타즈 시계</label></td>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="KB스타즈머그컵" {present_checked_KB스타즈머그컵} onClick="set_present_val(this.form, this.value)">
-                              KB 스타즈 머그컵</label></td>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="KB스타즈무릎담요" {present_checked_KB스타즈무릎담요} onClick="set_present_val(this.form, this.value)">
+	<td><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+	  <tr valign="top">
+		<td width="97%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+			  <td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
+			  <td background="/images/admin/tbox_bg.gif"><b>경품 지급 등록/수정</b></td>
+			  <td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
+			</tr>
+		  </table>
+			<br>
+			<table width="100%" border=0 cellpadding='3' cellspacing='1' bgcolor='#aaaaaa'>
+			  <form  name="write" id="write" onSubmit='return chkForm(this)' {form_default}>
+				<input type="hidden" name="present_val" value="구단로고발목양말">
+				<input name="point" type="hidden" id="point" value="{klogon_list.balance}" >
+				<tr>
+				  <td bgcolor='#D2BF7E'><b>경품 지급 등록/수정</b></td>
+				</tr>
+				<tr>
+				  <td  bgcolor='#F8F8EA' nowrap><table width="100%" border=0 cellpadding='8' cellspacing='1' bgcolor='#aaaaaa'>
+					<tr>
+					  <td height="50" align="center" bgcolor='#F0EBD6'><span class="style4"><strong>회원명</strong></span></td>
+					  <td width="34%" bgcolor='#FFFFFF' ><span class="style4"><strong>{klogon_list.name}</strong></span></td>
+					  <td height="50" align="center" bgcolor='#F0EBD6'><span class="style4"><strong>총 포인트</strong></span></td>
+					  <td bgcolor='#FFFFFF' ><span class="style4"><strong>{klogon_list.balance}</strong></span></td>
+					  </tr>
+					<tr>
+					  <td height="50" align="center" bgcolor='#F0EBD6' class="style4"><strong>시즌</strong></td>
+					  <td bgcolor='#FFFFFF' class="style4" ><strong><font color="#FF0000">{kseason_list.s_name}</font></strong></td>
+					  <td height="50" align="center" bgcolor='#F0EBD6'><span class="style4"><strong>카드번호</strong></span></td>
+					  <td bgcolor='#FFFFFF' ><span class="style4"><strong>{klogon_list.accountno}</strong></span></td>
+					  </tr>
+					  <tr>
+						<td align="center" bgcolor='#F0EBD6'>경품지급일(<span><span class="style1">*</span>)</span></td>
+						<td colspan="3" bgcolor='#F8F8EA' ><input name="pdate" type="text" id="pdate" value="{kpresent_list.pdate}" onClick="Calendar(this);" size="12" hname="경품 지급일을 입력하세요" required></td>
+					  </tr>
+					  <tr>
+						<td width="19%" align="center" bgcolor='#F0EBD6'>경품명(<span><span class="style1">*</span>)</span></td>
+						<td colspan="3" bgcolor='#F8F8EA' ><table border="0" cellspacing="2" cellpadding="2">
+							<tr>
+							  <td><label>
+								  <label></label>
+								  <input name="present" type="radio" id="present" value="구단로고발목양말" {present_checked_구단로고발목양말} onClick="set_present_val(this.form, this.value)">
+								구단로고발목양말 </td>
+							  <td><input name="present" type="radio" id="present" value="KBSTARS싸인볼" {present_checked_KBSTARS싸인볼} onClick="set_present_val(this.form, this.value)">
+							  KB 스타즈 싸인볼</td>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="KB스타즈시계" {present_checked_KB스타즈시계} onClick="set_present_val(this.form, this.value)">
+							  KB 스타즈 시계</label></td>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="KB스타즈머그컵" {present_checked_KB스타즈머그컵} onClick="set_present_val(this.form, this.value)">
+							  KB 스타즈 머그컵</label></td>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="KB스타즈무릎담요" {present_checked_KB스타즈무릎담요} onClick="set_present_val(this.form, this.value)">
 							  KB 스타즈 무릎 담요</label></td>
-                            </tr>
-                            <tr>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="영화관람권5장" {present_checked_영화관람권5장} onClick="set_present_val(this.form, this.value)">
-                                영화관람권(5장)</label></td>                            
-                              <td><input name="present" type="radio" id="present" value="자전거" {present_checked_자전거} onClick="set_present_val(this.form, this.value)">
-                                자전거</td>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="밥솥" {present_checked_밥솥} onClick="set_present_val(this.form, this.value)">
-                                밥솥</label></td>
-                              <td><label>
-                                <input name="present" type="radio" id="present" value="김치냉장고" {present_checked_김치냉장고} onClick="set_present_val(this.form, this.value)">
-                                김치냉장고</label></td>
-                              <td>&nbsp;</td>
-                            </tr>
-                        </table></td>
-                      </tr>
-                      <tr>
-                        <td align="center" bgcolor='#F0EBD6'>메모</td>
-                        <td colspan="3" bgcolor='#F8F8EA' ><input name="memo" type="text" id="memo" value="{kpresent_list.memo}" size="60">
-                            <br>
-                          (
-                          <label>
-                            <input name="memo_sample" type="radio" id="memo_sample" onClick="set_memo(this.form, this.value);" value="현장지급" {memo_checked_현장지급}>
-                            현장지급</label>
-                          <label>
-                            <input name="memo_sample" type="radio" id="memo_sample" value="택배발송" {memo_checked_택배발송} onClick="set_memo(this.form, this.value);">
-                            택배발송</label>
-                          <label>
-                            <input name="memo_sample" type="radio" id="memo_sample" value="추첨당첨" {memo_checked_추첨당첨} onClick="set_memo(this.form, this.value);">
-                            추첨당첨 )</label>
-                        </td>
-                      </tr>
-                      <!--<tr>
-                        <td bgcolor='#F0EBD6'>현재 포인트 </td>
-                        <td bgcolor='#F8F8EA' ><input name="point" type="text" id="point" value="{kpresent_list.point}" size="5" readonly="true"></td>
-                      </tr>-->
-                    </table>
-        <br>
-                      <table width="100%" border=0 cellpadding='3' cellspacing='0'>
-                        <tr>
-                          <td align="center"><input type="submit" name="Submit" value=" 등  록 " onClick="return chkPoint(this.form);">
-                            &nbsp;
-                            <input type="button" name="Submit2" value="목록보기" onClick="javascript:history.go(-1);"></td>
-                        </tr>
-                  </table></td>
-                </tr>
-              </form>
-            </table></td>
-      </tr>
-    </table></td>
+							</tr>
+							<tr>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="영화관람권5장" {present_checked_영화관람권5장} onClick="set_present_val(this.form, this.value)">
+								영화관람권(5장)</label></td>							
+							  <td><input name="present" type="radio" id="present" value="자전거" {present_checked_자전거} onClick="set_present_val(this.form, this.value)">
+								자전거</td>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="밥솥" {present_checked_밥솥} onClick="set_present_val(this.form, this.value)">
+								밥솥</label></td>
+							  <td><label>
+								<input name="present" type="radio" id="present" value="김치냉장고" {present_checked_김치냉장고} onClick="set_present_val(this.form, this.value)">
+								김치냉장고</label></td>
+							  <td>&nbsp;</td>
+							</tr>
+						</table></td>
+					  </tr>
+					  <tr>
+						<td align="center" bgcolor='#F0EBD6'>메모</td>
+						<td colspan="3" bgcolor='#F8F8EA' ><input name="memo" type="text" id="memo" value="{kpresent_list.memo}" size="60">
+							<br>
+						  (
+						  <label>
+							<input name="memo_sample" type="radio" id="memo_sample" onClick="set_memo(this.form, this.value);" value="현장지급" {memo_checked_현장지급}>
+							현장지급</label>
+						  <label>
+							<input name="memo_sample" type="radio" id="memo_sample" value="택배발송" {memo_checked_택배발송} onClick="set_memo(this.form, this.value);">
+							택배발송</label>
+						  <label>
+							<input name="memo_sample" type="radio" id="memo_sample" value="추첨당첨" {memo_checked_추첨당첨} onClick="set_memo(this.form, this.value);">
+							추첨당첨 )</label>
+						</td>
+					  </tr>
+					  <!--<tr>
+						<td bgcolor='#F0EBD6'>현재 포인트 </td>
+						<td bgcolor='#F8F8EA' ><input name="point" type="text" id="point" value="{kpresent_list.point}" size="5" readonly="true"></td>
+					  </tr>-->
+					</table>
+		<br>
+					  <table width="100%" border=0 cellpadding='3' cellspacing='0'>
+						<tr>
+						  <td align="center"><input type="submit" name="Submit" value=" 등  록 " onClick="return chkPoint(this.form);">
+							&nbsp;
+							<input type="button" name="Submit2" value="목록보기" onClick="javascript:history.go(-1);"></td>
+						</tr>
+				  </table></td>
+				</tr>
+			  </form>
+			</table></td>
+	  </tr>
+	</table></td>
   </tr>
 </table> 
 </body>

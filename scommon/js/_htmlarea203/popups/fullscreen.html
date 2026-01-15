@@ -14,51 +14,51 @@ document.write('<scr'+'ipt src="' +_editor_url+ 'editor.js" language="Javascript
 var parent_objname = location.search.substring(1,location.search.length);  // parent editor objname
 var parent_config  = opener.document.all[parent_objname].config;
 
-var config         = cloneObject( parent_config );
-var objname        = 'editor'; // name of this editor
+var config		 = cloneObject( parent_config );
+var objname		= 'editor'; // name of this editor
 
 //  DOMViewerObj = config;
 //  DOMViewerName = 'config';
 //  window.open('/innerHTML/domviewer.htm');  
 
 /* ---------------------------------------------------------------------- *\
-  Function    : 
+  Function	: 
   Description : 
 \* ---------------------------------------------------------------------- */
 
 function _CloseOnEsc() {
   if (event.keyCode == 27) {
-    update_parent();
-    window.close();
-    return;
+	update_parent();
+	window.close();
+	return;
   }
 }
 
 /* ---------------------------------------------------------------------- *\
-  Function    : cloneObject
+  Function	: cloneObject
   Description : copy an object by value instead of by reference
-  Usage       : var newObj = cloneObject(oldObj);
+  Usage	   : var newObj = cloneObject(oldObj);
 \* ---------------------------------------------------------------------- */
 
 function cloneObject(obj) {
-  var newObj          = new Object; 
+  var newObj		  = new Object; 
 
   // check for array objects
   if (obj.constructor.toString().indexOf('function Array(') == 1) {
-    newObj = obj.constructor();
+	newObj = obj.constructor();
   }
 
   for (var n in obj) {
-    var node = obj[n];
-    if (typeof node == 'object') { newObj[n] = cloneObject(node); }
-    else                         { newObj[n] = node; }
+	var node = obj[n];
+	if (typeof node == 'object') { newObj[n] = cloneObject(node); }
+	else						 { newObj[n] = node; }
   }
   
   return newObj;
 }
 
 /* ---------------------------------------------------------------------- *\
-  Function    : resize_editor
+  Function	: resize_editor
   Description : resize the editor when the user resizes the popup
 \* ---------------------------------------------------------------------- */
 
@@ -76,7 +76,7 @@ function resize_editor() {  // resize editor to fix window
 }
 
 /* ---------------------------------------------------------------------- *\
-  Function    : init
+  Function	: init
   Description : run this code on page load
 \* ---------------------------------------------------------------------- */
 
@@ -85,7 +85,7 @@ function init() {
   config.btnList["popupeditor"] = ['popupeditor', 'Minimize Editor',  'update_parent(); window.close();', 'fullscreen_minimize.gif'];
 
   // set htmlmode button to refer to THIS editor
-  config.btnList["htmlmode"]    = ['HtmlMode',    'View HTML Source', 'editor_setmode(\'editor\')',  'ed_html.gif'];
+  config.btnList["htmlmode"]	= ['HtmlMode',	'View HTML Source', 'editor_setmode(\'editor\')',  'ed_html.gif'];
 
   // change image url to be relative to current path
   config.imgURL = "../images/";
@@ -110,7 +110,7 @@ function init() {
 }
 
 /* ---------------------------------------------------------------------- *\
-  Function    : update_parent
+  Function	: update_parent
   Description : update parent window editor field with contents from child window
 \* ---------------------------------------------------------------------- */
 

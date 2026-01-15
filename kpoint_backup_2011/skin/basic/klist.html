@@ -10,7 +10,7 @@
 var step=0;
 
 function onChange(term_id){
-    var f = document.SearchForm;
+	var f = document.SearchForm;
 	var years, months, days, sdate, edate;
 	
 	var edate = f.edate.value;
@@ -96,8 +96,8 @@ function on_go() {
 		
 	if(start_day.length < 3) start_day = "";
 	if(end_day.length < 3) end_day = "";
-    frm.action = "klist.php?class={get_class}&act=on_go&search="+frm.srch_order_stat.value+"&sdate="+start_day+"&edate="+end_day+"&term_id="+term_id+"&level="+f.srch_order_level;
-    frm.target = "_self";
+	frm.action = "klist.php?class={get_class}&act=on_go&search="+frm.srch_order_stat.value+"&sdate="+start_day+"&edate="+end_day+"&term_id="+term_id+"&level="+f.srch_order_level;
+	frm.target = "_self";
 	alert( frm.action);
 	f.search.value = frm.srch_order_stat.value;
 	frm.submit();
@@ -107,10 +107,10 @@ function select_all()
 {
   for( var i=0; i<document.ListForm.elements.length; i++)
   {
-    var ele = document.ListForm.elements[i];
-    var Re = /code_.*/;
-    if( ele.name.search(Re)!=-1 )
-      ele.checked = !ele.checked;
+	var ele = document.ListForm.elements[i];
+	var Re = /code_.*/;
+	if( ele.name.search(Re)!=-1 )
+	  ele.checked = !ele.checked;
   }
 }
 
@@ -121,8 +121,8 @@ function delete_selected()
    var Form=document.ListForm;
    if( get_checked(Form)==0 )
    {
-      alert('회원을 선택해 주십시오.');
-      return;
+	  alert('회원을 선택해 주십시오.');
+	  return;
    }
    Form.target="_self";
    Form.action="ok.php?class={get_class}&mode=index_delete&mid=1&total_num="+get_checked(Form);
@@ -136,8 +136,8 @@ function withdraw_selected()
    var Form=document.ListForm;
    if( get_checked(Form)==0 )
    {
-      alert('회원을 선택해 주십시오.');
-      return;
+	  alert('회원을 선택해 주십시오.');
+	  return;
    }
    Form.target="_self";
    Form.action="ok.php?class={get_class}&mode=index_draw&mid=1&total_num="+get_checked(Form);
@@ -149,8 +149,8 @@ function gradeset_selected()
    var Form=document.ListForm;
    if( get_checked(Form)==0 )
    {
-      alert('회원을 선택해 주십시오.');
-      return;
+	  alert('회원을 선택해 주십시오.');
+	  return;
    }
    window.open('','GradeAdjustWin','width=300,height=160');
    Form.target="GradeAdjustWin";
@@ -164,8 +164,8 @@ function pointset_selected()
    var Form=document.ListForm;
    if( get_checked(Form)==0 )
    {
-      alert('회원을 선택해 주십시오.');
-      return;
+	  alert('회원을 선택해 주십시오.');
+	  return;
    }
    window.open('','PointAdjustWin','width=400,height=195');
    Form.target="PointAdjustWin";
@@ -178,8 +178,8 @@ function mailing_selected()
    var Form=document.ListForm;
    if( get_checked(Form)==0 )
    {
-      alert('회원을 선택해 주십시오.');
-      return;
+	  alert('회원을 선택해 주십시오.');
+	  return;
    }
    window.open('','MailingWin','width=400,height=165');
    Form.target="MailingWin";
@@ -193,11 +193,11 @@ function get_checked(Form)
    var total_num ="";
    for( var i=0; i<Form.elements.length;  i++)
    {
-      var ele = Form.elements[i];
-      var Re  = /code_.*/
-      if(ele.name.search(Re)!=-1)
-         if(ele.checked){
-            num++;
+	  var ele = Form.elements[i];
+	  var Re  = /code_.*/
+	  if(ele.name.search(Re)!=-1)
+		 if(ele.checked){
+			num++;
 			total_num = total_num +";"+ ele.value;
 		}
    }
@@ -205,7 +205,7 @@ function get_checked(Form)
 }
 
 function on_search() {
-    var form = document.SearchForm;
+	var form = document.SearchForm;
 	var start_day = form.sdate.value;
 	var end_day = form.edate.value;
 	var s_id = form.s_id.value;
@@ -213,18 +213,18 @@ function on_search() {
 	if(start_day.length < 3) start_day = "";
 	if(end_day.length < 3) end_day = "";
 	
-    form.target = "_self";
-    form.action = "klist.php?class={get_class}&act=OrderList&sdate="+start_day+"&edate="+end_day+"&name="+form.srch_order_name.value+"&accountno="+form.srch_order_accountno.value+"&s_id="+s_id;
-    form.submit();
+	form.target = "_self";
+	form.action = "klist.php?class={get_class}&act=OrderList&sdate="+start_day+"&edate="+end_day+"&name="+form.srch_order_name.value+"&accountno="+form.srch_order_accountno.value+"&s_id="+s_id;
+	form.submit();
 }
 
 function on_sort(val) {
-    var form = document.SearchForm;
+	var form = document.SearchForm;
 	var s_id = form.s_id.value;
 		
-    form.target = "_self";
-    form.action = "klist.php?act=OrderList&sorderby="+val+"&s_id="+s_id;
-    form.submit();
+	form.target = "_self";
+	form.action = "klist.php?act=OrderList&sorderby="+val+"&s_id="+s_id;
+	form.submit();
 }
 
 function on_MemberExcelExport()
@@ -283,7 +283,7 @@ function on_memSeasonReg(){
 
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td>
+	<td>
 		
 		<table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
 		  <tr valign="top">
@@ -303,23 +303,23 @@ function on_memSeasonReg(){
 			  <table border="0" cellpadding="3" cellspacing="1" width="100%" bgcolor='#aaaaaa'>
 				<tr bgcolor="#D2BF7E" height=25>
 				  <td colspan=8 align=right bgcolor="#D2BF7E"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
-                    <tr>
-                      <td>시즌 :
-                        <select name="s_id" onChange="golist(this.value);">
-                        {sselect}
-                        
-                      </select>
-                        <!--<input name="button42" type="button" class="CCbox04"  onClick="on_memSeasonReg()" value="회원별 시즌정보 일괄생성" style="width:170px;">-->                      </td>
-                      <td align="right">정렬 :
-                        <select name="sorderby" onChange="on_sort(this.value);">
-                          <option value="name" {sort_name}>이름</option>
-                          <option value="accountno" {sort_accountno}>카드번호</option>
-                          <option value="balance" {sort_balance}>총포인트</option>
-                          <option value="rdate" {sort_rdate}>등록일</option>
-                        </select></td>
-                    </tr>
-                  </table>
-			      </td>
+					<tr>
+					  <td>시즌 :
+						<select name="s_id" onChange="golist(this.value);">
+						{sselect}
+						
+					  </select>
+						<!--<input name="button42" type="button" class="CCbox04"  onClick="on_memSeasonReg()" value="회원별 시즌정보 일괄생성" style="width:170px;">-->					  </td>
+					  <td align="right">정렬 :
+						<select name="sorderby" onChange="on_sort(this.value);">
+						  <option value="name" {sort_name}>이름</option>
+						  <option value="accountno" {sort_accountno}>카드번호</option>
+						  <option value="balance" {sort_balance}>총포인트</option>
+						  <option value="rdate" {sort_rdate}>등록일</option>
+						</select></td>
+					</tr>
+				  </table>
+				  </td>
 				</tr>
 				<tr height=22 bgcolor="#F0EBD6" align="center">
 				  <td width="4%"><strong>선택</strong></td>
@@ -330,7 +330,7 @@ function on_memSeasonReg(){
 				  <td width="18%" ><strong>등록일</strong></td>
 				  <td width="14%"><strong>정보수정</strong></td>
 				  <td width="15%"><strong>포인트 조회</strong></td>
-			    </tr>
+				</tr>
 				{LIST}
 				<block name="list">
 				  <tr bgcolor="#F8F8EA" align="center" onMouseOver="this.style.backgroundColor='#F5F5F5'" onMouseOut="this.style.backgroundColor=''">
@@ -360,36 +360,36 @@ function on_memSeasonReg(){
 					<input name="button" type="button" class="input02"  onClick="member_regist({s_id})" value="회원 등록">
 					<br>
 					<input name="button223" type="button" class="input02"  onClick="javascript:location.href='{href.win}';" value="승리포인트일괄등록" />
-                    <input name="button2232" type="button" class="input02"  onClick="javascript:location.href='{href.windelete}';" value="승리포인트일괄삭제" /></td>
-					<td align="right" width="44%">{FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}   </td>                 				  
+					<input name="button2232" type="button" class="input02"  onClick="javascript:location.href='{href.windelete}';" value="승리포인트일괄삭제" /></td>
+					<td align="right" width="44%">{FIRSTPAGE}{PREVBLOCK}{BLOCK}{NEXTBLOCK}{LASTPAGE}   </td>				 				  
 				  </tr>
 				</table>
 			  </form>
 				<br>
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td width="9"><img src="/images/admin/box2_lt.gif" width=9 height=10></td>
-                    <td background="/images/admin/box2_tbg.gif"></td>
-                    <td width="9"><img src="/images/admin/box2_tr.gif" width=9 height=10></td>
-                  </tr>
-                  <tr>
-                    <td background="/images/admin/box2_ml.gif"></td>
-                    <td align="center">
-                      <table width="100%" border="0" cellpadding="2" cellspacing="0">
-                        <tr>
-                          <td>
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                              <tr>
-                                <form name="SearchForm" method="post" onSubmit="javascript:return false;">
-                                    <input name="term_id" type="hidden" value="{term_id}">
-                                    <input name="s_id" type="hidden" value="{s_id}">
-                                    <input name="search" type="hidden" value="{search}">
-                                  <td valign="top">
-                                    <table border='0' cellpadding='4' cellspacing='1' width='100%' bgcolor='#aaaaaa'>
-                                      <tr bgcolor="#F8F8EA" height=25>
-                                        <td width="14%" bgcolor="#F0EBD6" align="center">등록일</td>
-                                        <td colspan="3">
-                                          <input name="sdate" type="text" class="input01" size="10" maxlength="10" onClick="Calendar(this);" value="{sdate}">
+				  <tr>
+					<td width="9"><img src="/images/admin/box2_lt.gif" width=9 height=10></td>
+					<td background="/images/admin/box2_tbg.gif"></td>
+					<td width="9"><img src="/images/admin/box2_tr.gif" width=9 height=10></td>
+				  </tr>
+				  <tr>
+					<td background="/images/admin/box2_ml.gif"></td>
+					<td align="center">
+					  <table width="100%" border="0" cellpadding="2" cellspacing="0">
+						<tr>
+						  <td>
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							  <tr>
+								<form name="SearchForm" method="post" onSubmit="javascript:return false;">
+									<input name="term_id" type="hidden" value="{term_id}">
+									<input name="s_id" type="hidden" value="{s_id}">
+									<input name="search" type="hidden" value="{search}">
+								  <td valign="top">
+									<table border='0' cellpadding='4' cellspacing='1' width='100%' bgcolor='#aaaaaa'>
+									  <tr bgcolor="#F8F8EA" height=25>
+										<td width="14%" bgcolor="#F0EBD6" align="center">등록일</td>
+										<td colspan="3">
+										  <input name="sdate" type="text" class="input01" size="10" maxlength="10" onClick="Calendar(this);" value="{sdate}">
 ~
 <input name="edate" type="text" class="input01" id="edate" size="10" maxlength="10" onClick="Calendar(this);" value="{edate}">
 &nbsp;
@@ -401,30 +401,30 @@ function on_memSeasonReg(){
 1년 &nbsp;
 <input type=radio name='term' value="4" onClick="onChange('4');" {t_ch4}>
 3년</td>
-                                      </tr>
-                                      <tr bgcolor=#F8F8EA>
-                                        <td bgcolor="#F0EBD6" align="center">이름</td>
-                                        <td width="35%"><input name="srch_order_name" type="text" class="input01" value="{name}" size="28"></td>
-                                        <td bgcolor="#F0EBD6" width="13%" align="center">카드번호</td>
-                                        <td width="38%"><input name="srch_order_accountno" type="text" class="input01" id="srch_order_accountno" onKeyPress="if (event.keyCode &lt; 45 || event.keyCode &gt; 57) {return false;}" value="{accountno}" size="28" /></td>
-                                      </tr>
-                                    </table>
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                      <tr>
-                                        <td height="40" align="center" valign="bottom"><input name="button2" type="button" class="input02"  onClick="on_search()" value=" 검색하기 ">
-                                            <input name="reset" type="reset"  class="input02" value=" 조건취소 ">
-                                            <input name="button3" type="button" class="input02" onClick="javascript:location.href='klist.php?class={get_class}&s_id={s_id}'" value=" 전체보기 "></td>
-                                      </tr>
-                                  </table></td>
-                                </form>
-                                <!--td align="right" valign="top">
-                                  <form name="goform" method="post" onSubmit="javascript:return false;">
-                                    <table border='0' cellpadding='4' cellspacing='1' bgcolor='#aaaaaa'>
-                                      <tr bgcolor="#F8F8EA" height=25>
-                                        <td width="60" align="center" bgcolor="#F0EBD6">지역선택</td>
-                                        <td>
-                                          <select name=srch_order_stat class=styleselect onChange="javascript:on_go();">
-                                            <option value="" {s_}>전체보기</option>
+									  </tr>
+									  <tr bgcolor=#F8F8EA>
+										<td bgcolor="#F0EBD6" align="center">이름</td>
+										<td width="35%"><input name="srch_order_name" type="text" class="input01" value="{name}" size="28"></td>
+										<td bgcolor="#F0EBD6" width="13%" align="center">카드번호</td>
+										<td width="38%"><input name="srch_order_accountno" type="text" class="input01" id="srch_order_accountno" onKeyPress="if (event.keyCode &lt; 45 || event.keyCode &gt; 57) {return false;}" value="{accountno}" size="28" /></td>
+									  </tr>
+									</table>
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									  <tr>
+										<td height="40" align="center" valign="bottom"><input name="button2" type="button" class="input02"  onClick="on_search()" value=" 검색하기 ">
+											<input name="reset" type="reset"  class="input02" value=" 조건취소 ">
+											<input name="button3" type="button" class="input02" onClick="javascript:location.href='klist.php?class={get_class}&s_id={s_id}'" value=" 전체보기 "></td>
+									  </tr>
+								  </table></td>
+								</form>
+								<!--td align="right" valign="top">
+								  <form name="goform" method="post" onSubmit="javascript:return false;">
+									<table border='0' cellpadding='4' cellspacing='1' bgcolor='#aaaaaa'>
+									  <tr bgcolor="#F8F8EA" height=25>
+										<td width="60" align="center" bgcolor="#F0EBD6">지역선택</td>
+										<td>
+										  <select name=srch_order_stat class=styleselect onChange="javascript:on_go();">
+											<option value="" {s_}>전체보기</option>
 											<option value="광주" {s_광주}>광주</option>
 											<option value="전남" {s_전남}>전남</option>
 											<option value="전북" {s_전북}>전북</option>
@@ -442,31 +442,31 @@ function on_memSeasonReg(){
 											<option value="경북" {s_경북}>경북</option>
 											<option value="제주" {s_제주}>제주</option>
 											<option value="기타" {s_기타}>기타</option>
-                                          </select>
-                                        </td>
-                                      </tr>
-                                    </table>
-                                </form></td-->
-                              </tr>
-                          </table></td>
-                        </tr>
-                    </table></td>
-                    <td background="/images/admin/box2_mr.gif"></td>
-                  </tr>
-                  <tr>
-                    <td width="9"><img src="/images/admin/box2_bl.gif" width=9 height=10></td>
-                    <td background="/images/admin/box2_bbg.gif"></td>
-                    <td width="9"><img src="/images/admin/box2_br.gif" width=9 height=10></td>
-                  </tr>
-            </table></td>
+										  </select>
+										</td>
+									  </tr>
+									</table>
+								</form></td-->
+							  </tr>
+						  </table></td>
+						</tr>
+					</table></td>
+					<td background="/images/admin/box2_mr.gif"></td>
+				  </tr>
+				  <tr>
+					<td width="9"><img src="/images/admin/box2_bl.gif" width=9 height=10></td>
+					<td background="/images/admin/box2_bbg.gif"></td>
+					<td width="9"><img src="/images/admin/box2_br.gif" width=9 height=10></td>
+				  </tr>
+			</table></td>
 		  </tr>
 	  </table>
 
-    
-    
-        <br>
-        <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 수동 테스트 방법 : http://kpoint.kbsavers.com/kpoint/kok.php?mode=kpoint&amp;csn=3021026410&amp;kdate=20081008160101
+	
+	
+		<br>
+		<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 수동 테스트 방법 : http://kpoint.kbsavers.com/kpoint/kok.php?mode=kpoint&amp;csn=3021026410&amp;kdate=20081008160101
   </table> 
 
 

@@ -1,15 +1,15 @@
-/* ÇÔ¼ö ¸®½ºÆ®
+/* í•¨ìˆ˜ ë¦¬ìŠ¤íŠ¸
 	<script src="/common/join_check.js"></script>
-	function isEmpty( data ) // ÀÔ·Â°ª °ø¹é Ã¼Å©
-	function check_idnum(str1,str2)	 // ÁÖ¹Î¹øÈ£ Ã¼Å©
-	function isInteger(st)   // ¼ıÀÚÀÎÁö Ã¼Å©
-	function check_userid(userid)	// È¸¿ø¾ÆÀÌµğÃ¼Å©(¿µ¹®ÀÚ·Î½ÃÀÛ¼ıÀÚ·Î¸¸)
-	function check_passwd(passwd, passwd_ok) // ÆĞ½º¿öµå µ¿ÀÏÇÑÁö Ã¼Å©
-	function check_email(strEmail)			// ¸ŞÀÏÀÌ Á¤È®ÇÑÁö Ã¼Å©
+	function isEmpty( data ) // ì…ë ¥ê°’ ê³µë°± ì²´í¬
+	function check_idnum(str1,str2)	 // ì£¼ë¯¼ë²ˆí˜¸ ì²´í¬
+	function isInteger(st)   // ìˆ«ìì¸ì§€ ì²´í¬
+	function check_userid(userid)	// íšŒì›ì•„ì´ë””ì²´í¬(ì˜ë¬¸ìë¡œì‹œì‘ìˆ«ìë¡œë§Œ)
+	function check_passwd(passwd, passwd_ok) // íŒ¨ìŠ¤ì›Œë“œ ë™ì¼í•œì§€ ì²´í¬
+	function check_email(strEmail)			// ë©”ì¼ì´ ì •í™•í•œì§€ ì²´í¬
 */
 
 
-// ÀÔ·Â°ª °ø¹é Ã¼Å© ÇÔ¼ö
+// ì…ë ¥ê°’ ê³µë°± ì²´í¬ í•¨ìˆ˜
 function isEmpty( data )
 {
 	for ( var i = 0 ; i < data.length ; i++ )
@@ -20,7 +20,7 @@ function isEmpty( data )
 	return true;
 }
 
-// ÁÖ¹Î µî·Ï ¹øÈ£ Ã¼Å© ÇÔ¼ö
+// ì£¼ë¯¼ ë“±ë¡ ë²ˆí˜¸ ì²´í¬ í•¨ìˆ˜
 function check_idnum(str1,str2)	
 {
 
@@ -61,7 +61,7 @@ function check_idnum(str1,str2)
     return false;
 }
 
-// Á¤¼öÀÎÁö ºñ±³ÇÏ´Â ÇÔ¼ö
+// ì •ìˆ˜ì¸ì§€ ë¹„êµí•˜ëŠ” í•¨ìˆ˜
 function isInteger(st)
 {
     if (!isEmpty(st))
@@ -79,7 +79,7 @@ function isInteger(st)
     return true ;
 }
 
-// ¾ÆÀÌµğ Ã¼Å©
+// ì•„ì´ë”” ì²´í¬
 function check_userid(userid)
 {
 	var i;
@@ -88,20 +88,20 @@ function check_userid(userid)
 
 	bReturn = true;
 	
-	// ÇÑ¹®ÀÚ¾¿ ¾ÆÀÌµğ °Ë»ç
+	// í•œë¬¸ìì”© ì•„ì´ë”” ê²€ì‚¬
 	for ( i = 0; i < userid.length; i++)
 	{
-		// ¾ÆÀÌµğ¸¦ ÇÑ¹®ÀÚ¾¿ ÇÒ´ç
+		// ì•„ì´ë””ë¥¼ í•œë¬¸ìì”© í• ë‹¹
 		CurrentChar = userid.charAt(i);
 
-		// ¹®ÀÚ °ª °Ë»ç
+		// ë¬¸ì ê°’ ê²€ì‚¬
 		if ( !((CurrentChar >= '0' && CurrentChar <= '9' ) || (CurrentChar >= 'a' && CurrentChar <= 'z') || (CurrentChar >= 'A' && CurrentChar <= 'Z') )) 
 		{
 			bReturn = false;	
 			break;
 		}
 		
-		// Ã¹¹®ÀÚ°¡ ¿µ¹®ÀÚÀÎÁö °Ë»ç
+		// ì²«ë¬¸ìê°€ ì˜ë¬¸ìì¸ì§€ ê²€ì‚¬
 		if(i == 0) 
 		{
 			if (!((CurrentChar >= 'a' && CurrentChar <= 'z') || (CurrentChar >= 'A' && CurrentChar <= 'Z'))) 
@@ -120,7 +120,7 @@ function check_userid(userid)
 	return bReturn;
 }
 
-// ºñ¹Ğ¹øÈ£ Ã¼Å©
+// ë¹„ë°€ë²ˆí˜¸ ì²´í¬
 function check_passwd(passwd, passwd_ok)
 {
 	if(passwd != passwd_ok) {
@@ -133,19 +133,19 @@ function check_passwd(passwd, passwd_ok)
 	return true;
 }
 
-// ÀÌ¸ŞÀÏ Ã¼Å©
+// ì´ë©”ì¼ ì²´í¬
 function check_email(strEmail)
 {
 	//var f_email = document.join.email;
 	//var strEmail = f_email.value;
-//	ÀÌ¸ŞÀÏ ÁÖ¼Ò´Â ÀÔ·ÂÇÑ °æ¿ì¿¡¸¸ validÇÑÁö Ã¼Å©ÇÑ´Ù.
+//	ì´ë©”ì¼ ì£¼ì†ŒëŠ” ì…ë ¥í•œ ê²½ìš°ì—ë§Œ validí•œì§€ ì²´í¬í•œë‹¤.
     var i;
     var strCheck1 = false;
     var strCheck2 = false;
 	var iEmailLen = strEmail.length
 	if (iEmailLen > 0) {
-		// strEmail ¿¡ '.@', '@.' ÀÌ ÀÖ´Â °æ¿ì ¿¡·¯¸Ş½ÃÁö.
-		// strEmailÀÇ ¸Ç¾Õ ¶Ç´Â ¸ÇµÚ¿¡  '@', '.' ÀÌ ÀÖ´Â °æ¿ì ¿¡·¯¸Ş½ÃÁö.
+		// strEmail ì— '.@', '@.' ì´ ìˆëŠ” ê²½ìš° ì—ëŸ¬ë©”ì‹œì§€.
+		// strEmailì˜ ë§¨ì• ë˜ëŠ” ë§¨ë’¤ì—  '@', '.' ì´ ìˆëŠ” ê²½ìš° ì—ëŸ¬ë©”ì‹œì§€.
 		if ((strEmail.indexOf(".@") != -1) || (strEmail.indexOf("@.") != -1) ||
 			(strEmail.substring(0,1) == ".") || (strEmail.substring(0,1) == "@") ||
 			(strEmail.substring(iEmailLen-1,iEmailLen) == ".") || (strEmail.substring(iEmailLen-1,iEmailLen) == "@"))
@@ -177,14 +177,14 @@ function check_email(strEmail)
 }
 
 /*
-// ÀüÈ­ ¹øÈ£ Ã¼Å©
+// ì „í™” ë²ˆí˜¸ ì²´í¬
 function check_tel(phone1, phone2, phone3)
 {
 	if(!(isInteger(phone1) && isInteger(phone2) && isInteger(phone3))) 
 	{
 		return false;
 	}
-	//Á¤È®ÇÑ Áö¿ª¹øÈ£ÀÎÁö, ÀÌµ¿Åë½Å¹øÈ£ÀÎÁö check ( 2000.07.02±âÁØ )
+	//ì •í™•í•œ ì§€ì—­ë²ˆí˜¸ì¸ì§€, ì´ë™í†µì‹ ë²ˆí˜¸ì¸ì§€ check ( 2000.07.02ê¸°ì¤€ )
 	if(!(phone1 == '031' || phone1 == '033' || phone1 == '02' || phone1 == '032' || phone1 == '041' || phone1 == '043' || phone1 == '042' || 
 		 phone1 == '054' || phone1 == '053' || phone1 == '063' || phone1 == '055' || phone1 == '052' || phone1 == '062' || phone1 == '051' || phone1 == '061' || phone1 == '064' || phone1 == '011' || phone1 == '012' || phone1 == '015' || phone1 == '016' || phone1 == '017' || phone1 == '018' || phone1 == '019')) 
 	{

@@ -5,21 +5,21 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
 
 function printWindow() 
 { 
-   //factory.printing.header          = "This is MeadCo"; // ¸Ó¸®¸»À» ¼³Á¤ÇÕ´Ï´Ù.
-   //factory.printing.footer          = "Printing by ScriptX 5.x"; // ²¿¸®¸»À» ¼³Á¤ÇÕ´Ï´Ù.
-   //factory.printing.portrait        = false; // ¼¼·Î·Î Ãâ·ÂÇÒ°ÍÀÎÁö °¡·Î·Î Ãâ·ÂÇÒ°ÍÀÎÁö ¼³Á¤ÇÕ´Ï´Ù. true:¼¼·Î false:°¡·Î
-   //factory.printing.leftMargin      = 1.0;   // ÁÂÃø¿©¹é
-   //factory.printing.topMargin       = 1.0;   // »ó´Ü¿©¹é
-   //factory.printing.rightMargin     = 1.0;   // ¿ìÃø¿©¹é
-   //factory.printing.bottomMargin    = 1.0;   // ÇÏ´Ü¿©¹é
-   //factory.printing.copies          = 1;     ÇÑÀå¸¸ Ãâ·ÂÇÏ¶ó´Â¶æ
-   factory.printing.printBackground = true;  // ¹é±×¶ó¿îµå±îÁö Ãâ·Â
-   factory.printing.Print(true, window);     // ÇöÀçÀ©µµ¸¦ ÇÁ¸°Æ®ÇÏ´Â¶æ(window´ë½Å¿¡ frameÀ» ÁöÁ¤ÇØÁÖ¸é ÇØ´ç ÇÁ·¹ÀÓÀ» Ãâ·ÂÇÕ´Ï´Ù.)
+   //factory.printing.header          = "This is MeadCo"; // ë¨¸ë¦¬ë§ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+   //factory.printing.footer          = "Printing by ScriptX 5.x"; // ê¼¬ë¦¬ë§ì„ ì„¤ì •í•©ë‹ˆë‹¤.
+   //factory.printing.portrait        = false; // ì„¸ë¡œë¡œ ì¶œë ¥í• ê²ƒì¸ì§€ ê°€ë¡œë¡œ ì¶œë ¥í• ê²ƒì¸ì§€ ì„¤ì •í•©ë‹ˆë‹¤. true:ì„¸ë¡œ false:ê°€ë¡œ
+   //factory.printing.leftMargin      = 1.0;   // ì¢Œì¸¡ì—¬ë°±
+   //factory.printing.topMargin       = 1.0;   // ìƒë‹¨ì—¬ë°±
+   //factory.printing.rightMargin     = 1.0;   // ìš°ì¸¡ì—¬ë°±
+   //factory.printing.bottomMargin    = 1.0;   // í•˜ë‹¨ì—¬ë°±
+   //factory.printing.copies          = 1;     í•œì¥ë§Œ ì¶œë ¥í•˜ë¼ëŠ”ëœ»
+   factory.printing.printBackground = true;  // ë°±ê·¸ë¼ìš´ë“œê¹Œì§€ ì¶œë ¥
+   factory.printing.Print(true, window);     // í˜„ì¬ìœˆë„ë¥¼ í”„ë¦°íŠ¸í•˜ëŠ”ëœ»(windowëŒ€ì‹ ì— frameì„ ì§€ì •í•´ì£¼ë©´ í•´ë‹¹ í”„ë ˆì„ì„ ì¶œë ¥í•©ë‹ˆë‹¤.)
 } 
 
 function content_print() {
 	var obj = null;
-	var html = "<html xmlns='http://www.w3.org/1999/xhtml' lang='ko'><head><title>ÀÎ¼âÇÏ±â</title>";
+	var html = "<html xmlns='http://www.w3.org/1999/xhtml' lang='ko'><head><title>ì¸ì‡„í•˜ê¸°</title>";
 	var obj_styles = document.styleSheets;
 //	var odiv = document.getElementsByTagName("div");
 	var odiv = document.getElementsByTagName("td");
@@ -43,8 +43,8 @@ function content_print() {
 	
 	////////////////////////////////////////////////////////////////////////////////////
 	//		opa95 [2009-09-24]
-	//		- xscript¸¦ ÀÌ¿ëÇÏ¿© ÇÁ¸°Æ®ÇÏ±âÀ§ÇØ °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù.
-	//		- smsx.cab ÆÄÀÏÀ» ÇØ´ç°æ·Î¿¡ ³Ö¾îÁà¾ß ÇÕ´Ï´Ù.
+	//		- xscriptë¥¼ ì´ìš©í•˜ì—¬ í”„ë¦°íŠ¸í•˜ê¸°ìœ„í•´ ê°ì²´ë¥¼ ìƒì„±í•©ë‹ˆë‹¤.
+	//		- smsx.cab íŒŒì¼ì„ í•´ë‹¹ê²½ë¡œì— ë„£ì–´ì¤˜ì•¼ í•©ë‹ˆë‹¤.
 	html += "<object id='factory' style='display:none' codeBase='/smsx.cab#Version=6,2,433,14' classid='clsid:1663ed61-23eb-11d2-b92f-008048fdd814' viewastext></object>";
 	html += "</head><body>"
 	for(i = 0; i < odiv.length; i++) {
@@ -52,7 +52,7 @@ function content_print() {
 			obj = odiv.item(i);
 	}
 	if(obj == null) {
-		alert('¸ŞÀÎÆäÀÌÁö´Â ÀÎ¼â ÇÒ ¼ö ¾ø½À´Ï´Ù.');
+		alert('ë©”ì¸í˜ì´ì§€ëŠ” ì¸ì‡„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.');
 		return false;
 //		obj = document.body;
 	}
@@ -68,17 +68,17 @@ function content_print() {
 
 ////////////////////////////////////////////////////////////////////////////////////
 //		opa95 [2009-09-24]
-//		- »ı¼ºµÈ ÆäÀÌÁö¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+//		- ìƒì„±ëœ í˜ì´ì§€ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
 
 function printPage(){
-	document.getElementById("factory").printing.header = ""; // ¸Ó¸´¸»¼³Á¤
-	document.getElementById("factory").printing.footer = ""; // ²¿¸´¸»¼³Á¤
-	document.getElementById("factory").printing.portrait = true; // Ãâ·Â¹æÇâ ¼³Á¤ : true-°¡·Î, false-¼¼·Î
-	document.getElementById("factory").printing.leftMargin = 7.0; // ¿ŞÂÊ ¿©¹é ¼³Á¤
-	document.getElementById("factory").printing.topMargin = 5.0; // À§ÂÊ ¿©¹é ¼³Á¤
-	document.getElementById("factory").printing.rightMargin = 10.0; // ¿À¸¥ÂÊ ¿©¹é ¼³Á¤
-	document.getElementById("factory").printing.bottomMargin = 0.0; // ¸Ó¸´¸»¼³Á¤
-	//document.getElementById("factory").printing.printBackground = true;  // ¹é±×¶ó¿îµå±îÁö Ãâ·Â
+	document.getElementById("factory").printing.header = ""; // ë¨¸ë¦¿ë§ì„¤ì •
+	document.getElementById("factory").printing.footer = ""; // ê¼¬ë¦¿ë§ì„¤ì •
+	document.getElementById("factory").printing.portrait = true; // ì¶œë ¥ë°©í–¥ ì„¤ì • : true-ê°€ë¡œ, false-ì„¸ë¡œ
+	document.getElementById("factory").printing.leftMargin = 7.0; // ì™¼ìª½ ì—¬ë°± ì„¤ì •
+	document.getElementById("factory").printing.topMargin = 5.0; // ìœ„ìª½ ì—¬ë°± ì„¤ì •
+	document.getElementById("factory").printing.rightMargin = 10.0; // ì˜¤ë¥¸ìª½ ì—¬ë°± ì„¤ì •
+	document.getElementById("factory").printing.bottomMargin = 0.0; // ë¨¸ë¦¿ë§ì„¤ì •
+	//document.getElementById("factory").printing.printBackground = true;  // ë°±ê·¸ë¼ìš´ë“œê¹Œì§€ ì¶œë ¥
 	document.getElementById("factory").printing.Print(true, window);
 
 }

@@ -17,7 +17,7 @@ require($_SERVER['DOCUMENT_ROOT'].'/spb3/sinc/header.php');
 $thisPath	= dirname(__FILE__) .'/'; // 마지막이 '/'으로 끝나야함
 
 setlocale(LC_CTYPE, 'ko_KR.utf8'); // CSV데이타 추출시 한글깨짐방지 (eucKR 대신 utf8 권장)
-//ECHO ('<meta http-equiv="content-type" content="text/html; charset=utf-8">');
+ECHO ('<meta http-equiv="content-type" content="text/html; charset=utf-8">');
 
 
 $upfile_name = $_FILES['upfile']['name'];
