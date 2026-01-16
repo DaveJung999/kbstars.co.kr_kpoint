@@ -26,8 +26,8 @@ require("{$_SERVER['DOCUMENT_ROOT']}/sinc/header.php");
 //=======================================================
 	// 비회원로그인이더라도 로그인된 이후에
 	if(!trim($_SESSION['seUid']) || !trim($_SESSION['seUserid'])){
-		$seREQUEST_URI = $_SERVER['REQUEST_URI'];
-		session_register('seREQUEST_URI');
+		// PHP 7+ 호환성: session_register() → $_SESSION[] 직접 할당
+		$_SESSION['seREQUEST_URI'] = $_SERVER['REQUEST_URI'];
 		go_url("/sjoin/login.php");
 		exit;
 	}

@@ -6,7 +6,8 @@
 // ChangeLog
 //	DATE	수정인				수정 내용
 // -------- ------ --------------------------------------
-// 03/08/22 박선민 마지막 수정 
+// 03/08/22 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'priv'		=>'운영자', // 인증유무 (0:모두에게 허용, 숫자가 높을 수록 레벨업)
@@ -51,7 +52,7 @@ body {
 			<table border="0" cellpadding="0" cellspacing="0" width="100%">
 				<tr>
 					<td width="22"><img src="/images/admin/tbox_l.gif" width="22" height="22"></td>
-					<td background="/images/admin/tbox_bg.gif"><strong><?=$name?></strong>님의 포인트 계좌 내역</td>
+					<td background="/images/admin/tbox_bg.gif"><strong><?php echo $name?></strong>님의 포인트 계좌 내역</td>
 					<td align="right" width="5"><img src="/images/admin/tbox_r.gif" width="5" height="22"></td>
 				</tr>
 				</table>
@@ -87,8 +88,8 @@ if($total>0)	{
 		$list['bal'] = number_format($list['bal']);
 ?>
 				<tr bgcolor="#F8F8EA">
-					<td height="25" align="center">&nbsp;<a href="javascript:location.href('point_detail.php?uid=<?=$bid?>&name=<?=$name?>&supid=<?=$list['supid']?>&sup=<?=$list['sup']?>');"><?=$list['sup']?></a></td>
-					<td align="center">&nbsp;<?=$list['bal']?></td>
+					<td height="25" align="center">&nbsp;<a href="javascript:location.href('point_detail.php?uid=<?php echo $bid?>&name=<?php echo $name?>&supid=<?php echo $list['supid']?>&sup=<?php echo $list['sup']?>');"><?php echo $list['sup']?></a></td>
+					<td align="center">&nbsp;<?php echo $list['bal']?></td>
 				</tr>
 			
 <?php
@@ -131,12 +132,12 @@ if($total>0)	{
 			$list_de['pay_price'] = number_format($list_de['pay_price']);	
 			
 ?>				<tr bgcolor="#F8F8EA" align="center" onMouseOver="this.style.backgroundColor='#F5F5F5'" onMouseOut="this.style.backgroundColor=''">
-					<td height="26"><?=$cnt-$k?></td>
-					<td><?=date('Y-m-d H:m:s', $list_de['rdate'])?></td>
-					<td><?=$list_de['deposit']?></td>
-					<td><?=$list_de['withdrawal']?></td>
-					<td><?=$list_de['balance']?></td>
-					<td><?=$list_de['pay_price']?></td>
+					<td height="26"><?php echo $cnt-$k?></td>
+					<td><?php echo date('Y-m-d H:m:s', $list_de['rdate'])?></td>
+					<td><?php echo $list_de['deposit']?></td>
+					<td><?php echo $list_de['withdrawal']?></td>
+					<td><?php echo $list_de['balance']?></td>
+					<td><?php echo $list_de['pay_price']?></td>
 					</tr>	
 <?php
  		} 

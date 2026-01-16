@@ -53,8 +53,10 @@ v("Server","Apache/1.3.26 (Unix) PHP/4.2.3",$SERVER_SOFTWARE);
 v("phpversion","4.2.3",phpversion());
 v("zend version","1.2.0",zend_version());
 v("gpc_order","GPC",get_cfg_var("gpc_order"));
-v("magic_quotes_gpc", 1,get_magic_quotes_gpc());
-v("magic_quotes_runtime", 0,get_magic_quotes_runtime());
+// PHP 7.4+ 호환성: get_magic_quotes_gpc() 제거됨, 항상 false 반환
+v("magic_quotes_gpc", 1, false);
+// PHP 7.4+ 호환성: get_magic_quotes_runtime() 제거됨, 항상 false 반환
+v("magic_quotes_runtime", 0, false);
 v("max_execution_time",30,get_cfg_var("max_execution_time"));
 v("post_max_size","10M",get_cfg_var("post_max_size"));
 v("upload_max_filesize","10M",get_cfg_var("upload_max_filesize"));

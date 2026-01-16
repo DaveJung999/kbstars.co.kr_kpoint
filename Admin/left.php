@@ -7,6 +7,7 @@
 //	 DATE	 수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 04/07/19 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?= → <?php echo 변환, session_register() → $_SESSION[] 직접 할당
 //=======================================================
 $HEADER=array(
 //	'class'	=>"root", // 인증유무 (0:모두에게 허용, 숫자가 logon테이블 Level)
@@ -30,8 +31,7 @@ foreach ($params as $param) {
 //=======================================================
 	// $seHTTP_REFERER는 어디서 링크하여 왔는지 저장하고, 로그인하면서 로그에 남기고 삭제된다.
 	if( !$_SESSION['seUserid'] && !$_SESSION['seHTTP_REFERER'] && $_SERVER['HTTP_REFERER'] && strpos($_SERVER['HTTP_REFERER'],$_SERVER["HTTP_HOST"])==false ) {
-		$seHTTP_REFERER=$_SERVER['HTTP_REFERER'];
-		session_register(seHTTP_REFERER);
+		$_SESSION['seHTTP_REFERER']=$_SERVER['HTTP_REFERER'];
 	}
 //=======================================================
 // Start... (DB 작업 및 display)
@@ -57,7 +57,7 @@ body {
 	<td height="5"></td>
 	</tr>
 	<tr>
-	<td align="center"><strong><?=$_SESSION['seNickname'];?></strong>님 반갑습니다.</td>
+	<td align="center"><strong><?php echo $_SESSION['seNickname'];?></strong>님 반갑습니다.</td>
 	</tr>
 	<tr>
 	<td height="40" align="center"><a href="/sjoin/logout.php" target="_top"><img src="images/logout.gif" width="73" height="22" border="0"></a></td>

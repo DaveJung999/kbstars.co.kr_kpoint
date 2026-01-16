@@ -9,6 +9,7 @@
 // 02/11/26 박선민 마지막 수정
 // 02/12/25 박선민 마지막 수정
 // 03/06/16 박선민 serialize 추가
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환, eregi_replace() → preg_replace() 변환
 //=======================================================
 
 switch($mode) {
@@ -157,11 +158,11 @@ switch($mode) {
 		echo "<br><b>base64_encode</b>:<br><pre>" . base64_encode($url) . "</pre><br>";
 		echo "<br><b>base64_decode</b>:<br><pre>" . htmlspecialchars(base64_decode($url),ENT_QUOTES) . "</pre><br>";
 		echo "<br><b>quoted-printable Decode</b>:<br><pre>" . htmlspecialchars(quoted_printable_decode($url),ENT_QUOTES) . "</pre><br>";
-		echo "<br><b>eregi_replace(해당단어를 #으로)</b>:<br>" . eregi_replace($url,"#",$a) . "<br>";
+		echo "<br><b>eregi_replace(해당단어를 #으로)</b>:<br>" . preg_replace('/' . preg_quote($url, '/') . '/i',"#",$a) . "<br>";
 		break;
 } // end switch
 ?>
-<form method=post action=<?=$PHP_SELF ?>>
+<form method=post action=<?php echo $PHP_SELF ?>>
 <input type=hidden name=mode value=ok>
 <input type="radio" name="mode" value="gotourl" <?phpif(!$mode || $mode=="gotourl") echo "checked" ?>>
   Go URL
@@ -175,7 +176,7 @@ switch($mode) {
 <input type="radio" name="mode" value="unserialize" <?phpif($mode=="unserialize") echo "checked" ?>>unserialize
 <br>
 <br>
-<textarea name="url" rows="10" cols="60"><?=$url ? htmlspecialchars($url,ENT_QUOTES) : "phpinfo.php?name=kim&age=10" ?></textarea>
+<textarea name="url" rows="10" cols="60"><?php echo $url ? htmlspecialchars($url,ENT_QUOTES) : "phpinfo.php?name=kim&age=10" ?></textarea>
 <input type=submit value="GO->">
 </form>
 <hr>

@@ -235,7 +235,7 @@ $enable_write = privAuth($dbinfo, "priv_write");
 	</tr>
 	<tr>
 		<td width="159">
-		<p align="center"><a href="<?= htmlspecialchars($href['month'], ENT_QUOTES, 'UTF-8') ?>"><img src="<?= htmlspecialchars($thisUrl, ENT_QUOTES, 'UTF-8') ?>/images/month_<?= htmlspecialchars($intThisMonth, ENT_QUOTES, 'UTF-8') ?>.gif" width="156" height="57" border="0"></a></p>
+		<p align="center"><a href="<?php echo  htmlspecialchars($href['month'], ENT_QUOTES, 'UTF-8') ?>"><img src="<?php echo  htmlspecialchars($thisUrl, ENT_QUOTES, 'UTF-8') ?>/images/month_<?php echo  htmlspecialchars($intThisMonth, ENT_QUOTES, 'UTF-8') ?>.gif" width="156" height="57" border="0"></a></p>
 		</td>
 	</tr>
 	<tr>
@@ -246,7 +246,7 @@ $enable_write = privAuth($dbinfo, "priv_write");
 <table width="100%" cellspacing="0" cellpadding="0" height="100%" align="center">
 	<tr valign="top">
 		<td height="22" colspan="7">
-			<IMG height=25 src="<?= htmlspecialchars($thisUrl, ENT_QUOTES, 'UTF-8') ?>/images/month_title.gif" width="156">
+			<IMG height=25 src="<?php echo  htmlspecialchars($thisUrl, ENT_QUOTES, 'UTF-8') ?>/images/month_title.gif" width="156">
 		</td>
 	</tr>
 <?php

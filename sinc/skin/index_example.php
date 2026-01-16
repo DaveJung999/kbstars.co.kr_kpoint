@@ -1,4 +1,4 @@
-<?
+<?php
 //=======================================================
 // 설  명 : 사이트의 HTML 해더와 테일부분 예시(index_example.php)
 // 책임자 : 박선민 (sponsor@new21.com), 검수: 05/01/29
@@ -7,6 +7,7 @@
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 05/01/29 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?, <?= → <?php, <?php echo 변환
 //=======================================================
 /*
 <사이트 전체스킨 만드는 법>
@@ -23,7 +24,7 @@ ob_start(); // 버퍼링 시작
 <html>
 <head>
 <title>
-<?=$SITE['title']?>
+<?php echo $SITE['title'];?>
 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="/scommon/basic.css" rel="stylesheet" type="text/css">
@@ -49,11 +50,11 @@ ob_start(); // 버퍼링 시작
 			<td><a href="/"><img src="/scommon/images/main/sitephp.gif" width="178" height="24" border="0"></a></td>
 			<td>
 				<!-- START: 인증부분 -->
-				<? if($_SESSION['seUid'] && $_SESSION['seUserid']) { //로그인이 되어 있으면 ?>
+				<?php if($_SESSION['seUid'] && $_SESSION['seUserid']) { //로그인이 되어 있으면 ?>
 					  <font size=2 color=#3399FF>
-					  <?=$_SESSION['seName']?>
+					  <?php echo $_SESSION['seName'];?>
 					  님 방갑습니다 부~자 되세요 (<a href="/sjoin/logout.php">로그아웃</a>) </font>
-				<? } else { //로그인이 되어있지 않으면 ?>
+				<?php } else { //로그인이 되어있지 않으면 ?>
 						<script language="JavaScript">
 						<!--
 						function headerlogin(theform) {
@@ -76,7 +77,7 @@ ob_start(); // 버퍼링 시작
 						  </tr>
 						</table>
 					  </form>
-				<? } // end if ?>
+				<?php } // end if ?>
 				<!-- END: 인증부분 -->
 			</td>
 		  </tr>
@@ -103,7 +104,7 @@ ob_start(); // 버퍼링 시작
 </map>
 </body>
 </html>
-<?
+<?php
 	// 여기부터 끝까지 복사하여 제작한 사이트 스킨 마지막에 넣으면 됨
 	$body=ob_get_contents(); // 버퍼링된 내용을 변수로 받음
 	ob_end_clean(); // 버퍼링비움

@@ -31,10 +31,8 @@ if (isset($_POST)){
 		if ( ( !is_string($value) && !is_numeric($value) ) || !is_string($key) )
 			continue;
 
-		if ( get_magic_quotes_gpc() )
-			$value = htmlspecialchars( stripslashes((string)$value) );
-		else
-			$value = htmlspecialchars( (string)$value ); ?>
+		// PHP 7.4+ 호환성: get_magic_quotes_gpc() 제거됨, 항상 stripslashes 불필요
+		$value = htmlspecialchars( (string)$value ); ?>
 		<tr>
 			<th style="vertical-align: top">
 <?php

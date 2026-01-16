@@ -11,6 +11,7 @@
 // 04/01/31 박선민 서치부분 개선
 // 04/03/09 정대입 마지막 수정....	43L 삽입,	193L, 270L :$list['enable_new']="" 삽입
 // 25/08/10 Gemini PHP 4 -> PHP 7 마이그레이션
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?= → <?php echo 변환
 //=======================================================
 $HEADER = array(
 	'priv' => '운영자,이벤트관리자', // 인증유무 (0:모두에게 허용, 숫자가 높을 수록 레벨업)
@@ -60,9 +61,9 @@ $thisUrl	= "/Admin"; // 마지막 "/"이 빠져야함
 ?>
 	<tr>
 		<!-- 출력되는 변수에 htmlspecialchars()를 적용하여 XSS 방지 -->
-		<td align="center"><?=htmlspecialchars($list['title'])?></td>
-		<td align="center"><?=htmlspecialchars($list['data1'])?></td>
-		<td align="center"><?=htmlspecialchars($list['content'])?></td>
+		<td align="center"><?php echo htmlspecialchars($list['title']);?></td>
+		<td align="center"><?php echo htmlspecialchars($list['data1']);?></td>
+		<td align="center"><?php echo htmlspecialchars($list['content']);?></td>
 	</tr>
 <?php
 	}

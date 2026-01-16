@@ -7,6 +7,7 @@
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 02/10/09 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'priv'		=>'운영자', // 인증유무 (비회원,회원,운영자,서버관리자) // 관리자만 로그인
@@ -81,54 +82,54 @@ if($cateuid) {
 
 $mode = $mode ? $mode : "catewrite";
 ?>
-<?=$page['html_header']	 // 스타일시트
+<?php echo $page['html_header']	 // 스타일시트
 ?>
-<body bgcolor="<?=$page['right_bgcolor']
-?>" background="<?=$page['right_background']
+<body bgcolor="<?php echo $page['right_bgcolor']
+?>" background="<?php echo $page['right_background']
 ?>">
 <form name="form1" method="post" action="cateok.php">
-	<input type="hidden" name="mode" value="<?=$mode
+	<input type="hidden" name="mode" value="<?php echo $mode
 ?>">
 	<input type="hidden" name="db" value="<?php 
 echo $db; 
 ?>">
-	<input type="hidden" name="cateuid" value="<?=$cateuid
+	<input type="hidden" name="cateuid" value="<?php echo $cateuid
 ?>">
 
-<table border=0 cellspacing='<?=$page['table_cellspacing']
-?>' cellpadding='<?=$page['table_cellpadding']
-?>' bgcolor='<?=$page['table_linecolor']
+<table border=0 cellspacing='<?php echo $page['table_cellspacing']
+?>' cellpadding='<?php echo $page['table_cellpadding']
+?>' bgcolor='<?php echo $page['table_linecolor']
 ?>'>
 		<tr> 
-			<td bgcolor='<?=$page['table_titlecolor']
-?>' colspan=2>메뉴 <?=$html['submitvalue'] ?></td>
+			<td bgcolor='<?php echo $page['table_titlecolor']
+?>' colspan=2>메뉴 <?php echo $html['submitvalue'] ?></td>
 		</tr>
 		<tr> 
-			<td bgcolor='<?=$page['table_thcolor']
+			<td bgcolor='<?php echo $page['table_thcolor']
 ?>'>메뉴 이름</td>
-			<td bgcolor='<?=$page['table_tdcolor']
+			<td bgcolor='<?php echo $page['table_tdcolor']
 ?>'>
-				<?=$cate_nevi
+				<?php echo $cate_nevi
 ?>
-			<input type="text" name="title" value="<?=htmlspecialchars($list['title'],ENT_QUOTES) 
+			<input type="text" name="title" value="<?php echo htmlspecialchars($list['title'],ENT_QUOTES) 
 ?>">
 			</td>
 		</tr>
 		<tr> 
-			<td bgcolor='<?=$page['table_thcolor']
+			<td bgcolor='<?php echo $page['table_thcolor']
 ?>'>URL</td>
-			<td bgcolor='<?=$page['table_tdcolor']
+			<td bgcolor='<?php echo $page['table_tdcolor']
 ?>'>
-			<input type="text" name="url" size="40" value="<?=htmlspecialchars($list['url'],ENT_QUOTES) 
+			<input type="text" name="url" size="40" value="<?php echo htmlspecialchars($list['url'],ENT_QUOTES) 
 ?>">
 			</td>
 		</tr>
 		<tr>
-			<td bgcolor='<?=$page['table_thcolor']
+			<td bgcolor='<?php echo $page['table_thcolor']
 ?>'>&nbsp;</td>
-			<td bgcolor='<?=$page['table_tdcolor']
+			<td bgcolor='<?php echo $page['table_tdcolor']
 ?>'>
-			<input type="submit" name="Submit" value=" 메뉴 <?=$html['submitvalue']
+			<input type="submit" name="Submit" value=" 메뉴 <?php echo $html['submitvalue']
 ?> ">
 			</td>
 		</tr>
@@ -139,17 +140,17 @@ echo $db;
 
 
 <form name="form3" method="post" action="">
-	<table border=0 cellspacing='<?=$page['table_cellspacing']
-?>' cellpadding='<?=$page['table_cellpadding']
-?>' bgcolor='<?=$page['table_linecolor']
+	<table border=0 cellspacing='<?php echo $page['table_cellspacing']
+?>' cellpadding='<?php echo $page['table_cellpadding']
+?>' bgcolor='<?php echo $page['table_linecolor']
 ?>'>
 	<tr> 
-		<td bgcolor='<?=$page['table_titlecolor']
+		<td bgcolor='<?php echo $page['table_titlecolor']
 ?>' colspan=7><b> <?php 
 echo $title;  ?></b> 
 		메뉴 현황</td>
 	</tr>
-	<tr bgcolor='<?=$page['table_thcolor']
+	<tr bgcolor='<?php echo $page['table_thcolor']
 ?>'> 
 		<td width="48" > <div align="center">NO.</div></td>
 		<td width="145" > <div align="center">상위메뉴 제목</div></td>
@@ -174,20 +175,20 @@ for($i=0; $i<$total; $i++){
 	$href['catedelete']="./cateok.php?db=$db&mode=catedelete&cateuid={$list['uid']}";
 	$href["list"]="./shop.php?db=$db&cateuid={$list['uid']}";
 ?>
-	<tr bgcolor='<?=$page['table_tdcolor']?>'> 
+	<tr bgcolor='<?php echo $page['table_tdcolor']?>'> 
 		<TD align="center" nowrap > 
-		<?=$list['rede'] ? "" : $list['num']?>
+		<?php echo $list['rede'] ? "" : $list['num']?>
 		</TD>
 		<TD nowrap> 
-		<?=$list['title']?>(<?=$list['re']?>)
+		<?php echo $list['title']?>(<?php echo $list['re']?>)
 		</TD>
-		<td nowrap> <div align="center"><a href="javascript: return false" onClick="window.open('<?=$href['catesort']?>','_blank','toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,resizable=no,width=350,height=100,top=30 left=30')">순서변경</a></div></td>
-		<td align="center" nowrap><a href="<?=$href['catereply']?>">서브추가</a></td>
-		<td align="center" nowrap> <a href="<?=$href['catemodify']?>">수정</a> </td>
-		<td align=center nowrap> <a href="<?=$href['catedelete']?>" onclick="return confirm('서브카테고리있다면 서비카테고리까지 삭제됩니다.\n정말 삭제 하시겠습니까?')">삭제</a> 
+		<td nowrap> <div align="center"><a href="javascript: return false" onClick="window.open('<?php echo $href['catesort']?>','_blank','toolbar=no,location=no,status=no,menubar=no,scrollbars=auto,resizable=no,width=350,height=100,top=30 left=30')">순서변경</a></div></td>
+		<td align="center" nowrap><a href="<?php echo $href['catereply']?>">서브추가</a></td>
+		<td align="center" nowrap> <a href="<?php echo $href['catemodify']?>">수정</a> </td>
+		<td align=center nowrap> <a href="<?php echo $href['catedelete']?>" onclick="return confirm('서브카테고리있다면 서비카테고리까지 삭제됩니다.\n정말 삭제 하시겠습니까?')">삭제</a> 
 		</td>
 		<td align="center" nowrap> 
-		<?=$menucount?>
+		<?php echo $menucount?>
 		</td>
 	</tr>
 <?php

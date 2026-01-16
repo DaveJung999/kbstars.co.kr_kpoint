@@ -14,7 +14,7 @@ if ($_SESSION['sePriv'][root] == 99) $logo_link = "http://savers-secret.kbstars.
 <table width="1004" height="115" border="0" cellpadding="0" cellspacing="0" bgcolor="white" style="line-height:100%; margin-top:0; margin-bottom:0;">
 	<tr>
 		<td width="185" height="115" background="/img/copyright-bg.gif">
-			<p style="line-height:100%; margin-top:0; margin-bottom:0;"><span style="font-size:9pt;"><a href="<?=$logo_link;?>"><img src="/img/m_tail_logo.gif" width="185" height="100" border="0" /></a></span></p>	  </td>
+			<p style="line-height:100%; margin-top:0; margin-bottom:0;"><span style="font-size:9pt;"><a href="<?php echo $logo_link;?>"><img src="/img/m_tail_logo.gif" width="185" height="100" border="0" /></a></span></p>	  </td>
 		<td width="819" background="/img/copyright-bg.gif"><table width="100%" height="115" border="0" cellpadding="0" cellspacing="0" bgcolor="white" style="line-height:100%; margin-top:0; margin-bottom:0;">
 		  <tr>
 			<td width="815" height="15" valign="bottom" background="/img/m_tail_bg.gif"></td>
@@ -58,7 +58,7 @@ if ($_SESSION['sePriv'][root] == 99) $logo_link = "http://savers-secret.kbstars.
 </table>
 
 
-<? 
+<?php 
 //davej...........
 include("inc_hotlink.php") 
 ?>

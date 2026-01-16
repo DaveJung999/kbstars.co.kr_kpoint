@@ -57,7 +57,7 @@ if(!$td_game_value){
 ?>
 
 						<div id="today_game_2018" class="clearfix">
-							<div id="todaygame_title" class="clearfix"> <a href="<?=htmlspecialchars($game['href'] ?? '#')?>"><img src="/images/2017/main/title_todaygame.png" name="title_todaygame" class="image" id="title_todaygame" alt="오늘의 경기" /></a>
+							<div id="todaygame_title" class="clearfix"> <a href="<?php echo htmlspecialchars($game['href'] ?? '#');?>"><img src="/images/2017/main/title_todaygame.png" name="title_todaygame" class="image" id="title_todaygame" alt="오늘의 경기" /></a>
 							</div>
 							<div id="game_box" class="clearfix">
 <?php if(!$td_game_value) { ?>
@@ -70,33 +70,33 @@ if(!$td_game_value){
 								<table width="430" border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 									<tr>
-										<td width="138" height="50"><?=$game['home_winlose'] ?? ''?></td>
+										<td width="138" height="50"><?php echo $game['home_winlose'] ?? '';?></td>
 										<td width="154" height="50" align="center"><p>&nbsp;</p>
 										<p id="today_score" style="line-height:1.4em;">
-										<?=htmlspecialchars($game['g_start_date'] ?? '')?>
+										<?php echo htmlspecialchars($game['g_start_date'] ?? '');?>
 										</p>
 										<p id="today_score" style="line-height:1.4em;">
-										<?=htmlspecialchars($game['g_start_time'] ?? '')?>
+										<?php echo htmlspecialchars($game['g_start_time'] ?? '');?>
 										</p></td>
-										<td width="138" height="50"><?=$game['away_winlose'] ?? ''?></td>
+										<td width="138" height="50"><?php echo $game['away_winlose'] ?? '';?></td>
 									</tr>
 									<tr>
-										<td width="138" height="95" align="center"><a href="<?=htmlspecialchars($game['href'] ?? '#')?>"><img src="/images/team_logo/today_game/team_<?=htmlspecialchars($game['g_home'] ?? '')?>.png" title="<?=htmlspecialchars($game['g_home_name'] ?? '')?>" width="138" height="95" alt="<?=htmlspecialchars($game['g_home_name'] ?? '')?>" /></a></td>
+										<td width="138" height="95" align="center"><a href="<?php echo htmlspecialchars($game['href'] ?? '#');?>"><img src="/images/team_logo/today_game/team_<?php echo htmlspecialchars($game['g_home'] ?? '');?>.png" title="<?php echo htmlspecialchars($game['g_home_name'] ?? '');?>" width="138" height="95" alt="<?php echo htmlspecialchars($game['g_home_name'] ?? '');?>" /></a></td>
 										<td width="154" height="95" align="center"><p>&nbsp;</p>
 										<table width="154" border="0" cellspacing="0" cellpadding="0">
 											<tbody>
 											<tr>
-												<td id="today_score_white" align="center"><?=htmlspecialchars($game['home_score'] ?? '0')?></td>
+												<td id="today_score_white" align="center"><?php echo htmlspecialchars($game['home_score'] ?? '0');?></td>
 												<td id="today_score_yellow" width="14" align="center">:</td>
-												<td id="today_score_white" align="center"><?=htmlspecialchars($game['away_score'] ?? '0')?></td>
+												<td id="today_score_white" align="center"><?php echo htmlspecialchars($game['away_score'] ?? '0');?></td>
 											</tr>
 											</tbody>
 										</table></td>
-										<td width="138" height="95" align="center"><a href="<?=htmlspecialchars($game['href'] ?? '#')?>"><img src="/images/team_logo/today_game/team_<?=htmlspecialchars($game['g_away'] ?? '')?>.png" title="<?=htmlspecialchars($game['g_away_name'] ?? '')?>" width="138" height="95" alt="<?=htmlspecialchars($game['g_away_name'] ?? '')?>" /></a></td>
+										<td width="138" height="95" align="center"><a href="<?php echo htmlspecialchars($game['href'] ?? '#');?>"><img src="/images/team_logo/today_game/team_<?php echo htmlspecialchars($game['g_away'] ?? '');?>.png" title="<?php echo htmlspecialchars($game['g_away_name'] ?? '');?>" width="138" height="95" alt="<?php echo htmlspecialchars($game['g_away_name'] ?? '');?>" /></a></td>
 									</tr>
 									<tr>
 										<td height="40" colspan="3" align="center"><p id="today_score" style="line-height:1.4em;">
-										<?=htmlspecialchars($game['g_ground'] ?? '')?>
+										<?php echo htmlspecialchars($game['g_ground'] ?? '');?>
 										</p></td>
 									</tr>
 									</tbody>

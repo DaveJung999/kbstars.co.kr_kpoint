@@ -136,7 +136,7 @@ function checkmailform(){
 .desc {color:#9090C0;}
 -->
 </style>
-<form name='mailsend' enctype='multipart/form-data' method='post' action='<?=$PHP_SELF?>?mode=mailsend'>
+<form name='mailsend' enctype='multipart/form-data' method='post' action='<?php echo $PHP_SELF?>?mode=mailsend'>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
 	<td><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -163,7 +163,7 @@ function checkmailform(){
 				<td align=center nowrap bgcolor="#D2BF7E" height="25" ><font size='2'>보내는 사람 </font> </td>
 				<td height="25" bgcolor="#F8F8EA" ><font color='#000000' size=-1>
 					&nbsp;
-					<input name='from' class="ccbox"	value="<?=$_SESSION['seEmail']?>" size=35>
+					<input name='from' class="ccbox"	value="<?php echo $_SESSION['seEmail']?>" size=35>
 				</font> </td>
 			</tr>
 			<tr>
@@ -201,4 +201,4 @@ function checkmailform(){
 </form>
 <br>	
 			
-<?=$SITE['tail']?>
+<?php echo $SITE['tail']?>

@@ -7,6 +7,7 @@
 //	DATE	수정인				수정 내용
 // -------- ------ --------------------------------------
 // 05/01/27 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: $_REQUEST 직접 사용 개선
 //=======================================================
 $HEADER=array(
 	'usedb2'	=>1, // DB 커넥션 사용
@@ -22,20 +23,21 @@ $thisUrl	= './'; // 마지막이 '/'으로 끝나야함
 // Ready... (변수 초기화 및 넘어온값 필터링)
 //=======================================================
 	// table
-	$table_dbinfo = $SITE['th'].$prefix.'info';
+	$table_dbinfo = ($SITE['th'] ?? '').$prefix.'info';
 
 	// boardinfo 테이블 정보 가져와서 $dbinfo로 저장
-	$sql = "SELECT * from {$table_dbinfo} WHERE db='{$_REQUEST['db']}' LIMIT 1";
+	$db_param_db = isset($_REQUEST['db']) ? db_escape($_REQUEST['db']) : '';
+	$sql = "SELECT * from {$table_dbinfo} WHERE db='".$db_param_db."' LIMIT 1";
 	$dbinfo = db_arrayone($sql) or back('사용하지 않는 카테고리입니다.');
-	if($dbinfo['enable_cate']!='Y') back('카테고리 기능을 지원하지 않습니다.');
+	if(($dbinfo['enable_cate'] ?? '')!='Y') back('카테고리 기능을 지원하지 않습니다.');
 	
 	// 인증 체크
 	if(!privAuth($dbinfo, 'priv_catemanage')) back('이용이 제한되었습니다.(레벨부족)');
 
 	// table	
-	$dbinfo['table_cate'] = $SITE['th'].$prefix;
+	$dbinfo['table_cate'] = ($SITE['th'] ?? '').$prefix;
 
-	$sql_where_cate = " db='{$dbinfo['db']}' "; // init
+	$sql_where_cate = " db='".db_escape($dbinfo['db'])."' "; // init
 //=======================================================
 // Start... (DB 작업 및 display)
 //=======================================================

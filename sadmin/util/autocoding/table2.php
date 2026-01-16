@@ -11,6 +11,7 @@
 // 03/12/26 박선민 'f_필드'를 '필드'로
 // 04/09/10 박선민 추가 수정
 // 25/11/07 Gemini AI PHP 7+ 호환성 수정 (mysql_* -> db_*, 변수 중괄호 {}, 탭 변환)
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'priv'	=>99, // 인증유무 (0:모두에게 허용, 숫자가 높을 수록 레벨업)
@@ -43,10 +44,10 @@ foreach($tables as $value) {
 }
 if(!$_GET['key']) $_GET['key']="uid";
 ?>
-<form method=get action=<?=$_SERVER['PHP_SELF'] ?>>
+<form method=get action=<?php echo $_SERVER['PHP_SELF'] ?>>
 <input type=hidden name=mode value='ok'>
-테이블이름:<select name=table><?=$tablelist ?></select><br>
-PRIMARY KEY:<input type=text size=20 name=key value="<?=$_GET['key']
+테이블이름:<select name=table><?php echo $tablelist ?></select><br>
+PRIMARY KEY:<input type=text size=20 name=key value="<?php echo $_GET['key']
 ?>">
 <input type=submit value="자동코딩">
 </form>
@@ -79,15 +80,15 @@ function ok_php() {
 &lt;?php
 //=======================================================
 // 설  명 : 처리(ok.php)
-// 책임자 : 박선민 (sponsor@new21.com), 검수: <?=$nowdate
+// 책임자 : 박선민 (sponsor@new21.com), 검수: <?php echo $nowdate
 ?> 
 // Project: sitePHPbasic
 // ChangeLog
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
-// <?=$nowdate
+// <?php echo $nowdate
 ?> 박선민 처음제작
-// <?=$nowdate
+// <?php echo $nowdate
 ?> 박선민 마지막수정
 //=======================================================
 $HEADER=array(
@@ -120,7 +121,7 @@ $thisUrl	= "."; // 마지막 "/"이 빠져야함
 
 	// dbinfo 설정
 	$dbinfo=array(
-				'table'		=> '<?=$_GET['table']
+				'table'		=> '<?php echo $_GET['table']
 ?>',
 				'priv_write'	=> 1,
 				'priv_delete'	=> 99
@@ -303,15 +304,15 @@ function write_php() {
 &lt;?php
 //=======================================================
 // 설  명 : 쓰기(write.php)
-// 책임자 : 박선민 (sponsor@new21.com), 검수: <?=$nowdate
+// 책임자 : 박선민 (sponsor@new21.com), 검수: <?php echo $nowdate
 ?> 
 // Project: sitePHPbasic
 // ChangeLog
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
-// <?=$nowdate
+// <?php echo $nowdate
 ?> 박선민 처음제작
-// <?=$nowdate
+// <?php echo $nowdate
 ?> 박선민 마지막수정
 //=======================================================
 $HEADER=array(
@@ -343,7 +344,7 @@ $thisUrl	= "."; // 마지막 "/"이 빠져야함
 
 	// dbinfo 설정
 	$dbinfo=array(
-				'table'		=> '<?=$_GET['table']
+				'table'		=> '<?php echo $_GET['table']
 ?>',
 				'priv_write'	=> 1,
 				'priv_delete'	=> 99

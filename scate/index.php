@@ -7,6 +7,7 @@
 // DATE 수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 05/01/26 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: $_GET 직접 사용 개선
 //=======================================================
 $HEADER = array(
 	'usedb2' => 1, // DB 커넥션 사용
@@ -21,12 +22,13 @@ $thisUrl = './'; // 마지막이 '/'으로 끝나야함
 // Ready... (변수 초기화 및 넘어온값 필터링)
 //=======================================================
 // table
-$table_dbinfo = $SITE['th'] . $prefix . 'info';
+$table_dbinfo = ($SITE['th'] ?? '') . $prefix . 'info';
 
 // boardinfo 테이블 정보 가져와서 $dbinfo로 저장
-$sql = "SELECT * FROM {$table_dbinfo} WHERE db='{$_GET['db']}'";
+$db_param_db = isset($_GET['db']) ? db_escape($_GET['db']) : '';
+$sql = "SELECT * FROM {$table_dbinfo} WHERE db='".$db_param_db."'";
 $dbinfo = db_arrayone($sql) or back("사용하지 않는 즐겨찾기입니다.");
-if ($dbinfo['enable_cate'] != 'Y') {
+if (($dbinfo['enable_cate'] ?? '') != 'Y') {
 	back("즐겨찾기를 지원하지 않습니다.");
 }
 

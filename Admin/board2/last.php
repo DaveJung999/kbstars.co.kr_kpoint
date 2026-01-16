@@ -8,6 +8,7 @@
 // -------- ------ --------------------------------------
 // 03/05/12 채혜진 마지막 수정
 // 03/05/23 박선민 /sadmin/board/last.php로 이동
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?= → <?php echo 변환
 //============================================
 $HEADER=array(
 	'priv'	 => '운영자', // 인증유무 (0:모두에게 허용)
@@ -87,7 +88,7 @@ foreach ($params as $param) {
 
 		<table width="350"	height="25" cellpadding="0" cellspacing="0"	style="border:solid 1 #C0C0C0">
 			<tr> 
-				<td align="center" bgcolor="#EFEFEF" style=font-family:verdana;font-size:9pt ><strong><?=$dbinfo['title']?></strong></td>
+				<td align="center" bgcolor="#EFEFEF" style=font-family:verdana;font-size:9pt ><strong><?php echo $dbinfo['title']?></strong></td>
 			</tr>
 		</table>
 		<br>
@@ -144,17 +145,17 @@ foreach ($params as $param) {
 			$href['list']		= "/sboard2/list.php?db={$dbinfo['table_name']}";
 ?>
 			<tr> 
-				<td width="300" height="25" class="thm9"><a href =<?=$href['read']?>><?=$list['cut_title']?></a></td>
-				<td width="80" height="25" class="thm9"align="center"><?=$list['userid']?></td>
-				<td width="80" height="25" class="thm9" align="center"><?=$list['rdate']?></td>
-				<td width="50" height="25" class="thm9" align="center"><?=$list['hit']?></td>
+				<td width="300" height="25" class="thm9"><a href =<?php echo $href['read']?>><?php echo $list['cut_title']?></a></td>
+				<td width="80" height="25" class="thm9"align="center"><?php echo $list['userid']?></td>
+				<td width="80" height="25" class="thm9" align="center"><?php echo $list['rdate']?></td>
+				<td width="50" height="25" class="thm9" align="center"><?php echo $list['hit']?></td>
 			</tr>
 			<tr><td colspan=4 height=1 bgcolor=#C0C0C0></td></tr>
 <?php
 			}
 ?>
 		</table>
-		<a href =<?=$href['list']?>> <font color="#CD4110"><strong>목록보기</strong></font></a>
+		<a href =<?php echo $href['list']?>> <font color="#CD4110"><strong>목록보기</strong></font></a>
 		<br><br>
 <?php
 		}

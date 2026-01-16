@@ -7,6 +7,7 @@
 //	DATE	수정인				수정 내용
 // -------- ------ --------------------------------------
 // 05/01/25 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: eregi_replace() → preg_replace() 변환
 //=======================================================
 $HEADER=array(
 	'priv'		=>'운영자', // 인증유무 (비회원,회원,운영자,서버관리자)
@@ -153,8 +154,8 @@ else{
 		//	Search 단어 색깔 표시
 		if($_GET['sc_string'] and $_GET['sc_column']) {
 			if($_GET['sc_column']=='title') 
-				$list['cut_title'] = eregi_replace($_GET['sc_string'], '<font color=darkred>\\0</font>',	$list['cut_title']);
-			$list[$_GET['sc_column']]	= eregi_replace($_GET['sc_string'], '<font color=darkred>\\0</font>', $list[$_GET['sc_column']]);
+				$list['cut_title'] = preg_replace('/' . preg_quote($_GET['sc_string'], '/') . '/i', '<font color=darkred>\\0</font>',	$list['cut_title']);
+			$list[$_GET['sc_column']]	= preg_replace('/' . preg_quote($_GET['sc_string'], '/') . '/i', '<font color=darkred>\\0</font>', $list[$_GET['sc_column']]);
 		}
 		//상품 이름 가져오기
 		$qs = db_query("SELECT * FROM new21_shop2_{$_GET['db']} WHERE uid = {$list['pid']}");

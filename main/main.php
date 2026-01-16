@@ -7,6 +7,7 @@
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 04/08/11 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <? → <?php 변환
 //=======================================================
 $HEADER=array(
 	'priv'		=>'', // 인증유무 (0:모두에게 허용, 숫자가 logon테이블 Level)
@@ -327,12 +328,12 @@ function banner_link($content){
 			  </tr>
 			  <tr>
 				<td width="70"><img src="/images/index_letter.gif" width="140" height="70" border="0" /></td>
-				<td width="230" height="100" rowspan="2" align="center" background="/images/index_letter_bg1.gif"><? board("fanletter", "gonggi_fanletter_main", 30, 5)?></td>
+				<td width="230" height="100" rowspan="2" align="center" background="/images/index_letter_bg1.gif"><?php board("fanletter", "gonggi_fanletter_main", 30, 5)?></td>
 				<td width="20" height="100" rowspan="2"><img src="/images/index_letter_rt1.gif" width="20" height="100" border="0" /></td>
 			  </tr>
 			  <tr>
 				<td width="140" height="30" align="center" background="/images/index_letter_bg.gif">
-				<? player_selectbox() ;?></td>
+				<?php player_selectbox() ;?></td>
 			  </tr>
 			  <tr>
 				<td width="390" height="15" colspan="3"><img src="/images/index_letter_tail.gif" width="390" height="15" border="0" /></td>
@@ -365,7 +366,7 @@ function banner_link($content){
 						</tr>
 						<tr>
 						  <td width="110" height="80" background="/images/index_photo_bg.gif"><p align="center">
-							<? photo("photo","gonggi_photo", "1"); ?>
+							<?php photo("photo","gonggi_photo", "1"); ?>
 						  </p></td>
 						</tr>
 					</table></td>
@@ -376,7 +377,7 @@ function banner_link($content){
 						</tr>
 						<tr>
 						  <td width="110" height="80" background="/images/index_wall_bg.gif"><p align="center">
-							<? photo("wallpaper","gonggi_wallpaper", "1"); ?>
+							<?php photo("wallpaper","gonggi_wallpaper", "1"); ?>
 						  </p></td>
 						</tr>
 					</table></td>
@@ -387,7 +388,7 @@ function banner_link($content){
 						</tr>
 						<tr>
 						  <td width="110" height="80" valign="middle" background="/images/index_carnd_bg.gif"><p align="center">
-							<? photo("movie","gonggi_photo", "1"); ?>
+							<?php photo("movie","gonggi_photo", "1"); ?>
 						  </p></td>
 						</tr>
 					</table></td>

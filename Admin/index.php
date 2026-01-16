@@ -7,6 +7,7 @@
 //	 DATE	 수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 04/07/19 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'priv'	=>"운영자,사진관리자,경기관리자,이벤트관리자,뉴스관리자,주니어관리자,포인트관리자", // 인증유무 (0:모두에게 허용, 숫자가 logon테이블 Level)
@@ -62,7 +63,7 @@ foreach ($params as $param) {
 <frameset rows="71,*" frameborder="no" border="0" framespacing="0">
 	<frame src="top.php" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" />
 	<frameset cols="250,*" frameborder="no" border="0" framespacing="0">
-		<frame name="leftFrame" src="<?=$left_menu;?>" scrolling='auto'>
+		<frame name="leftFrame" src="<?php echo $left_menu;?>" scrolling='auto'>
 		<frame name="mainFrame" src="blank.php" scrolling='auto'>
 	</frameset>
 </frameset>

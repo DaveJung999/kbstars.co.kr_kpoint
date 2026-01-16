@@ -1,6 +1,6 @@
 // <script src="/scommon/swfavi/avi.php?src=&width=&height="></script>
-document.writeln('<OBJECT id=mmcmedia codeBase=http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5.1.52.701 type=application/x-oleobject standby="Microsoft Windows Media Player 구성 요소를 읽어들이는 중..." width=<?=$_GET['width']?> height="<?=$_GET['height']?>" classid=CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95>');
-document.writeln('	<PARAM NAME="Filename" VALUE="<?=$src?>">');
+document.writeln('<OBJECT id=mmcmedia codeBase=http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5.1.52.701 type=application/x-oleobject standby="Microsoft Windows Media Player 구성 요소를 읽어들이는 중..." width=<?php echo $_GET['width'];?> height="<?php echo $_GET['height'];?>" classid=CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95>');
+document.writeln('	<PARAM NAME="Filename" VALUE="<?php echo $src;?>">');
 document.writeln('	<PARAM NAME="AudioStream" VALUE="-1">');
 document.writeln('	<PARAM NAME="AutoSize" VALUE="1">');
 document.writeln('	<PARAM NAME="AutoStart" VALUE="1">');
@@ -58,5 +58,5 @@ document.writeln('	<PARAM NAME="VideoBorderColor" VALUE="0">');
 document.writeln('	<PARAM NAME="VideoBorder3D" VALUE="0">');
 document.writeln('	<PARAM NAME="Volume" VALUE="-600">');
 document.writeln('	<PARAM NAME="WindowlessVideo" VALUE="0">');
-document.writeln('  <embed src="<?=$src?>" pluginspage="http://www.microsoft.com/Windows/Downloads/Contents/Products/MediaPlayer/" width=<?=$_GET['width']?> height="<?=$_GET['height']?>" ></embed>');
+document.writeln('  <embed src="<?php echo $src;?>" pluginspage="http://www.microsoft.com/Windows/Downloads/Contents/Products/MediaPlayer/" width=<?php echo $_GET['width'];?> height="<?php echo $_GET['height'];?>" ></embed>');
 document.writeln('</OBJECT>');

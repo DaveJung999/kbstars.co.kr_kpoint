@@ -67,16 +67,16 @@ function onChg()
 }
 </script>
 <table width="100%" border=0 align=center cellpadding=1 cellspacing=1 bgcolor=#DBDBDB>
-<FORM name="change" METHOD=get ACTION="<?=$PHP_SELF?>">
-	<input type="hidden" name="cate" value="<?=$cate?>">
-	<input type="hidden" name="db" value="<?=$_GET['db']?>">
+<FORM name="change" METHOD=get ACTION="<?php echo $PHP_SELF?>">
+	<input type="hidden" name="cate" value="<?php echo $cate?>">
+	<input type="hidden" name="db" value="<?php echo $_GET['db']?>">
 	<input type="hidden" name="date" value="">
-	<input type="hidden" name="skin_info" value="<?=$_GET['skin_info']?>">
+	<input type="hidden" name="skin_info" value="<?php echo $_GET['skin_info']?>">
 	<input type="hidden" name="m_category" value="1">
 	<tr> 
 	<td bgcolor="#ffffff" colspan=7 height=20> <table cellspacing=0 cellpadding=0 border=0 align=center>
 		<tr> 
-			<td align=center><font size="2" color="#666666"> <?=$gyear?> 년 <?=$gmonth?> 월</font> </td>
+			<td align=center><font size="2" color="#666666"> <?php echo $gyear?> 년 <?php echo $gmonth?> 월</font> </td>
 		</tr>
 		</table></td>
 	</tr>
@@ -105,7 +105,7 @@ for ( $ju=0 ; $ju < $jucnt ; $ju++ ) {
 				if ( $day > 0 && $day <= $ed ) $__day="<a href='{$thisUrl}/index.php?db={$_GET['db']}&mode=day&date={$gyear}-{$gmonth}-{$day}&m_category=1&skin_info={$_GET['skin_info']}'><font face=Tahoma size='1' color='#000000'>{$day}</font></a>";
 				else $__day="";	
 ?>
-	<td height="8" align=center valign="top"<?php echo $__tcolor?>><?=$__day?></td>
+	<td height="8" align=center valign="top"<?php echo $__tcolor?>><?php echo $__day?></td>
 <?php
 }
 ?>
@@ -115,8 +115,8 @@ for ( $ju=0 ; $ju < $jucnt ; $ju++ ) {
 ?>
 	<tr> 
 		<td colspan="7" align=center bgcolor="#FFFFFF"> <font size="2"> 
-		<?=selectBox(gyear,(date("Y")-2000+7),2000,"onchange=\"onChg();\"",$gyear,"");?> 년 &nbsp; 
-		<?=selectBox(gmonth,12,1,"onchange=\"onChg();\"",$gmonth,"");?> 월 </font> </td>
+		<?php echo selectBox(gyear,(date("Y")-2000+7),2000,"onchange=\"onChg();\"",$gyear,"");?> 년 &nbsp; 
+		<?php echo selectBox(gmonth,12,1,"onchange=\"onChg();\"",$gmonth,"");?> 월 </font> </td>
 	</tr>
 	</form>
 </table> 

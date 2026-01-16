@@ -50,7 +50,7 @@ $game_next['href'] = "/kbstars/2022/d03/01.php?mNum=0301";
 
 ?>
 						<div id="next_game" class="clearfix">
-							<div id="nextgame_title" class="clearfix"><a href="<?=$game_next['href'] ?? '#'?>"><img id="title_nextgame" src="/images/2017/main/title_nextgame.png" class="image" alt="다음 경기 일정" /></a></div>
+							<div id="nextgame_title" class="clearfix"><a href="<?php echo $game_next['href'] ?? '#';?>"><img id="title_nextgame" src="/images/2017/main/title_nextgame.png" class="image" alt="다음 경기 일정" /></a></div>
 							<div id="gamebox" class="clearfix">
 							<?php
 							if(isset($game_next['g_away'])){
@@ -60,12 +60,12 @@ $game_next['href'] = "/kbstars/2022/d03/01.php?mNum=0301";
 										<tbody>
 											<tr>
 												<td width="105" align="center">
-												<p id="nextdate_gameteam" style="font-weight:bold; margin-top:20px;"><?=$game_next['g_home_name'] ?? ''?></p></td>
-												<td width="95" align="center" valign="bottom"><img src="/images/team_logo/nextgame/team_<?=$game_next['g_home'] ?? ''?>.png" title="<?=$game_next['g_home_name'] ?? ''?>" width="95" height="74" alt="<?=$game_next['g_home_name'] ?? ''?>"/></td>
+												<p id="nextdate_gameteam" style="font-weight:bold; margin-top:20px;"><?php echo $game_next['g_home_name'] ?? '';?></p></td>
+												<td width="95" align="center" valign="bottom"><img src="/images/team_logo/nextgame/team_<?php echo $game_next['g_home'] ?? '';?>.png" title="<?php echo $game_next['g_home_name'] ?? '';?>" width="95" height="74" alt="<?php echo $game_next['g_home_name'] ?? '';?>"/></td>
 												<td width="30" align="center" valign="middle"><p style=" margin-top:20px;"><img src="/images/2016/new/nextgame_vs.png" width="19" height="13" alt="vs"/></p></td>
-												<td width="95" align="center" valign="bottom"><img src="/images/team_logo/nextgame/team_<?=$game_next['g_away'] ?? ''?>.png" title="<?=$game_next['g_away_name'] ?? ''?>" width="95" height="74" alt="<?=$game_next['g_away_name'] ?? ''?>"/></td>
+												<td width="95" align="center" valign="bottom"><img src="/images/team_logo/nextgame/team_<?php echo $game_next['g_away'] ?? '';?>.png" title="<?php echo $game_next['g_away_name'] ?? '';?>" width="95" height="74" alt="<?php echo $game_next['g_away_name'] ?? '';?>"/></td>
 												<td width="105" align="center">
-												<p id="nextdate_gameteam" style="font-weight:bold; margin-top:20px;"><?=$game_next['g_away_name'] ?? ''?></p></td>
+												<p id="nextdate_gameteam" style="font-weight:bold; margin-top:20px;"><?php echo $game_next['g_away_name'] ?? '';?></p></td>
 											</tr>
 										</tbody>
 									</table>
@@ -73,7 +73,7 @@ $game_next['href'] = "/kbstars/2022/d03/01.php?mNum=0301";
 
 								<div id="gamebox_score2" class="clearfix">
 									<p id="nextdate">
-									<?=$game_next['g_start_date'] ?? ''?>&nbsp;<?=$game_next['g_ground'] ?? ''?><br />
+									<?php echo $game_next['g_start_date'] ?? '';?>&nbsp;<?php echo $game_next['g_ground'] ?? '';?><br />
 									</p>
 								</div>
 							<?php

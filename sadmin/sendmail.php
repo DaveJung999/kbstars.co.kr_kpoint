@@ -64,13 +64,13 @@ border="0" cellpadding="0" cellspacing="5" class="normal">
 <tr>
 <td width="16%" align="right">보내는 메일:</td>
 <td width="84%"><input name="fromEmail" type="text" class="form" id="fromEmail" 
-size="84" value="<?=$_REQUEST['fromEmail'] 
+size="84" value="<?php echo $_REQUEST['fromEmail']; 
 ?>"></td>
 </tr>
 <tr>
 <td align="right">보내는 사람:</td>
 <td><input name="fromName" type="text" class="form" id="fromName" 
-size="84" value="<?=$_REQUEST['fromName'] 
+size="84" value="<?php echo $_REQUEST['fromName']; 
 ?>"></td>
 </tr>
 <tr align="center" bgcolor="#F4F4F4">
@@ -79,7 +79,7 @@ size="84" value="<?=$_REQUEST['fromName']
 <tr>
 	<td height="51" colspan="2" align="center" valign="top"><br>
 	<textarea name="emails" 
-cols="100" rows="10" wrap="VIRTUAL" class="form" id="emails"><?=$_REQUEST['emails']  ?></textarea>
+cols="100" rows="10" wrap="VIRTUAL" class="form" id="emails"><?php echo $_REQUEST['emails'];  ?></textarea>
 	<br></td>
 </tr>
 <tr align="center" bgcolor="#F4F4F4">
@@ -87,7 +87,7 @@ cols="100" rows="10" wrap="VIRTUAL" class="form" id="emails"><?=$_REQUEST['email
 </tr>
 <tr>
 <td height="71" colspan="2" align="center" valign="top"><textarea name="html" 
-cols="100" rows="20" wrap="VIRTUAL" class="form" id="html"><?=$_REQUEST['html']  ?></textarea></td>
+cols="100" rows="20" wrap="VIRTUAL" class="form" id="html"><?php echo $_REQUEST['html'];  ?></textarea></td>
 </tr>
 
 <tr>

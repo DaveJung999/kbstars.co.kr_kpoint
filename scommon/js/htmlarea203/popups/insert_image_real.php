@@ -20,9 +20,9 @@
 var isUpload = 0;
 
 // davej.............
-if ( '<?=$image_filename
+if ( '<?php echo $image_filename;
 ?>' != '') {
-	txtFileName.value = "/images_upload/<?=$image_filename;
+	txtFileName.value = "/images_upload/<?php echo $image_filename;
 ?>";
 
 	isUpload = 1;
@@ -258,7 +258,7 @@ function btnOKClick() {
 
 <script>
 // davej.............
-if ( '<?=$image_filename
+if ( '<?php echo $image_filename;
 ?>' != '') {
 	
 	divFilesearch.style.visibility = 'hidden';

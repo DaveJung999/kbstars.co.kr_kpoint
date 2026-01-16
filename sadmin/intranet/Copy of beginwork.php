@@ -7,6 +7,7 @@
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 02/10/10 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?= → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'priv'		=>'운영자', // 인증유무 (비회원,회원,운영자,서버관리자) // 관리자만 로그인
@@ -104,18 +105,18 @@ if($mode) {
 
 ?>
 <html>
-<?=$pageinfo['html_header']	 // 스타일시트?>
-<body bgcolor="<?=$pageinfo['right_bgcolor']?>" background="<?=$pageinfo['right_background']?>">
-<form method=post action="<?=$PHP_SELF?>">
-  <table width="500" border=0 cellpadding='<?=$pageinfo['table_cellpadding']?>' cellspacing='<?=$pageinfo['table_cellspacing']?>' bgcolor='<?=$pageinfo['table_linecolor']?>'>
+<?php echo $pageinfo['html_header']	 // 스타일시트?>
+<body bgcolor="<?php echo $pageinfo['right_bgcolor']?>" background="<?php echo $pageinfo['right_background']?>">
+<form method=post action="<?php echo $PHP_SELF?>">
+  <table width="500" border=0 cellpadding='<?php echo $pageinfo['table_cellpadding']?>' cellspacing='<?php echo $pageinfo['table_cellspacing']?>' bgcolor='<?php echo $pageinfo['table_linecolor']?>'>
 	<tr> 
-	  <td bgcolor='<?=$pageinfo['table_titlecolor']?>'><b><?=$SITE['company']?> 출근하기</b></td>
+	  <td bgcolor='<?php echo $pageinfo['table_titlecolor']?>'><b><?php echo $SITE['company']?> 출근하기</b></td>
 	</tr>
 	<tr> 
-	  <td bgcolor='<?=$pageinfo['table_tdcolor']?>'>
-		  <table width="400" border=0 align="center" cellpadding='<?=$pageinfo['table_cellpadding']?>' cellspacing='<?=$pageinfo['table_cellspacing']?>' bgcolor='<?=$pageinfo['table_linecolor']?>'>
+	  <td bgcolor='<?php echo $pageinfo['table_tdcolor']?>'>
+		  <table width="400" border=0 align="center" cellpadding='<?php echo $pageinfo['table_cellpadding']?>' cellspacing='<?php echo $pageinfo['table_cellspacing']?>' bgcolor='<?php echo $pageinfo['table_linecolor']?>'>
 		  <tr> 
-			<td bgcolor='<?=$pageinfo['table_thcolor']?>'><b> 
+			<td bgcolor='<?php echo $pageinfo['table_thcolor']?>'><b> 
 			  <input name="mode" type="radio" onClick="javascript: this.form.submit.value='출근하기'" value="출근" checked>
 			  <a href="javascript: document.forms[0].mode[0].checked=true; void(0)">출근하기 </a>
 			  <input name="mode" type="radio" onClick="javascript: this.form.submit.value='휴가중'" value="휴가">
@@ -124,21 +125,21 @@ if($mode) {
 			  <a href="javascript: document.forms[0].mode[2].checked=true; void(0)">출장확인</a></b></td>
 		  </tr>
 		  <tr> 
-			<td align="center" bgcolor='<?=$pageinfo['table_tdcolor']?>'> <b> 
-			  <?=date("Y-m-d H시 i분");?>
+			<td align="center" bgcolor='<?php echo $pageinfo['table_tdcolor']?>'> <b> 
+			  <?php echo date("Y-m-d H시 i분");?>
 			  </b> </td>
 		  </tr>
 		  <tr> 
-			<td align="center" bgcolor='<?=$pageinfo['table_thcolor']?>'><div align="left">메모</div></td>
+			<td align="center" bgcolor='<?php echo $pageinfo['table_thcolor']?>'><div align="left">메모</div></td>
 		  </tr>
 		  <tr> 
-			<td bgcolor='<?=$pageinfo['table_tdcolor']?>'><textarea name="memo" cols="50" rows="6" id="memo"></textarea></td>
+			<td bgcolor='<?php echo $pageinfo['table_tdcolor']?>'><textarea name="memo" cols="50" rows="6" id="memo"></textarea></td>
 		  </tr>
 		</table>
 	  </td>
 	</tr>
 	<tr> 
-	  <td bgcolor='<?=$pageinfo['table_tdcolor']?>' align="center"><input name="submit" type="submit" id="submit" value="출근합니다."></td>
+	  <td bgcolor='<?php echo $pageinfo['table_tdcolor']?>' align="center"><input name="submit" type="submit" id="submit" value="출근합니다."></td>
 	</tr>
   </table>
 </form>

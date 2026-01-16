@@ -1,4 +1,4 @@
-<?
+<?php
 //=======================================================
 // 설  명 : 사이트의 HTML 해더와 테일부분 예시(index_example.php)
 // 책임자 : 박선민 (sponsor@new21.com), 검수: 05/01/29
@@ -7,6 +7,7 @@
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 05/01/29 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <? → <?php 변환
 //=======================================================
 /*
 <사이트 전체스킨 만드는 법>
@@ -153,8 +154,8 @@ function na_change_img_src(name, nsdoc, rpath, preload)
 </head>
 
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" background="/img/bg.gif" OnLoad=" namosw_init_float_layers('layer1', 1);na_preload_img(false, '/img/sub-menu-1-01-1.gif', '/img/sub-menu-1-02-1.gif', '/img/sub-menu-1-03-1.gif', '/img/sub-menu-1-04-1.gif', '/img/sub-menu-1-05-1.gif', '/img/sub-menu-1-06-1.gif', '/img/sub-menu-1-07-1.gif');">
-<? include("inc_head.php") ?>
-<?
+<?php include("inc_head.php") ?>
+<?php
 switch($_SERVER['PHP_SELF']) {
 	case '/smember/index.php' :
 		$nevi = " &gt; 마이페이지";
@@ -184,7 +185,7 @@ switch($_SERVER['PHP_SELF']) {
 	<tr>
 		<td height="24" bgcolor="#574F43" background="/img/home-menu-title.gif">
 			<p style="line-height:100%; margin-top:0; margin-bottom:0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:10pt; color:white">&nbsp;<a href="/"><font color="#FFFFFF">HOME</font></a> 
-			&gt; 멤버스룸 <font color="#FFFFFF"><?=$nevi?></font></span></p>
+			&gt; 멤버스룸 <font color="#FFFFFF"><?php echo $nevi;?></font></span></p>
 		</td>
 	</tr>
 </table>
@@ -238,10 +239,10 @@ switch($_SERVER['PHP_SELF']) {
 		</td>
 	</tr>
 </table>
-<? include("inc_tail.php") ?>
+<?php include("inc_tail.php") ?>
 </body>
 </html>
-<?
+<?php
 	// 여기부터 끝까지 복사하여 제작한 사이트 스킨 마지막에 넣으면 됨
 	$body=ob_get_contents(); // 버퍼링된 내용을 변수로 받음
 	ob_end_clean(); // 버퍼링비움

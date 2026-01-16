@@ -7,6 +7,7 @@
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 04/01/06 박선민 추가 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'priv'	 => 99, // 인증유무 (0:모두에게 허용, 숫자가 logon테이블 Level)
@@ -70,22 +71,22 @@ body {
 			<td width="12%" height="22" align="center" bgcolor="#D2BF7E">제&nbsp; 목</td>
 			<td colspan="3" bgcolor="#F0EBD6"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
-					<td><?=$list['title']?></td>
+					<td><?php echo $list['title']?></td>
 				</tr>
 			</table></td>
 			</tr>
 			<tr bgcolor="#F0EBD6">
 			<td height="22" align="center" bgcolor="#D2BF7E">건&nbsp; 수 </td>
-			<td width="38%" align="center"><?=$list['data2']?>
+			<td width="38%" align="center"><?php echo $list['data2']?>
 				건 </td>
 			<td width="11%" align="center" bgcolor="#D2BF7E">날&nbsp; 짜 </td>
-			<td width="39%" align="center"><?=$list['rdate']?></td>
+			<td width="39%" align="center"><?php echo $list['rdate']?></td>
 			</tr>
 			<tr bgcolor="#F0EBD6">
 			<td height="22" align="center" bgcolor="#D2BF7E">상세정보</td>
 			<td colspan="3"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
 				<tr>
-					<td><?=$list['content']?></td>
+					<td><?php echo $list['content']?></td>
 				</tr>
 			</table></td>
 			</tr>

@@ -61,17 +61,17 @@ db_free($rs_attend);
 $total_worktime['totalhours'] = $total_worktime['dayhours'] + $total_worktime['overhours'] + $total_worktime['nighthours'];
 ?>
 <html>
-<?=$pageinfo['html_header']	 // 스타일시트
+<?php echo $pageinfo['html_header'];	 // 스타일시트
 ?>
-<body bgcolor="<?=$pageinfo['right_bgcolor']?>" background="<?=$pageinfo['right_background']?>">
+<body bgcolor="<?php echo $pageinfo['right_bgcolor'];?>" background="<?php echo $pageinfo['right_background'];?>">
 	
-<table width="600" border=0 cellpadding='<?=$pageinfo['table_cellpadding']?>' cellspacing='<?=$pageinfo['table_cellspacing']?>' bgcolor='<?=$pageinfo['table_linecolor']?>'>
+<table width="600" border=0 cellpadding='<?php echo $pageinfo['table_cellpadding'];?>' cellspacing='<?php echo $pageinfo['table_cellspacing'];?>' bgcolor='<?php echo $pageinfo['table_linecolor'];?>'>
 	<tr> 
-	<form method=get action="<?=$PHP_SELF?>">
-		<td align="center" bgcolor='<?=$pageinfo['table_titlecolor']?>'><b> 
-		<?=$SITE['company']?>
+	<form method=get action="<?php echo $PHP_SELF;?>">
+		<td align="center" bgcolor='<?php echo $pageinfo['table_titlecolor'];?>'><b> 
+		<?php echo $SITE['company'];?>
 		개인별 출근부 (직원명 : 
-		<?=$_SESSION['seName']?>
+		<?php echo $_SESSION['seName'];?>
 		) &nbsp; 
 		<select name="year" id="year">
 			<?php
@@ -106,11 +106,11 @@ $total_worktime['totalhours'] = $total_worktime['dayhours'] + $total_worktime['o
 	</form>
 	</tr>
 	<tr> 
-	<td align="center" bgcolor='<?=$pageinfo['table_tdcolor']?>'>총업무시간 <?=$total_worktime['totalhours']?>시간 (정규 <?=$total_worktime['dayhours']?>시간, 시간외 <?=$total_worktime['overhours']?>시간, 야근 <?=$total_worktime['nighthours']?>시간) </td>
+	<td align="center" bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'>총업무시간 <?php echo $total_worktime['totalhours'];?>시간 (정규 <?php echo $total_worktime['dayhours'];?>시간, 시간외 <?php echo $total_worktime['overhours'];?>시간, 야근 <?php echo $total_worktime['nighthours'];?>시간) </td>
 	</tr>
 	<tr> 
-	<td bgcolor='<?=$pageinfo['table_tdcolor']?>'> <table width="600" border=0 align="left" cellpadding='<?=$pageinfo['table_cellpadding']?>' cellspacing='<?=$pageinfo['table_cellspacing']?>' bgcolor='<?=$pageinfo['table_linecolor']?>'>
-		<tr bgcolor="<?=$pageinfo['table_thcolor']?>"> 
+	<td bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'> <table width="600" border=0 align="left" cellpadding='<?php echo $pageinfo['table_cellpadding'];?>' cellspacing='<?php echo $pageinfo['table_cellspacing'];?>' bgcolor='<?php echo $pageinfo['table_linecolor'];?>'>
+		<tr bgcolor="<?php echo $pageinfo['table_thcolor'];?>"> 
 			<td rowspan="2" align="center"><strong>날짜</strong></td>
 			<td rowspan="2" align="center"><strong>구분</strong></td>
 			<td rowspan="2" align="center"><strong>출근</strong></td>
@@ -118,7 +118,7 @@ $total_worktime['totalhours'] = $total_worktime['dayhours'] + $total_worktime['o
 			<td colspan="3" align="center"><p><strong>업무시간</strong></p></td>
 			<td width="200" rowspan="2" align="center"><strong>메모</strong></td>
 		</tr>
-		<tr align="center"	bgcolor="<?=$pageinfo['table_thcolor']?>"> 
+		<tr align="center"	bgcolor="<?php echo $pageinfo['table_thcolor'];?>"> 
 			<td width=30>정규</td>
 			<td width=30><font size=1>시간외</font></td>
 			<td width=30>야근</td>
@@ -131,7 +131,7 @@ for($i=1;$i<=$lastday;$i++) {
 	else $tmp_day=$i;
 ?>
 		<tr align="center" > 
-			<td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>'	align="right"	width=60> 
+			<td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'	align="right"	width=60> 
 <?php 
 
 					switch( date("w",mktime(0,0,0,$_GET['month'],$i,$_GET['year'])) ) {
@@ -163,26 +163,26 @@ for($i=1;$i<=$lastday;$i++) {
 				
 ?>
 			</td>
-			<td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>' width=40> 
-			<?=$data_attend["{$workmonth}{$tmp_day}"][type]?>
+			<td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' width=40> 
+			<?php echo $data_attend["{$workmonth}{$tmp_day}"][type];?>
 			</td>
-			<td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>' width=50> 
-			<?= $data_attend["{$workmonth}{$tmp_day}"][begintime] ? date("d H:i",$data_attend["{$workmonth}{$tmp_day}"][begintime]) : "-";?>
+			<td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' width=50> 
+			<?php echo $data_attend["{$workmonth}{$tmp_day}"][begintime] ? date("d H:i",$data_attend["{$workmonth}{$tmp_day}"][begintime]) : "-";?>
 			</td>
-			<td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>' width=50> 
-			<?= $data_attend["{$workmonth}{$tmp_day}"][finishtime] ? date("d H:i",$data_attend["{$workmonth}{$tmp_day}"][finishtime]) : "-";?>
+			<td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' width=50> 
+			<?php echo $data_attend["{$workmonth}{$tmp_day}"][finishtime] ? date("d H:i",$data_attend["{$workmonth}{$tmp_day}"][finishtime]) : "-";?>
 			</td>
-			<td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>'> 
-			<?=$data_attend["{$workmonth}{$tmp_day}"][dayhours]?>
+			<td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'> 
+			<?php echo $data_attend["{$workmonth}{$tmp_day}"][dayhours];?>
 			</td>
-			<td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>'> 
-			<?=$data_attend["{$workmonth}{$tmp_day}"][overhours]?>
+			<td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'> 
+			<?php echo $data_attend["{$workmonth}{$tmp_day}"][overhours];?>
 			</td>
-			<td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>'> 
-			<?=$data_attend["{$workmonth}{$tmp_day}"][nighthours]?>
+			<td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'> 
+			<?php echo $data_attend["{$workmonth}{$tmp_day}"][nighthours];?>
 			</td>
-			<td width="200" align="left" bgcolor='<?=$pageinfo['table_tdcolor']?>'> 
-			<?=$data_attend["{$workmonth}{$tmp_day}"][memo]?>
+			<td width="200" align="left" bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'> 
+			<?php echo $data_attend["{$workmonth}{$tmp_day}"][memo];?>
 			</td>
 			<?php
 } // end for
@@ -191,7 +191,7 @@ for($i=1;$i<=$lastday;$i++) {
 		</table></td>
 	</tr>
 	<tr> 
-	<td bgcolor='<?=$pageinfo['table_tdcolor']?>' align="center"><input type="button"	value="퇴근함니다." onClick="javascript: window.location='./finishwork.php'"></td>
+	<td bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' align="center"><input type="button"	value="퇴근함니다." onClick="javascript: window.location='./finishwork.php'"></td>
 	</tr>
 </table>
 </body>

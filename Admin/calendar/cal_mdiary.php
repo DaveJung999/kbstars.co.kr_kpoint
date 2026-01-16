@@ -17,7 +17,7 @@ require("{$_SERVER['DOCUMENT_ROOT']}/sinc/header.php");
 			<table border="1" width="590" cellspacing="0" cellpadding="0" bordercolor="#ffffff" bordercolorlight="#000000">
 				<tr height=25>
 					<td bgcolor=FFC125>
-						<span style='font-size:9pt'>&nbsp;<?=$intThisMonth?>월중 일정</span>
+						<span style='font-size:9pt'>&nbsp;<?php echo $intThisMonth?>월중 일정</span>
 					</td>
 				</tr>
 				<tr height=40>
@@ -85,4 +85,4 @@ require("{$_SERVER['DOCUMENT_ROOT']}/sinc/header.php");
 	</tr>
 </table>
 
-<?=$SITE['tail']?>
+<?php echo $SITE['tail']?>

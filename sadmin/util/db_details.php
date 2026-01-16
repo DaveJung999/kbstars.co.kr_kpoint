@@ -59,7 +59,7 @@ var confirmMsg  = '정말로 다음을 실행하시겠습니까? ';
 	<!-- Query box, sql file loader and bookmark support -->
 	<li>
 		<a name="querybox"></a>
-		<form method="get" action="http://<?=$HTTP_HOST
+		<form method="get" action="http://<?php echo $HTTP_HOST
 ?>/sadmin/myadmin224/read_dump.php" enctype="multipart/form-data"			onsubmit="return checkSqlQuery(this)">
 			<input type="hidden" name="is_js_confirmed" value="0" />
 			<input type="hidden" name="lang" value="ko" />

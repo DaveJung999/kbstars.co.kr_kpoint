@@ -7,6 +7,7 @@
 //	 DATE	 수정인				 수정 내용
 // -------- ------ --------------------------------------
 // 03/08/25 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'priv'	 => 2, // 인증유무 (0:모두에게 허용)
@@ -172,9 +173,9 @@ for($i=0; $i<$total; $i++){
 ?>
 		<tr> 
 			<td width="73" bgcolor="#FDFDFD" style="border-bottom : 1px solid #b4b4b4"> 
-			<div align="center"> <font size="2"><?=$list['startdate'];?> <br>~<br><?=$list['enddate'];?></font></div></td>
+			<div align="center"> <font size="2"><?php echo $list['startdate'];?> <br>~<br><?php echo $list['enddate'];?></font></div></td>
 			<td width="120" style="border-bottom : 1px solid #b4b4b4" valign="top"> 
-			<font size="2"><a href="<?=$href['poll'];?>" target=_blank><?=$list['title'];?></a></font></td>
+			<font size="2"><a href="<?php echo $href['poll'];?>" target=_blank><?php echo $list['title'];?></a></font></td>
 			<td width="243" bgcolor="#FFFFFF" style="border-bottom : 1px solid #b4b4b4"> 
 			<table width="100%" cellspacing="0" cellpadding="0" height="100%">
 <?php
@@ -204,7 +205,7 @@ for($i=0; $i<$total; $i++){
 			<td width="111" bgcolor="#FDFDFD" style="border-bottom : 1px solid #b4b4b4"><div align="center"><font size="2"> <?php echo $list['age']; ?></font></div></td>
 			<td width="87" bgcolor="#FDFDFD" style="border-bottom : 1px solid #b4b4b4"> <div align="center"><font size="2"> <?php echo $list['member'] ?></font></div></td>
 			<td width="66" bgcolor="#FDFDFD" style="border-bottom : 1px solid #b4b4b4"> <div align="center"><font size="2"><a href="./write.php?mode=modify&uid=<?php echo $list['uid'] ?>">수정</a></font></div></td>
-			<td width="42" bgcolor="#FDFDFD" style="border-bottom : 1px solid #b4b4b4"> <div align="center"><font size="2"><a href="<?=$href['delete']?>" onClick="javascript: return confirm('앨범의 모든 사진이 삭제됩니다. 정말 삭제하시겠습니다.');">삭제</a></font></div></td>
+			<td width="42" bgcolor="#FDFDFD" style="border-bottom : 1px solid #b4b4b4"> <div align="center"><font size="2"><a href="<?php echo $href['delete']?>" onClick="javascript: return confirm('앨범의 모든 사진이 삭제됩니다. 정말 삭제하시겠습니다.');">삭제</a></font></div></td>
 		</tr>
 <?php 
 } // end for			

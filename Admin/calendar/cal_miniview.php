@@ -120,9 +120,9 @@ if(is_array($div_content)) {
 	<tr>
 		<td><table width="99%" border='0' align='center' cellpadding='0' cellspacing='0'>
 			<tr>
-				<td height="36" width="82" valign="middle"><a href="/scalendar/index.php?db=<?= htmlspecialchars($db, ENT_QUOTES, 'UTF-8') ?>" target="_parent"><img src="/images/main/calendar_top.gif" width="80" height="34" border="0" /></a></td>
-				<td align="center" valign="middle"><a href="?db=<?= htmlspecialchars($db, ENT_QUOTES, 'UTF-8') ?>&F_Year=<?= $intPrevYear ?>&F_Month=<?= $intPrevMonth ?>&F_Day=1"><img src="/images/main/a_p.gif" width="13" height="13" border="0" align="absmiddle" /></a><font color="7378B8"><strong> <?= $gyear ?>년</strong></font> <strong><font color="7378B8">
-				<?= $gmonth ?>월 </font></strong><a href="?db=<?= htmlspecialchars($db, ENT_QUOTES, 'UTF-8') ?>&F_Year=<?= $intNextYear ?>&F_Month=<?= $intNextMonth ?>&F_Day=1"><img src="/images/main/a_n.gif" width="13" height="13" border="0" align="absmiddle" /></a></td>
+				<td height="36" width="82" valign="middle"><a href="/scalendar/index.php?db=<?php echo  htmlspecialchars($db, ENT_QUOTES, 'UTF-8') ?>" target="_parent"><img src="/images/main/calendar_top.gif" width="80" height="34" border="0" /></a></td>
+				<td align="center" valign="middle"><a href="?db=<?php echo  htmlspecialchars($db, ENT_QUOTES, 'UTF-8') ?>&F_Year=<?php echo  $intPrevYear ?>&F_Month=<?php echo  $intPrevMonth ?>&F_Day=1"><img src="/images/main/a_p.gif" width="13" height="13" border="0" align="absmiddle" /></a><font color="7378B8"><strong> <?php echo  $gyear ?>년</strong></font> <strong><font color="7378B8">
+				<?php echo  $gmonth ?>월 </font></strong><a href="?db=<?php echo  htmlspecialchars($db, ENT_QUOTES, 'UTF-8') ?>&F_Year=<?php echo  $intNextYear ?>&F_Month=<?php echo  $intNextMonth ?>&F_Day=1"><img src="/images/main/a_n.gif" width="13" height="13" border="0" align="absmiddle" /></a></td>
 			</tr>
 		</table></td>
 	</tr>
@@ -157,7 +157,7 @@ for ( $ju=0 ; $ju < $jucnt ; $ju++ ) {
 					$__day="<a href='{$day_href}' {$__content} target=_parent><font size='2' color='#333333'>{$day}</font></a>";
 				}
 ?>
-		<td width="14%" height="18" align="center" style="<?= $__tcolor_style ?>"><?= $__day ?></td>
+		<td width="14%" height="18" align="center" style="<?php echo  $__tcolor_style ?>"><?php echo  $__day ?></td>
 <?php
 		}
 ?>
@@ -191,10 +191,10 @@ for ( $ju=0 ; $ju < $jucnt ; $ju++ ) {
 				$row_title = htmlspecialchars(cut_string($row['title'],20), ENT_QUOTES, 'UTF-8');
 				$outCal_js = $outCal[$row['startdate']] ?? '';
 ?>
-			<div style='display:none;' id='Mem<?=$i?>'>
+			<div style='display:none;' id='Mem<?php echo $i?>'>
 			<table width="202" border="0" cellspacing="0" cellpadding="1">
 			<tr>
-				<td><a href="<?= $view_href ?>" target=_parent class="bmails00102" <?= $outCal_js ?>><?= $pre_title ?> <font color="#111111">[<?=substr($row['startdate'], 5)?>]</font> <?= $row_title ?></a></td>
+				<td><a href="<?php echo  $view_href ?>" target=_parent class="bmails00102" <?php echo  $outCal_js ?>><?php echo  $pre_title ?> <font color="#111111">[<?php echo substr($row['startdate'], 5)?>]</font> <?php echo  $row_title ?></a></td>
 			</tr>
 			</table>
 			</div>
@@ -232,7 +232,7 @@ for ( $ju=0 ; $ju < $jucnt ; $ju++ ) {
 
 	window.onload = function() {
 		try {
-			if ( <?= (int)$jucnt ?> > 5) {
+			if ( <?php echo  (int)$jucnt ?> > 5) {
 				parent.document.getElementById('cal_min').height = 204;
 			} else {
 				parent.document.getElementById('cal_min').height = 184;

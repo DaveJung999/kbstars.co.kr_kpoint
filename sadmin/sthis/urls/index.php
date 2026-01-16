@@ -7,6 +7,7 @@
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 02/10/09 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?= → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'priv'		=>'운영자', // 인증유무 (비회원,회원,운영자,서버관리자) // 관리자만 로그인
@@ -58,7 +59,7 @@ while($rows=db_array($result2)) {
 ?>
 <html>
 <head>
-<?=$pageinfo['html_header']
+<?php echo $pageinfo['html_header']
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>

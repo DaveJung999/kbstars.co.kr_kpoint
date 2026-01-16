@@ -85,57 +85,57 @@ if($mode=="finishwork") {
 } // end if($mode)
 ?>
 <html>
-<?=$pageinfo['html_header']?>
-<body bgcolor="<?=$pageinfo['right_bgcolor']?>" background="<?=$pageinfo['right_background']?>">
-<form method=post action="<?=$PHP_SELF?>">
+<?php echo $pageinfo['html_header'];?>
+<body bgcolor="<?php echo $pageinfo['right_bgcolor'];?>" background="<?php echo $pageinfo['right_background'];?>">
+<form method=post action="<?php echo $PHP_SELF;?>">
 <input type="hidden" name="mode"	value="finishwork" readonly>
-<table width="500" border=0 cellpadding='<?=$pageinfo['table_cellpadding']?>' cellspacing='<?=$pageinfo['table_cellspacing']?>' bgcolor='<?=$pageinfo['table_linecolor']?>'>
+<table width="500" border=0 cellpadding='<?php echo $pageinfo['table_cellpadding'];?>' cellspacing='<?php echo $pageinfo['table_cellspacing'];?>' bgcolor='<?php echo $pageinfo['table_linecolor'];?>'>
 	<tr> 
-		<td bgcolor='<?=$pageinfo['table_titlecolor']?>'><b> 
-		<?=$SITE['company']?> 퇴근하기 (직원명: <?=$_SESSION['seName']?>)</b></td>
+		<td bgcolor='<?php echo $pageinfo['table_titlecolor'];?>'><b> 
+		<?php echo $SITE['company'];?> 퇴근하기 (직원명: <?php echo $_SESSION['seName'];?>)</b></td>
 	</tr>
 	<tr> 
-		<td bgcolor='<?=$pageinfo['table_tdcolor']?>'>
-			<table width="400" border=0 align="center" cellpadding='<?=$pageinfo['table_cellpadding']?>' cellspacing='<?=$pageinfo['table_cellspacing']?>' bgcolor='<?=$pageinfo['table_linecolor']?>'>
+		<td bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'>
+			<table width="400" border=0 align="center" cellpadding='<?php echo $pageinfo['table_cellpadding'];?>' cellspacing='<?php echo $pageinfo['table_cellspacing'];?>' bgcolor='<?php echo $pageinfo['table_linecolor'];?>'>
 			<tr> 
-			<td width="85" bgcolor='<?=$pageinfo['table_thcolor']?>'><b>&nbsp;출근시간</b></td>
-			<td colspan="3" align="center" bgcolor='<?=$pageinfo['table_tdcolor']?>'><strong> 
-				<?=date("Y-m-d H시 i분",$list_attend['begintime'])?>
+			<td width="85" bgcolor='<?php echo $pageinfo['table_thcolor'];?>'><b>&nbsp;출근시간</b></td>
+			<td colspan="3" align="center" bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'><strong> 
+				<?php echo date("Y-m-d H시 i분",$list_attend['begintime']);?>
 				</strong></td>
 			</tr>
 			<tr> 
-			<td bgcolor='<?=$pageinfo['table_thcolor']?>'><b>&nbsp;퇴근시간</b></td>
-			<td colspan="3" align="center" bgcolor='<?=$pageinfo['table_tdcolor']?>'><b> 
-				<?=date("Y-m-d H시 i분");?>
+			<td bgcolor='<?php echo $pageinfo['table_thcolor'];?>'><b>&nbsp;퇴근시간</b></td>
+			<td colspan="3" align="center" bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'><b> 
+				<?php echo date("Y-m-d H시 i분");?>
 				</b></td>
 			</tr>
 			<tr> 
-			<td bgcolor='<?=$pageinfo['table_thcolor']?>'><strong>&nbsp;업무시간</strong></td>
-			<td width="58" bgcolor='<?=$pageinfo['table_tdcolor']?>'> 정규<br>
+			<td bgcolor='<?php echo $pageinfo['table_thcolor'];?>'><strong>&nbsp;업무시간</strong></td>
+			<td width="58" bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'> 정규<br>
 				시간외 <br>
 				야근</td>
-			<td width="107" bgcolor='<?=$pageinfo['table_tdcolor']?>'> 
+			<td width="107" bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'> 
 				<input name="dayhours" id="dayhours" 
-					onChange="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i><?=$maxworkhours?>){alert('^_^;;\n출근후 지난시간(<?=$maxworkhours?>시간)보다 더 적으셨습니다.'); this.value=0;}" value=<?=$maxworkhours?> size=3>시간<br>
+					onChange="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i><?php echo $maxworkhours;?>){alert('^_^;;\n출근후 지난시간(<?php echo $maxworkhours;?>시간)보다 더 적으셨습니다.'); this.value=0;}" value=<?php echo $maxworkhours;?> size=3>시간<br>
 					<input size=3 name="overhours" id="overhours" 
-					onChange="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i><?=$maxworkhours?>){alert('^_^;;\n출근후 지난시간(<?=$maxworkhours?>시간)보다 더 적으셨습니다.'); this.value=0;}">시간<br>
+					onChange="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i><?php echo $maxworkhours;?>){alert('^_^;;\n출근후 지난시간(<?php echo $maxworkhours;?>시간)보다 더 적으셨습니다.'); this.value=0;}">시간<br>
 					<input size=3 name="nighthours" id="nighthours" 
-					onChange="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i><?=$maxworkhours?>){alert('^_^;;\n출근후 지난시간(<?=$maxworkhours?>시간)보다 더 적으셨습니다.'); this.value=0;}">시간</td>
-			<td width="150" align="center" bgcolor='<?=$pageinfo['table_tdcolor']?>'> 최대 <?=$maxworkhours?>시간</td>
+					onChange="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i><?php echo $maxworkhours;?>){alert('^_^;;\n출근후 지난시간(<?php echo $maxworkhours;?>시간)보다 더 적으셨습니다.'); this.value=0;}">시간</td>
+			<td width="150" align="center" bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'> 최대 <?php echo $maxworkhours;?>시간</td>
 			</tr>
 			<tr> 
-			<td colspan="4" align="center" bgcolor='<?=$pageinfo['table_thcolor']?>'><div align="left"><strong>&nbsp;메모</strong></div></td>
+			<td colspan="4" align="center" bgcolor='<?php echo $pageinfo['table_thcolor'];?>'><div align="left"><strong>&nbsp;메모</strong></div></td>
 			</tr>
 			<tr> 
-			<td colspan="4" bgcolor='<?=$pageinfo['table_tdcolor']?>'><textarea name="memo" cols="50" rows="6" id="memo"><?=$list_attend['memo']?></textarea></td>
+			<td colspan="4" bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'><textarea name="memo" cols="50" rows="6" id="memo"><?php echo $list_attend['memo'];?></textarea></td>
 			</tr>
 		</table>
 		</td>
 	</tr>
 	<tr> 
-		<td bgcolor='<?=$pageinfo['table_tdcolor']?>' align="center">
+		<td bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' align="center">
 		<input name="submit" type="submit" id="submit" value="퇴근합니다." 
-				onMouseOver="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i><?=$maxworkhours?>){alert('^_^;;\n출근후 지난시간(<?=$maxworkhours?>시간)보다 더 적으셨습니다.'); return false;}"></td>
+				onMouseOver="javascript: var	i=eval(this.form.dayhours.value)+eval(this.form.overhours.value)+eval(this.form.nighthours.value); if(i><?php echo $maxworkhours;?>){alert('^_^;;\n출근후 지난시간(<?php echo $maxworkhours;?>시간)보다 더 적으셨습니다.'); return false;}"></td>
 	</tr>
 	</table>
 </form>

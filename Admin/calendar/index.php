@@ -200,9 +200,9 @@ body {
 						echo $thisFullDate;
 ?>
 												</b></span></td>
-												<td width="66%" align="right"><a href='<?= $href['today'] ?>'><font color="red">▒ </font> 오늘일정(
-													<?=date("m월 d일")?>
-													) </a> : <a href='<?= $href['day'] ?>'><font color="red">▒ </font> 일별일정 </a> : <a href='<?= $href['week'] ?>'><font color="red">▒ </font> 주별일정 </a> : <a href='<?= $href['month'] ?>'><font color="red">▒ </font> 월별일정 </a> </td>
+												<td width="66%" align="right"><a href='<?php echo  $href['today'] ?>'><font color="red">▒ </font> 오늘일정(
+													<?php echo date("m월 d일")?>
+													) </a> : <a href='<?php echo  $href['day'] ?>'><font color="red">▒ </font> 일별일정 </a> : <a href='<?php echo  $href['week'] ?>'><font color="red">▒ </font> 주별일정 </a> : <a href='<?php echo  $href['month'] ?>'><font color="red">▒ </font> 월별일정 </a> </td>
 											</tr>
 										</table></td>
 									</tr>

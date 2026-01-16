@@ -8,6 +8,7 @@ set_time_limit(0);
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 02/10/31 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환, eregi_replace() → preg_replace() 변환
 //=======================================================
 
 switch($mode) {
@@ -40,13 +41,13 @@ switch($mode) {
 		break;			
 } // end switch
 ?>
-<form method=post action=<?=$PHP_SELF ?>>
+<form method=post action=<?php echo $PHP_SELF ?>>
  <input type="radio" name="mode" value="directory" <?phpif($mode=="" or $mode=="directory") echo "checked" ?>>
   드렉토리서치
 <input type="radio" name="mode" value="search" <?phpif($mode=="search") echo "checked" ?>>전화번호서치결과(&BA=0&DL=100&end=1000)
 <br>
 <br>
-<textarea name="url" rows="10" cols="60"><?=$url ? htmlspecialchars($url,ENT_QUOTES) : "http://dir.hanmir.com/비즈니스,경제/업종별_회사/광고,마케팅/광고/판촉물,기념품/index.html" ?></textarea>
+<textarea name="url" rows="10" cols="60"><?php echo $url ? htmlspecialchars($url,ENT_QUOTES) : "http://dir.hanmir.com/비즈니스,경제/업종별_회사/광고,마케팅/광고/판촉물,기념품/index.html" ?></textarea>
 <input type=submit value="GO->">
 </form>
 <hr>
@@ -89,7 +90,7 @@ if($mode=="directory" and $getHTML) {
 		// 설명
 		$tmp_data	= substr($tmp_data,strpos($tmp_data,"</b>")+10);
 		$rs_data[$i][content]= substr($tmp_data,0,strpos($tmp_data,"</td>"));
-		$rs_data[$i][content]= trim(eregi_replace('</small>','',$rs_data[$i][content]));
+		$rs_data[$i][content]= trim(preg_replace('/<\/small>/i','',$rs_data[$i][content]));
 
 		// 전화번호, 주소
 		if( $tmp_count_small=strpos($tmp_data,"<small>") ) {

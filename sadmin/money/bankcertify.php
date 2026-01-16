@@ -8,6 +8,7 @@
 // -------- ------ --------------------------------------
 // 03/10/14 박선민 마지막 수정
 // 25/08/13 Gemini	PHP7 및 mariadb 11 버전 업그레이드 대응
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================	
 $HEADER=array(
 	'auth'		 => 10, // 인증유무 (0:모두에게 허용, 숫자가 높을 수록 레벨업)
@@ -104,30 +105,30 @@ foreach ($params as $param) {
 ?>
 	<form name="board" method="post" action="./bankok.php">
 	<input type='hidden' name='mode' value='input_ok'>
-	<input type='hidden' name='receiptor' value='<?=$qs['receiptor']?>'>
-	<input type='hidden' name='price' value='<?=$qs['price']?>'>
-	<input type='hidden' name='bank' value='<?=$qs['bank']?>'>
-	<input type='hidden' name='inputdate' value='<?=$qs['inputdate']?>'>
+	<input type='hidden' name='receiptor' value='<?php echo $qs['receiptor']?>'>
+	<input type='hidden' name='price' value='<?php echo $qs['price']?>'>
+	<input type='hidden' name='bank' value='<?php echo $qs['bank']?>'>
+	<input type='hidden' name='inputdate' value='<?php echo $qs['inputdate']?>'>
 	<table width="330" border="0" cellspacing="1" cellpadding="3" bgcolor="#2f4f4f">
 	 <tr>
-		<td bgcolor="#d2b48c" width="101"><b><font size="2" color="#333333">&nbsp;&nbsp;<?=$sc_column?></font></b></td>
-		<td width="214" bgcolor="#faf0e6"> <font size="2"><?=$sc_string?></font></td>
+		<td bgcolor="#d2b48c" width="101"><b><font size="2" color="#333333">&nbsp;&nbsp;<?php echo $sc_column?></font></b></td>
+		<td width="214" bgcolor="#faf0e6"> <font size="2"><?php echo $sc_string?></font></td>
 	 </tr>
 	 <tr>
 		<td bgcolor="#d2b48c" width="101"><b><font size="2" color="#333333">&nbsp;&nbsp;입금인</font></b></td>
-		<td width="214" bgcolor="#faf0e6"> <font size="2"><?=$qs['receiptor']?></font></td>
+		<td width="214" bgcolor="#faf0e6"> <font size="2"><?php echo $qs['receiptor']?></font></td>
 	 </tr>
 	 <tr>
 		<td bgcolor="#d2b48c" width="101"><b><font color="#333333">&nbsp;&nbsp;<font size="2">금액</font></font></b></td>
-		<td width="214" bgcolor="#faf0e6"> <font size="2"><?=number_format($qs['price'])?> 원</font></td>
+		<td width="214" bgcolor="#faf0e6"> <font size="2"><?php echo number_format($qs['price'])?> 원</font></td>
 	 </tr>
 	 <tr>
 		<td bgcolor="#d2b48c" width="101"><b><font color="#333333">&nbsp;&nbsp;<font size="2">입금은행</font></font></b></td>
-		<td width="214" bgcolor="#faf0e6"> <font size="2"><?=$qs['bank']?></font></td>
+		<td width="214" bgcolor="#faf0e6"> <font size="2"><?php echo $qs['bank']?></font></td>
 	 </tr>
 	 <tr>
 		<td bgcolor="#d2b48c" width="101"><b><font color="#333333">&nbsp;&nbsp;<font size="2">입금날짜</font></font></b></td>
-		<td width="214" bgcolor="#faf0e6"> <font size="2"><?=$qs['inputdate']?></font></td>
+		<td width="214" bgcolor="#faf0e6"> <font size="2"><?php echo $qs['inputdate']?></font></td>
 	 </tr>
 	</table>
 	<br>

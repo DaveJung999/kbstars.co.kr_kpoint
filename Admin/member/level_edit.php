@@ -33,7 +33,7 @@ body {
 	<td height="35" bgcolor="#F8F8EA">		<div align="center">
 			<input type="hidden" name="mode" size="30" style='height:16;' value="index_level">
 			<input type="hidden" name="uid" size="30" style='height:16;' value="1">
-			<input type="hidden" name="total_num" size="30" style='height:16;' value="<?=$total_num?>">
+			<input type="hidden" name="total_num" size="30" style='height:16;' value="<?php echo $total_num?>">
 			<input name="level" type="text" class="input01" style='height:16; text-align:center' value="1" size="5">
 		(1-99사이)</div>
 	</td>

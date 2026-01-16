@@ -7,6 +7,7 @@
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 02/10/09 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'priv'		=>'운영자', // 인증유무 (비회원,회원,운영자,서버관리자) // 관리자만 로그인
@@ -133,28 +134,28 @@ $cateinfo = db_count() ? db_array($rs_cateinfo) : back_close("카테고리가 �
 
 // 상위메뉴 순서 변경
 ?>
-	<form name="form1" method="post" action="<?=$PHP_SELF
+	<form name="form1" method="post" action="<?php echo $PHP_SELF
 ?>" style="margin:0px">
 	<input type="hidden" name="mode" value="change">
 	<input type="hidden" name="srcuid" value="<?php 
 echo $cateinfo['uid'] 
 ?>">
-	<table border=0 cellspacing='<?=$page['table_cellspacing']
-?>' cellpadding='<?=$page['table_cellpadding']
-?>' bgcolor='<?=$page['table_linecolor']
+	<table border=0 cellspacing='<?php echo $page['table_cellspacing']
+?>' cellpadding='<?php echo $page['table_cellpadding']
+?>' bgcolor='<?php echo $page['table_linecolor']
 ?>' width=350 height=100>
 		<tr>
-			<td bgcolor='<?=$page['table_titlecolor']
+			<td bgcolor='<?php echo $page['table_titlecolor']
 ?>' ><b>메뉴순서변경</b></td>
 		</tr>
 		
 		<tr>
-			<td bgcolor='<?=$page['table_thcolor']
+			<td bgcolor='<?php echo $page['table_thcolor']
 ?>'>현재 <b><?php 
 echo $cateinfo['title']  ?></b> 메뉴입니다.</td>
 		</tr>
 		<tr>
-			<td bgcolor='<?=$page['table_tdcolor']
+			<td bgcolor='<?php echo $page['table_tdcolor']
 ?>'><?php 
 echo $list['menu'] 
 ?> 메뉴를 

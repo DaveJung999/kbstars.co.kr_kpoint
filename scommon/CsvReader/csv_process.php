@@ -7,7 +7,7 @@
 //	DATE	수정인				수정 내용
 // -------- ------ --------------------------------------
 // 05/11/20 박선민 마지막 수정
-// 25/01/XX  PHP 7 업그레이드: mysql_* → db_* 함수 교체
+// 25/01/XX  PHP 7 업그레이드: mysql_* → db_* 함수 교체, split() → explode() 변환
 //=======================================================
 $HEADER = array(
 	'priv'		=>'운영자,포인트관리자', // 인증유무 (비회원,회원,운영자,서버관리자)
@@ -76,7 +76,7 @@ $update_line = 0;
 // 저장된 파일을 읽어 들인다
 $csvLoad  = file("./data/$upfile_name");
 // 행으로 나누어서 배열에 저장
-$csvArray = split("\n",implode($csvLoad));
+$csvArray = explode("\n",implode($csvLoad));
 
 // [0]이름, [1]연락처, [2]생년월일, [3]카드번호, [4]시즌회원/직원서포터즈, 시즌년도, 메모, 회원구분
 $db_field = "name,hp,birth,accountno,spts_cate,spts_year,spts_memo,priv";
@@ -174,7 +174,7 @@ for($i=0;$i<count($csvArray);$i++){
 		
 		
 		//각 행을 탭을 기준으로 각 필드에 나누고 DB입력시 에러가 없게 하기위해서 addslashes함수를 이용해 \를 붙인다
-		$field	 = array_map('trim', split(chr(9),addslashes($csvArray[$i])));
+		$field	 = array_map('trim', explode(chr(9),addslashes($csvArray[$i])));
 		//나누어진 각 필드에 앞뒤에 공백을 뺸뒤 ''따옴표를 붙이고 ,콤마로 나눠서 한줄로 만든다.
 		$value	 = "'" . trim(implode("','",$field)) . "'";
 		

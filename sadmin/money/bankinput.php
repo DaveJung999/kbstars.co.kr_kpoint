@@ -7,6 +7,7 @@
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 03/10/14 박선민 마지막 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================	
 $HEADER=array(
 	'priv'	 => 10, // 인증유무 (0:모두에게 허용, 숫자가 높을 수록 레벨업)
@@ -40,10 +41,10 @@ foreach ($params as $param) {
 <title> 통장입금 처리 </title>
 <script LANGUAGE="JavaScript" src="/scommon/js/inputcalendar.js" type="Text/JavaScript"></script>
 <form name="board" method="post" action="./bankcertify.php">
-<table width="500" border=0 cellspacing='<?=$pageinfo['table_cellspacing']?>' cellpadding='<?=$pageinfo['table_cellpadding']?>' bgcolor='<?=$pageinfo['table_linecolor']?>'>
+<table width="500" border=0 cellspacing='<?php echo $pageinfo['table_cellspacing']?>' cellpadding='<?php echo $pageinfo['table_cellpadding']?>' bgcolor='<?php echo $pageinfo['table_linecolor']?>'>
 	<tr> 
-		<td bgcolor='<?=$pageinfo['table_thcolor']?>' width="150"><b><font size="2" color="#333333">&nbsp;&nbsp;아이디 <font color="#FF6600">*</font></font></b></td>
-		<td bgcolor='<?=$pageinfo['table_tdcolor']?>'><font size="2"> 
+		<td bgcolor='<?php echo $pageinfo['table_thcolor']?>' width="150"><b><font size="2" color="#333333">&nbsp;&nbsp;아이디 <font color="#FF6600">*</font></font></b></td>
+		<td bgcolor='<?php echo $pageinfo['table_tdcolor']?>'><font size="2"> 
 			<input type="text" name="userid"><br>
 			혹은 이름 <input type="text" name="name"><br>
 			혹은 휴대폰 <input type="text" name="hp">
@@ -51,39 +52,39 @@ foreach ($params as $param) {
 	 </td>
 	</tr>
 	<tr> 
-		<td bgcolor="<?=$pageinfo['table_thcolor']?>" width="156"><b><font size="2" color="#333333">&nbsp;&nbsp;입금인 
+		<td bgcolor="<?php echo $pageinfo['table_thcolor']?>" width="156"><b><font size="2" color="#333333">&nbsp;&nbsp;입금인 
 		<font color="#FF6600">*</font> </font></b></td>
-		<td width="329" bgcolor="<?=$pageinfo['table_tdcolor']?>"> <font size="2"> 
+		<td width="329" bgcolor="<?php echo $pageinfo['table_tdcolor']?>"> <font size="2"> 
 		<input type="text" name="receiptor">
 		</font></td>
 	</tr>
 	<tr> 
-		<td bgcolor="<?=$pageinfo['table_thcolor']?>" width="156"><b><font color="#333333">&nbsp;&nbsp;<font size="2">금액 
+		<td bgcolor="<?php echo $pageinfo['table_thcolor']?>" width="156"><b><font color="#333333">&nbsp;&nbsp;<font size="2">금액 
 		</font></font><font size="2" color="#333333"><font color="#FF6600">*</font></font><font color="#333333"><font size="2"> 
 		</font></font></b></td>
-		<td width="329" bgcolor="<?=$pageinfo['table_tdcolor']?>"> <font size="2"> 
+		<td width="329" bgcolor="<?php echo $pageinfo['table_tdcolor']?>"> <font size="2"> 
 		<input type="text" name="price" size=15> 원</font></td>
 	</tr>
 	<tr> 
-		<td bgcolor="<?=$pageinfo['table_thcolor']?>" width="156"><b><font color="#333333">&nbsp;&nbsp;<font size="2">입금방법
+		<td bgcolor="<?php echo $pageinfo['table_thcolor']?>" width="156"><b><font color="#333333">&nbsp;&nbsp;<font size="2">입금방법
 		</font></font><font size="2" color="#333333"><font color="#FF6600">*</font></font><font color="#333333"><font size="2"> 
 		</font></font></b></td>
-		<td width="329" bgcolor="<?=$pageinfo['table_tdcolor']?>"> <font size="2"> 
-		<input type=text name='bank' size=20 value='<?=$list['bank']?>'> 예) 카드결제, 농협, 현금
+		<td width="329" bgcolor="<?php echo $pageinfo['table_tdcolor']?>"> <font size="2"> 
+		<input type=text name='bank' size=20 value='<?php echo $list['bank']?>'> 예) 카드결제, 농협, 현금
 		</font></td>
 	</tr>
 	<tr> 
-		<td bgcolor="<?=$pageinfo['table_thcolor']?>" width="156"><b><font color="#333333">&nbsp;&nbsp;<font size="2">입금날짜 
+		<td bgcolor="<?php echo $pageinfo['table_thcolor']?>" width="156"><b><font color="#333333">&nbsp;&nbsp;<font size="2">입금날짜 
 		</font></font><font size="2" color="#333333"><font color="#FF6600">*</font></font><font color="#333333"><font size="2"> 
 		</font></font></b></td>
-		<td width="329" bgcolor="<?=$pageinfo['table_tdcolor']?>">
-			<INPUT TYPE=text name="inputdate" id="inputdate" ONCLICK="Calendar(this);" VALUE="<?=$list['inputdate']?>" size='10' readonly>
+		<td width="329" bgcolor="<?php echo $pageinfo['table_tdcolor']?>">
+			<INPUT TYPE=text name="inputdate" id="inputdate" ONCLICK="Calendar(this);" VALUE="<?php echo $list['inputdate']?>" size='10' readonly>
 
 		</td>
 	</tr>
 	<tr> 
-		<td bgcolor="<?=$pageinfo['table_thcolor']?>" width="156">&nbsp;</td>
-		<td width="329" bgcolor="<?=$pageinfo['table_tdcolor']?>"> 
+		<td bgcolor="<?php echo $pageinfo['table_thcolor']?>" width="156">&nbsp;</td>
+		<td width="329" bgcolor="<?php echo $pageinfo['table_tdcolor']?>"> 
 		<input type="submit" name="mode" value="입금처리">
 		</font> </td>
 	</tr>

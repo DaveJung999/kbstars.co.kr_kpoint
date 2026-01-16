@@ -436,13 +436,13 @@ function onHistwrite(){
 						
 ?>
 						<tr>
-							<td height="20" align="center"	bgcolor="#F0EBD6"><?=$no?></td>
-							<td bgcolor="#F0EBD6">&nbsp;<a href="#" onClick="window.open('./view_history.php?uid=<?=$list_hist['uid']?>','hist_pop','scrollbars=yes,status=no,toolbar=no,location=no,menubar=no,resizable=no,width=500,height=555');">
-								<?=cut_string($list_hist['title'], 75)?>
+							<td height="20" align="center"	bgcolor="#F0EBD6"><?php echo $no?></td>
+							<td bgcolor="#F0EBD6">&nbsp;<a href="#" onClick="window.open('./view_history.php?uid=<?php echo $list_hist['uid']?>','hist_pop','scrollbars=yes,status=no,toolbar=no,location=no,menubar=no,resizable=no,width=500,height=555');">
+								<?php echo cut_string($list_hist['title'], 75)?>
 							</a></td>
-							<td align="center" bgcolor="#F0EBD6"><?=$list_hist['data2']?> 건 </td>
-							<td align="center" bgcolor="#F0EBD6"><?=$list_hist['rdate']?></td>
-							<td align="center" bgcolor="#F0EBD6"><input name="del" type="button" class="stylebutton_yellow" value=" 삭 제 " onClick="onHistdel('<?=$list_hist['uid'] ?>');"></td>
+							<td align="center" bgcolor="#F0EBD6"><?php echo $list_hist['data2']?> 건 </td>
+							<td align="center" bgcolor="#F0EBD6"><?php echo $list_hist['rdate']?></td>
+							<td align="center" bgcolor="#F0EBD6"><input name="del" type="button" class="stylebutton_yellow" value=" 삭 제 " onClick="onHistdel('<?php echo $list_hist['uid'] ?>');"></td>
 						</tr>
 						<tr>
 							<td height="1" colspan="5" align="center"	bgcolor="#bbbbbb"></td>

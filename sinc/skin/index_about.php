@@ -155,7 +155,7 @@ function na_change_img_src(name, nsdoc, rpath, preload)
 <table border="0" cellpadding="0" cellspacing="0" width="1004" bgcolor="white" style="line-height:100%; margin-top:0; margin-bottom:0;">
 	<tr>
 		<td width="1250">
-			<p style="line-height:100%; margin-top:0; margin-bottom:0;"><? if($_SESSION['seUid'] && $_SESSION['seUserid']) { //로그인이 되어 있으면 ?><script src="/swf/index.php?src=sub1-1&width=1004&height=142"></script><? } else { //로그인이 되어있지 않으면 ?><script src="/swf/index.php?src=sub1&width=1004&height=142"></script><? } // end if ?>
+			<p style="line-height:100%; margin-top:0; margin-bottom:0;"><?php if($_SESSION['seUid'] && $_SESSION['seUserid']) { //로그인이 되어 있으면 ?><script src="/swf/index.php?src=sub1-1&width=1004&height=142"></script><?php } else { //로그인이 되어있지 않으면 ?><script src="/swf/index.php?src=sub1&width=1004&height=142"></script><?php } // end if ?>
 			</p>
 		</td>
 	</tr>
@@ -188,7 +188,7 @@ switch($_SERVER['PHP_SELF']) {
 	<tr>
 		<td height="24" bgcolor="#574F43" background="/img/home-menu-title.gif">
 			<p style="line-height:100%; margin-top:0; margin-bottom:0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:10pt; color:white">&nbsp;<a href="/"><font color="#FFFFFF">HOME</font></a> 
-			&gt; 구단소개 <font color="#FFFFFF"><?=$nevi?></font></span></p>
+			&gt; 구단소개 <font color="#FFFFFF"><?php echo $nevi;?></font></span></p>
 		</td>
 	</tr>
 </table>
@@ -242,7 +242,7 @@ switch($_SERVER['PHP_SELF']) {
 		</td>
 	</tr>
 </table>
-<? include("inc_tail.php") ?>
+<?php include("inc_tail.php") ?>
 </body>
 </html>
 <?php

@@ -8,6 +8,7 @@
 // -------- ------ --------------------------------------
 // 03/08/25 박선민 마지막 수정
 // 25/08/13 Gemini 최신 PHP 버전 호환성 수정
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'auth'		 =>	2, // 인증유무 (0:모두에게 허용)
@@ -127,7 +128,7 @@ if ($mode == "modify" && $uid) {
 			<td bgcolor="#f6f6f6" width="86%" height="31">
 			<?php if($mode == "write"): ?>
 				<input type="text" name="db" size="16" value="<?php echo $list['db'] ?? ''; ?>">
-				<font size="2"> (<?=$SITE['th']?>poll_??? 이렇게 생성이 됩니다.) </font>
+				<font size="2"> (<?php echo $SITE['th']?>poll_??? 이렇게 생성이 됩니다.) </font>
 			<?php else: ?>
 				<font size="2"><?php echo $list['db'] ?? ''; ?> (변경불가)</font>
 			<?php endif; ?>

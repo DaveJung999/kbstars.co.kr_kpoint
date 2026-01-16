@@ -87,15 +87,15 @@ if(isset($subNode{$rowsPrev['num']}))
 ?>
 <html>
 <head>
-<?=$pageinfo['html_header']?>
+<?php echo $pageinfo['html_header'];?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
-<body bgcolor="<?=$pageinfo['left_bgcolor']?>" background="<?=$pageinfo['left_background']?>"  topmargin='', leftmargin=0>
-<?=$pageinfo['left_header']?>
+<body bgcolor="<?php echo $pageinfo['left_bgcolor'];?>" background="<?php echo $pageinfo['left_background'];?>"  topmargin='', leftmargin=0>
+<?php echo $pageinfo['left_header'];?>
 <script src="/scommon/treemenu/sniffer.js" language="JavaScript" type="text/javascript"></script>
 <script src="/scommon/treemenu/TreeMenu.js" language="JavaScript" type="text/javascript"></script>
 <div id="menuLayer"></div>
 
-<?$menu->printMenu()?>
+<?php $menu->printMenu();?>
 </body>
 </html>

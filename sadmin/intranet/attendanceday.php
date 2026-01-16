@@ -78,17 +78,17 @@ while($rows=db_array($rs_attend)) {
 db_free($rs_attend);
 ?>
 <html>
-<?=$pageinfo['html_header']	 // 스타일시트?>
-<body bgcolor="<?=$pageinfo['right_bgcolor']?>" background="<?=$pageinfo['right_background']?>">
+<?php echo $pageinfo['html_header'];	 // 스타일시트?>
+<body bgcolor="<?php echo $pageinfo['right_bgcolor'];?>" background="<?php echo $pageinfo['right_background'];?>">
 
-<table width="600" border=0 cellpadding='<?=$pageinfo['table_cellpadding']?>' cellspacing='<?=$pageinfo['table_cellspacing']?>' bgcolor='<?=$pageinfo['table_linecolor']?>'>
+<table width="600" border=0 cellpadding='<?php echo $pageinfo['table_cellpadding'];?>' cellspacing='<?php echo $pageinfo['table_cellspacing'];?>' bgcolor='<?php echo $pageinfo['table_linecolor'];?>'>
  <tr>
-	<form method=get action="<?=$_SERVER['PHP_SELF']?>">
-	<input type="hidden" name="gname" value="<?=$groupinfo['name']?>">
-	 <td align="center" bgcolor='<?=$pageinfo['table_titlecolor']?>'><b>
-		<?=$SITE['company']?>
-		<?=$groupinfo['title']?> 출근상황부
-<INPUT TYPE=text name="searchdate" VALUE="<?=$_GET['searchdate']?>" SIZE=12 ONCLICK="Calendar(this);">
+	<form method=get action="<?php echo $_SERVER['PHP_SELF'];?>">
+	<input type="hidden" name="gname" value="<?php echo $groupinfo['name'];?>">
+	 <td align="center" bgcolor='<?php echo $pageinfo['table_titlecolor'];?>'><b>
+		<?php echo $SITE['company'];?>
+		<?php echo $groupinfo['title'];?> 출근상황부
+<INPUT TYPE=text name="searchdate" VALUE="<?php echo $_GET['searchdate'];?>" SIZE=12 ONCLICK="Calendar(this);">
 <SCRIPT LANGUAGE=JAVASCRIPT>
 	var target;																	// 호출한 Object의 저장
 	var stime;
@@ -320,8 +320,8 @@ function get_Monthinfo(year,month,day) {										// 월 정보를 콤보 박스
 	</form>
  </tr>
  <tr>
-	<td bgcolor='<?=$pageinfo['table_tdcolor']?>'> <table width="600" border=0 align="left" cellpadding='<?=$pageinfo['table_cellpadding']?>' cellspacing='<?=$pageinfo['table_cellspacing']?>' bgcolor='<?=$pageinfo['table_linecolor']?>'>
-		<tr bgcolor="<?=$pageinfo['table_thcolor']?>">
+	<td bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'> <table width="600" border=0 align="left" cellpadding='<?php echo $pageinfo['table_cellpadding'];?>' cellspacing='<?php echo $pageinfo['table_cellspacing'];?>' bgcolor='<?php echo $pageinfo['table_linecolor'];?>'>
+		<tr bgcolor="<?php echo $pageinfo['table_thcolor'];?>">
 		 <td rowspan="2" align="center"><strong>이름</strong></td>
 		 <td rowspan="2" align="center"><strong>구분</strong></td>
 		 <td rowspan="2" align="center"><strong>로그인</strong></td>
@@ -330,7 +330,7 @@ function get_Monthinfo(year,month,day) {										// 월 정보를 콤보 박스
 		 <td colspan="3" align="center"><p><strong>업무시간</strong></p></td>
 		 <td width="200" rowspan="2" align="center"><strong>메모</strong></td>
 		</tr>
-		<tr align="center" bgcolor="<?=$pageinfo['table_thcolor']?>">
+		<tr align="center" bgcolor="<?php echo $pageinfo['table_thcolor'];?>">
 		 <td width=30>정규</td>
 		 <td width=30><font size=1>시간외</font></td>
 		 <td width=30>야근</td>
@@ -340,7 +340,7 @@ if(is_array($joinuids)) {
 	foreach($joinuids as $value) {
 ?>
 		<tr align="center" >
-		 <td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>' align="right" width=60>
+		 <td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' align="right" width=60>
 <?php
 			$logon		= db_array(db_query("select * from {$table_logon} where uid='{$value}'"));
 			$userinfo	= db_array(db_query("select * from {$table_userinfo} where bid='{$value}'"));
@@ -350,10 +350,10 @@ if(is_array($joinuids)) {
 			
 ?>
 		 </td>
-		 <td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>' width=40>
-			<?=isset($data_attend["$value"]) ? $data_attend["$value"]['type'] : "-"?>
+		 <td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' width=40>
+			<?php echo isset($data_attend["$value"]) ? $data_attend["$value"]['type'] : "-";?>
 		 </td>
-		 <td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>' width=50>
+		 <td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' width=50>
 <?php
 				$tmp=db_result(db_query("select rdate from {$table_log_lastlog} where bid='{$value}'"),0,'rdate');
 				if(!$tmp) echo "-";
@@ -362,23 +362,23 @@ if(is_array($joinuids)) {
 			
 ?>
 		 </td>
-		 <td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>' width=50>
-			<?= isset($data_attend["$value"]['begintime']) && $data_attend["$value"]['begintime'] ? date("d H:i",$data_attend["$value"]['begintime']) : "-";?>
+		 <td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' width=50>
+			<?php echo isset($data_attend["$value"]['begintime']) && $data_attend["$value"]['begintime'] ? date("d H:i",$data_attend["$value"]['begintime']) : "-";?>
 		 </td>
-		 <td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>' width=50>
-			<?= isset($data_attend["$value"]['finishtime']) && $data_attend["$value"]['finishtime'] ? date("d H:i",$data_attend["$value"]['finishtime']) : "-";?>
+		 <td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' width=50>
+			<?php echo isset($data_attend["$value"]['finishtime']) && $data_attend["$value"]['finishtime'] ? date("d H:i",$data_attend["$value"]['finishtime']) : "-";?>
 		 </td>
-		 <td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>'>
-			<?=isset($data_attend["$value"]['dayhours']) ? $data_attend["$value"]['dayhours'] : "-"?>
+		 <td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'>
+			<?php echo isset($data_attend["$value"]['dayhours']) ? $data_attend["$value"]['dayhours'] : "-";?>
 		 </td>
-		 <td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>'>
-			<?=isset($data_attend["$value"]['overhours']) ? $data_attend["$value"]['overhours'] : "-"?>
+		 <td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'>
+			<?php echo isset($data_attend["$value"]['overhours']) ? $data_attend["$value"]['overhours'] : "-";?>
 		 </td>
-		 <td nowrap bgcolor='<?=$pageinfo['table_tdcolor']?>'>
-			<?=isset($data_attend["$value"]['nighthours']) ? $data_attend["$value"]['nighthours'] : "-"?>
+		 <td nowrap bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'>
+			<?php echo isset($data_attend["$value"]['nighthours']) ? $data_attend["$value"]['nighthours'] : "-";?>
 		 </td>
-		 <td width="200" align="left" bgcolor='<?=$pageinfo['table_tdcolor']?>'>
-			<?=isset($data_attend["$value"]['memo']) ? $data_attend["$value"]['memo'] : "-"?>
+		 <td width="200" align="left" bgcolor='<?php echo $pageinfo['table_tdcolor'];?>'>
+			<?php echo isset($data_attend["$value"]['memo']) ? $data_attend["$value"]['memo'] : "-";?>
 		 </td>
 		 <?php
 	} // end foreach
@@ -388,7 +388,7 @@ if(is_array($joinuids)) {
 	 </table></td>
  </tr>
  <tr>
-	<td bgcolor='<?=$pageinfo['table_tdcolor']?>' align="center"><input type="button" value="퇴근함니다." onClick="javascript: window.location='./finishwork.php'"></td>
+	<td bgcolor='<?php echo $pageinfo['table_tdcolor'];?>' align="center"><input type="button" value="퇴근함니다." onClick="javascript: window.location='./finishwork.php'"></td>
  </tr>
 </table>
 </body>

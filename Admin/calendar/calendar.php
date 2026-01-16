@@ -8,6 +8,7 @@
 // -------- ------ --------------------------------------
 // 04/07/19 박선민 마지막 수정
 // 25/11/10 Gemini   PHP 7 마이그레이션 (mysql_* 함수 db_*로 대체, 배열 변수 접근 수정)
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?php echo  → <?php echo 변환
 //=======================================================
 $HEADER=array(
 	'priv'		 => '', // 인증유무 (0:모두에게 허용, 숫자가 logon테이블 Level)
@@ -84,7 +85,7 @@ $_GET['db'] = "schedule ";
 <script language='javascript'>
 	function Loading() {
 		// 변수 접근 시 중괄호 사용
-		parent.window.frames['iframesubject'].document.location = '<?=$thisUrl?>/calendar.php?mode=miniSubject&stime=<?=$stime?>&etime=<?=$etime?>';
+		parent.window.frames['iframesubject'].document.location = '<?php echo $thisUrl?>/calendar.php?mode=miniSubject&stime=<?php echo $stime?>&etime=<?php echo $etime?>';
 	}
 </script>
 </head>
@@ -95,7 +96,7 @@ $_GET['db'] = "schedule ";
 		<td><table width="100%"	border="0" cellspacing="0" cellpadding="0">
 			<tr>
 			<td width="82"><img src="/images/main/calendar_top.gif" width="82" height="36" border="0"></td>
-			<td align="center" background="/images/main/calendar_title_bg.gif"><a href="?mode=<?=$G['mode']?>&stime=<?=$stime?>&submode=prev"><img src="/images/main/a_p.gif" width="13" height="13" border="0" align="absmiddle"></a><strong><font color="7378B8"> <?=$tyear?>년 <?=$tmonth?>월 </font></strong><a href="?mode=<?=$G['mode']?>&etime=<?=$etime?>&submode=next"><img src="/images/main/a_n.gif" width="13" height="13" border="0" align="absmiddle"></a></td>
+			<td align="center" background="/images/main/calendar_title_bg.gif"><a href="?mode=<?php echo $G['mode']?>&stime=<?php echo $stime?>&submode=prev"><img src="/images/main/a_p.gif" width="13" height="13" border="0" align="absmiddle"></a><strong><font color="7378B8"> <?php echo $tyear?>년 <?php echo $tmonth?>월 </font></strong><a href="?mode=<?php echo $G['mode']?>&etime=<?php echo $etime?>&submode=next"><img src="/images/main/a_n.gif" width="13" height="13" border="0" align="absmiddle"></a></td>
 			<td width="5"><img src="/images/main/calendar_r.gif" width="5" height="35" border="0"></td>
 			</tr>
 		</table></td>
@@ -192,13 +193,13 @@ $_GET['db'] = "schedule ";
 				if ($row['db'] == 'schedule') $pre_title = '<img src="/images/main/color_box_c1.gif" align="absmiddle">';
 				else	$pre_title = '<img src="/images/main/color_box_c2.gif" align="absmiddle">';
 ?>
-				<div style='display:none;' id='Mem<?=$i?>'>
+				<div style='display:none;' id='Mem<?php echo $i?>'>
 				<table width="202" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-				<td><a href="/scalendar/index.php?db=<?=$row['db']?>&mode=view&bmode=month&uid=<?=$row['uid']?>" target="_parent" class="b01"><strong><?=$pre_title;?><?=htmlspecialchars($row['title'])?></strong></a></td>
+				<td><a href="/scalendar/index.php?db=<?php echo $row['db']?>&mode=view&bmode=month&uid=<?php echo $row['uid']?>" target="_parent" class="b01"><strong><?php echo $pre_title;?><?php echo htmlspecialchars($row['title'])?></strong></a></td>
 				</tr>
 				<tr>
-				<td align="right" class="b02">[<?=$date?>]</td>
+				<td align="right" class="b02">[<?php echo $date?>]</td>
 				</tr>
 			</table>
 			</div>
