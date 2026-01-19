@@ -39,144 +39,15 @@ $thisUrl	= './'; // 마지막이 '/'으로 끝나야함
 	$table_accountinfo	= $SITE['th'].'accountinfo';
 	$table_coupon		= $SITE['th'].'shop2coupon';
 
-	//////////////////////////////////////////////////
-	// 쇼핑몰 주문에서 비회원주문을 위한 비회원 로그인
 	
-	/*if( $_POST['mode']=='loginguest' ) {
-		if( !$_POST['name'] or !$_POST['tel'] or !$_POST['email'])
-			back('이름, 전화번호를 모두를 입력하여주시기 바랍니다');
-		
-		// PHP 7+ 호환성: eregi_replace() → preg_replace() 변환
-		$_POST['tel']=preg_replace('/[^0-9]/i','',$_POST['tel']);// 전화번호에 대해서 숫자로만
-		if( strlen($_POST['tel']<10) )
-			back('전화번호를 정확히 입력하여 주시기 바랍니다');
-
-		$_POST['userid'] = 'g-' . $_POST['tel']; // 아이디를 g-전화번호 
-		$_POST['passwd'] = addslashes($_POST['name'].$_POST['tel']);
-		$_POST['passwdemail'] = addslashes($_POST['name'].$_POST['tel'].$_POST['email']); // mulkang 호환때문에...
-
-		$sql = "select *,password('{$_POST['passwd']}') as userpass, password('{$_POST['passwdemail']}') as userpass2 from $table_logon where userid='{$_POST['userid']}'";
-		if($list=db_arrayone($sql)) { // 이미 아이디가 있으면
-			if($list['passwd']!=$list['userpass']) {
-				if($list['passwd']==$list['userpass2'])
-					$_POST['passwd'] = $_POST['passwdemail'];
-				else
-					back('같은 전화번호로 다른 이름을 사용한 적이 있습니다.\\n전화번호를 다르게하거나 이전에 사용한 이름을 입력해주십시오');
-			}
-		}
-		else { // class guest인 비회원로그인 생성
-			$qs['ip']		= remote_addr();
-			$qs['host']	= $_SERVER['HTTP_HOST'];
-			
-			// 전화번호가 휴대폰번호이면, 휴대폰번호로 등록
-			$_POST['hp'] = '';
-			if (preg_match('/^(010|011|016|017|018|019)[0-9]{7,}$/', $_POST['tel'])) {
-				$_POST['hp'] = $_POST['tel'];
-			}
-			
-			$sql = "INSERT INTO $table_logon SET
-						userid	= '$_POST['userid']',
-						passwd	= password('$_POST['passwd']'),
-						name	= '$_POST['name']',
-						nickname= '$_POST['name']',
-						email	= '$_POST['email']',
-						yesmail	= '0',
-						priv	= '비회원',
-						tel		= '$_POST['tel']',
-						hp		= '$_POST['hp']',
-						rdate	= UNIX_TIMESTAMP(),
-						ip		= '$qs['ip']',
-						host	= '$qs['host']',
-						open	= 'sms'
-				";
-			db_query($sql);
-		}
-		unset($list);
-		$prev_mode = $_POST['mode'];
-		$_POST['mode'] = 'login'; // 아래 로그인
-	}*/
-	
-	
-	/**
-	////////////////
-	// REMOTE 로그인
-	function fetchURL( $url ) {
-		$url_parsed = parse_url($url);
-		$host = $url_parsed["host"];
-		$port = $url_parsed["port"];
-		if ($port==0) $port = 80;
-		$path = $url_parsed["path"];
-		if ($url_parsed["query"] != "") $path .= "?".$url_parsed["query"];
-		$out = "GET $path HTTP/1.0\r\nHost: $host\r\n\r\n";
-		$fp = fsockopen($host, $port, $errno, $errstr, 30);
-		fwrite($fp, $out);
-		$body = false;
-		while (!feof($fp)) {
-			$s = fgets($fp, 1024);
-			if ( $body ) $in .= $s;
-			if ( $s == "\r\n" )	$body = true;
-		}
-		
-		fclose($fp);
-		
-		return $in;
+	// MySQL 4.x의 OLD_PASSWORD() 함수를 DB에서 직접 가져오는 함수
+	// 이 함수는 마이그레이션 목적으로만 사용하고, 마이그레이션 완료 후에는 삭제하는 것이 좋습니다.
+	function old_mysql_password($password) {
+		global $db;
+		$sql = "SELECT OLD_PASSWORD('".db_escape($password) . "') as old_pw";
+		$result = db_arrayone($sql);
+		return $result['old_pw'];
 	}
-	if($_POST['mode']=='remotelogin' && $_POST['userid'] && $_POST['passwd']) {
-		$remote = fetchURL("http://new21.com/sjoin/loginRemote.php?userid={$_POST['userid']}&passwd={$_POST['passwd']}");
-		$rlist = unserialize($remote);
-		if(!is_array($rlist)) back('인증 서버 접속에 장애가 발생하였습니다. 잠시후 다시 시도하여 주세요');
-		//print_r($rlist);exit;
-		
-		if($rlist['error']) back("다음의 이유로 로그인에 실패하였습니다.\\n에러메세지:".$rlist['error']);
-		
-		$rlist['addr1'] = str_replace("&nbsp;", " ", $rlist['addr1']);
-		$rlist['rdate'] = strtotime($rlist['sdate']);
-		
-		// 회원 정보 업데이트
-		$sql = "SELECT * FROM $table_logon WHERE userid='{$_POST['userid']}'";
-		if($list=db_arrayone($sql)) {
-			$sql = "update $table_logon set
-						`passwd`=password('$rlist['user_passwd']'),
-						`name` = '$rlist['user_name']',
-						`email` = '$rlist['email']',
-						`idnum` = '$rlist['junmin1']-$rlist['junmin2']',
-						`gisu` = '$rlist['gisu']',
-						`tel` = '$rlist['tel']',
-						`hp` = '$rlist['handphone']',
-						`zip` = '$rlist['zipcode']',
-						`address` = '$rlist['addr1'] $rlist['addr2']',
-						`homepage` = '$rlist['homepage']',
-						`yesmail` = '$rlist['mail_yn']',
-						`rdate` = '$rlist['rdate']'
-					where uid=$list['uid']
-					";
-		}
-		else {
-			$sql = "insert into $table_logon set
-						`priv`	= '회원',
-						`userid` = '$rlist['user_id']',
-						`passwd`=password('$rlist['user_passwd']'),
-						`name` = '$rlist['user_name']',
-						`email` = '$rlist['email']',
-						`idnum` = '$rlist['junmin1']-$rlist['junmin2']',
-						`gisu` = '$rlist['gisu']',
-						`tel` = '$rlist['tel']',
-						`hp` = '$rlist['handphone']',
-						`zip` = '$rlist['zipcode']',
-						`address` = '$rlist['addr1'] $rlist['addr2']',
-						`homepage` = '$rlist['homepage']',
-						`yesmail` = '$rlist['mail_yn']',
-						`rdate` = '$rlist['rdate']'
-					";	
-		}
-		db_query($sql);
-		
-		unset($list);
-		unset($rlist);
-		$prev_mode = $_POST['mode'];		
-		$_POST['mode'] = 'login';
-	}
-	**/
 	
 	/////////
 	// 로그인
@@ -184,12 +55,44 @@ $thisUrl	= './'; // 마지막이 '/'으로 끝나야함
 		// 0.1초간 쉬자.. 로그인에 0.1초 기다리게 할 수 있겠지.
 		usleep(100); // 패스워드 무한루트 돌리는 해킹을 조금이라도 무력화 시키기 위해
 		
-		$sql	= "SELECT * FROM $table_logon WHERE userid='{$_POST['userid']}' and passwd=password('{$_POST['passwd']}')";
-		if(!$list=db_arrayone($sql)) {
+		$userid = $_POST['userid'];
+		$passwd = $_POST['passwd']; // 비밀번호는 해싱 전 상태로 유지
+
+		// 아이디로 사용자 정보를 먼저 가져옴
+		$sql = "SELECT * from {$table_logon} WHERE userid='{$userid}'";
+		//echo $sql;exit;
+		if(!$list = db_arrayone($sql)){
 			sleep(1); // 패스워드 무한루트 돌리는 해킹을 조금이라도 무력화 시키기 위해
-			back('회원 인증에 실패하였습니다. \\n아이디와 패스워드를 정확히 입력해 주십시요.'); 
+			back('등록되지 않은 아이디입니다.');
 			exit;
 		}
+
+		// PHP의 password_verify 함수로 비밀번호를 검증
+		// 이 함수는 MariaDB 11과 PHP 7에서 권장되는 안전한 해싱 방식입니다.
+		$is_authenticated = false;
+		if(password_verify($passwd, $list['passwd'])){
+			$is_authenticated = true;
+		} else {
+			// 기존 password() 함수는 OLD_PASSWORD() 함수를 사용하여 16자리 문자열을 반환하는 방식과 유사하게 작동했습니다.
+			// password_verify()에 실패했을 경우, 위에서 정의한 old_mysql_password 함수를 사용하여 재확인합니다.
+			// **주의: 이 코드는 임시 마이그레이션용이며, 모든 사용자가 로그인 후에는 삭제하는 것이 좋습니다.**
+			$old_hash_check = old_mysql_password($passwd);
+			
+			if ($list['passwd'] === $old_hash_check) {
+				$is_authenticated = true;
+				// 로그인 성공 후 새로운 해시로 업데이트
+				$new_hash = password_hash($passwd, PASSWORD_DEFAULT);
+				$update_sql = "update {$table_logon} SET passwd = '{$new_hash}' WHERE uid = '{$list['uid']}'";
+				db_query($update_sql);
+			}
+		}
+
+		if(!$is_authenticated){
+			sleep(1); // 패스워드 무한루트 돌리는 해킹을 조금이라도 무력화 시키기 위해
+			back('회원 인증에 실패하였습니다 . \\n아이디와 패스워드를 정확히 입력해 주십시요.');
+			exit;
+		}
+
 		if($list['level']<0) back('회원탈퇴를 한 아이디입니다.\\n이 아이디로는 로그인이 불가합니다.');
 
 		$seHTTP_REFERER = $_SESSION['seHTTP_REFERER'];
