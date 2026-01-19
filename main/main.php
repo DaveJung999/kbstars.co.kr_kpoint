@@ -7,7 +7,7 @@
 //	DATE	수정인			 수정 내용
 // -------- ------ --------------------------------------
 // 04/08/11 박선민 마지막 수정
-// 25/01/XX PHP 7+ 호환성: 단축 태그 <? → <?php 변환
+// 25/01/XX PHP 7+ 호환성: 단축 태그 <?→ <?php 변환
 //=======================================================
 $HEADER=array(
 	'priv'		=>'', // 인증유무 (0:모두에게 허용, 숫자가 logon테이블 Level)
@@ -192,7 +192,7 @@ function banner_link($content){
 		<td width="305" align="center" background="/images/index_hotn_bg.gif"><table width="90%" height="28" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
 	<td align="center"><MARQUEE onmouseover=stop(); onmouseout=start(); scrollAmount=3 direction=left loop=ture>
-<font color='#00FFFF'><? board("hotnews", "gonggi_hotnews", 120, 1)?></font></MARQUEE></td>
+<font color='#00FFFF'><?php board("hotnews", "gonggi_hotnews", 120, 1)?></font></MARQUEE></td>
   </tr>
 </table></td>
 		<td width="35"><img src="/images/index_hotn_rt.gif" width="35" height="40" border="0" /></td>
@@ -225,7 +225,7 @@ function banner_link($content){
 			  <tr>
 				<td width="310" height="130" align="center" id="t0"><table width="100%" height="110" border="0" cellpadding="0" cellspacing="0">
 				  <tr>
-					<td align="center" valign="top"><? main_content("news", "main_content_2", "12", "1");?></td>
+					<td align="center" valign="top"><?php main_content("news", "main_content_2", "12", "1");?></td>
 				  </tr>
 				</table>
 				  </td>
@@ -254,7 +254,7 @@ function banner_link($content){
 			  <tr>
 				<td width="310" height="130" align="center" id="t0"><table width="100%" height="110" border="0" cellpadding="0" cellspacing="0">
 				  <tr>
-					<td align="center" valign="top"><? board("notice", "gonggi_basic", "20", "5");?></td>
+					<td align="center" valign="top"><?php board("notice", "gonggi_basic", "20", "5");?></td>
 				  </tr>
 				</table>
 				  </td>
@@ -279,7 +279,7 @@ function banner_link($content){
 		<td width="210" height="140" background="/images/index_event_bg.gif" valign="top"> <table align="center" cellpadding="0" cellspacing="0" border="0" width="100%" height="140">
 		  <tr>
 			<td width="5" align="center">&nbsp;</td>
-			<td align="center"><? event("event", "gonggi_event", "45", "3");?></td>
+			<td align="center"><?php event("event", "gonggi_event", "45", "3");?></td>
 		  </tr>
 		  
 		</table></td>
@@ -313,7 +313,7 @@ function banner_link($content){
 				<td width="195" height="20"><img src="/images/index_match.gif" width="195" height="20" border="0" /></td>
 			  </tr>
 			  <tr>
-				<td align="center" background="/images/index_match_bg.gif"><? main_match(); ?></td>
+				<td align="center" background="/images/index_match_bg.gif"><?php main_match(); ?></td>
 			  </tr>
 			  
 			  
